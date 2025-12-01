@@ -1,0 +1,462 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Photoshop Windows Interactive Hotkey Companion</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <style>
+        body { font-family: 'Inter', sans-serif; }
+        
+        /* Custom Scrollbar */
+        ::-webkit-scrollbar { width: 8px; }
+        ::-webkit-scrollbar-track { background: #eff6ff; }
+        ::-webkit-scrollbar-thumb { background: #1e40af; border-radius: 4px; }
+        ::-webkit-scrollbar-thumb:hover { background: #1e3a8a; }
+
+        /* Chart Container Styling */
+        .chart-container {
+            position: relative;
+            width: 100%;
+            max-width: 600px;
+            margin-left: auto;
+            margin-right: auto;
+            height: 300px;
+            max-height: 300px;
+        }
+        
+        .card-hover:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+        }
+
+        .key-cap {
+            background: linear-gradient(to bottom, #f8fafc, #e2e8f0);
+            border-bottom: 3px solid #cbd5e1;
+        }
+        .key-cap:active {
+            border-bottom: 1px solid #cbd5e1;
+            transform: translateY(2px);
+        }
+    </style>
+    <!-- Chosen Palette: Deep Adobe Blue (Darker Blue, Slate) -->
+</head>
+<body class="bg-slate-50 text-slate-800 h-screen flex overflow-hidden">
+
+    <!-- Mobile Menu Overlay -->
+    <div id="mobile-menu-overlay" class="fixed inset-0 bg-black bg-opacity-50 z-20 hidden lg:hidden" onclick="toggleMobileMenu()"></div>
+
+    <!-- Sidebar -->
+    <aside id="sidebar" class="bg-white w-64 flex-shrink-0 border-r border-slate-200 flex flex-col fixed inset-y-0 left-0 transform -translate-x-full lg:relative lg:translate-x-0 transition-transform duration-200 ease-in-out z-30">
+        <div class="p-6 border-b border-slate-100 flex items-center justify-between">
+            <h1 class="text-2xl font-bold text-slate-800 tracking-tight"><span class="text-blue-800">PS Windows</span></h1>
+            <button class="lg:hidden text-slate-500" onclick="toggleMobileMenu()">✕</button>
+        </div>
+        
+        <nav class="flex-1 overflow-y-auto py-4">
+            <ul class="space-y-1 px-3">
+                <li>
+                    <button onclick="setView('dashboard')" class="nav-btn w-full text-left px-4 py-3 rounded-lg flex items-center space-x-3 hover:bg-blue-50 text-slate-600 hover:text-blue-800 transition-colors font-medium bg-blue-50 text-blue-800" id="btn-dashboard">
+                        <span>⌨️</span> <span>All Hotkeys</span>
+                    </button>
+                </li>
+                <li>
+                    <button onclick="setView('tools')" class="nav-btn w-full text-left px-4 py-3 rounded-lg flex items-center space-x-3 hover:bg-blue-50 text-slate-600 hover:text-blue-800 transition-colors font-medium" id="btn-tools">
+                        <span>🛠️</span> <span>Tools (Single Key)</span>
+                    </button>
+                </li>
+                <li>
+                    <button onclick="setView('layers')" class="nav-btn w-full text-left px-4 py-3 rounded-lg flex items-center space-x-3 hover:bg-blue-50 text-slate-600 hover:text-blue-800 transition-colors font-medium" id="btn-layers">
+                        <span>📑</span> <span>Layers & Masking</span>
+                    </button>
+                </li>
+                <li>
+                    <button onclick="setView('adjustments')" class="nav-btn w-full text-left px-4 py-3 rounded-lg flex items-center space-x-3 hover:bg-blue-50 text-slate-600 hover:text-blue-800 transition-colors font-medium" id="btn-adjustments">
+                        <span>🎨</span> <span>Image Adjustments</span>
+                    </button>
+                </li>
+                <li>
+                    <button onclick="setView('brush')" class="nav-btn w-full text-left px-4 py-3 rounded-lg flex items-center space-x-3 hover:bg-blue-50 text-slate-600 hover:text-blue-800 transition-colors font-medium" id="btn-brush">
+                        <span>🖌️</span> <span>Brush Controls</span>
+                    </button>
+                </li>
+                <li class="pt-4 mt-4 border-t border-slate-100">
+                    <button onclick="setView('quiz')" class="nav-btn w-full text-left px-4 py-3 rounded-lg flex items-center space-x-3 hover:bg-indigo-50 text-slate-600 hover:text-indigo-600 transition-colors font-medium" id="btn-quiz">
+                        <span>🧠</span> <span>Quiz Mode</span>
+                    </button>
+                </li>
+                <li>
+                    <button onclick="setView('analytics')" class="nav-btn w-full text-left px-4 py-3 rounded-lg flex items-center space-x-3 hover:bg-purple-50 text-slate-600 hover:text-purple-600 transition-colors font-medium" id="btn-analytics">
+                        <span>📊</span> <span>Insights</span>
+                    </button>
+                </li>
+            </ul>
+        </nav>
+        
+        <div class="p-4 border-t border-slate-200 bg-slate-50">
+            <p class="text-xs text-slate-400">Based on Photoshop CC (Windows)</p>
+        </div>
+    </aside>
+
+    <!-- Main Content -->
+    <main class="flex-1 flex flex-col h-screen overflow-hidden relative">
+        <!-- Mobile Header -->
+        <header class="bg-white border-b border-slate-200 p-4 lg:hidden flex justify-between items-center z-10">
+            <span class="font-bold text-blue-800">PS Windows</span>
+            <button onclick="toggleMobileMenu()" class="text-slate-600">
+                ☰ Menu
+            </button>
+        </header>
+
+        <!-- Top Bar -->
+        <div class="bg-white border-b border-slate-200 px-6 py-4 flex flex-col sm:flex-row justify-between items-center gap-4 z-10 shadow-sm">
+            <div>
+                <h2 id="section-title" class="text-xl font-bold text-slate-800">All Hotkeys</h2>
+                <p id="section-desc" class="text-sm text-slate-500">Shortcuts for the full Windows experience.</p>
+            </div>
+            <div class="relative w-full sm:w-64">
+                <input type="text" id="search-input" placeholder="Search functionality or key..." 
+                    class="w-full pl-10 pr-4 py-2 bg-slate-100 border-none rounded-full focus:ring-2 focus:ring-blue-800 focus:bg-white transition-all outline-none text-sm">
+                <span class="absolute left-3 top-2.5 text-slate-400">🔍</span>
+            </div>
+        </div>
+
+        <!-- Scrollable Content Area -->
+        <div id="content-area" class="flex-1 overflow-y-auto bg-slate-50 p-6 relative">
+            
+            <!-- Dynamic Grid for Hotkeys -->
+            <div id="hotkey-grid" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4 pb-20">
+                <!-- Cards injected via JS -->
+            </div>
+
+            <!-- Quiz View (Hidden by default) -->
+            <div id="quiz-view" class="hidden h-full flex flex-col items-center justify-center max-w-2xl mx-auto">
+                <div class="bg-white p-8 rounded-2xl shadow-xl w-full text-center border border-slate-100">
+                    <div class="mb-6">
+                        <span class="bg-indigo-100 text-indigo-700 px-3 py-1 rounded-full text-xs font-bold uppercase tracking-wide" id="quiz-category">Category</span>
+                    </div>
+                    <h3 class="text-slate-500 text-lg mb-2">How do you trigger:</h3>
+                    <h2 class="text-3xl font-bold text-slate-800 mb-8" id="quiz-question">Invert Colors</h2>
+                    
+                    <div id="quiz-answer-section" class="hidden mb-8 animate-fade-in">
+                        <div class="text-5xl font-mono font-bold text-blue-800 mb-2" id="quiz-answer-key">Ctrl + I</div>
+                        <p class="text-slate-400 text-sm">Correct Answer</p>
+                    </div>
+
+                    <div class="flex justify-center gap-4">
+                        <button onclick="revealAnswer()" id="btn-reveal" class="bg-slate-800 text-white px-6 py-3 rounded-lg hover:bg-slate-700 transition shadow-lg font-semibold w-full sm:w-auto">Show Key</button>
+                        <button onclick="nextQuestion()" id="btn-next" class="hidden bg-blue-600 text-white px-6 py-3 rounded-lg hover:bg-blue-700 transition shadow-lg font-semibold w-full sm:w-auto">Next Card</button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Analytics View (Hidden by default) -->
+            <div id="analytics-view" class="hidden max-w-5xl mx-auto space-y-6">
+                <div class="bg-white p-6 rounded-xl shadow-sm border border-slate-200">
+                    <h3 class="text-lg font-bold text-slate-800 mb-4">Hotkey Distribution</h3>
+                    <div class="chart-container">
+                        <canvas id="categoryChart"></canvas>
+                    </div>
+                </div>
+
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                    <div class="bg-white p-6 rounded-xl shadow-sm border border-slate-200">
+                        <h3 class="text-lg font-bold text-slate-800 mb-4">Modifier Key Complexity</h3>
+                        <p class="text-sm text-slate-500 mb-4">Windows desktop has more "Claw" (3+ key) shortcuts.</p>
+                        <div class="chart-container">
+                            <canvas id="modifierChart"></canvas>
+                        </div>
+                    </div>
+                    
+                    <div class="bg-white p-6 rounded-xl shadow-sm border border-slate-200">
+                        <h3 class="text-lg font-bold text-slate-800 mb-4">Action Types</h3>
+                        <div class="chart-container">
+                            <canvas id="actionTypeChart"></canvas>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </main>
+
+    <script>
+        // --- DATA STORE ---
+        // Sourced from Photoshop Training Channel (Desktop Windows)
+        const hotkeyData = [
+            // Tools
+            { key: "V", action: "Move Tool", category: "Tools" },
+            { key: "M", action: "Marquee Tool", category: "Tools" },
+            { key: "L", action: "Lasso Tool", category: "Tools" },
+            { key: "W", action: "Magic Wand / Quick Select", category: "Tools" },
+            { key: "C", action: "Crop Tool", category: "Tools" },
+            { key: "B", action: "Brush Tool", category: "Tools" },
+            { key: "S", action: "Clone Stamp", category: "Tools" },
+            { key: "E", action: "Eraser Tool", category: "Tools" },
+            { key: "G", action: "Gradient / Paint Bucket", category: "Tools" },
+            { key: "P", action: "Pen Tool", category: "Tools" },
+            { key: "T", action: "Type Tool", category: "Tools" },
+            { key: "H", action: "Hand Tool", category: "Tools" },
+            { key: "Z", action: "Zoom Tool", category: "Tools" },
+            { key: "D", action: "Default Colors", category: "Tools" },
+            { key: "X", action: "Switch Colors", category: "Tools" },
+
+            // Layers
+            { key: "Ctrl + J", action: "Duplicate Layer", category: "Layers" },
+            { key: "Ctrl + Shift + N", action: "New Layer", category: "Layers" },
+            { key: "Ctrl + G", action: "Group Layers", category: "Layers" },
+            { key: "Ctrl + Shift + G", action: "Ungroup Layers", category: "Layers" },
+            { key: "Ctrl + E", action: "Merge Down", category: "Layers" },
+            { key: "Ctrl + Alt + Shift + E", action: "Stamp Visible (Merge Copy)", category: "Layers" },
+            { key: "Ctrl + ]", action: "Bring Forward", category: "Layers" },
+            { key: "Ctrl + [", action: "Send Backward", category: "Layers" },
+            { key: "Alt + Delete", action: "Fill with Foreground", category: "Layers" },
+            { key: "Ctrl + Delete", action: "Fill with Background", category: "Layers" },
+
+            // Adjustments
+            { key: "Ctrl + L", action: "Levels", category: "Adjustments" },
+            { key: "Ctrl + M", action: "Curves", category: "Adjustments" },
+            { key: "Ctrl + U", action: "Hue / Saturation", category: "Adjustments" },
+            { key: "Ctrl + B", action: "Color Balance", category: "Adjustments" },
+            { key: "Ctrl + I", action: "Invert", category: "Adjustments" },
+            { key: "Shift + Ctrl + U", action: "Desaturate", category: "Adjustments" },
+
+            // Brush Controls
+            { key: "[", action: "Decrease Brush Size", category: "Brush" },
+            { key: "]", action: "Increase Brush Size", category: "Brush" },
+            { key: "{", action: "Decrease Hardness", category: "Brush" },
+            { key: "}", action: "Increase Hardness", category: "Brush" },
+            { key: "Number Keys (1-9)", action: "Set Opacity (10%-90%)", category: "Brush" },
+            { key: "Shift + Number", action: "Set Flow", category: "Brush" },
+            { key: "F5", action: "Brush Settings Panel", category: "Brush" },
+
+            // View & System
+            { key: "Tab", action: "Toggle UI", category: "System" },
+            { key: "F", action: "Cycle Screen Modes", category: "System" },
+            { key: "Ctrl + 0", action: "Fit to Screen", category: "System" },
+            { key: "Ctrl + 1", action: "100% View", category: "System" },
+            { key: "Ctrl + T", action: "Free Transform", category: "System" },
+            { key: "Ctrl + D", action: "Deselect", category: "System" },
+            { key: "Ctrl + H", action: "Hide Extras (Guides/Paths)", category: "System" },
+            { key: "Shift + F5", action: "Fill Dialog", category: "System" }
+        ];
+
+        // --- STATE & UI LOGIC ---
+        let currentView = 'dashboard';
+        let searchQuery = '';
+        let chartInstances = {};
+
+        const gridEl = document.getElementById('hotkey-grid');
+        const titleEl = document.getElementById('section-title');
+        const descEl = document.getElementById('section-desc');
+        const searchInput = document.getElementById('search-input');
+        const quizView = document.getElementById('quiz-view');
+        const analyticsView = document.getElementById('analytics-view');
+        const mobileMenu = document.getElementById('sidebar');
+        const overlay = document.getElementById('mobile-menu-overlay');
+
+        document.addEventListener('DOMContentLoaded', () => {
+            renderGrid();
+            searchInput.addEventListener('input', (e) => {
+                searchQuery = e.target.value.toLowerCase();
+                renderGrid();
+            });
+            initCharts();
+        });
+
+        function setView(view) {
+            currentView = view;
+            searchQuery = '';
+            searchInput.value = '';
+
+            document.querySelectorAll('.nav-btn').forEach(btn => {
+                btn.classList.remove('bg-blue-50', 'text-blue-800', 'bg-indigo-50', 'text-indigo-600', 'bg-purple-50', 'text-purple-600');
+                btn.classList.add('text-slate-600');
+            });
+            
+            gridEl.classList.remove('hidden');
+            quizView.classList.add('hidden');
+            analyticsView.classList.add('hidden');
+            
+            if(window.innerWidth < 1024) toggleMobileMenu();
+
+            switch(view) {
+                case 'dashboard':
+                    titleEl.textContent = 'All Hotkeys';
+                    descEl.textContent = 'Complete list of Photoshop Windows shortcuts.';
+                    document.getElementById('btn-dashboard').classList.add('bg-blue-50', 'text-blue-800');
+                    renderGrid();
+                    break;
+                case 'tools':
+                    titleEl.textContent = 'Tools';
+                    descEl.textContent = 'Single-key tool selection.';
+                    document.getElementById('btn-tools').classList.add('bg-blue-50', 'text-blue-800');
+                    renderGrid('Tools');
+                    break;
+                case 'layers':
+                    titleEl.textContent = 'Layers';
+                    descEl.textContent = 'Organize, Merge, and Stamp.';
+                    document.getElementById('btn-layers').classList.add('bg-blue-50', 'text-blue-800');
+                    renderGrid('Layers');
+                    break;
+                case 'adjustments':
+                    titleEl.textContent = 'Adjustments';
+                    descEl.textContent = 'Levels, Curves, and Color control.';
+                    document.getElementById('btn-adjustments').classList.add('bg-blue-50', 'text-blue-800');
+                    renderGrid('Adjustments');
+                    break;
+                case 'brush':
+                    titleEl.textContent = 'Brush Controls';
+                    descEl.textContent = 'Size, Hardness, and Opacity on the fly.';
+                    document.getElementById('btn-brush').classList.add('bg-blue-50', 'text-blue-800');
+                    renderGrid('Brush');
+                    break;
+                case 'quiz':
+                    titleEl.textContent = 'Quiz Mode';
+                    descEl.textContent = 'Master the Windows workflows.';
+                    document.getElementById('btn-quiz').classList.add('bg-indigo-50', 'text-indigo-600');
+                    gridEl.classList.add('hidden');
+                    quizView.classList.remove('hidden');
+                    startQuiz();
+                    break;
+                case 'analytics':
+                    titleEl.textContent = 'Insights';
+                    descEl.textContent = 'Breakdown of shortcut complexity.';
+                    document.getElementById('btn-analytics').classList.add('bg-purple-50', 'text-purple-600');
+                    gridEl.classList.add('hidden');
+                    analyticsView.classList.remove('hidden');
+                    break;
+            }
+        }
+
+        function renderGrid(filterCategory = null) {
+            gridEl.innerHTML = '';
+            
+            const filteredData = hotkeyData.filter(item => {
+                const matchesCategory = filterCategory ? item.category === filterCategory : true;
+                const matchesSearch = item.action.toLowerCase().includes(searchQuery) || item.key.toLowerCase().includes(searchQuery);
+                return matchesCategory && matchesSearch;
+            });
+
+            if (filteredData.length === 0) {
+                gridEl.innerHTML = `
+                    <div class="col-span-full text-center py-20">
+                        <div class="text-4xl mb-4">😶‍🌫️</div>
+                        <h3 class="text-lg font-semibold text-slate-700">No hotkeys found</h3>
+                    </div>
+                `;
+                return;
+            }
+
+            filteredData.forEach(item => {
+                const card = document.createElement('div');
+                card.className = 'bg-white rounded-xl p-5 border border-slate-200 card-hover flex flex-col justify-between h-full';
+                
+                let tagColor = 'bg-slate-100 text-slate-600';
+                if(item.category === 'Tools') tagColor = 'bg-blue-50 text-blue-800';
+                if(item.category === 'Adjustments') tagColor = 'bg-amber-50 text-amber-600';
+                if(item.category === 'Layers') tagColor = 'bg-green-50 text-green-600';
+
+                card.innerHTML = `
+                    <div class="mb-4">
+                        <span class="text-xs font-bold uppercase tracking-wider px-2 py-1 rounded-md ${tagColor}">${item.category}</span>
+                        <h3 class="text-slate-600 font-medium mt-3 leading-snug">${item.action}</h3>
+                    </div>
+                    <div class="mt-auto">
+                        <div class="key-cap inline-block px-3 py-2 rounded-lg text-slate-800 font-mono font-bold text-lg shadow-sm border border-slate-200">
+                            ${item.key}
+                        </div>
+                    </div>
+                `;
+                gridEl.appendChild(card);
+            });
+        }
+
+        function toggleMobileMenu() {
+            mobileMenu.classList.toggle('-translate-x-full');
+            overlay.classList.toggle('hidden');
+        }
+
+        // --- QUIZ LOGIC ---
+        function startQuiz() { nextQuestion(); }
+
+        function nextQuestion() {
+            const randomItem = hotkeyData[Math.floor(Math.random() * hotkeyData.length)];
+            document.getElementById('quiz-category').textContent = randomItem.category;
+            document.getElementById('quiz-question').textContent = randomItem.action;
+            document.getElementById('quiz-answer-key').textContent = randomItem.key;
+            document.getElementById('quiz-answer-section').classList.add('hidden');
+            document.getElementById('btn-reveal').classList.remove('hidden');
+            document.getElementById('btn-next').classList.add('hidden');
+        }
+
+        function revealAnswer() {
+            document.getElementById('quiz-answer-section').classList.remove('hidden');
+            document.getElementById('btn-reveal').classList.add('hidden');
+            document.getElementById('btn-next').classList.remove('hidden');
+        }
+
+        // --- CHARTS ---
+        function initCharts() {
+            const catCounts = {};
+            hotkeyData.forEach(d => catCounts[d.category] = (catCounts[d.category] || 0) + 1);
+            
+            new Chart(document.getElementById('categoryChart'), {
+                type: 'doughnut',
+                data: {
+                    labels: Object.keys(catCounts),
+                    datasets: [{
+                        data: Object.values(catCounts),
+                        backgroundColor: ['#1e40af', '#f59e0b', '#10b981', '#6366f1', '#ec4899'],
+                        borderWidth: 0
+                    }]
+                },
+                options: { responsive: true, maintainAspectRatio: false }
+            });
+
+            let modCounts = { 'Ctrl+Shift': 0, 'Ctrl/Alt': 0, 'Single Key': 0 };
+            hotkeyData.forEach(d => {
+                if(d.key.includes('Shift') && d.key.includes('Ctrl')) modCounts['Ctrl+Shift']++;
+                else if(d.key.includes('Ctrl') || d.key.includes('Alt')) modCounts['Ctrl/Alt']++;
+                else modCounts['Single Key']++;
+            });
+
+            new Chart(document.getElementById('modifierChart'), {
+                type: 'bar',
+                data: {
+                    labels: Object.keys(modCounts),
+                    datasets: [{
+                        label: 'Frequency',
+                        data: Object.values(modCounts),
+                        backgroundColor: '#1e3a8a',
+                        borderRadius: 6
+                    }]
+                },
+                options: { responsive: true, maintainAspectRatio: false }
+            });
+
+            let types = { 'Tools': 0, 'System': 0, 'Creative': 0 };
+            hotkeyData.forEach(d => {
+                if(d.category === 'Tools') types['Tools']++;
+                else if(d.category === 'System') types['System']++;
+                else types['Creative']++;
+            });
+
+            new Chart(document.getElementById('actionTypeChart'), {
+                type: 'pie',
+                data: {
+                    labels: Object.keys(types),
+                    datasets: [{
+                        data: Object.values(types),
+                        backgroundColor: ['#60a5fa', '#f472b6', '#fbbf24'],
+                        borderWidth: 0
+                    }]
+                },
+                options: { responsive: true, maintainAspectRatio: false }
+            });
+        }
+    </script>
+</body>
+</html>

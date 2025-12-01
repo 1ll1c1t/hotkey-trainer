@@ -43,7 +43,7 @@
     </header>
 
     <!-- Program Selection Grid -->
-    <main class="flex-1 max-w-6xl mx-auto px-6 py-16 w-full">
+    <main class="flex-1 max-w-7xl mx-auto px-6 py-16 w-full">
         
         <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
             
@@ -69,7 +69,6 @@
 
             <!-- MAYA CARD -->
             <a href="maya.html" class="program-card group bg-white rounded-2xl p-8 border border-slate-200 hover:border-cyan-200 relative overflow-hidden flex flex-col h-full">
-                <!-- Decorative background blob -->
                 <div class="absolute -right-10 -top-10 w-32 h-32 bg-cyan-50 rounded-full group-hover:bg-cyan-100 transition-colors"></div>
                 
                 <div class="relative z-10">
@@ -87,29 +86,71 @@
                 </div>
             </a>
 
-            <!-- COMING SOON / PHOTOSHOP CARD -->
-            <div class="bg-slate-50 rounded-2xl p-8 border border-slate-200 border-dashed flex flex-col h-full opacity-75">
-                <div class="w-16 h-16 bg-slate-200 rounded-2xl flex items-center justify-center text-3xl mb-6 text-slate-400 grayscale">
-                    🎨
-                </div>
-                <h2 class="text-2xl font-bold text-slate-400 mb-2">Photoshop</h2>
-                <p class="text-slate-400 mb-6 flex-grow">
-                    Brush shortcuts, layer management, and photo manipulation tools.
-                </p>
+            <!-- PHOTOSHOP WEB CARD -->
+            <a href="photoshop_web.html" class="program-card group bg-white rounded-2xl p-8 border border-slate-200 hover:border-blue-300 relative overflow-hidden flex flex-col h-full">
+                <div class="absolute -right-10 -top-10 w-32 h-32 bg-blue-50 rounded-full group-hover:bg-blue-100 transition-colors"></div>
                 
-                <div class="mt-auto inline-block bg-slate-200 text-slate-500 text-xs font-bold uppercase tracking-wider px-3 py-1 rounded-full self-start">
-                    Coming Soon
+                <div class="relative z-10">
+                    <div class="w-16 h-16 bg-blue-100 rounded-2xl flex items-center justify-center text-3xl mb-6 group-hover:scale-110 transition-transform duration-300 shadow-sm text-blue-500">
+                        🌐
+                    </div>
+                    <h2 class="text-2xl font-bold text-slate-800 mb-2 group-hover:text-blue-500 transition-colors">Photoshop Web</h2>
+                    <p class="text-slate-500 mb-6 flex-grow">
+                        Lightweight shortcuts specifically for the browser-based version of Photoshop.
+                    </p>
+                    
+                    <div class="flex items-center text-sm font-semibold text-blue-500">
+                        Launch Web Trainer <span class="ml-2 group-hover:translate-x-1 transition-transform">→</span>
+                    </div>
                 </div>
-            </div>
+            </a>
 
-            <!-- COMING SOON / ILLUSTRATOR CARD -->
+            <!-- PHOTOSHOP WINDOWS CARD (Renamed from Desktop) -->
+            <a href="photoshop_desktop.html" class="program-card group bg-white rounded-2xl p-8 border border-slate-200 hover:border-indigo-900 relative overflow-hidden flex flex-col h-full">
+                <div class="absolute -right-10 -top-10 w-32 h-32 bg-indigo-50 rounded-full group-hover:bg-indigo-100 transition-colors"></div>
+                
+                <div class="relative z-10">
+                    <div class="w-16 h-16 bg-indigo-100 rounded-2xl flex items-center justify-center text-3xl mb-6 group-hover:scale-110 transition-transform duration-300 shadow-sm text-indigo-900">
+                        🖥️
+                    </div>
+                    <h2 class="text-2xl font-bold text-slate-800 mb-2 group-hover:text-indigo-900 transition-colors">Photoshop Windows</h2>
+                    <p class="text-slate-500 mb-6 flex-grow">
+                        The full professional suite. Master Layers, Adjustments, and F-Keys.
+                    </p>
+                    
+                    <div class="flex items-center text-sm font-semibold text-indigo-900">
+                        Launch Windows Trainer <span class="ml-2 group-hover:translate-x-1 transition-transform">→</span>
+                    </div>
+                </div>
+            </a>
+
+            <!-- ILLUSTRATOR WINDOWS CARD (Activated) -->
+            <a href="illustrator.html" class="program-card group bg-white rounded-2xl p-8 border border-slate-200 hover:border-orange-500 relative overflow-hidden flex flex-col h-full">
+                <div class="absolute -right-10 -top-10 w-32 h-32 bg-amber-50 rounded-full group-hover:bg-amber-100 transition-colors"></div>
+                
+                <div class="relative z-10">
+                    <div class="w-16 h-16 bg-amber-100 rounded-2xl flex items-center justify-center text-3xl mb-6 group-hover:scale-110 transition-transform duration-300 shadow-sm text-orange-600">
+                        ✒️
+                    </div>
+                    <h2 class="text-2xl font-bold text-slate-800 mb-2 group-hover:text-orange-600 transition-colors">Illustrator Windows</h2>
+                    <p class="text-slate-500 mb-6 flex-grow">
+                        Vector mastery. Learn Pen tool, Pathfinder, and Object grouping shortcuts.
+                    </p>
+                    
+                    <div class="flex items-center text-sm font-semibold text-orange-600">
+                        Launch Windows Trainer <span class="ml-2 group-hover:translate-x-1 transition-transform">→</span>
+                    </div>
+                </div>
+            </a>
+
+            <!-- COMING SOON / PREMIERE PRO CARD -->
             <div class="bg-slate-50 rounded-2xl p-8 border border-slate-200 border-dashed flex flex-col h-full opacity-75">
                 <div class="w-16 h-16 bg-slate-200 rounded-2xl flex items-center justify-center text-3xl mb-6 text-slate-400 grayscale">
-                    ✒️
+                    🎬
                 </div>
-                <h2 class="text-2xl font-bold text-slate-400 mb-2">Illustrator</h2>
+                <h2 class="text-2xl font-bold text-slate-400 mb-2">Premiere Pro</h2>
                 <p class="text-slate-400 mb-6 flex-grow">
-                    Vector path tools, pen tool mastery, and artboard navigation.
+                    Video editing workflow, timeline navigation, and trimming tools.
                 </p>
                 
                 <div class="mt-auto inline-block bg-slate-200 text-slate-500 text-xs font-bold uppercase tracking-wider px-3 py-1 rounded-full self-start">
