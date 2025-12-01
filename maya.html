@@ -9,553 +9,98 @@
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap" rel="stylesheet">
     <style>
         body { font-family: 'Inter', sans-serif; }
-        
-        /* Custom Scrollbar */
         ::-webkit-scrollbar { width: 8px; }
         ::-webkit-scrollbar-track { background: #f0fdfa; }
         ::-webkit-scrollbar-thumb { background: #99f6e4; border-radius: 4px; }
         ::-webkit-scrollbar-thumb:hover { background: #5eead4; }
-
-        /* Chart Container Styling - Mandatory per instructions */
-        .chart-container {
-            position: relative;
-            width: 100%;
-            max-width: 600px; /* Max width constraint */
-            margin-left: auto;
-            margin-right: auto;
-            height: 300px;
-            max-height: 300px; /* Max height constraint */
-        }
-        
-        .card-hover:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
-        }
-
-        .key-cap {
-            background: linear-gradient(to bottom, #f8fafc, #e2e8f0);
-            border-bottom: 3px solid #cbd5e1;
-        }
-        .key-cap:active {
-            border-bottom: 1px solid #cbd5e1;
-            transform: translateY(2px);
-        }
+        .chart-container { position: relative; width: 100%; max-width: 600px; margin-left: auto; margin-right: auto; height: 300px; max-height: 300px; }
+        .card-hover:hover { transform: translateY(-2px); box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05); }
+        .key-cap { background: linear-gradient(to bottom, #f8fafc, #e2e8f0); border-bottom: 3px solid #cbd5e1; }
+        .key-cap:active { border-bottom: 1px solid #cbd5e1; transform: translateY(2px); }
     </style>
-    <!-- Chosen Palette: Maya-Inspired Theme (Teal, Cyan, Slate) -->
-    <!-- Application Structure Plan:
-         Identical structure to the Blender app for consistency, but adapted for Maya's specific contexts.
-         
-         1. **Sidebar Navigation**: Contexts include General, Navigation, Tools (WER), Modes (F-keys), Animation, and Modeling.
-         2. **Main Dashboard**:
-            - **Search**: Global search.
-            - **Hotkey Grid**: Cards displaying keys like "Alt + LMB" or "W, E, R".
-         3. **Analytics**: Visualizes Maya's heavy reliance on the "Alt" key for navigation compared to Blender.
-         4. **Quiz Mode**: Active recall for Maya shortcuts.
-    -->
-    <!-- Visualization & Content Choices:
-         1. **Hotkey Grid**:
-            - Goal: Reference.
-            - Interaction: Search/Filter.
-            - Style: Cyan accents to match Maya logo.
-         
-         2. **Category Chart (Donut)**:
-            - Data: Shows distribution of Maya's toolset shortcuts vs navigation.
-         
-         3. **Modifier Chart (Bar)**:
-            - Insight: Will highlight the dominance of the "Alt" key in Maya navigation (Tumble/Track/Dolly).
-         
-         <!-- CONFIRMATION: NO SVG graphics used. NO Mermaid JS used. -->
 </head>
 <body class="bg-slate-50 text-slate-800 h-screen flex overflow-hidden">
 
-    <!-- Mobile Menu Overlay -->
     <div id="mobile-menu-overlay" class="fixed inset-0 bg-black bg-opacity-50 z-20 hidden lg:hidden" onclick="toggleMobileMenu()"></div>
 
-    <!-- Sidebar -->
     <aside id="sidebar" class="bg-white w-64 flex-shrink-0 border-r border-slate-200 flex flex-col fixed inset-y-0 left-0 transform -translate-x-full lg:relative lg:translate-x-0 transition-transform duration-200 ease-in-out z-30">
-        <div class="p-6 border-b border-slate-100 flex items-center justify-between">
-            <h1 class="text-2xl font-bold text-slate-800 tracking-tight"><span class="text-cyan-600">Maya</span>Key</h1>
-            <button class="lg:hidden text-slate-500" onclick="toggleMobileMenu()">✕</button>
+        <div class="p-6 border-b border-slate-100 flex items-center justify-center">
+            
+            <!-- IMAGE CODE CHANGED HERE -->
+            <img src="images/maya.png" alt="Maya Logo" class="w-16 h-16 drop-shadow-sm object-contain">
+            
         </div>
         
         <nav class="flex-1 overflow-y-auto py-4">
             <ul class="space-y-1 px-3">
-                <li>
-                    <button onclick="setView('dashboard')" class="nav-btn w-full text-left px-4 py-3 rounded-lg flex items-center space-x-3 hover:bg-cyan-50 text-slate-600 hover:text-cyan-600 transition-colors font-medium bg-cyan-50 text-cyan-600" id="btn-dashboard">
-                        <span>⌨️</span> <span>All Hotkeys</span>
-                    </button>
-                </li>
-                <li>
-                    <button onclick="setView('navigation')" class="nav-btn w-full text-left px-4 py-3 rounded-lg flex items-center space-x-3 hover:bg-cyan-50 text-slate-600 hover:text-cyan-600 transition-colors font-medium" id="btn-navigation">
-                        <span>🎥</span> <span>Navigation</span>
-                    </button>
-                </li>
-                <li>
-                    <button onclick="setView('tools')" class="nav-btn w-full text-left px-4 py-3 rounded-lg flex items-center space-x-3 hover:bg-cyan-50 text-slate-600 hover:text-cyan-600 transition-colors font-medium" id="btn-tools">
-                        <span>🛠️</span> <span>Tools (WER)</span>
-                    </button>
-                </li>
-                <li>
-                    <button onclick="setView('modes')" class="nav-btn w-full text-left px-4 py-3 rounded-lg flex items-center space-x-3 hover:bg-cyan-50 text-slate-600 hover:text-cyan-600 transition-colors font-medium" id="btn-modes">
-                        <span>💠</span> <span>Component Modes</span>
-                    </button>
-                </li>
-                <li>
-                    <button onclick="setView('modeling')" class="nav-btn w-full text-left px-4 py-3 rounded-lg flex items-center space-x-3 hover:bg-cyan-50 text-slate-600 hover:text-cyan-600 transition-colors font-medium" id="btn-modeling">
-                        <span>🧊</span> <span>Modeling</span>
-                    </button>
-                </li>
-                <li>
-                    <button onclick="setView('animation')" class="nav-btn w-full text-left px-4 py-3 rounded-lg flex items-center space-x-3 hover:bg-cyan-50 text-slate-600 hover:text-cyan-600 transition-colors font-medium" id="btn-animation">
-                        <span>🎬</span> <span>Animation</span>
-                    </button>
-                </li>
-                <li class="pt-4 mt-4 border-t border-slate-100">
-                    <button onclick="setView('quiz')" class="nav-btn w-full text-left px-4 py-3 rounded-lg flex items-center space-x-3 hover:bg-blue-50 text-slate-600 hover:text-blue-600 transition-colors font-medium" id="btn-quiz">
-                        <span>🧠</span> <span>Quiz Mode</span>
-                    </button>
-                </li>
-                <li>
-                    <button onclick="setView('analytics')" class="nav-btn w-full text-left px-4 py-3 rounded-lg flex items-center space-x-3 hover:bg-purple-50 text-slate-600 hover:text-purple-600 transition-colors font-medium" id="btn-analytics">
-                        <span>📊</span> <span>Insights</span>
-                    </button>
-                </li>
+                <li><button onclick="setView('dashboard')" class="nav-btn w-full text-left px-4 py-3 rounded-lg flex items-center space-x-3 hover:bg-cyan-50 text-slate-600 hover:text-cyan-600 transition-colors font-medium bg-cyan-50 text-cyan-600" id="btn-dashboard"><span>⌨️</span> <span>All Hotkeys</span></button></li>
+                <li><button onclick="setView('navigation')" class="nav-btn w-full text-left px-4 py-3 rounded-lg flex items-center space-x-3 hover:bg-cyan-50 text-slate-600 hover:text-cyan-600 transition-colors font-medium" id="btn-navigation"><span>🎥</span> <span>Navigation</span></button></li>
+                <li><button onclick="setView('tools')" class="nav-btn w-full text-left px-4 py-3 rounded-lg flex items-center space-x-3 hover:bg-cyan-50 text-slate-600 hover:text-cyan-600 transition-colors font-medium" id="btn-tools"><span>🛠️</span> <span>Tools (WER)</span></button></li>
+                <li><button onclick="setView('modes')" class="nav-btn w-full text-left px-4 py-3 rounded-lg flex items-center space-x-3 hover:bg-cyan-50 text-slate-600 hover:text-cyan-600 transition-colors font-medium" id="btn-modes"><span>💠</span> <span>Component Modes</span></button></li>
+                <li><button onclick="setView('modeling')" class="nav-btn w-full text-left px-4 py-3 rounded-lg flex items-center space-x-3 hover:bg-cyan-50 text-slate-600 hover:text-cyan-600 transition-colors font-medium" id="btn-modeling"><span>🧊</span> <span>Modeling</span></button></li>
+                <li><button onclick="setView('animation')" class="nav-btn w-full text-left px-4 py-3 rounded-lg flex items-center space-x-3 hover:bg-cyan-50 text-slate-600 hover:text-cyan-600 transition-colors font-medium" id="btn-animation"><span>🎬</span> <span>Animation</span></button></li>
+                <li class="pt-4 mt-4 border-t border-slate-100"><button onclick="setView('quiz')" class="nav-btn w-full text-left px-4 py-3 rounded-lg flex items-center space-x-3 hover:bg-blue-50 text-slate-600 hover:text-blue-600 transition-colors font-medium" id="btn-quiz"><span>🧠</span> <span>Quiz Mode</span></button></li>
+                <li><button onclick="setView('analytics')" class="nav-btn w-full text-left px-4 py-3 rounded-lg flex items-center space-x-3 hover:bg-purple-50 text-slate-600 hover:text-purple-600 transition-colors font-medium" id="btn-analytics"><span>📊</span> <span>Insights</span></button></li>
             </ul>
         </nav>
         
-        <div class="p-4 border-t border-slate-200 bg-slate-50">
-            <p class="text-xs text-slate-400">Based on Autodesk Maya 2024/25</p>
+        <div class="p-4 border-t border-slate-200 bg-slate-50 flex justify-between items-center">
+            <p class="text-xs text-slate-400">Maya 2025</p>
+            <!-- HOME BUTTON -->
+            <a href="index.html" class="text-xs font-bold text-slate-500 hover:text-cyan-600 transition-colors">Home 🏠</a>
         </div>
     </aside>
 
-    <!-- Main Content -->
     <main class="flex-1 flex flex-col h-screen overflow-hidden relative">
-        <!-- Mobile Header -->
         <header class="bg-white border-b border-slate-200 p-4 lg:hidden flex justify-between items-center z-10">
             <span class="font-bold text-cyan-600">MayaKey</span>
-            <button onclick="toggleMobileMenu()" class="text-slate-600">
-                ☰ Menu
-            </button>
+            <button onclick="toggleMobileMenu()" class="text-slate-600">☰ Menu</button>
         </header>
-
-        <!-- Top Bar -->
         <div class="bg-white border-b border-slate-200 px-6 py-4 flex flex-col sm:flex-row justify-between items-center gap-4 z-10 shadow-sm">
             <div>
                 <h2 id="section-title" class="text-xl font-bold text-slate-800">All Hotkeys</h2>
                 <p id="section-desc" class="text-sm text-slate-500">Search across the entire cheatsheet.</p>
             </div>
             <div class="relative w-full sm:w-64">
-                <input type="text" id="search-input" placeholder="Search functionality or key..." 
-                    class="w-full pl-10 pr-4 py-2 bg-slate-100 border-none rounded-full focus:ring-2 focus:ring-cyan-500 focus:bg-white transition-all outline-none text-sm">
-                <span class="absolute left-3 top-2.5 text-slate-400">🔍</span>
+                <input type="text" id="search-input" placeholder="Search functionality or key..." class="w-full pl-10 pr-4 py-2 bg-slate-100 border-none rounded-full focus:ring-2 focus:ring-cyan-500 focus:bg-white transition-all outline-none text-sm"><span class="absolute left-3 top-2.5 text-slate-400">🔍</span>
             </div>
         </div>
-
-        <!-- Scrollable Content Area -->
         <div id="content-area" class="flex-1 overflow-y-auto bg-slate-50 p-6 relative">
-            
-            <!-- Dynamic Grid for Hotkeys -->
-            <div id="hotkey-grid" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4 pb-20">
-                <!-- Cards injected via JS -->
-            </div>
-
-            <!-- Quiz View (Hidden by default) -->
-            <div id="quiz-view" class="hidden h-full flex flex-col items-center justify-center max-w-2xl mx-auto">
-                <div class="bg-white p-8 rounded-2xl shadow-xl w-full text-center border border-slate-100">
-                    <div class="mb-6">
-                        <span class="bg-blue-100 text-blue-700 px-3 py-1 rounded-full text-xs font-bold uppercase tracking-wide" id="quiz-category">Category</span>
-                    </div>
-                    <h3 class="text-slate-500 text-lg mb-2">How do you trigger:</h3>
-                    <h2 class="text-3xl font-bold text-slate-800 mb-8" id="quiz-question">Extrude</h2>
-                    
-                    <div id="quiz-answer-section" class="hidden mb-8 animate-fade-in">
-                        <div class="text-5xl font-mono font-bold text-cyan-600 mb-2" id="quiz-answer-key">Ctrl + E</div>
-                        <p class="text-slate-400 text-sm">Correct Answer</p>
-                    </div>
-
-                    <div class="flex justify-center gap-4">
-                        <button onclick="revealAnswer()" id="btn-reveal" class="bg-slate-800 text-white px-6 py-3 rounded-lg hover:bg-slate-700 transition shadow-lg font-semibold w-full sm:w-auto">Show Key</button>
-                        <button onclick="nextQuestion()" id="btn-next" class="hidden bg-cyan-600 text-white px-6 py-3 rounded-lg hover:bg-cyan-700 transition shadow-lg font-semibold w-full sm:w-auto">Next Card</button>
-                    </div>
-                </div>
-                <div class="mt-8 text-center text-slate-400 text-sm">
-                    <p>Test your memory of the shortcuts.</p>
-                </div>
-            </div>
-
-            <!-- Analytics View (Hidden by default) -->
-            <div id="analytics-view" class="hidden max-w-5xl mx-auto space-y-6">
-                <div class="bg-white p-6 rounded-xl shadow-sm border border-slate-200">
-                    <h3 class="text-lg font-bold text-slate-800 mb-4">Hotkey Distribution by Category</h3>
-                    <p class="text-sm text-slate-500 mb-4">Which areas of Maya have the most shortcuts?</p>
-                    <div class="chart-container">
-                        <canvas id="categoryChart"></canvas>
-                    </div>
-                </div>
-
-                <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
-                    <div class="bg-white p-6 rounded-xl shadow-sm border border-slate-200">
-                        <h3 class="text-lg font-bold text-slate-800 mb-4">Modifier Key Usage</h3>
-                        <p class="text-sm text-slate-500 mb-4">The "Alt" key is king in Maya navigation.</p>
-                        <div class="chart-container">
-                            <canvas id="modifierChart"></canvas>
-                        </div>
-                    </div>
-                    
-                    <div class="bg-white p-6 rounded-xl shadow-sm border border-slate-200">
-                        <h3 class="text-lg font-bold text-slate-800 mb-4">Action Types</h3>
-                        <p class="text-sm text-slate-500 mb-4">What are we mostly doing?</p>
-                        <div class="chart-container">
-                            <canvas id="actionTypeChart"></canvas>
-                        </div>
-                    </div>
-                </div>
-            </div>
-
+            <div id="hotkey-grid" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4 pb-20"></div>
+            <div id="quiz-view" class="hidden h-full flex flex-col items-center justify-center max-w-2xl mx-auto"><div class="bg-white p-8 rounded-2xl shadow-xl w-full text-center border border-slate-100"><div class="mb-6"><span class="bg-blue-100 text-blue-700 px-3 py-1 rounded-full text-xs font-bold uppercase tracking-wide" id="quiz-category">Category</span></div><h3 class="text-slate-500 text-lg mb-2">How do you trigger:</h3><h2 class="text-3xl font-bold text-slate-800 mb-8" id="quiz-question"></h2><div id="quiz-answer-section" class="hidden mb-8 animate-fade-in"><div class="text-5xl font-mono font-bold text-cyan-600 mb-2" id="quiz-answer-key"></div><p class="text-slate-400 text-sm">Correct Answer</p></div><div class="flex justify-center gap-4"><button onclick="revealAnswer()" id="btn-reveal" class="bg-slate-800 text-white px-6 py-3 rounded-lg hover:bg-slate-700 transition shadow-lg font-semibold w-full sm:w-auto">Show Key</button><button onclick="nextQuestion()" id="btn-next" class="hidden bg-cyan-600 text-white px-6 py-3 rounded-lg hover:bg-cyan-700 transition shadow-lg font-semibold w-full sm:w-auto">Next Card</button></div></div></div>
+            <div id="analytics-view" class="hidden max-w-5xl mx-auto space-y-6"><div class="bg-white p-6 rounded-xl shadow-sm border border-slate-200"><h3 class="text-lg font-bold text-slate-800 mb-4">Hotkey Distribution by Category</h3><div class="chart-container"><canvas id="categoryChart"></canvas></div></div><div class="grid grid-cols-1 md:grid-cols-2 gap-6"><div class="bg-white p-6 rounded-xl shadow-sm border border-slate-200"><h3 class="text-lg font-bold text-slate-800 mb-4">Modifier Key Usage</h3><div class="chart-container"><canvas id="modifierChart"></canvas></div></div><div class="bg-white p-6 rounded-xl shadow-sm border border-slate-200"><h3 class="text-lg font-bold text-slate-800 mb-4">Action Types</h3><div class="chart-container"><canvas id="actionTypeChart"></canvas></div></div></div></div>
         </div>
     </main>
-
     <script>
-        // --- DATA STORE ---
-        // Sourced from standard Autodesk Maya Hotkey defaults
-        const hotkeyData = [
-            // Navigation
-            { key: "Alt + Left Click", action: "Tumble (Rotate) View", category: "Navigation" },
-            { key: "Alt + Middle Click", action: "Track (Pan) View", category: "Navigation" },
-            { key: "Alt + Right Click", action: "Dolly (Zoom) View", category: "Navigation" },
-            { key: "F", action: "Frame Selected", category: "Navigation" },
-            { key: "A", action: "Frame All", category: "Navigation" },
-            { key: "Ctrl + Alt + Left Click", action: "Box Zoom", category: "Navigation" },
-            { key: "]", action: "Redo View Change", category: "Navigation" },
-            { key: "[", action: "Undo View Change", category: "Navigation" },
-
-            // Tools (WER)
-            { key: "Q", action: "Select Tool / Cursor", category: "Tools" },
-            { key: "W", action: "Move Tool", category: "Tools" },
-            { key: "E", action: "Rotate Tool", category: "Tools" },
-            { key: "R", action: "Scale Tool", category: "Tools" },
-            { key: "T", action: "Show Manipulator Tool", category: "Tools" },
-            { key: "Y", action: "Select Last Tool Used", category: "Tools" },
-            { key: "G", action: "Repeat Last Action", category: "Tools" },
-            { key: "+ / -", action: "Increase/Decrease Manipulator Size", category: "Tools" },
-
-            // Selection & Modes
-            { key: "F8", action: "Toggle Object/Component Mode", category: "Modes" },
-            { key: "F9", action: "Select Vertices", category: "Modes" },
-            { key: "F10", action: "Select Edges", category: "Modes" },
-            { key: "F11", action: "Select Faces", category: "Modes" },
-            { key: "Shift + Select", action: "Toggle Selection (Add/Remove)", category: "Modes" },
-            { key: "Ctrl + Shift + Select", action: "Add to Selection", category: "Modes" },
-            { key: "Ctrl + Select", action: "Remove from Selection", category: "Modes" },
-            { key: "B", action: "Soft Selection Toggle", category: "Modes" },
-            { key: "Hold B + Drag", action: "Soft Selection Radius", category: "Modes" },
-            { key: "Shift + >", action: "Grow Selection", category: "Modes" },
-            { key: "Shift + <", action: "Shrink Selection", category: "Modes" },
-
-            // Modeling
-            { key: "Ctrl + E", action: "Extrude", category: "Modeling" },
-            { key: "Ctrl + D", action: "Duplicate", category: "Modeling" },
-            { key: "Shift + D", action: "Duplicate with Transform", category: "Modeling" },
-            { key: "Ctrl + Shift + D", action: "Duplicate Special", category: "Modeling" },
-            { key: "Shift + Right Click", action: "Context Modeling Menu", category: "Modeling" },
-            { key: "Ctrl + Delete", action: "Delete Edge/Vertex (Clean)", category: "Modeling" },
-            { key: "Ctrl + 1", action: "Isolate Select", category: "Modeling" },
-            { key: "P", action: "Parent Selected", category: "Modeling" },
-            { key: "Shift + P", action: "Unparent Selected", category: "Modeling" },
-            { key: "Ctrl + G", action: "Group Selected", category: "Modeling" },
-
-            // Display
-            { key: "4", action: "Wireframe Mode", category: "Display" },
-            { key: "5", action: "Shaded Mode", category: "Display" },
-            { key: "6", action: "Texture Mode", category: "Display" },
-            { key: "7", action: "Lighting Mode", category: "Display" },
-            { key: "Alt + B", action: "Cycle Background Color", category: "Display" },
-            { key: "Space", action: "Hotbox (Menu)", category: "Display" },
-            { key: "Ctrl + A", action: "Attribute Editor / Channel Box", category: "Display" },
-
-            // Animation
-            { key: "S", action: "Set Key", category: "Animation" },
-            { key: "Shift + W", action: "Key Translate", category: "Animation" },
-            { key: "Shift + E", action: "Key Rotate", category: "Animation" },
-            { key: "Shift + R", action: "Key Scale", category: "Animation" },
-            { key: "Alt + V", action: "Play / Stop", category: "Animation" },
-            { key: "Alt + .", action: "Next Frame", category: "Animation" },
-            { key: "Alt + ,", action: "Previous Frame", category: "Animation" },
-            { key: ".", action: "Next Key", category: "Animation" },
-            { key: ",", action: "Previous Key", category: "Animation" },
-            { key: "K + Drag", action: "Virtual Time Scrubber", category: "Animation" }
-        ];
-
-        // --- STATE MANAGEMENT ---
-        let currentView = 'dashboard';
-        let searchQuery = '';
-        let quizCurrentIndex = 0;
-        let chartInstances = {};
-
-        // --- DOM ELEMENTS ---
-        const gridEl = document.getElementById('hotkey-grid');
-        const titleEl = document.getElementById('section-title');
-        const descEl = document.getElementById('section-desc');
-        const searchInput = document.getElementById('search-input');
-        const quizView = document.getElementById('quiz-view');
-        const analyticsView = document.getElementById('analytics-view');
-        const mobileMenu = document.getElementById('sidebar');
-        const overlay = document.getElementById('mobile-menu-overlay');
-
-        // --- INITIALIZATION ---
-        document.addEventListener('DOMContentLoaded', () => {
-            renderGrid();
-            searchInput.addEventListener('input', (e) => {
-                searchQuery = e.target.value.toLowerCase();
-                renderGrid();
-            });
-            initCharts();
-        });
-
-        // --- NAVIGATION LOGIC ---
+        const hotkeyData = [ { key: "Alt + Left Click", action: "Tumble (Rotate) View", category: "Navigation" }, { key: "Alt + Middle Click", action: "Track (Pan) View", category: "Navigation" }, { key: "Alt + Right Click", action: "Dolly (Zoom) View", category: "Navigation" }, { key: "F", action: "Frame Selected", category: "Navigation" }, { key: "A", action: "Frame All", category: "Navigation" }, { key: "Ctrl + Alt + Left Click", action: "Box Zoom", category: "Navigation" }, { key: "]", action: "Redo View Change", category: "Navigation" }, { key: "[", action: "Undo View Change", category: "Navigation" }, { key: "Q", action: "Select Tool / Cursor", category: "Tools" }, { key: "W", action: "Move Tool", category: "Tools" }, { key: "E", action: "Rotate Tool", category: "Tools" }, { key: "R", action: "Scale Tool", category: "Tools" }, { key: "T", action: "Show Manipulator Tool", category: "Tools" }, { key: "Y", action: "Select Last Tool Used", category: "Tools" }, { key: "G", action: "Repeat Last Action", category: "Tools" }, { key: "+ / -", action: "Increase/Decrease Manipulator Size", category: "Tools" }, { key: "F8", action: "Toggle Object/Component Mode", category: "Modes" }, { key: "F9", action: "Select Vertices", category: "Modes" }, { key: "F10", action: "Select Edges", category: "Modes" }, { key: "F11", action: "Select Faces", category: "Modes" }, { key: "Shift + Select", action: "Toggle Selection (Add/Remove)", category: "Modes" }, { key: "Ctrl + Shift + Select", action: "Add to Selection", category: "Modes" }, { key: "Ctrl + Select", action: "Remove from Selection", category: "Modes" }, { key: "B", action: "Soft Selection Toggle", category: "Modes" }, { key: "Hold B + Drag", action: "Soft Selection Radius", category: "Modes" }, { key: "Shift + >", action: "Grow Selection", category: "Modes" }, { key: "Shift + <", action: "Shrink Selection", category: "Modes" }, { key: "Ctrl + E", action: "Extrude", category: "Modeling" }, { key: "Ctrl + D", action: "Duplicate", category: "Modeling" }, { key: "Shift + D", action: "Duplicate with Transform", category: "Modeling" }, { key: "Ctrl + Shift + D", action: "Duplicate Special", category: "Modeling" }, { key: "Shift + Right Click", action: "Context Modeling Menu", category: "Modeling" }, { key: "Ctrl + Delete", action: "Delete Edge/Vertex (Clean)", category: "Modeling" }, { key: "Ctrl + 1", action: "Isolate Select", category: "Modeling" }, { key: "P", action: "Parent Selected", category: "Modeling" }, { key: "Shift + P", action: "Unparent Selected", category: "Modeling" }, { key: "Ctrl + G", action: "Group Selected", category: "Modeling" }, { key: "4", action: "Wireframe Mode", category: "Display" }, { key: "5", action: "Shaded Mode", category: "Display" }, { key: "6", action: "Texture Mode", category: "Display" }, { key: "7", action: "Lighting Mode", category: "Display" }, { key: "Alt + B", action: "Cycle Background Color", category: "Display" }, { key: "Space", action: "Hotbox (Menu)", category: "Display" }, { key: "Ctrl + A", action: "Attribute Editor / Channel Box", category: "Display" }, { key: "S", action: "Set Key", category: "Animation" }, { key: "Shift + W", action: "Key Translate", category: "Animation" }, { key: "Shift + E", action: "Key Rotate", category: "Animation" }, { key: "Shift + R", action: "Key Scale", category: "Animation" }, { key: "Alt + V", action: "Play / Stop", category: "Animation" }, { key: "Alt + .", action: "Next Frame", category: "Animation" }, { key: "Alt + ,", action: "Previous Frame", category: "Animation" }, { key: ".", action: "Next Key", category: "Animation" }, { key: ",", action: "Previous Key", category: "Animation" }, { key: "K + Drag", action: "Virtual Time Scrubber", category: "Animation" } ];
+        let currentView = 'dashboard'; let searchQuery = ''; let quizCurrentIndex = 0; let chartInstances = {}; const gridEl = document.getElementById('hotkey-grid'); const titleEl = document.getElementById('section-title'); const descEl = document.getElementById('section-desc'); const searchInput = document.getElementById('search-input'); const quizView = document.getElementById('quiz-view'); const analyticsView = document.getElementById('analytics-view'); const mobileMenu = document.getElementById('sidebar'); const overlay = document.getElementById('mobile-menu-overlay');
+        document.addEventListener('DOMContentLoaded', () => { renderGrid(); searchInput.addEventListener('input', (e) => { searchQuery = e.target.value.toLowerCase(); renderGrid(); }); initCharts(); });
         function setView(view) {
-            currentView = view;
-            
-            // Reset Search
-            searchQuery = '';
-            searchInput.value = '';
-
-            // Update UI State
-            document.querySelectorAll('.nav-btn').forEach(btn => {
-                btn.classList.remove('bg-cyan-50', 'text-cyan-600', 'bg-blue-50', 'text-blue-600', 'bg-purple-50', 'text-purple-600');
-                btn.classList.add('text-slate-600');
-            });
-            
-            // Hide all special views
-            gridEl.classList.remove('hidden');
-            quizView.classList.add('hidden');
-            analyticsView.classList.add('hidden');
-            
-            // Mobile menu close
+            currentView = view; searchQuery = ''; searchInput.value = '';
+            document.querySelectorAll('.nav-btn').forEach(btn => { btn.classList.remove('bg-cyan-50', 'text-cyan-600', 'bg-blue-50', 'text-blue-600', 'bg-purple-50', 'text-purple-600'); btn.classList.add('text-slate-600'); });
+            gridEl.classList.remove('hidden'); quizView.classList.add('hidden'); analyticsView.classList.add('hidden');
             if(window.innerWidth < 1024) toggleMobileMenu();
-
             switch(view) {
-                case 'dashboard':
-                    titleEl.textContent = 'All Hotkeys';
-                    descEl.textContent = 'Complete list of Maya shortcuts.';
-                    document.getElementById('btn-dashboard').classList.add('bg-cyan-50', 'text-cyan-600');
-                    renderGrid();
-                    break;
-                case 'navigation':
-                    titleEl.textContent = 'Navigation';
-                    descEl.textContent = 'Tumble, Track, and Dolly with Alt.';
-                    document.getElementById('btn-navigation').classList.add('bg-cyan-50', 'text-cyan-600');
-                    renderGrid('Navigation');
-                    break;
-                case 'tools':
-                    titleEl.textContent = 'Tools (WER)';
-                    descEl.textContent = 'Move, Rotate, Scale, and selection tools.';
-                    document.getElementById('btn-tools').classList.add('bg-cyan-50', 'text-cyan-600');
-                    renderGrid('Tools');
-                    break;
-                case 'modes':
-                    titleEl.textContent = 'Component Modes';
-                    descEl.textContent = 'Switching between Object, Vertex, Edge, and Face.';
-                    document.getElementById('btn-modes').classList.add('bg-cyan-50', 'text-cyan-600');
-                    renderGrid('Modes');
-                    break;
-                case 'modeling':
-                    titleEl.textContent = 'Modeling';
-                    descEl.textContent = 'Extrude, Duplicate, and Grouping.';
-                    document.getElementById('btn-modeling').classList.add('bg-cyan-50', 'text-cyan-600');
-                    renderGrid('Modeling');
-                    break;
-                case 'animation':
-                    titleEl.textContent = 'Animation';
-                    descEl.textContent = 'Timeline controls and Keyframing.';
-                    document.getElementById('btn-animation').classList.add('bg-cyan-50', 'text-cyan-600');
-                    renderGrid('Animation');
-                    break;
-                case 'quiz':
-                    titleEl.textContent = 'Quiz Mode';
-                    descEl.textContent = 'Test your knowledge. Can you remember the keys?';
-                    document.getElementById('btn-quiz').classList.add('bg-blue-50', 'text-blue-600');
-                    gridEl.classList.add('hidden');
-                    quizView.classList.remove('hidden');
-                    startQuiz();
-                    break;
-                case 'analytics':
-                    titleEl.textContent = 'Insights';
-                    descEl.textContent = 'Visual breakdown of Maya hotkey patterns.';
-                    document.getElementById('btn-analytics').classList.add('bg-purple-50', 'text-purple-600');
-                    gridEl.classList.add('hidden');
-                    analyticsView.classList.remove('hidden');
-                    break;
+                case 'dashboard': titleEl.textContent = 'All Hotkeys'; descEl.textContent = 'Complete list of Maya shortcuts.'; document.getElementById('btn-dashboard').classList.add('bg-cyan-50', 'text-cyan-600'); renderGrid(); break;
+                case 'navigation': titleEl.textContent = 'Navigation'; descEl.textContent = 'Tumble, Track, and Dolly with Alt.'; document.getElementById('btn-navigation').classList.add('bg-cyan-50', 'text-cyan-600'); renderGrid('Navigation'); break;
+                case 'tools': titleEl.textContent = 'Tools (WER)'; descEl.textContent = 'Move, Rotate, Scale, and selection tools.'; document.getElementById('btn-tools').classList.add('bg-cyan-50', 'text-cyan-600'); renderGrid('Tools'); break;
+                case 'modes': titleEl.textContent = 'Component Modes'; descEl.textContent = 'Switching between Object, Vertex, Edge, and Face.'; document.getElementById('btn-modes').classList.add('bg-cyan-50', 'text-cyan-600'); renderGrid('Modes'); break;
+                case 'modeling': titleEl.textContent = 'Modeling'; descEl.textContent = 'Extrude, Duplicate, and Grouping.'; document.getElementById('btn-modeling').classList.add('bg-cyan-50', 'text-cyan-600'); renderGrid('Modeling'); break;
+                case 'animation': titleEl.textContent = 'Animation'; descEl.textContent = 'Timeline controls and Keyframing.'; document.getElementById('btn-animation').classList.add('bg-cyan-50', 'text-cyan-600'); renderGrid('Animation'); break;
+                case 'quiz': titleEl.textContent = 'Quiz Mode'; descEl.textContent = 'Test your knowledge. Can you remember the keys?'; document.getElementById('btn-quiz').classList.add('bg-blue-50', 'text-blue-600'); gridEl.classList.add('hidden'); quizView.classList.remove('hidden'); startQuiz(); break;
+                case 'analytics': titleEl.textContent = 'Insights'; descEl.textContent = 'Visual breakdown of Maya hotkey patterns.'; document.getElementById('btn-analytics').classList.add('bg-purple-50', 'text-purple-600'); gridEl.classList.add('hidden'); analyticsView.classList.remove('hidden'); break;
             }
         }
-
-        // --- RENDERING LOGIC ---
         function renderGrid(filterCategory = null) {
-            gridEl.innerHTML = '';
-            
-            const filteredData = hotkeyData.filter(item => {
-                const matchesCategory = filterCategory ? item.category === filterCategory : true;
-                const matchesSearch = item.action.toLowerCase().includes(searchQuery) || item.key.toLowerCase().includes(searchQuery);
-                return matchesCategory && matchesSearch;
-            });
-
-            if (filteredData.length === 0) {
-                gridEl.innerHTML = `
-                    <div class="col-span-full text-center py-20">
-                        <div class="text-4xl mb-4">😶‍🌫️</div>
-                        <h3 class="text-lg font-semibold text-slate-700">No hotkeys found</h3>
-                        <p class="text-slate-500">Try adjusting your search terms.</p>
-                    </div>
-                `;
-                return;
-            }
-
-            filteredData.forEach(item => {
-                const card = document.createElement('div');
-                card.className = 'bg-white rounded-xl p-5 border border-slate-200 card-hover flex flex-col justify-between h-full transition-all duration-200';
-                
-                // Color coding tags
-                let tagColor = 'bg-slate-100 text-slate-600';
-                if(item.category === 'Tools') tagColor = 'bg-cyan-50 text-cyan-600';
-                if(item.category === 'Modes') tagColor = 'bg-indigo-50 text-indigo-600';
-                if(item.category === 'Animation') tagColor = 'bg-red-50 text-red-600';
-                if(item.category === 'Modeling') tagColor = 'bg-emerald-50 text-emerald-600';
-
-                card.innerHTML = `
-                    <div class="mb-4">
-                        <span class="text-xs font-bold uppercase tracking-wider px-2 py-1 rounded-md ${tagColor}">${item.category}</span>
-                        <h3 class="text-slate-600 font-medium mt-3 leading-snug">${item.action}</h3>
-                    </div>
-                    <div class="mt-auto">
-                        <div class="key-cap inline-block px-3 py-2 rounded-lg text-slate-800 font-mono font-bold text-lg shadow-sm border border-slate-200">
-                            ${item.key}
-                        </div>
-                    </div>
-                `;
-                gridEl.appendChild(card);
-            });
+            gridEl.innerHTML = ''; const filteredData = hotkeyData.filter(item => { const matchesCategory = filterCategory ? item.category === filterCategory : true; const matchesSearch = item.action.toLowerCase().includes(searchQuery) || item.key.toLowerCase().includes(searchQuery); return matchesCategory && matchesSearch; });
+            if (filteredData.length === 0) { gridEl.innerHTML = `<div class="col-span-full text-center py-20"><div class="text-4xl mb-4">😶‍🌫️</div><h3 class="text-lg font-semibold text-slate-700">No hotkeys found</h3><p class="text-slate-500">Try adjusting your search terms.</p></div>`; return; }
+            filteredData.forEach(item => { const card = document.createElement('div'); card.className = 'bg-white rounded-xl p-5 border border-slate-200 card-hover flex flex-col justify-between h-full transition-all duration-200'; let tagColor = 'bg-slate-100 text-slate-600'; if(item.category === 'Tools') tagColor = 'bg-cyan-50 text-cyan-600'; if(item.category === 'Modes') tagColor = 'bg-indigo-50 text-indigo-600'; if(item.category === 'Animation') tagColor = 'bg-red-50 text-red-600'; if(item.category === 'Modeling') tagColor = 'bg-emerald-50 text-emerald-600'; card.innerHTML = `<div class="mb-4"><span class="text-xs font-bold uppercase tracking-wider px-2 py-1 rounded-md ${tagColor}">${item.category}</span><h3 class="text-slate-600 font-medium mt-3 leading-snug">${item.action}</h3></div><div class="mt-auto"><div class="key-cap inline-block px-3 py-2 rounded-lg text-slate-800 font-mono font-bold text-lg shadow-sm border border-slate-200">${item.key}</div></div>`; gridEl.appendChild(card); });
         }
-
-        function toggleMobileMenu() {
-            mobileMenu.classList.toggle('-translate-x-full');
-            overlay.classList.toggle('hidden');
-        }
-
-        // --- QUIZ LOGIC ---
-        function startQuiz() {
-            nextQuestion();
-        }
-
-        function nextQuestion() {
-            // Pick random hotkey
-            const randomItem = hotkeyData[Math.floor(Math.random() * hotkeyData.length)];
-            
-            document.getElementById('quiz-category').textContent = randomItem.category;
-            document.getElementById('quiz-question').textContent = randomItem.action;
-            document.getElementById('quiz-answer-key').textContent = randomItem.key;
-            
-            // Reset UI
-            document.getElementById('quiz-answer-section').classList.add('hidden');
-            document.getElementById('btn-reveal').classList.remove('hidden');
-            document.getElementById('btn-next').classList.add('hidden');
-        }
-
-        function revealAnswer() {
-            document.getElementById('quiz-answer-section').classList.remove('hidden');
-            document.getElementById('btn-reveal').classList.add('hidden');
-            document.getElementById('btn-next').classList.remove('hidden');
-        }
-
-        // --- CHARTS LOGIC ---
-        function initCharts() {
-            // 1. Categories Doughnut
-            const catCounts = {};
-            hotkeyData.forEach(d => catCounts[d.category] = (catCounts[d.category] || 0) + 1);
-            
-            const ctxCat = document.getElementById('categoryChart').getContext('2d');
-            chartInstances.category = new Chart(ctxCat, {
-                type: 'doughnut',
-                data: {
-                    labels: Object.keys(catCounts),
-                    datasets: [{
-                        data: Object.values(catCounts),
-                        backgroundColor: ['#06b6d4', '#f43f5e', '#8b5cf6', '#10b981', '#64748b', '#fbbf24'],
-                        borderWidth: 0
-                    }]
-                },
-                options: {
-                    responsive: true,
-                    maintainAspectRatio: false,
-                    plugins: {
-                        legend: { position: 'right' }
-                    }
-                }
-            });
-
-            // 2. Modifiers Bar
-            let modCounts = { 'Ctrl': 0, 'Shift': 0, 'Alt': 0, 'Single Key': 0 };
-            hotkeyData.forEach(d => {
-                let hasMod = false;
-                if(d.key.includes('Ctrl')) { modCounts['Ctrl']++; hasMod = true; }
-                if(d.key.includes('Shift')) { modCounts['Shift']++; hasMod = true; }
-                if(d.key.includes('Alt')) { modCounts['Alt']++; hasMod = true; }
-                if(!hasMod) modCounts['Single Key']++;
-            });
-
-            const ctxMod = document.getElementById('modifierChart').getContext('2d');
-            chartInstances.modifier = new Chart(ctxMod, {
-                type: 'bar',
-                data: {
-                    labels: Object.keys(modCounts),
-                    datasets: [{
-                        label: 'Frequency',
-                        data: Object.values(modCounts),
-                        backgroundColor: '#06b6d4', // Cyan for Maya
-                        borderRadius: 6
-                    }]
-                },
-                options: {
-                    responsive: true,
-                    maintainAspectRatio: false,
-                    scales: {
-                        y: { beginAtZero: true }
-                    }
-                }
-            });
-
-            // 3. Action Types (Pie)
-            let types = { 'Navigation': 0, 'Selection': 0, 'Tools': 0, 'System': 0 };
-            hotkeyData.forEach(d => {
-                const act = d.action.toLowerCase();
-                const cat = d.category.toLowerCase();
-                if(cat.includes('navigation') || act.includes('view') || act.includes('frame')) {
-                    types['Navigation']++;
-                } else if(act.includes('select') || cat.includes('modes')) {
-                    types['Selection']++;
-                } else if(act.includes('save') || act.includes('hotbox')) {
-                    types['System']++;
-                } else {
-                    types['Tools']++;
-                }
-            });
-
-            const ctxType = document.getElementById('actionTypeChart').getContext('2d');
-            chartInstances.type = new Chart(ctxType, {
-                type: 'pie',
-                data: {
-                    labels: Object.keys(types),
-                    datasets: [{
-                        data: Object.values(types),
-                        backgroundColor: ['#60a5fa', '#f472b6', '#fbbf24', '#94a3b8'],
-                        borderWidth: 0
-                    }]
-                },
-                options: {
-                    responsive: true,
-                    maintainAspectRatio: false,
-                }
-            });
-        }
+        function toggleMobileMenu() { mobileMenu.classList.toggle('-translate-x-full'); overlay.classList.toggle('hidden'); }
+        function startQuiz() { nextQuestion(); }
+        function nextQuestion() { const randomItem = hotkeyData[Math.floor(Math.random() * hotkeyData.length)]; document.getElementById('quiz-category').textContent = randomItem.category; document.getElementById('quiz-question').textContent = randomItem.action; document.getElementById('quiz-answer-key').textContent = randomItem.key; document.getElementById('quiz-answer-section').classList.add('hidden'); document.getElementById('btn-reveal').classList.remove('hidden'); document.getElementById('btn-next').classList.add('hidden'); }
+        function revealAnswer() { document.getElementById('quiz-answer-section').classList.remove('hidden'); document.getElementById('btn-reveal').classList.add('hidden'); document.getElementById('btn-next').classList.remove('hidden'); }
+        function initCharts() { const catCounts = {}; hotkeyData.forEach(d => catCounts[d.category] = (catCounts[d.category] || 0) + 1); new Chart(document.getElementById('categoryChart').getContext('2d'), { type: 'doughnut', data: { labels: Object.keys(catCounts), datasets: [{ data: Object.values(catCounts), backgroundColor: ['#06b6d4', '#f43f5e', '#8b5cf6', '#10b981', '#64748b', '#fbbf24'], borderWidth: 0 }] }, options: { responsive: true, maintainAspectRatio: false, plugins: { legend: { position: 'right' } } } }); let modCounts = { 'Ctrl': 0, 'Shift': 0, 'Alt': 0, 'Single Key': 0 }; hotkeyData.forEach(d => { let hasMod = false; if(d.key.includes('Ctrl')) { modCounts['Ctrl']++; hasMod = true; } if(d.key.includes('Shift')) { modCounts['Shift']++; hasMod = true; } if(d.key.includes('Alt')) { modCounts['Alt']++; hasMod = true; } if(!hasMod) modCounts['Single Key']++; }); new Chart(document.getElementById('modifierChart').getContext('2d'), { type: 'bar', data: { labels: Object.keys(modCounts), datasets: [{ label: 'Frequency', data: Object.values(modCounts), backgroundColor: '#06b6d4', borderRadius: 6 }] }, options: { responsive: true, maintainAspectRatio: false, scales: { y: { beginAtZero: true } } } }); let types = { 'Navigation': 0, 'Selection': 0, 'Tools': 0, 'System': 0 }; hotkeyData.forEach(d => { const act = d.action.toLowerCase(); const cat = d.category.toLowerCase(); if(cat.includes('navigation') || act.includes('view') || act.includes('frame')) { types['Navigation']++; } else if(act.includes('select') || cat.includes('modes')) { types['Selection']++; } else if(act.includes('save') || act.includes('hotbox')) { types['System']++; } else { types['Tools']++; } }); new Chart(document.getElementById('actionTypeChart').getContext('2d'), { type: 'pie', data: { labels: Object.keys(types), datasets: [{ data: Object.values(types), backgroundColor: ['#60a5fa', '#f472b6', '#fbbf24', '#94a3b8'], borderWidth: 0 }] }, options: { responsive: true, maintainAspectRatio: false, } }); }
     </script>
 </body>
 </html>
