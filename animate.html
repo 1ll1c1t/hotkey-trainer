@@ -1,0 +1,467 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Adobe Animate Interactive Hotkey Companion</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <style>
+        body { font-family: 'Inter', sans-serif; }
+        
+        /* Custom Scrollbar */
+        ::-webkit-scrollbar { width: 8px; }
+        ::-webkit-scrollbar-track { background: #fff1f2; }
+        ::-webkit-scrollbar-thumb { background: #fda4af; border-radius: 4px; }
+        ::-webkit-scrollbar-thumb:hover { background: #e11d48; }
+
+        /* Chart Container Styling */
+        .chart-container {
+            position: relative;
+            width: 100%;
+            max-width: 600px;
+            margin-left: auto;
+            margin-right: auto;
+            height: 300px;
+            max-height: 300px;
+        }
+        
+        .card-hover:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+        }
+
+        .key-cap {
+            background: linear-gradient(to bottom, #f8fafc, #e2e8f0);
+            border-bottom: 3px solid #cbd5e1;
+        }
+        .key-cap:active {
+            border-bottom: 1px solid #cbd5e1;
+            transform: translateY(2px);
+        }
+    </style>
+    <!-- Chosen Palette: Animate Red (Red, Rose, Slate) -->
+    <!-- Application Structure Plan:
+         1. **Sidebar Navigation**: Focused on the Animation Pipeline (Timeline, Drawing, Symbols).
+         2. **Main Dashboard**: Highlights the critical F-Key workflow (F5, F6, F7).
+         3. **Analytics**: Visualizes the heavy reliance on Function Keys compared to other Adobe apps.
+    -->
+</head>
+<body class="bg-slate-50 text-slate-800 h-screen flex overflow-hidden">
+
+    <!-- Mobile Menu Overlay -->
+    <div id="mobile-menu-overlay" class="fixed inset-0 bg-black bg-opacity-50 z-20 hidden lg:hidden" onclick="toggleMobileMenu()"></div>
+
+    <!-- Sidebar -->
+    <aside id="sidebar" class="bg-white w-64 flex-shrink-0 border-r border-slate-200 flex flex-col fixed inset-y-0 left-0 transform -translate-x-full lg:relative lg:translate-x-0 transition-transform duration-200 ease-in-out z-30">
+        <div class="p-6 border-b border-slate-100 flex items-center justify-between">
+            <h1 class="text-2xl font-bold text-slate-800 tracking-tight"><span class="text-red-600">Animate</span></h1>
+            <button class="lg:hidden text-slate-500" onclick="toggleMobileMenu()">✕</button>
+        </div>
+        
+        <nav class="flex-1 overflow-y-auto py-4">
+            <ul class="space-y-1 px-3">
+                <li>
+                    <button onclick="setView('dashboard')" class="nav-btn w-full text-left px-4 py-3 rounded-lg flex items-center space-x-3 hover:bg-red-50 text-slate-600 hover:text-red-600 transition-colors font-medium bg-red-50 text-red-600" id="btn-dashboard">
+                        <span>⌨️</span> <span>All Hotkeys</span>
+                    </button>
+                </li>
+                <li>
+                    <button onclick="setView('timeline')" class="nav-btn w-full text-left px-4 py-3 rounded-lg flex items-center space-x-3 hover:bg-red-50 text-slate-600 hover:text-red-600 transition-colors font-medium" id="btn-timeline">
+                        <span>⏱️</span> <span>Timeline (F-Keys)</span>
+                    </button>
+                </li>
+                <li>
+                    <button onclick="setView('tools')" class="nav-btn w-full text-left px-4 py-3 rounded-lg flex items-center space-x-3 hover:bg-red-50 text-slate-600 hover:text-red-600 transition-colors font-medium" id="btn-tools">
+                        <span>🖌️</span> <span>Drawing Tools</span>
+                    </button>
+                </li>
+                <li>
+                    <button onclick="setView('symbols')" class="nav-btn w-full text-left px-4 py-3 rounded-lg flex items-center space-x-3 hover:bg-red-50 text-slate-600 hover:text-red-600 transition-colors font-medium" id="btn-symbols">
+                        <span>💠</span> <span>Symbols & Grouping</span>
+                    </button>
+                </li>
+                <li>
+                    <button onclick="setView('view')" class="nav-btn w-full text-left px-4 py-3 rounded-lg flex items-center space-x-3 hover:bg-red-50 text-slate-600 hover:text-red-600 transition-colors font-medium" id="btn-view">
+                        <span>🔍</span> <span>View & Stage</span>
+                    </button>
+                </li>
+                <li class="pt-4 mt-4 border-t border-slate-100">
+                    <button onclick="setView('quiz')" class="nav-btn w-full text-left px-4 py-3 rounded-lg flex items-center space-x-3 hover:bg-rose-50 text-slate-600 hover:text-rose-600 transition-colors font-medium" id="btn-quiz">
+                        <span>🧠</span> <span>Quiz Mode</span>
+                    </button>
+                </li>
+                <li>
+                    <button onclick="setView('analytics')" class="nav-btn w-full text-left px-4 py-3 rounded-lg flex items-center space-x-3 hover:bg-orange-50 text-slate-600 hover:text-orange-600 transition-colors font-medium" id="btn-analytics">
+                        <span>📊</span> <span>Insights</span>
+                    </button>
+                </li>
+            </ul>
+        </nav>
+        
+        <div class="p-4 border-t border-slate-200 bg-slate-50">
+            <p class="text-xs text-slate-400">Based on Adobe Animate 2024</p>
+        </div>
+    </aside>
+
+    <!-- Main Content -->
+    <main class="flex-1 flex flex-col h-screen overflow-hidden relative">
+        <!-- Mobile Header -->
+        <header class="bg-white border-b border-slate-200 p-4 lg:hidden flex justify-between items-center z-10">
+            <span class="font-bold text-red-600">Animate</span>
+            <button onclick="toggleMobileMenu()" class="text-slate-600">
+                ☰ Menu
+            </button>
+        </header>
+
+        <!-- Top Bar -->
+        <div class="bg-white border-b border-slate-200 px-6 py-4 flex flex-col sm:flex-row justify-between items-center gap-4 z-10 shadow-sm">
+            <div>
+                <h2 id="section-title" class="text-xl font-bold text-slate-800">All Hotkeys</h2>
+                <p id="section-desc" class="text-sm text-slate-500">Shortcuts for 2D Vector Animation.</p>
+            </div>
+            <div class="relative w-full sm:w-64">
+                <input type="text" id="search-input" placeholder="Search functionality or key..." 
+                    class="w-full pl-10 pr-4 py-2 bg-slate-100 border-none rounded-full focus:ring-2 focus:ring-red-500 focus:bg-white transition-all outline-none text-sm">
+                <span class="absolute left-3 top-2.5 text-slate-400">🔍</span>
+            </div>
+        </div>
+
+        <!-- Scrollable Content Area -->
+        <div id="content-area" class="flex-1 overflow-y-auto bg-slate-50 p-6 relative">
+            
+            <!-- Dynamic Grid for Hotkeys -->
+            <div id="hotkey-grid" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4 pb-20">
+                <!-- Cards injected via JS -->
+            </div>
+
+            <!-- Quiz View (Hidden by default) -->
+            <div id="quiz-view" class="hidden h-full flex flex-col items-center justify-center max-w-2xl mx-auto">
+                <div class="bg-white p-8 rounded-2xl shadow-xl w-full text-center border border-slate-100">
+                    <div class="mb-6">
+                        <span class="bg-rose-100 text-rose-700 px-3 py-1 rounded-full text-xs font-bold uppercase tracking-wide" id="quiz-category">Category</span>
+                    </div>
+                    <h3 class="text-slate-500 text-lg mb-2">How do you trigger:</h3>
+                    <h2 class="text-3xl font-bold text-slate-800 mb-8" id="quiz-question">Convert to Symbol</h2>
+                    
+                    <div id="quiz-answer-section" class="hidden mb-8 animate-fade-in">
+                        <div class="text-5xl font-mono font-bold text-red-600 mb-2" id="quiz-answer-key">F8</div>
+                        <p class="text-slate-400 text-sm">Correct Answer</p>
+                    </div>
+
+                    <div class="flex justify-center gap-4">
+                        <button onclick="revealAnswer()" id="btn-reveal" class="bg-slate-800 text-white px-6 py-3 rounded-lg hover:bg-slate-700 transition shadow-lg font-semibold w-full sm:w-auto">Show Key</button>
+                        <button onclick="nextQuestion()" id="btn-next" class="hidden bg-red-600 text-white px-6 py-3 rounded-lg hover:bg-red-700 transition shadow-lg font-semibold w-full sm:w-auto">Next Card</button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Analytics View (Hidden by default) -->
+            <div id="analytics-view" class="hidden max-w-5xl mx-auto space-y-6">
+                <div class="bg-white p-6 rounded-xl shadow-sm border border-slate-200">
+                    <h3 class="text-lg font-bold text-slate-800 mb-4">Hotkey Distribution</h3>
+                    <div class="chart-container">
+                        <canvas id="categoryChart"></canvas>
+                    </div>
+                </div>
+
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                    <div class="bg-white p-6 rounded-xl shadow-sm border border-slate-200">
+                        <h3 class="text-lg font-bold text-slate-800 mb-4">The Power of F-Keys</h3>
+                        <p class="text-sm text-slate-500 mb-4">Animate relies uniquely on F5, F6, F7, and F8.</p>
+                        <div class="chart-container">
+                            <canvas id="modifierChart"></canvas>
+                        </div>
+                    </div>
+                    
+                    <div class="bg-white p-6 rounded-xl shadow-sm border border-slate-200">
+                        <h3 class="text-lg font-bold text-slate-800 mb-4">Action Types</h3>
+                        <div class="chart-container">
+                            <canvas id="actionTypeChart"></canvas>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </main>
+
+    <script>
+        // --- DATA STORE ---
+        // Sourced from Adobe Animate Default Shortcuts
+        const hotkeyData = [
+            // Timeline & Frames (The most critical section for Animate)
+            { key: "F5", action: "Insert Frame (Extend)", category: "Timeline" },
+            { key: "Shift + F5", action: "Remove Frame", category: "Timeline" },
+            { key: "F6", action: "Insert Keyframe (Copy Prev)", category: "Timeline" },
+            { key: "Shift + F6", action: "Clear Keyframe", category: "Timeline" },
+            { key: "F7", action: "Insert Blank Keyframe", category: "Timeline" },
+            { key: "Enter", action: "Play Timeline", category: "Timeline" },
+            { key: "<", action: "Previous Frame", category: "Timeline" },
+            { key: ">", action: "Next Frame", category: "Timeline" },
+            { key: "Home", action: "First Frame", category: "Timeline" },
+            { key: "End", action: "Last Frame", category: "Timeline" },
+
+            // Drawing Tools
+            { key: "V", action: "Selection Tool", category: "Tools" },
+            { key: "A", action: "Subselection Tool", category: "Tools" },
+            { key: "Q", action: "Free Transform Tool", category: "Tools" },
+            { key: "F", action: "Gradient Transform Tool", category: "Tools" },
+            { key: "L", action: "Lasso Tool", category: "Tools" },
+            { key: "P", action: "Pen Tool", category: "Tools" },
+            { key: "T", action: "Text Tool", category: "Tools" },
+            { key: "N", action: "Line Tool", category: "Tools" },
+            { key: "R", action: "Rectangle Tool", category: "Tools" },
+            { key: "O", action: "Oval Tool", category: "Tools" },
+            { key: "Y", action: "Pencil Tool", category: "Tools" },
+            { key: "B", action: "Classic Brush Tool", category: "Tools" },
+            { key: "K", action: "Paint Bucket Tool", category: "Tools" },
+            { key: "S", action: "Ink Bottle Tool", category: "Tools" },
+            { key: "I", action: "Eyedropper Tool", category: "Tools" },
+            { key: "E", action: "Eraser Tool", category: "Tools" },
+            { key: "H", action: "Hand Tool", category: "Tools" },
+            { key: "Z", action: "Zoom Tool", category: "Tools" },
+            { key: "M", action: "Bone Tool", category: "Tools" },
+            { key: "Shift + W", action: "Asset Warp Tool", category: "Tools" },
+            { key: "Shift + C", action: "Camera Tool", category: "Tools" },
+
+            // Symbols & Grouping
+            { key: "F8", action: "Convert to Symbol", category: "Symbols" },
+            { key: "Ctrl + F8", action: "Create New Symbol", category: "Symbols" },
+            { key: "Ctrl + G", action: "Group", category: "Symbols" },
+            { key: "Ctrl + Shift + G", action: "Ungroup", category: "Symbols" },
+            { key: "Ctrl + B", action: "Break Apart", category: "Symbols" },
+            { key: "Ctrl + D", action: "Duplicate", category: "Symbols" },
+            { key: "Ctrl + Shift + D", action: "Distribute to Layers", category: "Symbols" },
+
+            // View & Interface
+            { key: "Ctrl + 1", action: "100% View", category: "View" },
+            { key: "Ctrl + 2", action: "Show Frame", category: "View" },
+            { key: "Ctrl + 3", action: "Show All", category: "View" },
+            { key: "Ctrl + F3", action: "Properties Panel", category: "View" },
+            { key: "Ctrl + L", action: "Library Panel", category: "View" },
+            { key: "Ctrl + K", action: "Align Panel", category: "View" },
+            { key: "F9", action: "Actions Panel", category: "View" },
+            { key: "Ctrl + Enter", action: "Test Movie", category: "View" },
+            { key: "Ctrl + Shift + Alt + R", action: "Rulers", category: "View" },
+            { key: "Ctrl + ;", action: "Guides", category: "View" }
+        ];
+
+        // --- STATE & UI LOGIC ---
+        let currentView = 'dashboard';
+        let searchQuery = '';
+        let chartInstances = {};
+
+        const gridEl = document.getElementById('hotkey-grid');
+        const titleEl = document.getElementById('section-title');
+        const descEl = document.getElementById('section-desc');
+        const searchInput = document.getElementById('search-input');
+        const quizView = document.getElementById('quiz-view');
+        const analyticsView = document.getElementById('analytics-view');
+        const mobileMenu = document.getElementById('sidebar');
+        const overlay = document.getElementById('mobile-menu-overlay');
+
+        document.addEventListener('DOMContentLoaded', () => {
+            renderGrid();
+            searchInput.addEventListener('input', (e) => {
+                searchQuery = e.target.value.toLowerCase();
+                renderGrid();
+            });
+            initCharts();
+        });
+
+        function setView(view) {
+            currentView = view;
+            searchQuery = '';
+            searchInput.value = '';
+
+            document.querySelectorAll('.nav-btn').forEach(btn => {
+                btn.classList.remove('bg-red-50', 'text-red-600', 'bg-rose-50', 'text-rose-600', 'bg-orange-50', 'text-orange-600');
+                btn.classList.add('text-slate-600');
+            });
+            
+            gridEl.classList.remove('hidden');
+            quizView.classList.add('hidden');
+            analyticsView.classList.add('hidden');
+            
+            if(window.innerWidth < 1024) toggleMobileMenu();
+
+            switch(view) {
+                case 'dashboard':
+                    titleEl.textContent = 'All Hotkeys';
+                    descEl.textContent = 'Complete list of Adobe Animate shortcuts.';
+                    document.getElementById('btn-dashboard').classList.add('bg-red-50', 'text-red-600');
+                    renderGrid();
+                    break;
+                case 'timeline':
+                    titleEl.textContent = 'Timeline';
+                    descEl.textContent = 'The F-Key workflow: F5, F6, F7.';
+                    document.getElementById('btn-timeline').classList.add('bg-red-50', 'text-red-600');
+                    renderGrid('Timeline');
+                    break;
+                case 'tools':
+                    titleEl.textContent = 'Drawing Tools';
+                    descEl.textContent = 'Vector creation brushes and shapes.';
+                    document.getElementById('btn-tools').classList.add('bg-red-50', 'text-red-600');
+                    renderGrid('Tools');
+                    break;
+                case 'symbols':
+                    titleEl.textContent = 'Symbols';
+                    descEl.textContent = 'Grouping, Breaking Apart, and Library management.';
+                    document.getElementById('btn-symbols').classList.add('bg-red-50', 'text-red-600');
+                    renderGrid('Symbols');
+                    break;
+                case 'view':
+                    titleEl.textContent = 'View & Stage';
+                    descEl.textContent = 'Zoom, Panels, and Test Movie.';
+                    document.getElementById('btn-view').classList.add('bg-red-50', 'text-red-600');
+                    renderGrid('View');
+                    break;
+                case 'quiz':
+                    titleEl.textContent = 'Quiz Mode';
+                    descEl.textContent = 'Memorize the frame keys.';
+                    document.getElementById('btn-quiz').classList.add('bg-rose-50', 'text-rose-600');
+                    gridEl.classList.add('hidden');
+                    quizView.classList.remove('hidden');
+                    startQuiz();
+                    break;
+                case 'analytics':
+                    titleEl.textContent = 'Insights';
+                    descEl.textContent = 'Breakdown of shortcut categories.';
+                    document.getElementById('btn-analytics').classList.add('bg-orange-50', 'text-orange-600');
+                    gridEl.classList.add('hidden');
+                    analyticsView.classList.remove('hidden');
+                    break;
+            }
+        }
+
+        function renderGrid(filterCategory = null) {
+            gridEl.innerHTML = '';
+            
+            const filteredData = hotkeyData.filter(item => {
+                const matchesCategory = filterCategory ? item.category === filterCategory : true;
+                const matchesSearch = item.action.toLowerCase().includes(searchQuery) || item.key.toLowerCase().includes(searchQuery);
+                return matchesCategory && matchesSearch;
+            });
+
+            if (filteredData.length === 0) {
+                gridEl.innerHTML = `
+                    <div class="col-span-full text-center py-20">
+                        <div class="text-4xl mb-4">😶‍🌫️</div>
+                        <h3 class="text-lg font-semibold text-slate-700">No hotkeys found</h3>
+                    </div>
+                `;
+                return;
+            }
+
+            filteredData.forEach(item => {
+                const card = document.createElement('div');
+                card.className = 'bg-white rounded-xl p-5 border border-slate-200 card-hover flex flex-col justify-between h-full';
+                
+                let tagColor = 'bg-slate-100 text-slate-600';
+                if(item.category === 'Timeline') tagColor = 'bg-red-50 text-red-600';
+                if(item.category === 'Tools') tagColor = 'bg-orange-50 text-orange-600';
+                if(item.category === 'Symbols') tagColor = 'bg-rose-50 text-rose-600';
+
+                card.innerHTML = `
+                    <div class="mb-4">
+                        <span class="text-xs font-bold uppercase tracking-wider px-2 py-1 rounded-md ${tagColor}">${item.category}</span>
+                        <h3 class="text-slate-600 font-medium mt-3 leading-snug">${item.action}</h3>
+                    </div>
+                    <div class="mt-auto">
+                        <div class="key-cap inline-block px-3 py-2 rounded-lg text-slate-800 font-mono font-bold text-lg shadow-sm border border-slate-200">
+                            ${item.key}
+                        </div>
+                    </div>
+                `;
+                gridEl.appendChild(card);
+            });
+        }
+
+        function toggleMobileMenu() {
+            mobileMenu.classList.toggle('-translate-x-full');
+            overlay.classList.toggle('hidden');
+        }
+
+        // --- QUIZ LOGIC ---
+        function startQuiz() { nextQuestion(); }
+
+        function nextQuestion() {
+            const randomItem = hotkeyData[Math.floor(Math.random() * hotkeyData.length)];
+            document.getElementById('quiz-category').textContent = randomItem.category;
+            document.getElementById('quiz-question').textContent = randomItem.action;
+            document.getElementById('quiz-answer-key').textContent = randomItem.key;
+            document.getElementById('quiz-answer-section').classList.add('hidden');
+            document.getElementById('btn-reveal').classList.remove('hidden');
+            document.getElementById('btn-next').classList.add('hidden');
+        }
+
+        function revealAnswer() {
+            document.getElementById('quiz-answer-section').classList.remove('hidden');
+            document.getElementById('btn-reveal').classList.add('hidden');
+            document.getElementById('btn-next').classList.remove('hidden');
+        }
+
+        // --- CHARTS ---
+        function initCharts() {
+            const catCounts = {};
+            hotkeyData.forEach(d => catCounts[d.category] = (catCounts[d.category] || 0) + 1);
+            
+            new Chart(document.getElementById('categoryChart'), {
+                type: 'doughnut',
+                data: {
+                    labels: Object.keys(catCounts),
+                    datasets: [{
+                        data: Object.values(catCounts),
+                        backgroundColor: ['#dc2626', '#f97316', '#e11d48', '#fbbf24', '#ef4444'],
+                        borderWidth: 0
+                    }]
+                },
+                options: { responsive: true, maintainAspectRatio: false }
+            });
+
+            let modCounts = { 'F-Keys': 0, 'Ctrl': 0, 'Single Key': 0 };
+            hotkeyData.forEach(d => {
+                if(d.key.includes('F') && !d.key.includes('Shift')) modCounts['F-Keys']++;
+                else if(d.key.includes('Ctrl')) modCounts['Ctrl']++;
+                else modCounts['Single Key']++;
+            });
+
+            new Chart(document.getElementById('modifierChart'), {
+                type: 'bar',
+                data: {
+                    labels: Object.keys(modCounts),
+                    datasets: [{
+                        label: 'Frequency',
+                        data: Object.values(modCounts),
+                        backgroundColor: '#dc2626',
+                        borderRadius: 6
+                    }]
+                },
+                options: { responsive: true, maintainAspectRatio: false }
+            });
+
+            let types = { 'Tools': 0, 'Timeline': 0, 'Management': 0 };
+            hotkeyData.forEach(d => {
+                if(d.category === 'Tools') types['Tools']++;
+                else if(d.category === 'Timeline') types['Timeline']++;
+                else types['Management']++;
+            });
+
+            new Chart(document.getElementById('actionTypeChart'), {
+                type: 'pie',
+                data: {
+                    labels: Object.keys(types),
+                    datasets: [{
+                        data: Object.values(types),
+                        backgroundColor: ['#f87171', '#fb923c', '#fda4af'],
+                        borderWidth: 0
+                    }]
+                },
+                options: { responsive: true, maintainAspectRatio: false }
+            });
+        }
+    </script>
+</body>
+</html>
