@@ -1,10 +1,9 @@
-<<<<<<< HEAD
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Ultimate Maya Hotkey Trainer</title>
+    <title>Maya Hotkey Trainer</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/plotly.js/3.0.3/plotly.min.js"></script>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
@@ -12,192 +11,143 @@
         body { font-family: 'Inter', sans-serif; }
         .gradient-text { background: linear-gradient(135deg, #3b82f6 0%, #1e40af 100%); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
         .active-mode { background: linear-gradient(135deg, #3b82f6 0%, #1e40af 100%); color: white !important; }
-        .correct { background-color: #10b981 !important; color: white !important; border-color: #059669 !important; }
-        .incorrect { background-color: #ef4444 !important; color: white !important; border-color: #b91c1c !important; }
+        .correct { background-color: #10b981 !important; color: white !important; }
+        .incorrect { background-color: #ef4444 !important; color: white !important; }
         .option-btn { transition: all 0.2s; border: 2px solid #f3f4f6; }
         .option-btn:hover:not(:disabled) { border-color: #3b82f6; background-color: #eff6ff; transform: translateY(-2px); }
         .hotkey-card { transition: all 0.2s ease; }
         .custom-scroll::-webkit-scrollbar { width: 6px; }
         .custom-scroll::-webkit-scrollbar-track { background: #f1f1f1; }
         .custom-scroll::-webkit-scrollbar-thumb { background: #3b82f6; border-radius: 10px; }
-        .key-tag { font-family: 'Monaco', 'Consolas', monospace; font-size: 0.85rem; }
     </style>
 </head>
 <body class="bg-gray-50 text-gray-900">
     <nav class="bg-white/90 backdrop-blur-md border-b sticky top-0 z-50 px-6 py-4 flex justify-between items-center shadow-sm">
-        <div class="flex items-center gap-3">
-            <div class="w-10 h-10 bg-blue-600 rounded-xl flex items-center justify-center text-white font-black italic shadow-lg">M</div>
-            <a href="index.html" class="font-bold text-2xl tracking-tighter gradient-text">Hotkey Trainer</a>
-        </div>
-        <a href="index.html" class="text-gray-600 hover:text-blue-600 transition-colors font-medium flex items-center gap-2">
-            <span>🏠</span> Home
-        </a>
+        <a href="index.html" class="font-bold text-xl gradient-text">Hotkey Trainer</a>
+        <a href="index.html" class="text-gray-600 hover:text-blue-600 transition-colors font-medium">🏠 Home</a>
     </nav>
-    
-    <header class="bg-gradient-to-br from-blue-600 to-indigo-800 text-white py-14 text-center shadow-inner relative overflow-hidden">
-        <div class="absolute inset-0 opacity-10 pointer-events-none select-none text-[20rem] font-black -top-20 -right-10">MAYYA</div>
-        <h1 class="text-6xl font-black mb-2 tracking-tight">Autodesk Maya</h1>
-        <p class="text-xl opacity-90 font-medium">The Professional Standard for Animation and VFX.</p>
+    <header class="bg-gradient-to-br from-blue-500 to-indigo-600 text-white py-12 text-center">
+        <h1 class="text-5xl font-black mb-2">Autodesk Maya</h1>
+        <p class="text-xl opacity-90 italic">Animation and Rigging Mastery.</p>
     </header>
 
     <main class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8 grid grid-cols-1 lg:grid-cols-4 gap-8">
-        <!-- Sidebar Navigation -->
+        <!-- Sidebar -->
         <div class="lg:col-span-1 space-y-4">
-            <div class="bg-white rounded-3xl p-6 shadow-xl border border-gray-100 sticky top-24">
-                <h3 class="text-sm font-black mb-4 text-gray-400 uppercase tracking-widest px-2">Workspaces</h3>
-                <div class="space-y-1 max-h-[65vh] overflow-y-auto custom-scroll pr-2">
-                    <button onclick="setMode('all')" id="mode-all" class="mode-btn w-full text-left px-4 py-3 rounded-xl active-mode transition-all font-bold">⌨️ Global Database</button>
-                    <button onclick="setMode('General')" id="mode-General" class="mode-btn w-full text-left px-4 py-3 rounded-xl hover:bg-gray-100 transition-all font-semibold">⚙️ UI & Navigation</button>
-                    <button onclick="setMode('Modeling')" id="mode-Modeling" class="mode-btn w-full text-left px-4 py-3 rounded-xl hover:bg-gray-100 transition-all font-semibold">🟦 Poly Modeling</button>
-                    <button onclick="setMode('Animation')" id="mode-Animation" class="mode-btn w-full text-left px-4 py-3 rounded-xl hover:bg-gray-100 transition-all font-semibold text-blue-600">🎬 Animation & Keys</button>
-                    <button onclick="setMode('Rigging')" id="mode-Rigging" class="mode-btn w-full text-left px-4 py-3 rounded-xl hover:bg-gray-100 transition-all font-semibold">🦴 Rigging & Skinning</button>
-                    <button onclick="setMode('Rendering')" id="mode-Rendering" class="mode-btn w-full text-left px-4 py-3 rounded-xl hover:bg-gray-100 transition-all font-semibold">💡 Rendering/Hypershade</button>
+            <div class="bg-white rounded-2xl p-6 shadow-lg border border-gray-100 sticky top-24">
+                <h3 class="text-lg font-bold mb-4 text-gray-800">Learning Modes</h3>
+                <div class="space-y-2">
+                    <button onclick="setMode('all')" id="mode-all" class="mode-btn w-full text-left px-4 py-2 rounded-lg active-mode transition-all">⌨️ All Keys</button>
+                    <button onclick="setMode('General')" id="mode-General" class="mode-btn w-full text-left px-4 py-2 rounded-lg hover:bg-gray-100 transition-all">⚙️ General</button>
+                    <button onclick="setMode('Modeling')" id="mode-Modeling" class="mode-btn w-full text-left px-4 py-2 rounded-lg hover:bg-gray-100 transition-all">🟦 Modeling</button>
+                    <button onclick="setMode('Animation')" id="mode-Animation" class="mode-btn w-full text-left px-4 py-2 rounded-lg hover:bg-gray-100 transition-all">🎬 Animation</button>
                     <div class="h-px bg-gray-100 my-4"></div>
-                    <button onclick="setMode('quiz')" id="mode-quiz" class="mode-btn w-full text-left px-4 py-3 rounded-xl hover:bg-blue-600 hover:text-white transition-all font-black text-blue-600">🧠 Start Pro Gauntlet</button>
-                    <button onclick="setMode('insights')" id="mode-insights" class="mode-btn w-full text-left px-4 py-3 rounded-xl hover:bg-gray-100 transition-all font-semibold">📊 Mastery Stats</button>
+                    <button onclick="setMode('quiz')" id="mode-quiz" class="mode-btn w-full text-left px-4 py-2 rounded-lg hover:bg-gray-100 transition-all">🧠 Quiz Gauntlet</button>
+                    <button onclick="setMode('insights')" id="mode-insights" class="mode-btn w-full text-left px-4 py-2 rounded-lg hover:bg-gray-100 transition-all">📊 Insights</button>
                 </div>
                 
-                <div class="mt-8 pt-6 border-t border-gray-200 px-2">
-                    <h4 class="text-[10px] font-black mb-3 text-gray-400 uppercase tracking-widest">Training Stats</h4>
-                    <div class="space-y-4">
-                        <div class="flex justify-between items-end">
-                            <span class="text-xs text-gray-500 font-bold">Progress</span>
-                            <span class="font-black text-blue-600" id="mastered-count">0</span>
+                <div class="mt-8 pt-6 border-t border-gray-200">
+                    <h4 class="text-sm font-semibold mb-3 text-gray-700 uppercase tracking-widest text-[10px]">Your Mastery</h4>
+                    <div class="space-y-3">
+                        <div class="flex justify-between text-sm">
+                            <span class="text-gray-600">Mastered</span>
+                            <span class="font-bold text-blue-600" id="mastered-count">0</span>
                         </div>
-                        <div class="w-full bg-gray-100 rounded-full h-3">
-                            <div class="bg-gradient-to-r from-blue-500 to-indigo-600 h-3 rounded-full transition-all duration-700 shadow-sm" style="width: 0%" id="progress-bar"></div>
+                        <div class="w-full bg-gray-100 rounded-full h-2">
+                            <div class="bg-gradient-to-r from-blue-500 to-indigo-600 h-2 rounded-full transition-all duration-500" style="width: 0%" id="progress-bar"></div>
                         </div>
                     </div>
                 </div>
             </div>
         </div>
 
-        <!-- Content Area -->
+        <!-- Main Content Area -->
         <div class="lg:col-span-3">
             <div id="browser-view" class="space-y-4">
-                <div class="bg-white rounded-3xl p-6 shadow-xl border border-gray-100 mb-8">
+                <div class="bg-white rounded-2xl p-6 shadow-lg border border-gray-100 mb-8">
                     <div class="relative">
-                        <input type="text" id="search-input" placeholder="Search by tool (e.g. 'Extrude') or hotkey (e.g. 'Ctrl+E')..." class="w-full px-6 py-4 pl-14 border border-gray-100 rounded-2xl bg-gray-50 focus:ring-4 focus:ring-blue-200 outline-none transition-all text-lg font-medium">
-                        <div class="absolute left-6 top-1/2 transform -translate-y-1/2 text-gray-400 text-xl">🔍</div>
+                        <input type="text" id="search-input" placeholder="Search functions or key combos..." class="w-full px-4 py-3 pl-12 border border-gray-200 rounded-xl focus:ring-2 focus:ring-blue-500 outline-none">
+                        <div class="absolute left-4 top-1/2 transform -translate-y-1/2 text-gray-400">🔍</div>
                     </div>
                 </div>
                 <div id="hotkeys-container" class="grid grid-cols-1 md:grid-cols-2 gap-4"></div>
             </div>
 
             <div id="quiz-container" class="hidden">
-                <div class="bg-white rounded-[3.5rem] p-12 shadow-2xl text-center border border-gray-100 min-h-[550px] flex flex-col justify-center animate-in fade-in duration-500">
-                    <span class="bg-blue-100 text-blue-600 px-6 py-2 rounded-full text-xs font-black uppercase tracking-widest inline-block mx-auto mb-10">Gauntlet Active</span>
-                    <h2 class="text-gray-400 font-bold mb-2">What is the Maya shortcut for:</h2>
-                    <h2 id="quiz-question" class="text-4xl md:text-5xl font-black text-gray-900 mb-14 leading-tight">Loading...</h2>
+                <div class="bg-white rounded-[3rem] p-12 shadow-2xl text-center border border-gray-100">
+                    <span class="bg-blue-100 text-blue-600 px-4 py-1 rounded-full text-xs font-black uppercase tracking-widest">Gauntlet Challenge</span>
+                    <h2 class="text-gray-400 font-bold mt-8 mb-2">Identify the Maya Hotkey:</h2>
+                    <h2 id="quiz-question" class="text-4xl md:text-5xl font-black text-gray-900 mb-12">Loading...</h2>
                     
-                    <div id="quiz-options" class="grid grid-cols-1 md:grid-cols-2 gap-4 mb-10"></div>
+                    <div id="quiz-options" class="grid grid-cols-1 md:grid-cols-2 gap-4 mb-8"></div>
 
-                    <div id="quiz-feedback" class="hidden p-8 rounded-3xl font-black text-2xl mb-8 transform transition-all duration-300"></div>
-                    <button id="next-question-btn" onclick="nextQuestion()" class="hidden mx-auto bg-gray-900 text-white px-20 py-6 rounded-3xl font-black text-xl hover:bg-blue-600 transition-all hover:scale-105 shadow-2xl">NEXT CHALLENGE →</button>
+                    <div id="quiz-feedback" class="hidden p-6 rounded-2xl font-bold text-xl mb-6"></div>
+                    <button id="next-question-btn" onclick="nextQuestion()" class="hidden mx-auto bg-gray-900 text-white px-12 py-4 rounded-xl font-bold hover:bg-gray-800 transition-all">NEXT CHALLENGE →</button>
                     
-                    <div class="grid grid-cols-2 gap-6 mt-16 border-t pt-10">
-                        <div class="p-4 bg-green-50 rounded-2xl border border-green-100">
-                            <p class="text-[10px] font-black text-green-600 uppercase tracking-widest">Correct Hits</p>
+                    <div class="grid grid-cols-2 gap-4 mt-16 border-t pt-8">
+                        <div>
+                            <p class="text-[10px] font-bold text-gray-400 uppercase tracking-widest">Correct</p>
                             <p id="correct-count" class="text-5xl font-black text-green-500">0</p>
                         </div>
-                        <div class="p-4 bg-red-50 rounded-2xl border border-red-100">
-                            <p class="text-[10px] font-black text-red-600 uppercase tracking-widest">Failed Attempts</p>
+                        <div>
+                            <p class="text-[10px] font-bold text-gray-400 uppercase tracking-widest">Incorrect</p>
                             <p id="incorrect-count" class="text-5xl font-black text-red-500">0</p>
                         </div>
                     </div>
                 </div>
             </div>
 
-            <div id="insights-container" class="hidden bg-white p-12 rounded-[3.5rem] shadow-2xl border border-gray-100 text-center">
-                <h2 class="text-3xl font-black mb-8 gradient-text">Workflow Proficiency</h2>
-                <div id="progress-chart" class="h-96 w-full"></div>
-                <p class="mt-8 text-gray-400 font-medium italic">"Great art is built on consistent technical mastery."</p>
+            <div id="insights-container" class="hidden bg-white p-8 rounded-2xl shadow-lg border border-gray-100">
+                <h2 class="text-2xl font-black mb-4 gradient-text">Mastery Analytics</h2>
+                <div id="progress-chart" class="h-80 w-full"></div>
             </div>
         </div>
     </main>
 
     <script>
         const hotkeysData = [
-            // --- UI & NAVIGATION ---
+            // General Tools
             { func: "Select Tool", key: "Q", cat: "General" },
             { func: "Move Tool", key: "W", cat: "General" },
             { func: "Rotate Tool", key: "E", cat: "General" },
             { func: "Scale Tool", key: "R", cat: "General" },
-            { func: "Repeat Last Action", key: "G", cat: "General" },
-            { func: "Undo", key: "Z", cat: "General" },
-            { func: "Redo", key: "Shift + Z", cat: "General" },
-            { func: "Group Objects", key: "Ctrl + G", cat: "General" },
-            { func: "Duplicate Objects", key: "Ctrl + D", cat: "General" },
-            { func: "Duplicate Special", key: "Ctrl + Shift + D", cat: "General" },
-            { func: "Parent Object", key: "P", cat: "General" },
-            { func: "Unparent Object", key: "Shift + P", cat: "General" },
             { func: "Frame Selected", key: "F", cat: "General" },
             { func: "Frame All", key: "A", cat: "General" },
+            { func: "Undo", key: "Z", cat: "General" },
+            { func: "Redo", key: "Shift + Z", cat: "General" },
+            { func: "Duplicate", key: "Ctrl + D", cat: "General" },
+            { func: "Group", key: "Ctrl + G", cat: "General" },
             { func: "Hide Selected", key: "Ctrl + H", cat: "General" },
-            { func: "Show Last Hidden", key: "Ctrl + Shift + H", cat: "General" },
-            { func: "Isolate Selection", key: "Ctrl + 1", cat: "General" },
-            { func: "Switch Viewport Mode", key: "Space (Tap)", cat: "General" },
-            { func: "Open Hotbox", key: "Space (Hold)", cat: "General" },
-
-            // --- VIEWPORT DISPLAY ---
+            { func: "Show Selected", key: "Shift + H", cat: "General" },
+            
+            // Viewport & Display
             { func: "Wireframe Mode", key: "4", cat: "General" },
             { func: "Shaded Mode", key: "5", cat: "General" },
             { func: "Textured Mode", key: "6", cat: "General" },
-            { func: "Use All Lights", key: "7", cat: "General" },
-            { func: "Smooth Shade Toggle (Cage)", key: "2", cat: "General" },
-            { func: "Smooth Shade Mode (High)", key: "3", cat: "General" },
-            { func: "Rough Shade Mode (Low)", key: "1", cat: "General" },
-            { func: "X-Ray Mode Toggle", key: "Alt + X", cat: "General" },
-
-            // --- POLYGON MODELING ---
+            { func: "Lighting Mode", key: "7", cat: "General" },
+            { func: "Smooth Shade (All)", key: "3", cat: "General" },
+            { func: "Rough Shade (All)", key: "1", cat: "General" },
+            
+            // Modeling
             { func: "Object Mode", key: "F8", cat: "Modeling" },
             { func: "Vertex Mode", key: "F9", cat: "Modeling" },
             { func: "Edge Mode", key: "F10", cat: "Modeling" },
             { func: "Face Mode", key: "F11", cat: "Modeling" },
             { func: "UV Mode", key: "F12", cat: "Modeling" },
-            { func: "Extrude Component", key: "Ctrl + E", cat: "Modeling" },
-            { func: "Bevel Component", key: "Ctrl + B", cat: "Modeling" },
-            { func: "Bridge Components", key: "Ctrl + Shift + B", cat: "Modeling" },
-            { func: "Multi-Cut Tool", key: "Ctrl + Shift + X", cat: "Modeling" },
-            { func: "Target Weld Tool", key: "Shift + V", cat: "Modeling" },
-            { func: "Convert Selection to Verts", key: "Ctrl + F9", cat: "Modeling" },
-            { func: "Convert Selection to Faces", key: "Ctrl + F11", cat: "Modeling" },
-            { func: "Soft Selection Toggle", key: "B", cat: "Modeling" },
-            { func: "Modify Pivot Mode", key: "D", cat: "Modeling" },
-            { func: "Snap to Grid (Hold)", key: "X", cat: "Modeling" },
-            { func: "Snap to Curve (Hold)", key: "C", cat: "Modeling" },
-            { func: "Snap to Point (Hold)", key: "V", cat: "Modeling" },
-            { func: "Grow Selection", key: "Shift + .", cat: "Modeling" },
-            { func: "Shrink Selection", key: "Shift + ,", cat: "Modeling" },
-
-            // --- ANIMATION ---
+            { func: "Extrude Tool", key: "Ctrl + E", cat: "Modeling" },
+            { func: "Bevel Tool", key: "Ctrl + B", cat: "Modeling" },
+            { func: "Soft Selection", key: "B", cat: "Modeling" },
+            { func: "Snap to Grid", key: "X", cat: "Modeling" },
+            { func: "Snap to Curves", key: "C", cat: "Modeling" },
+            { func: "Snap to Points", key: "V", cat: "Modeling" },
+            
+            // Animation
             { func: "Set Keyframe", key: "S", cat: "Animation" },
-            { func: "Set Key (Translate)", key: "Shift + W", cat: "Animation" },
-            { func: "Set Key (Rotate)", key: "Shift + E", cat: "Animation" },
-            { func: "Set Key (Scale)", key: "Shift + R", cat: "Animation" },
             { func: "Play / Stop", key: "Alt + V", cat: "Animation" },
-            { func: "Go to Start", key: "Alt + Shift + V", cat: "Animation" },
             { func: "Next Frame", key: "Alt + .", cat: "Animation" },
             { func: "Previous Frame", key: "Alt + ,", cat: "Animation" },
-            { func: "Next Keyframe", key: ".", cat: "Animation" },
-            { func: "Previous Keyframe", key: ",", cat: "Animation" },
-            { func: "Virtual Time Slider (Hold)", key: "K", cat: "Animation" },
-            { func: "Open Graph Editor", key: "Alt + Shift + G", cat: "Animation" },
-            { func: "Toggle Auto Key", key: "Alt + Shift + K", cat: "Animation" },
-
-            // --- RIGGING & DEFORMERS ---
-            { func: "Joint Tool", key: "Alt + J", cat: "Rigging" },
-            { func: "Paint Skin Weights", key: "Shift + Ctrl + W", cat: "Rigging" },
-            { func: "Component Editor", key: "Shift + F1", cat: "Rigging" },
-            { func: "Cluster Deformer", key: "Ctrl + Alt + C", cat: "Rigging" },
-            { func: "Lattice Deformer", key: "Ctrl + Alt + L", cat: "Rigging" },
-
-            // --- RENDERING & HYPERSHADE ---
-            { func: "Render Viewport", key: "Ctrl + Alt + R", cat: "Rendering" },
-            { func: "Hypershade Window", key: "Ctrl + Alt + H", cat: "Rendering" },
-            { func: "Create New Material", key: "Shift + Ctrl + M", cat: "Rendering" },
-            { func: "IPR Render Toggle", key: "Ctrl + Shift + R", cat: "Rendering" },
-            { func: "Render Settings", key: "Ctrl + Alt + S", cat: "Rendering" }
+            { func: "Go to Start", key: "Alt + Shift + V", cat: "Animation" },
+            { func: "Toggle Playback", key: "Alt + V", cat: "Animation" }
         ];
 
         let userProgress = { mastered: new Set() };
@@ -216,7 +166,7 @@
             document.querySelectorAll('.mode-btn').forEach(btn => btn.classList.remove('active-mode'));
             document.getElementById(`mode-${mode}`).classList.add('active-mode');
 
-            document.getElementById('browser-view').classList.toggle('hidden', !['all', 'General', 'Modeling', 'Animation', 'Rigging', 'Rendering'].includes(mode));
+            document.getElementById('browser-view').classList.toggle('hidden', !['all', 'General', 'Modeling', 'Animation'].includes(mode));
             document.getElementById('quiz-container').classList.toggle('hidden', mode !== 'quiz');
             document.getElementById('insights-container').classList.toggle('hidden', mode !== 'insights');
 
@@ -234,23 +184,20 @@
             
             let filtered = hotkeysData;
             if (currentFilter !== 'all') filtered = filtered.filter(h => h.cat === currentFilter);
-            if (search) filtered = filtered.filter(h => 
-                h.func.toLowerCase().includes(search.toLowerCase()) || 
-                h.key.toLowerCase().includes(search.toLowerCase())
-            );
+            if (search) filtered = filtered.filter(h => h.func.toLowerCase().includes(search.toLowerCase()));
 
             filtered.forEach(h => {
                 const card = document.createElement('div');
                 const mastered = userProgress.mastered.has(h.func);
-                card.className = `hotkey-card bg-white p-6 rounded-3xl border ${mastered ? 'border-green-500 bg-green-50' : 'border-gray-100'} shadow-sm flex justify-between items-center hover:shadow-xl transition-all group`;
+                card.className = `hotkey-card bg-white p-6 rounded-2xl border ${mastered ? 'border-blue-500 bg-blue-50' : 'border-gray-100'} shadow-sm flex justify-between items-center hover:shadow-md transition-all`;
                 card.innerHTML = `
-                    <div class="flex-grow">
-                        <p class="text-[9px] font-black text-gray-300 uppercase tracking-widest mb-1 group-hover:text-blue-500 transition-colors">${h.cat}</p>
+                    <div>
+                        <p class="text-[9px] font-bold text-gray-400 uppercase tracking-tighter">${h.cat}</p>
                         <h4 class="text-md font-bold text-gray-800">${h.func}</h4>
                     </div>
                     <div class="flex items-center gap-4">
-                        <span class="key-tag bg-gray-900 border border-gray-700 px-3 py-1.5 rounded-xl text-blue-400 font-bold shadow-lg">${h.key}</span>
-                        <button onclick="toggleStar('${h.func}')" class="text-2xl transform hover:scale-125 transition-transform drop-shadow-sm">${mastered ? '⭐' : '☆'}</button>
+                        <span class="bg-gray-50 border px-3 py-1 rounded text-blue-600 font-bold text-sm">${h.key}</span>
+                        <button onclick="toggleStar('${h.func}')" class="text-xl transform hover:scale-125 transition-transform">${mastered ? '⭐' : '☆'}</button>
                     </div>
                 `;
                 container.appendChild(card);
@@ -271,8 +218,7 @@
         function loadQuestion() {
             const q = quizPool[currentIdx];
             document.getElementById('quiz-question').innerText = q.func;
-            const feed = document.getElementById('quiz-feedback');
-            feed.classList.add('hidden');
+            document.getElementById('quiz-feedback').classList.add('hidden');
             document.getElementById('next-question-btn').classList.add('hidden');
             
             const options = document.getElementById('quiz-options');
@@ -288,7 +234,7 @@
 
             choices.forEach(c => {
                 const btn = document.createElement('button');
-                btn.className = "option-btn p-6 rounded-3xl font-black text-xl bg-white shadow-md hover:shadow-xl transition-all";
+                btn.className = "option-btn p-6 rounded-2xl font-black text-xl bg-white shadow-sm";
                 btn.innerText = c;
                 btn.onclick = () => {
                     const isCorrect = c === q.key;
@@ -303,8 +249,9 @@
                         });
                     }
 
-                    feed.innerText = isCorrect ? "MASTERFUL! +10 Points" : "The Correct Key: " + q.key;
-                    feed.className = `p-8 rounded-3xl font-black text-2xl mb-8 border-4 ${isCorrect ? 'bg-green-50 text-green-700 border-green-200' : 'bg-red-50 text-red-700 border-red-200'}`;
+                    const feed = document.getElementById('quiz-feedback');
+                    feed.innerText = isCorrect ? "PERFECT! +10 Points" : "Correct answer: " + q.key;
+                    feed.className = "p-6 rounded-2xl font-bold text-xl mb-6 " + (isCorrect ? "bg-green-100 text-green-700" : "bg-red-100 text-red-700");
                     feed.classList.remove('hidden');
                     document.getElementById('next-question-btn').classList.remove('hidden');
                     
@@ -319,7 +266,7 @@
         function nextQuestion() {
             currentIdx++;
             if (currentIdx < quizPool.length) loadQuestion();
-            else { alert("Maya Gauntlet Complete!"); startQuiz(); }
+            else { alert("Gauntlet complete!"); startQuiz(); }
         }
 
         function toggleStar(f) {
@@ -332,7 +279,7 @@
         function updateStats() {
             const masterCount = userProgress.mastered.size;
             const total = hotkeysData.length;
-            document.getElementById('mastered-count').innerText = masterCount + " / " + total;
+            document.getElementById('mastered-count').innerText = masterCount;
             document.getElementById('progress-bar').style.width = Math.round((masterCount/total)*100) + "%";
         }
 
@@ -341,159 +288,19 @@
         }
 
         function shuffle(a) { for (let i = a.length - 1; i > 0; i--) { const j = Math.floor(Math.random() * (i + 1)); [a[i], a[j]] = [a[j], a[i]]; } }
-        function saveMastery() { localStorage.setItem('mastery-maya-pro', JSON.stringify([...userProgress.mastered])); }
+        function saveMastery() { localStorage.setItem('mastery-maya', JSON.stringify([...userProgress.mastered])); }
         function loadMastery() { 
-            const s = localStorage.getItem('mastery-maya-pro');
+            const s = localStorage.getItem('mastery-maya');
             if (s) userProgress.mastered = new Set(JSON.parse(s));
         }
 
         function drawInsights() {
             const m = userProgress.mastered.size;
             const r = hotkeysData.length - m;
-            Plotly.newPlot('progress-chart', [{ values: [m, r], labels: ['Mastered', 'Remaining'], type: 'pie', marker: { colors: ['#3b82f6', '#e5e7eb'] }, hole: .4 }], { margin: {t:0, b:0, l:0, r:0}, showlegend: true });
+            Plotly.newPlot('progress-chart', [{ values: [m, r], labels: ['Mastered', 'Learning'], type: 'pie', marker: { colors: ['#3b82f6', '#e5e7eb'] } }], { margin: {t:0, b:0, l:0, r:0} });
         }
 
         window.onload = () => { init(); };
     </script>
 </body>
-=======
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Maya Hotkey Trainer - Interactive Learning</title>
-    <script src="https://cdn.tailwindcss.com"></script>
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
-    <style>
-        body { font-family: 'Inter', sans-serif; }
-        .gradient-text { background: linear-gradient(135deg, #3b82f6 0%, #1e40af 100%); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
-        .floating-key { animation: float 3s ease-in-out infinite; }
-        @keyframes float { 0%, 100% { transform: translateY(0px); } 50% { transform: translateY(-10px); } }
-    </style>
-</head>
-<body class="bg-gray-50 text-gray-900">
-    <!-- Navigation -->
-    <nav class="bg-white/90 backdrop-blur-md border-b border-gray-200/50 sticky top-0 z-50">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div class="flex justify-between items-center h-16">
-                <div class="flex items-center space-x-4">
-                    <a href="index.html" class="flex items-center space-x-2 hover:opacity-80 transition-opacity">
-                        <div class="w-8 h-8 bg-gradient-to-br from-indigo-500 to-purple-600 rounded-lg flex items-center justify-center">
-                            <span class="text-white font-bold text-sm">⌘</span>
-                        </div>
-                        <span class="font-bold text-xl gradient-text">Hotkey Trainer</span>
-                    </a>
-                    <div class="h-6 w-px bg-gray-300"></div>
-                    <span class="text-gray-600 font-medium">Maya</span>
-                </div>
-                <div class="flex space-x-4">
-                    <a href="index.html" class="text-gray-600 hover:text-indigo-600 transition-colors font-medium">
-                        🏠 Home
-                    </a>
-                </div>
-            </div>
-        </div>
-    </nav>
-
-    <!-- Header -->
-    <header class="bg-gradient-to-br from-blue-500 to-indigo-600 text-white py-12">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-            <div class="floating-key inline-block mb-6">
-                <div class="w-20 h-20 bg-white/20 rounded-2xl flex items-center justify-center backdrop-blur-sm">
-                    <span class="text-4xl font-bold">M</span>
-                </div>
-            </div>
-            <h1 class="text-4xl md:text-5xl font-black mb-4">Maya</h1>
-            <p class="text-xl md:text-2xl opacity-90 mb-6">Animation & Rigging Hotkeys</p>
-            <div class="flex justify-center items-center space-x-8 text-sm">
-                <div class="flex items-center space-x-2">
-                    <span class="bg-white/20 px-3 py-1 rounded-full">120+ Hotkeys</span>
-                </div>
-                <div class="flex items-center space-x-2">
-                    <span class="bg-white/20 px-3 py-1 rounded-full">Coming Soon</span>
-                </div>
-            </div>
-        </div>
-    </header>
-
-    <!-- Main Content -->
-    <main class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
-        <div class="text-center">
-            <div class="text-6xl mb-6">🚧</div>
-            <h2 class="text-3xl font-bold mb-4 text-gray-800">Coming Soon</h2>
-            <p class="text-xl text-gray-600 mb-8 max-w-2xl mx-auto">
-                We're working hard to bring you an interactive Maya hotkey trainer with all the features you love from our Blender trainer.
-            </p>
-            <div class="bg-white rounded-2xl p-8 shadow-lg border border-gray-200/50 max-w-2xl mx-auto">
-                <h3 class="text-2xl font-bold mb-6 gradient-text">What to Expect</h3>
-                <div class="grid grid-cols-1 md:grid-cols-2 gap-6 text-left">
-                    <div class="flex items-start space-x-3">
-                        <div class="w-6 h-6 bg-blue-500 rounded-full flex items-center justify-center flex-shrink-0 mt-1">
-                            <span class="text-white text-sm">✓</span>
-                        </div>
-                        <div>
-                            <h4 class="font-semibold text-gray-800">Interactive Quiz Mode</h4>
-                            <p class="text-gray-600 text-sm">Test your knowledge with engaging quizzes</p>
-                        </div>
-                    </div>
-                    <div class="flex items-start space-x-3">
-                        <div class="w-6 h-6 bg-blue-500 rounded-full flex items-center justify-center flex-shrink-0 mt-1">
-                            <span class="text-white text-sm">✓</span>
-                        </div>
-                        <div>
-                            <h4 class="font-semibold text-gray-800">Progress Tracking</h4>
-                            <p class="text-gray-600 text-sm">Monitor your learning journey</p>
-                        </div>
-                    </div>
-                    <div class="flex items-start space-x-3">
-                        <div class="w-6 h-6 bg-blue-500 rounded-full flex items-center justify-center flex-shrink-0 mt-1">
-                            <span class="text-white text-sm">✓</span>
-                        </div>
-                        <div>
-                            <h4 class="font-semibold text-gray-800">Smart Search</h4>
-                            <p class="text-gray-600 text-sm">Find hotkeys instantly</p>
-                        </div>
-                    </div>
-                    <div class="flex items-start space-x-3">
-                        <div class="w-6 h-6 bg-blue-500 rounded-full flex items-center justify-center flex-shrink-0 mt-1">
-                            <span class="text-white text-sm">✓</span>
-                        </div>
-                        <div>
-                            <h4 class="font-semibold text-gray-800">Learning Insights</h4>
-                            <p class="text-gray-600 text-sm">Visual analytics of your progress</p>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            
-            <div class="mt-12">
-                <a href="index.html" class="bg-gradient-to-r from-blue-500 to-indigo-600 text-white px-8 py-4 rounded-xl font-semibold hover:from-blue-600 hover:to-indigo-700 transition-all duration-300 inline-block">
-                    Back to Home
-                </a>
-            </div>
-        </div>
-    </main>
-
-    <!-- Footer -->
-    <footer class="bg-gray-900 text-white py-12">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-            <div class="flex items-center justify-center space-x-2 mb-6">
-                <div class="w-8 h-8 bg-gradient-to-br from-indigo-500 to-purple-600 rounded-lg flex items-center justify-center">
-                    <span class="text-white font-bold text-sm">⌘</span>
-                </div>
-                <span class="font-bold text-xl">Hotkey Trainer</span>
-            </div>
-            <p class="text-gray-400 mb-4">
-                Master your creative software with interactive keyboard shortcut training.
-            </p>
-            <p class="text-gray-500 text-sm">
-                © 2025 Hotkey Trainer. All rights reserved. Made with ❤️ for the creative community.
-            </p>
-        </div>
-    </footer>
-</body>
->>>>>>> a47752807d51b9f324fb5542ddb96d50ed6527ef
 </html>
