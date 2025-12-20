@@ -3,57 +3,57 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Ultimate Illustrator Hotkey Trainer</title>
+    <title>Ultimate After Effects Hotkey Trainer</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/plotly.js/3.0.3/plotly.min.js"></script>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
     <style>
         body { font-family: 'Inter', sans-serif; }
-        .gradient-text { background: linear-gradient(135deg, #f59e0b 0%, #db2777 100%); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
-        .active-mode { background: linear-gradient(135deg, #f59e0b 0%, #db2777 100%); color: white !important; }
+        .gradient-text { background: linear-gradient(135deg, #6366f1 0%, #a855f7 100%); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
+        .active-mode { background: linear-gradient(135deg, #6366f1 0%, #a855f7 100%); color: white !important; }
         .correct { background-color: #10b981 !important; color: white !important; border-color: #059669 !important; }
         .incorrect { background-color: #ef4444 !important; color: white !important; border-color: #b91c1c !important; }
         .option-btn { transition: all 0.2s; border: 2px solid #f3f4f6; }
-        .option-btn:hover:not(:disabled) { border-color: #f59e0b; background-color: #fff7ed; transform: translateY(-2px); }
+        .option-btn:hover:not(:disabled) { border-color: #6366f1; background-color: #f5f3ff; transform: translateY(-2px); }
         .hotkey-card { transition: all 0.2s ease; }
         .custom-scroll::-webkit-scrollbar { width: 6px; }
         .custom-scroll::-webkit-scrollbar-track { background: #f1f1f1; }
-        .custom-scroll::-webkit-scrollbar-thumb { background: #f59e0b; border-radius: 10px; }
+        .custom-scroll::-webkit-scrollbar-thumb { background: #6366f1; border-radius: 10px; }
         .key-tag { font-family: 'Monaco', 'Consolas', monospace; font-size: 0.85rem; }
     </style>
 </head>
 <body class="bg-gray-50 text-gray-900">
     <nav class="bg-white/90 backdrop-blur-md border-b sticky top-0 z-50 px-6 py-4 flex justify-between items-center shadow-sm">
         <div class="flex items-center gap-3">
-            <div class="w-10 h-10 bg-orange-500 rounded-xl flex items-center justify-center text-white font-black italic shadow-lg">Ai</div>
+            <div class="w-10 h-10 bg-indigo-600 rounded-xl flex items-center justify-center text-white font-black italic shadow-lg">Ae</div>
             <a href="index.html" class="font-bold text-2xl tracking-tighter gradient-text">Hotkey Trainer</a>
         </div>
-        <a href="index.html" class="text-gray-600 hover:text-orange-600 transition-colors font-medium flex items-center gap-2">
+        <a href="index.html" class="text-gray-600 hover:text-indigo-600 transition-colors font-medium flex items-center gap-2">
             <span>🏠</span> Home
         </a>
     </nav>
     
-    <header class="bg-gradient-to-br from-orange-500 to-pink-600 text-white py-14 text-center shadow-inner relative overflow-hidden">
-        <div class="absolute inset-0 opacity-10 pointer-events-none select-none text-[20rem] font-black -top-20 -right-10">VECTOR</div>
-        <h1 class="text-6xl font-black mb-2 tracking-tight">Adobe Illustrator</h1>
-        <p class="text-xl opacity-90 font-medium">The Absolute Professional Database for Vector Precision.</p>
+    <header class="bg-gradient-to-br from-indigo-700 to-purple-700 text-white py-14 text-center shadow-inner relative overflow-hidden">
+        <div class="absolute inset-0 opacity-10 pointer-events-none select-none text-[20rem] font-black -top-20 -right-10">MOTION</div>
+        <h1 class="text-6xl font-black mb-2 tracking-tight">After Effects</h1>
+        <p class="text-xl opacity-90 font-medium">Professional Motion Graphics and VFX Workflow.</p>
     </header>
 
     <main class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8 grid grid-cols-1 lg:grid-cols-4 gap-8">
         <!-- Sidebar Navigation -->
         <div class="lg:col-span-1 space-y-4">
             <div class="bg-white rounded-3xl p-6 shadow-xl border border-gray-100 sticky top-24">
-                <h3 class="text-sm font-black mb-4 text-gray-400 uppercase tracking-widest px-2">Workspaces</h3>
+                <h3 class="text-sm font-black mb-4 text-gray-400 uppercase tracking-widest px-2">Modules</h3>
                 <div class="space-y-1 max-h-[65vh] overflow-y-auto custom-scroll pr-2">
                     <button onclick="setMode('all')" id="mode-all" class="mode-btn w-full text-left px-4 py-3 rounded-xl active-mode transition-all font-bold">⌨️ Global Database</button>
-                    <button onclick="setMode('Tools')" id="mode-Tools" class="mode-btn w-full text-left px-4 py-3 rounded-xl hover:bg-gray-100 transition-all font-semibold">🖌️ Creative Tools</button>
-                    <button onclick="setMode('Object')" id="mode-Object" class="mode-btn w-full text-left px-4 py-3 rounded-xl hover:bg-gray-100 transition-all font-semibold">📦 Object & Paths</button>
-                    <button onclick="setMode('Type')" id="mode-Type" class="mode-btn w-full text-left px-4 py-3 rounded-xl hover:bg-gray-100 transition-all font-semibold">🔤 Typography</button>
-                    <button onclick="setMode('Selection')" id="mode-Selection" class="mode-btn w-full text-left px-4 py-3 rounded-xl hover:bg-gray-100 transition-all font-semibold">✨ Select & Arrange</button>
-                    <button onclick="setMode('View')" id="mode-View" class="mode-btn w-full text-left px-4 py-3 rounded-xl hover:bg-gray-100 transition-all font-semibold">👁️ Stage & UI</button>
-                    <button onclick="setMode('General')" id="mode-General" class="mode-btn w-full text-left px-4 py-3 rounded-xl hover:bg-gray-100 transition-all font-semibold">⚙️ File Ops</button>
+                    <button onclick="setMode('Tools')" id="mode-Tools" class="mode-btn w-full text-left px-4 py-3 rounded-xl hover:bg-gray-100 transition-all font-semibold">🛠️ Toolbox</button>
+                    <button onclick="setMode('Properties')" id="mode-Properties" class="mode-btn w-full text-left px-4 py-3 rounded-xl hover:bg-gray-100 transition-all font-semibold">⚙️ Layer Properties</button>
+                    <button onclick="setMode('Timeline')" id="mode-Timeline" class="mode-btn w-full text-left px-4 py-3 rounded-xl hover:bg-gray-100 transition-all font-semibold">🎞️ Timeline & Navigation</button>
+                    <button onclick="setMode('Animation')" id="mode-Animation" class="mode-btn w-full text-left px-4 py-3 rounded-xl hover:bg-gray-100 transition-all font-semibold text-indigo-600">✨ Keyframes & Ease</button>
+                    <button onclick="setMode('Composition')" id="mode-Composition" class="mode-btn w-full text-left px-4 py-3 rounded-xl hover:bg-gray-100 transition-all font-semibold">📦 Comp & Project</button>
+                    <button onclick="setMode('General')" id="mode-General" class="mode-btn w-full text-left px-4 py-3 rounded-xl hover:bg-gray-100 transition-all font-semibold">🌍 General Ops</button>
                     <div class="h-px bg-gray-100 my-4"></div>
-                    <button onclick="setMode('quiz')" id="mode-quiz" class="mode-btn w-full text-left px-4 py-3 rounded-xl hover:bg-orange-600 hover:text-white transition-all font-black text-orange-600">🧠 Start Pro Quiz</button>
+                    <button onclick="setMode('quiz')" id="mode-quiz" class="mode-btn w-full text-left px-4 py-3 rounded-xl hover:bg-indigo-600 hover:text-white transition-all font-black text-indigo-600">🧠 Start Pro Quiz</button>
                     <button onclick="setMode('insights')" id="mode-insights" class="mode-btn w-full text-left px-4 py-3 rounded-xl hover:bg-gray-100 transition-all font-semibold">📊 Mastery Stats</button>
                 </div>
                 
@@ -62,10 +62,10 @@
                     <div class="space-y-4">
                         <div class="flex justify-between items-end">
                             <span class="text-xs text-gray-500 font-bold">Progress</span>
-                            <span class="font-black text-orange-600" id="mastered-count">0</span>
+                            <span class="font-black text-indigo-600" id="mastered-count">0</span>
                         </div>
                         <div class="w-full bg-gray-100 rounded-full h-3">
-                            <div class="bg-gradient-to-r from-orange-500 to-pink-600 h-3 rounded-full transition-all duration-700 shadow-sm" style="width: 0%" id="progress-bar"></div>
+                            <div class="bg-gradient-to-r from-indigo-500 to-purple-600 h-3 rounded-full transition-all duration-700 shadow-sm" style="width: 0%" id="progress-bar"></div>
                         </div>
                     </div>
                 </div>
@@ -77,7 +77,7 @@
             <div id="browser-view" class="space-y-4">
                 <div class="bg-white rounded-3xl p-6 shadow-xl border border-gray-100 mb-8">
                     <div class="relative">
-                        <input type="text" id="search-input" placeholder="Search Ai shortcuts (e.g. 'Pathfinder', 'V', 'Mask')..." class="w-full px-6 py-4 pl-14 border border-gray-100 rounded-2xl bg-gray-50 focus:ring-4 focus:ring-orange-200 outline-none transition-all text-lg font-medium">
+                        <input type="text" id="search-input" placeholder="Search AE shortcuts (e.g. 'Keyframe', 'U', 'Pre-comp')..." class="w-full px-6 py-4 pl-14 border border-gray-100 rounded-2xl bg-gray-50 focus:ring-4 focus:ring-indigo-200 outline-none transition-all text-lg font-medium">
                         <div class="absolute left-6 top-1/2 transform -translate-y-1/2 text-gray-400 text-xl">🔍</div>
                     </div>
                 </div>
@@ -86,14 +86,14 @@
 
             <div id="quiz-container" class="hidden">
                 <div class="bg-white rounded-[3.5rem] p-12 shadow-2xl text-center border border-gray-100 min-h-[550px] flex flex-col justify-center animate-in fade-in duration-500">
-                    <span class="bg-orange-100 text-orange-600 px-6 py-2 rounded-full text-xs font-black uppercase tracking-widest inline-block mx-auto mb-10">Illustrator Pro Gauntlet</span>
+                    <span class="bg-indigo-100 text-indigo-600 px-6 py-2 rounded-full text-xs font-black uppercase tracking-widest inline-block mx-auto mb-10">After Effects Gauntlet</span>
                     <h2 class="text-gray-400 font-bold mb-2">What is the keyboard shortcut for:</h2>
                     <h2 id="quiz-question" class="text-4xl md:text-5xl font-black text-gray-900 mb-14 leading-tight">Loading...</h2>
                     
                     <div id="quiz-options" class="grid grid-cols-1 md:grid-cols-2 gap-4 mb-10"></div>
 
                     <div id="quiz-feedback" class="hidden p-8 rounded-3xl font-black text-2xl mb-8 transform transition-all duration-300"></div>
-                    <button id="next-question-btn" onclick="nextQuestion()" class="hidden mx-auto bg-gray-900 text-white px-20 py-6 rounded-3xl font-black text-xl hover:bg-orange-600 transition-all hover:scale-105 shadow-2xl">NEXT CHALLENGE →</button>
+                    <button id="next-question-btn" onclick="nextQuestion()" class="hidden mx-auto bg-gray-900 text-white px-20 py-6 rounded-3xl font-black text-xl hover:bg-indigo-600 transition-all hover:scale-105 shadow-2xl">NEXT CHALLENGE →</button>
                     
                     <div class="grid grid-cols-2 gap-6 mt-16 border-t pt-10">
                         <div class="p-4 bg-green-50 rounded-2xl border border-green-100">
@@ -109,9 +109,9 @@
             </div>
 
             <div id="insights-container" class="hidden bg-white p-12 rounded-[3.5rem] shadow-2xl border border-gray-100 text-center">
-                <h2 class="text-3xl font-black mb-8 gradient-text">Vector Workflow Analytics</h2>
+                <h2 class="text-3xl font-black mb-8 gradient-text">Motion Workflow Analytics</h2>
                 <div id="progress-chart" class="h-96 w-full"></div>
-                <p class="mt-8 text-gray-400 font-medium italic">"Precision in vector art starts with muscle memory."</p>
+                <p class="mt-8 text-gray-400 font-medium italic">"The speed of your mind should only be limited by the speed of your fingers."</p>
             </div>
         </div>
     </main>
@@ -120,112 +120,91 @@
         const hotkeysData = [
             // --- TOOLS ---
             { func: "Selection Tool", key: "V", cat: "Tools" },
-            { func: "Direct Selection Tool", key: "A", cat: "Tools" },
-            { func: "Group Selection Tool", key: "Alt + Click Tool", cat: "Tools" },
-            { func: "Magic Wand Tool", key: "Y", cat: "Tools" },
-            { func: "Lasso Tool", key: "Q", cat: "Tools" },
-            { func: "Pen Tool", key: "P", cat: "Tools" },
-            { func: "Anchor Point Tool", key: "Shift + C", cat: "Tools" },
-            { func: "Add Anchor Point", key: "+", cat: "Tools" },
-            { func: "Delete Anchor Point", key: "-", cat: "Tools" },
-            { func: "Curvature Tool", key: "Shift + ~", cat: "Tools" },
-            { func: "Type Tool", key: "T", cat: "Tools" },
-            { func: "Touch Type Tool", key: "Shift + T", cat: "Tools" },
-            { func: "Line Segment Tool", key: "\\", cat: "Tools" },
-            { func: "Rectangle Tool", key: "M", cat: "Tools" },
-            { func: "Ellipse Tool", key: "L", cat: "Tools" },
-            { func: "Paintbrush Tool", key: "B", cat: "Tools" },
-            { func: "Pencil Tool", key: "N", cat: "Tools" },
-            { func: "Shaper Tool", key: "Shift + N", cat: "Tools" },
-            { func: "Rotate Tool", key: "R", cat: "Tools" },
-            { func: "Reflect Tool", key: "O", cat: "Tools" },
-            { func: "Scale Tool", key: "S", cat: "Tools" },
-            { func: "Width Tool", key: "Shift + W", cat: "Tools" },
-            { func: "Free Transform", key: "E", cat: "Tools" },
-            { func: "Shape Builder Tool", key: "Shift + M", cat: "Tools" },
-            { func: "Live Paint Bucket", key: "K", cat: "Tools" },
-            { func: "Mesh Tool", key: "U", cat: "Tools" },
-            { func: "Gradient Tool", key: "G", cat: "Tools" },
-            { func: "Eyedropper Tool", key: "I", cat: "Tools" },
-            { func: "Blend Tool", key: "W", cat: "Tools" },
-            { func: "Artboard Tool", key: "Shift + O", cat: "Tools" },
-            { func: "Eraser Tool", key: "Shift + E", cat: "Tools" },
-            { func: "Scissors Tool", key: "C", cat: "Tools" },
-            { func: "Knife Tool", key: "Alt + Click Scissors", cat: "Tools" },
-            { func: "Perspective Grid", key: "Shift + P", cat: "Tools" },
+            { func: "Hand Tool", key: "H", cat: "Tools" },
+            { func: "Zoom Tool", key: "Z", cat: "Tools" },
+            { func: "Rotation Tool", key: "W", cat: "Tools" },
+            { func: "Unified Camera Tool", key: "C", cat: "Tools" },
+            { func: "Pan Behind (Anchor Point) Tool", key: "Y", cat: "Tools" },
+            { func: "Rectangle/Shape Tool", key: "Q", cat: "Tools" },
+            { func: "Pen Tool", key: "G", cat: "Tools" },
+            { func: "Horizontal Type Tool", key: "Ctrl + T", cat: "Tools" },
+            { func: "Brush Tool", key: "Ctrl + B", cat: "Tools" },
+            { func: "Clone Stamp Tool", key: "Ctrl + B", cat: "Tools" },
+            { func: "Eraser Tool", key: "Ctrl + B", cat: "Tools" },
+            { func: "Roto Brush Tool", key: "Alt + W", cat: "Tools" },
+            { func: "Puppet Pin Tool", key: "Ctrl + P", cat: "Tools" },
 
-            // --- OBJECT & PATHS ---
-            { func: "Group Objects", key: "Ctrl + G", cat: "Object" },
-            { func: "Ungroup Objects", key: "Ctrl + Shift + G", cat: "Object" },
-            { func: "Lock Selection", key: "Ctrl + 2", cat: "Object" },
-            { func: "Unlock All", key: "Ctrl + Alt + 2", cat: "Object" },
-            { func: "Hide Selection", key: "Ctrl + 3", cat: "Object" },
-            { func: "Show All", key: "Ctrl + Alt + 3", cat: "Object" },
-            { func: "Make Clipping Mask", key: "Ctrl + 7", cat: "Object" },
-            { func: "Release Clipping Mask", key: "Ctrl + Alt + 7", cat: "Object" },
-            { func: "Make Compound Path", key: "Ctrl + 8", cat: "Object" },
-            { func: "Release Compound Path", key: "Ctrl + Alt + 8", cat: "Object" },
-            { func: "Join Paths", key: "Ctrl + J", cat: "Object" },
-            { func: "Average Anchor Points", key: "Ctrl + Alt + J", cat: "Object" },
-            { func: "Outline Stroke", key: "Object > Path > Outline", cat: "Object" },
-            { func: "Transform Again", key: "Ctrl + D", cat: "Object" },
-            { func: "Simplify Path", key: "Object > Path > Simplify", cat: "Object" },
-            { func: "Pathfinder: Unite", key: "Alt + Click Unite", cat: "Object" },
+            // --- LAYER PROPERTIES ---
+            { func: "Anchor Point", key: "A", cat: "Properties" },
+            { func: "Position", key: "P", cat: "Properties" },
+            { func: "Scale", key: "S", cat: "Properties" },
+            { func: "Rotation", key: "R", cat: "Properties" },
+            { func: "Opacity", key: "T", cat: "Properties" },
+            { func: "Show All Keyframes", key: "U", cat: "Properties" },
+            { func: "Show Modified Properties", key: "UU", cat: "Properties" },
+            { func: "Effects", key: "E", cat: "Properties" },
+            { func: "Masks", key: "M", cat: "Properties" },
+            { func: "Mask Feather", key: "F", cat: "Properties" },
+            { func: "Mask Expansion", key: "Shift + M", cat: "Properties" },
+            { func: "Mask Opacity", key: "Shift + T", cat: "Properties" },
+            { func: "Audio Levels", key: "L", cat: "Properties" },
+            { func: "Audio Waveform", key: "LL", cat: "Properties" },
+            { func: "Expressions", key: "EE", cat: "Properties" },
+            { func: "Paint Strokes", key: "PP", cat: "Properties" },
 
-            // --- TYPOGRAPHY ---
-            { func: "Create Outlines", key: "Ctrl + Shift + O", cat: "Type" },
-            { func: "Increase Font Size", key: "Ctrl + Shift + >", cat: "Type" },
-            { func: "Decrease Font Size", key: "Ctrl + Shift + <", cat: "Type" },
-            { func: "Increase Leading", key: "Alt + Down Arrow", cat: "Type" },
-            { func: "Decrease Leading", key: "Alt + Up Arrow", cat: "Type" },
-            { func: "Increase Tracking/Kerning", key: "Alt + Right Arrow", cat: "Type" },
-            { func: "Decrease Tracking/Kerning", key: "Alt + Left Arrow", cat: "Type" },
-            { func: "Increase Baseline Shift", key: "Alt + Shift + Up", cat: "Type" },
-            { func: "Decrease Baseline Shift", key: "Alt + Shift + Down", cat: "Type" },
-            { func: "Align Left", key: "Ctrl + Shift + L", cat: "Type" },
-            { func: "Align Center", key: "Ctrl + Shift + C", cat: "Type" },
-            { func: "Align Right", key: "Ctrl + Shift + R", cat: "Type" },
-            { func: "Justify Full (Last Left)", key: "Ctrl + Shift + J", cat: "Type" },
+            // --- TIMELINE & NAVIGATION ---
+            { func: "Go to In Point", key: "I", cat: "Timeline" },
+            { func: "Go to Out Point", key: "O", cat: "Timeline" },
+            { func: "Set In Point to Playhead", key: "[", cat: "Timeline" },
+            { func: "Set Out Point to Playhead", key: "]", cat: "Timeline" },
+            { func: "Trim Layer In Point", key: "Alt + [", cat: "Timeline" },
+            { func: "Trim Layer Out Point", key: "Alt + ]", cat: "Timeline" },
+            { func: "Split Layer", key: "Ctrl + Shift + D", cat: "Timeline" },
+            { func: "Duplicate Layer", key: "Ctrl + D", cat: "Timeline" },
+            { func: "Move Playhead Forward 1 Frame", key: "Ctrl + Right Arrow", cat: "Timeline" },
+            { func: "Move Playhead Backward 1 Frame", key: "Ctrl + Left Arrow", cat: "Timeline" },
+            { func: "Move Playhead Forward 10 Frames", key: "Ctrl + Shift + Right Arrow", cat: "Timeline" },
+            { func: "Move Playhead Backward 10 Frames", key: "Ctrl + Shift + Left Arrow", cat: "Timeline" },
+            { func: "Zoom In Timeline", key: "+ (or =)", cat: "Timeline" },
+            { func: "Zoom Out Timeline", key: "-", cat: "Timeline" },
+            { func: "Zoom to Fit Layers", key: "Shift + ;", cat: "Timeline" },
+            { func: "Toggle Switch/Modes Column", key: "F4", cat: "Timeline" },
+            { func: "Move Layer to Top", key: "Ctrl + Shift + ]", cat: "Timeline" },
+            { func: "Move Layer to Bottom", key: "Ctrl + Shift + [", cat: "Timeline" },
 
-            // --- SELECTION & ARRANGEMENT ---
-            { func: "Select All", key: "Ctrl + A", cat: "Selection" },
-            { func: "Deselect All", key: "Ctrl + Shift + A", cat: "Selection" },
-            { func: "Bring to Front", key: "Ctrl + Shift + ]", cat: "Selection" },
-            { func: "Send to Back", key: "Ctrl + Shift + [", cat: "Selection" },
-            { func: "Bring Forward", key: "Ctrl + ]", cat: "Selection" },
-            { func: "Send Backward", key: "Ctrl + [", cat: "Selection" },
-            { func: "Select Object Behind", key: "Ctrl + Click", cat: "Selection" },
-            { func: "Invert Selection", key: "Select > Inverse", cat: "Selection" },
+            // --- ANIMATION & KEYFRAMES ---
+            { func: "Add/Remove Keyframe (Current Prop)", key: "Alt + Shift + (Prop Key)", cat: "Animation" },
+            { func: "Next Keyframe", key: "K", cat: "Animation" },
+            { func: "Previous Keyframe", key: "J", cat: "Animation" },
+            { func: "Easy Ease", key: "F9", cat: "Animation" },
+            { func: "Easy Ease In", key: "Shift + F9", cat: "Animation" },
+            { func: "Easy Ease Out", key: "Ctrl + Shift + F9", cat: "Animation" },
+            { func: "Toggle Graph Editor", key: "Shift + F3", cat: "Animation" },
+            { func: "Convert Keyframe to Linear", key: "Ctrl + Click", cat: "Animation" },
+            { func: "Toggle Keyframe Hold", key: "Ctrl + Alt + H", cat: "Animation" },
+            { func: "Add Expression (Hold Key)", key: "Alt + Click Stopwatch", cat: "Animation" },
 
-            // --- VIEW & UI ---
-            { func: "Outline View Toggle", key: "Ctrl + Y", cat: "View" },
-            { func: "Pixel Preview Toggle", key: "Ctrl + Alt + Y", cat: "View" },
-            { func: "Overprint Preview Toggle", key: "Ctrl + Alt + Shift + Y", cat: "View" },
-            { func: "Screen Mode Toggle", key: "F", cat: "View" },
-            { func: "Show/Hide Rulers", key: "Ctrl + R", cat: "View" },
-            { func: "Show/Hide Guides", key: "Ctrl + ;", cat: "View" },
-            { func: "Lock Guides Toggle", key: "Ctrl + Alt + ;", cat: "View" },
-            { func: "Show/Hide Grid", key: "Ctrl + '", cat: "View" },
-            { func: "Snap to Grid Toggle", key: "Ctrl + Shift + '", cat: "View" },
-            { func: "Fit Artboard in Window", key: "Ctrl + 0", cat: "View" },
-            { func: "100% Magnification", key: "Ctrl + 1", cat: "View" },
-            { func: "Zoom In", key: "Ctrl + +", cat: "View" },
-            { func: "Zoom Out", key: "Ctrl + -", cat: "View" },
-            { func: "Toggle All Panels", key: "Tab", cat: "View" },
+            // --- COMPOSITION & PROJECT ---
+            { func: "New Composition", key: "Ctrl + N", cat: "Composition" },
+            { func: "Composition Settings", key: "Ctrl + K", cat: "Composition" },
+            { func: "Pre-compose Layers", key: "Ctrl + Shift + C", cat: "Composition" },
+            { func: "Add to Render Queue", key: "Ctrl + M", cat: "Composition" },
+            { func: "New Solid", key: "Ctrl + Y", cat: "Composition" },
+            { func: "New Adjustment Layer", key: "Ctrl + Alt + Y", cat: "Composition" },
+            { func: "New Null Object", key: "Ctrl + Alt + Shift + Y", cat: "Composition" },
+            { func: "New Camera", key: "Ctrl + Alt + Shift + C", cat: "Composition" },
+            { func: "New Light", key: "Ctrl + Alt + Shift + L", cat: "Composition" },
+            { func: "Replace Clip with Selected in Project", key: "Ctrl + Alt + /", cat: "Composition" },
 
             // --- GENERAL OPERATIONS ---
-            { func: "New Document", key: "Ctrl + N", cat: "General" },
-            { func: "Open File", key: "Ctrl + O", cat: "General" },
-            { func: "Save File", key: "Ctrl + S", cat: "General" },
-            { func: "Save As", key: "Ctrl + Shift + S", cat: "General" },
-            { func: "Export Media/Web", key: "Ctrl + Alt + Shift + S", cat: "General" },
+            { func: "Import File", key: "Ctrl + I", cat: "General" },
+            { func: "Import Multiple Files", key: "Ctrl + Alt + I", cat: "General" },
+            { func: "Save Project", key: "Ctrl + S", cat: "General" },
             { func: "Undo", key: "Ctrl + Z", cat: "General" },
             { func: "Redo", key: "Ctrl + Shift + Z", cat: "General" },
-            { func: "Default Fill/Stroke", key: "D", cat: "General" },
-            { func: "Swap Fill/Stroke", key: "X", cat: "General" },
-            { func: "Apply Color", key: ",", cat: "General" },
-            { func: "Apply Gradient", key: ".", cat: "General" },
-            { func: "Apply None", key: "/", cat: "General" }
+            { func: "Purge All Memory & Disk Cache", key: "Ctrl + Alt + / (Num Pad)", cat: "General" },
+            { func: "Search in Project Panel", key: "Ctrl + F", cat: "General" },
+            { func: "Open Preferences", key: "Ctrl + Alt + ;", cat: "General" }
         ];
 
         let userProgress = { mastered: new Set() };
@@ -245,7 +224,7 @@
             const targetBtn = document.getElementById(`mode-${mode}`);
             if(targetBtn) targetBtn.classList.add('active-mode');
 
-            document.getElementById('browser-view').classList.toggle('hidden', !['all', 'Tools', 'Object', 'Type', 'Selection', 'View', 'General'].includes(mode));
+            document.getElementById('browser-view').classList.toggle('hidden', !['all', 'Tools', 'Properties', 'Timeline', 'Animation', 'Composition', 'General'].includes(mode));
             document.getElementById('quiz-container').classList.toggle('hidden', mode !== 'quiz');
             document.getElementById('insights-container').classList.toggle('hidden', mode !== 'insights');
 
@@ -274,11 +253,11 @@
                 card.className = `hotkey-card bg-white p-6 rounded-3xl border ${mastered ? 'border-green-500 bg-green-50' : 'border-gray-100'} shadow-sm flex justify-between items-center hover:shadow-xl transition-all group`;
                 card.innerHTML = `
                     <div class="flex-grow">
-                        <p class="text-[9px] font-black text-gray-300 uppercase tracking-widest mb-1 group-hover:text-orange-400 transition-colors">${h.cat}</p>
+                        <p class="text-[9px] font-black text-gray-300 uppercase tracking-widest mb-1 group-hover:text-indigo-400 transition-colors">${h.cat}</p>
                         <h4 class="text-md font-bold text-gray-800">${h.func}</h4>
                     </div>
                     <div class="flex items-center gap-4">
-                        <span class="key-tag bg-gray-900 border border-gray-700 px-3 py-1.5 rounded-xl text-orange-400 font-bold shadow-lg whitespace-nowrap">${h.key}</span>
+                        <span class="key-tag bg-gray-900 border border-gray-700 px-3 py-1.5 rounded-xl text-indigo-400 font-bold shadow-lg whitespace-nowrap">${h.key}</span>
                         <button onclick="toggleStar('${h.func}')" class="text-2xl transform hover:scale-125 transition-transform drop-shadow-sm">${mastered ? '⭐' : '☆'}</button>
                     </div>
                 `;
@@ -332,7 +311,7 @@
                         });
                     }
 
-                    feed.innerText = isCorrect ? "MASTERFUL! +10 Points" : "The Correct Shortcut is: " + q.key;
+                    feed.innerText = isCorrect ? "PERFECT! +10 Points" : "The Correct Shortcut is: " + q.key;
                     feed.className = `p-8 rounded-3xl font-black text-2xl mb-8 border-4 ${isCorrect ? 'bg-green-50 text-green-700 border-green-200' : 'bg-red-50 text-red-700 border-red-200'}`;
                     feed.classList.remove('hidden');
                     document.getElementById('next-question-btn').classList.remove('hidden');
@@ -348,7 +327,7 @@
         function nextQuestion() {
             currentIdx++;
             if (currentIdx < quizPool.length) loadQuestion();
-            else { alert("Illustrator Gauntlet Complete!"); startQuiz(); }
+            else { alert("Gauntlet Complete!"); startQuiz(); }
         }
 
         function toggleStar(f) {
@@ -370,16 +349,16 @@
         }
 
         function shuffle(a) { for (let i = a.length - 1; i > 0; i--) { const j = Math.floor(Math.random() * (i + 1)); [a[i], a[j]] = [a[j], a[i]]; } }
-        function saveMastery() { localStorage.setItem('mastery-illustrator-pro-fixed', JSON.stringify([...userProgress.mastered])); }
+        function saveMastery() { localStorage.setItem('mastery-after-effects', JSON.stringify([...userProgress.mastered])); }
         function loadMastery() { 
-            const s = localStorage.getItem('mastery-illustrator-pro-fixed');
+            const s = localStorage.getItem('mastery-after-effects');
             if (s) userProgress.mastered = new Set(JSON.parse(s));
         }
 
         function drawInsights() {
             const m = userProgress.mastered.size;
             const r = hotkeysData.length - m;
-            Plotly.newPlot('progress-chart', [{ values: [m, r], labels: ['Mastered', 'Remaining'], type: 'pie', marker: { colors: ['#f59e0b', '#e5e7eb'] }, hole: .4 }], { margin: {t:0, b:0, l:0, r:0}, showlegend: true });
+            Plotly.newPlot('progress-chart', [{ values: [m, r], labels: ['Mastered', 'Remaining'], type: 'pie', marker: { colors: ['#6366f1', '#e5e7eb'] }, hole: .4 }], { margin: {t:0, b:0, l:0, r:0}, showlegend: true });
         }
 
         window.onload = () => { init(); };
