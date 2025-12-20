@@ -1,3 +1,131 @@
+<<<<<<< HEAD
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Hotkey Trainer - Master Your Software</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700;800&display=swap" rel="stylesheet">
+    <style>
+        body { font-family: 'Inter', sans-serif; }
+        .program-card { transition: all 0.3s ease; }
+        .program-card:hover { transform: translateY(-5px); box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04); }
+        .bg-grid-pattern { background-image: radial-gradient(#cbd5e1 1px, transparent 1px); background-size: 24px 24px; }
+    </style>
+</head>
+<body class="bg-slate-50 text-slate-800 min-h-screen flex flex-col">
+
+    <!-- Hero Section -->
+    <header class="bg-white border-b border-slate-200 relative overflow-hidden">
+        <div class="absolute inset-0 bg-grid-pattern opacity-30 pointer-events-none"></div>
+        <div class="max-w-5xl mx-auto px-6 py-20 relative z-10 text-center">
+            <div class="inline-block bg-slate-900 text-white text-xs font-bold tracking-wider uppercase px-3 py-1 rounded-full mb-4">
+                Interactive Learning Tool
+            </div>
+            <h1 class="text-4xl md:text-6xl font-extrabold text-slate-900 mb-6 tracking-tight">
+                Master Your <span class="text-transparent bg-clip-text bg-gradient-to-r from-blue-600 to-violet-600">Workflow</span>
+            </h1>
+            <p class="text-lg md:text-xl text-slate-500 max-w-2xl mx-auto leading-relaxed">
+                Stop hunting through menus. Memorize the essential keyboard shortcuts for your favorite creative software.
+            </p>
+        </div>
+    </header>
+
+    <!-- Program Selection Grid -->
+    <main class="flex-1 max-w-7xl mx-auto px-6 py-16 w-full">
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
+            
+            <!-- BLENDER -->
+            <a href="blender.html" class="program-card group bg-white rounded-2xl p-6 border border-slate-200 hover:border-orange-200 relative overflow-hidden flex flex-col h-full items-center text-center">
+                <div class="absolute -right-10 -top-10 w-24 h-24 bg-orange-50 rounded-full group-hover:bg-orange-100 transition-colors"></div>
+                <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/0/0c/Blender_logo_no_text.svg/512px-Blender_logo_no_text.svg.png" alt="Blender" class="relative z-10 w-20 h-20 mb-4 drop-shadow-sm group-hover:scale-110 transition-transform object-contain">
+                <h2 class="relative z-10 text-xl font-bold text-slate-800 mb-2">Blender</h2>
+                <p class="relative z-10 text-slate-500 text-sm mb-6 flex-grow">3D Modeling & Animation</p>
+                <div class="flex items-center text-xs font-bold text-orange-600 uppercase tracking-wide">Start →</div>
+            </a>
+
+            <!-- MAYA (Updated to local image) -->
+            <a href="maya.html" class="program-card group bg-white rounded-2xl p-6 border border-slate-200 hover:border-cyan-200 relative overflow-hidden flex flex-col h-full items-center text-center">
+                <div class="absolute -right-10 -top-10 w-24 h-24 bg-cyan-50 rounded-full group-hover:bg-cyan-100 transition-colors"></div>
+                
+                <!-- IMAGE SOURCE CHANGED TO LOCAL -->
+                <img src="images/maya.png" alt="Maya" class="relative z-10 w-auto h-20 mb-4 drop-shadow-sm group-hover:scale-110 transition-transform object-contain">
+                
+                <h2 class="relative z-10 text-xl font-bold text-slate-800 mb-2">Maya</h2>
+                <p class="relative z-10 text-slate-500 text-sm mb-6 flex-grow">Animation & Rigging</p>
+                <div class="flex items-center text-xs font-bold text-cyan-600 uppercase tracking-wide">Start →</div>
+            </a>
+
+            <!-- PHOTOSHOP WEB -->
+            <a href="photoshop_web.html" class="program-card group bg-white rounded-2xl p-6 border border-slate-200 hover:border-blue-300 relative overflow-hidden flex flex-col h-full items-center text-center">
+                <div class="absolute -right-10 -top-10 w-24 h-24 bg-blue-50 rounded-full group-hover:bg-blue-100 transition-colors"></div>
+                <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/a/af/Adobe_Photoshop_CC_icon.svg/512px-Adobe_Photoshop_CC_icon.svg.png" alt="Ps" class="relative z-10 w-20 h-20 mb-4 drop-shadow-sm group-hover:scale-110 transition-transform object-contain">
+                <h2 class="relative z-10 text-xl font-bold text-slate-800 mb-2">Photoshop</h2>
+                <p class="relative z-10 text-slate-500 text-sm mb-6 flex-grow">Browser Version</p>
+                <div class="flex items-center text-xs font-bold text-blue-500 uppercase tracking-wide">Start →</div>
+            </a>
+
+            <!-- PHOTOSHOP WINDOWS -->
+            <a href="photoshop_windows.html" class="program-card group bg-white rounded-2xl p-6 border border-slate-200 hover:border-indigo-900 relative overflow-hidden flex flex-col h-full items-center text-center">
+                <div class="absolute -right-10 -top-10 w-24 h-24 bg-indigo-50 rounded-full group-hover:bg-indigo-100 transition-colors"></div>
+                <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/a/af/Adobe_Photoshop_CC_icon.svg/512px-Adobe_Photoshop_CC_icon.svg.png" alt="Ps" class="relative z-10 w-20 h-20 mb-4 drop-shadow-sm group-hover:scale-110 transition-transform object-contain">
+                <h2 class="relative z-10 text-xl font-bold text-slate-800 mb-2">Photoshop</h2>
+                <p class="relative z-10 text-slate-500 text-sm mb-6 flex-grow">Desktop Version</p>
+                <div class="flex items-center text-xs font-bold text-indigo-900 uppercase tracking-wide">Start →</div>
+            </a>
+
+            <!-- ILLUSTRATOR -->
+            <a href="illustrator.html" class="program-card group bg-white rounded-2xl p-6 border border-slate-200 hover:border-orange-500 relative overflow-hidden flex flex-col h-full items-center text-center">
+                <div class="absolute -right-10 -top-10 w-24 h-24 bg-amber-50 rounded-full group-hover:bg-amber-100 transition-colors"></div>
+                <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/f/fb/Adobe_Illustrator_CC_icon.svg/512px-Adobe_Illustrator_CC_icon.svg.png" alt="Ai" class="relative z-10 w-20 h-20 mb-4 drop-shadow-sm group-hover:scale-110 transition-transform object-contain">
+                <h2 class="relative z-10 text-xl font-bold text-slate-800 mb-2">Illustrator</h2>
+                <p class="relative z-10 text-slate-500 text-sm mb-6 flex-grow">Vector Design</p>
+                <div class="flex items-center text-xs font-bold text-orange-600 uppercase tracking-wide">Start →</div>
+            </a>
+
+            <!-- PREMIERE PRO -->
+            <a href="premiere.html" class="program-card group bg-white rounded-2xl p-6 border border-slate-200 hover:border-violet-600 relative overflow-hidden flex flex-col h-full items-center text-center">
+                <div class="absolute -right-10 -top-10 w-24 h-24 bg-violet-50 rounded-full group-hover:bg-violet-100 transition-colors"></div>
+                <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/4/40/Adobe_Premiere_Pro_CC_icon.svg/512px-Adobe_Premiere_Pro_CC_icon.svg.png" alt="Pr" class="relative z-10 w-20 h-20 mb-4 drop-shadow-sm group-hover:scale-110 transition-transform object-contain">
+                <h2 class="relative z-10 text-xl font-bold text-slate-800 mb-2">Premiere Pro</h2>
+                <p class="relative z-10 text-slate-500 text-sm mb-6 flex-grow">Video Editing</p>
+                <div class="flex items-center text-xs font-bold text-violet-700 uppercase tracking-wide">Start →</div>
+            </a>
+
+            <!-- ANIMATE -->
+            <a href="animate.html" class="program-card group bg-white rounded-2xl p-6 border border-slate-200 hover:border-purple-600 relative overflow-hidden flex flex-col h-full items-center text-center">
+                <div class="absolute -right-10 -top-10 w-24 h-24 bg-purple-50 rounded-full group-hover:bg-purple-100 transition-colors"></div>
+                <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/0/0f/Adobe_Animate_CC_icon_%282020%29.svg/240px-Adobe_Animate_CC_icon_%282020%29.svg.png" alt="Animate Logo" class="relative z-10 w-20 h-20 mb-4 drop-shadow-sm group-hover:scale-110 transition-transform object-contain"></div>
+                <h2 class="relative z-10 text-xl font-bold text-slate-800 mb-2">Animate</h2>
+                <p class="relative z-10 text-slate-500 text-sm mb-6 flex-grow">2D Animation</p>
+                <div class="flex items-center text-xs font-bold text-purple-600 uppercase tracking-wide">Start →</div>
+            </a>
+
+            <!-- AFTER EFFECTS -->
+            <a href="after_effects.html" class="program-card group bg-white rounded-2xl p-6 border border-slate-200 hover:border-indigo-600 relative overflow-hidden flex flex-col h-full items-center text-center">
+                <div class="absolute -right-10 -top-10 w-24 h-24 bg-indigo-50 rounded-full group-hover:bg-indigo-100 transition-colors"></div>
+                <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/c/cb/Adobe_After_Effects_CC_icon.svg/512px-Adobe_After_Effects_CC_icon.svg.png" alt="Ae" class="relative z-10 w-20 h-20 mb-4 drop-shadow-sm group-hover:scale-110 transition-transform object-contain">
+                <h2 class="relative z-10 text-xl font-bold text-slate-800 mb-2">After Effects</h2>
+                <p class="relative z-10 text-slate-500 text-sm mb-6 flex-grow">Motion Graphics</p>
+                <div class="flex items-center text-xs font-bold text-indigo-700 uppercase tracking-wide">Start →</div>
+            </a>
+
+        </div>
+    </main>
+
+    <footer class="bg-white border-t border-slate-200 py-8 mt-auto">
+        <div class="max-w-6xl mx-auto px-6 flex flex-col md:flex-row justify-between items-center text-slate-400 text-sm">
+            <p>&copy; 2025 Hotkey Trainer. All rights reserved.</p>
+            <div class="flex space-x-6 mt-4 md:mt-0">
+                <a href="index.html" class="hover:text-slate-600 font-semibold text-slate-500">Home</a>
+                <a href="about.html" class="hover:text-slate-600">About</a>
+            </div>
+        </div>
+    </footer>
+
+</body>
+=======
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -351,4 +479,5 @@
         });
     </script>
 </body>
+>>>>>>> a47752807d51b9f324fb5542ddb96d50ed6527ef
 </html>

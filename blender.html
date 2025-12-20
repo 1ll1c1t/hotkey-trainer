@@ -3,645 +3,384 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Blender 4.3 Hotkey Trainer - Interactive Learning</title>
+    <title>Ultimate Blender 5.0 Hotkey Trainer</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/plotly.js/3.0.3/plotly.min.js"></script>
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
     <style>
         body { font-family: 'Inter', sans-serif; }
         .gradient-text { background: linear-gradient(135deg, #f97316 0%, #dc2626 100%); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
-        .card-hover { transition: all 0.3s ease; }
-        .card-hover:hover { transform: translateY(-4px); box-shadow: 0 15px 35px rgba(0,0,0,0.1); }
-        .active-mode { background: linear-gradient(135deg, #f97316 0%, #dc2626 100%); color: white; }
+        .active-mode { background: linear-gradient(135deg, #f97316 0%, #dc2626 100%); color: white !important; }
+        .correct { background-color: #10b981 !important; color: white !important; border-color: #059669 !important; }
+        .incorrect { background-color: #ef4444 !important; color: white !important; border-color: #b91c1c !important; }
+        .option-btn { transition: all 0.2s; border: 2px solid #f3f4f6; }
+        .option-btn:hover:not(:disabled) { border-color: #f97316; background-color: #fff7ed; transform: translateY(-2px); }
         .hotkey-card { transition: all 0.2s ease; }
-        .hotkey-card:hover { transform: scale(1.02); }
-        .quiz-feedback { transition: all 0.3s ease; }
-        .correct { background-color: #10b981; color: white; }
-        .incorrect { background-color: #ef4444; color: white; }
-        .floating-key { animation: float 3s ease-in-out infinite; }
-        @keyframes float { 0%, 100% { transform: translateY(0px); } 50% { transform: translateY(-10px); } }
-        .key-combo { font-family: 'Courier New', monospace; font-weight: bold; }
+        .custom-scroll::-webkit-scrollbar { width: 6px; }
+        .custom-scroll::-webkit-scrollbar-track { background: #f1f1f1; }
+        .custom-scroll::-webkit-scrollbar-thumb { background: #f97316; border-radius: 10px; }
+        .key-tag { font-family: 'Monaco', 'Consolas', monospace; font-size: 0.85rem; }
     </style>
 </head>
 <body class="bg-gray-50 text-gray-900">
-    <!-- Navigation -->
-    <nav class="bg-white/90 backdrop-blur-md border-b border-gray-200/50 sticky top-0 z-50">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div class="flex justify-between items-center h-16">
-                <div class="flex items-center space-x-4">
-                    <a href="index.html" class="flex items-center space-x-2 hover:opacity-80 transition-opacity">
-                        <div class="w-8 h-8 bg-gradient-to-br from-indigo-500 to-purple-600 rounded-lg flex items-center justify-center">
-                            <span class="text-white font-bold text-sm">⌘</span>
-                        </div>
-                        <span class="font-bold text-xl gradient-text">Hotkey Trainer</span>
-                    </a>
-                    <div class="h-6 w-px bg-gray-300"></div>
-                    <span class="text-gray-600 font-medium">Blender 4.3</span>
-                </div>
-                <div class="flex space-x-4">
-                    <button onclick="showHelp()" class="text-gray-600 hover:text-indigo-600 transition-colors font-medium">
-                        ❓ Help
-                    </button>
-                    <a href="index.html" class="text-gray-600 hover:text-indigo-600 transition-colors font-medium">
-                        🏠 Home
-                    </a>
-                </div>
-            </div>
+    <nav class="bg-white/90 backdrop-blur-md border-b sticky top-0 z-50 px-6 py-4 flex justify-between items-center shadow-sm">
+        <div class="flex items-center gap-3">
+            <div class="w-10 h-10 bg-orange-500 rounded-xl flex items-center justify-center text-white font-black italic shadow-lg">B</div>
+            <a href="index.html" class="font-bold text-2xl tracking-tighter gradient-text">Hotkey Trainer</a>
         </div>
+        <a href="index.html" class="text-gray-600 hover:text-orange-600 transition-colors font-medium flex items-center gap-2">
+            <span>🏠</span> Home
+        </a>
     </nav>
-
-    <!-- Header -->
-    <header class="bg-gradient-to-br from-orange-500 to-red-600 text-white py-12">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-            <div class="floating-key inline-block mb-6">
-                <div class="w-20 h-20 bg-white/20 rounded-2xl flex items-center justify-center backdrop-blur-sm">
-                    <span class="text-4xl font-bold">3D</span>
-                </div>
-            </div>
-            <h1 class="text-4xl md:text-5xl font-black mb-4">Blender 4.3</h1>
-            <p class="text-xl md:text-2xl opacity-90 mb-6">Interactive Hotkey Companion</p>
-            <div class="flex justify-center items-center space-x-8 text-sm">
-                <div class="flex items-center space-x-2">
-                    <span class="bg-white/20 px-3 py-1 rounded-full">150+ Hotkeys</span>
-                </div>
-                <div class="flex items-center space-x-2">
-                    <span class="bg-white/20 px-3 py-1 rounded-full">Quiz Mode</span>
-                </div>
-                <div class="flex items-center space-x-2">
-                    <span class="bg-white/20 px-3 py-1 rounded-full">Progress Tracking</span>
-                </div>
-            </div>
-        </div>
+    
+    <header class="bg-gradient-to-br from-orange-500 to-red-600 text-white py-14 text-center shadow-inner relative overflow-hidden">
+        <div class="absolute inset-0 opacity-10 pointer-events-none select-none text-[20rem] font-black -top-20 -left-10">5.0</div>
+        <h1 class="text-6xl font-black mb-2 tracking-tight">Blender 5.0</h1>
+        <p class="text-xl opacity-90 font-medium">The Ultimate Professional Shortcut Database.</p>
     </header>
 
-    <!-- Main Content -->
-    <main class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
-        <div class="grid grid-cols-1 lg:grid-cols-4 gap-8">
-            <!-- Sidebar -->
-            <div class="lg:col-span-1">
-                <div class="bg-white rounded-2xl p-6 shadow-lg border border-gray-200/50 sticky top-24">
-                    <h3 class="text-lg font-bold mb-4 text-gray-800">Learning Modes</h3>
-                    <div class="space-y-2">
-                        <button onclick="setMode('all')" id="mode-all" class="w-full text-left px-4 py-3 rounded-lg font-medium transition-all duration-200 active-mode">
-                            ⌨️ All Hotkeys
-                        </button>
-                        <button onclick="setMode('general')" id="mode-general" class="w-full text-left px-4 py-3 rounded-lg font-medium transition-all duration-200 hover:bg-gray-100">
-                            ⚙️ General
-                        </button>
-                        <button onclick="setMode('viewport')" id="mode-viewport" class="w-full text-left px-4 py-3 rounded-lg font-medium transition-all duration-200 hover:bg-gray-100">
-                            👁️ Viewport
-                        </button>
-                        <button onclick="setMode('edit')" id="mode-edit" class="w-full text-left px-4 py-3 rounded-lg font-medium transition-all duration-200 hover:bg-gray-100">
-                            🟦 Edit Mode
-                        </button>
-                        <button onclick="setMode('sculpt')" id="mode-sculpt" class="w-full text-left px-4 py-3 rounded-lg font-medium transition-all duration-200 hover:bg-gray-100">
-                            🗿 Sculpt Mode
-                        </button>
-                        <button onclick="setMode('animation')" id="mode-animation" class="w-full text-left px-4 py-3 rounded-lg font-medium transition-all duration-200 hover:bg-gray-100">
-                            🎬 Animation
-                        </button>
-                        <button onclick="setMode('quiz')" id="mode-quiz" class="w-full text-left px-4 py-3 rounded-lg font-medium transition-all duration-200 hover:bg-gray-100">
-                            🧠 Quiz Mode
-                        </button>
-                        <button onclick="setMode('insights')" id="mode-insights" class="w-full text-left px-4 py-3 rounded-lg font-medium transition-all duration-200 hover:bg-gray-100">
-                            📊 Insights
-                        </button>
+    <main class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8 grid grid-cols-1 lg:grid-cols-4 gap-8">
+        <!-- Sidebar Navigation -->
+        <div class="lg:col-span-1 space-y-4">
+            <div class="bg-white rounded-3xl p-6 shadow-xl border border-gray-100 sticky top-24">
+                <h3 class="text-sm font-black mb-4 text-gray-400 uppercase tracking-widest px-2">Workspaces</h3>
+                <div class="space-y-1 max-h-[65vh] overflow-y-auto custom-scroll pr-2">
+                    <button onclick="setMode('all')" id="mode-all" class="mode-btn w-full text-left px-4 py-3 rounded-xl active-mode transition-all font-bold">⌨️ Global Database</button>
+                    <button onclick="setMode('General')" id="mode-General" class="mode-btn w-full text-left px-4 py-3 rounded-xl hover:bg-gray-100 transition-all font-semibold">⚙️ Interface & UI</button>
+                    <button onclick="setMode('Viewport')" id="mode-Viewport" class="mode-btn w-full text-left px-4 py-3 rounded-xl hover:bg-gray-100 transition-all font-semibold">👁️ Viewport Nav</button>
+                    <button onclick="setMode('Edit')" id="mode-Edit" class="mode-btn w-full text-left px-4 py-3 rounded-xl hover:bg-gray-100 transition-all font-semibold">🟦 Mesh Editing</button>
+                    <button onclick="setMode('Sculpt')" id="mode-Sculpt" class="mode-btn w-full text-left px-4 py-3 rounded-xl hover:bg-gray-100 transition-all font-semibold">🗿 Sculpt Mode</button>
+                    <button onclick="setMode('Grease')" id="mode-Grease" class="mode-btn w-full text-left px-4 py-3 rounded-xl hover:bg-gray-100 transition-all font-semibold font-bold text-orange-600">✏️ Grease Pencil</button>
+                    <button onclick="setMode('Animation')" id="mode-Animation" class="mode-btn w-full text-left px-4 py-3 rounded-xl hover:bg-gray-100 transition-all font-semibold">🎬 Animation & Rig</button>
+                    <div class="h-px bg-gray-100 my-4"></div>
+                    <button onclick="setMode('quiz')" id="mode-quiz" class="mode-btn w-full text-left px-4 py-3 rounded-xl hover:bg-orange-500 hover:text-white transition-all font-black text-orange-600">🧠 Start Pro Quiz</button>
+                    <button onclick="setMode('insights')" id="mode-insights" class="mode-btn w-full text-left px-4 py-3 rounded-xl hover:bg-gray-100 transition-all font-semibold">📊 Mastery Stats</button>
+                </div>
+                
+                <div class="mt-8 pt-6 border-t border-gray-200 px-2">
+                    <h4 class="text-[10px] font-black mb-3 text-gray-400 uppercase tracking-widest">Mastery Status</h4>
+                    <div class="space-y-4">
+                        <div class="flex justify-between items-end">
+                            <span class="text-xs text-gray-500 font-bold">Progress</span>
+                            <span class="font-black text-orange-600" id="mastered-count">0</span>
+                        </div>
+                        <div class="w-full bg-gray-100 rounded-full h-3">
+                            <div class="bg-gradient-to-r from-orange-500 to-red-600 h-3 rounded-full transition-all duration-700 shadow-sm" style="width: 0%" id="progress-bar"></div>
+                        </div>
                     </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Content Area -->
+        <div class="lg:col-span-3">
+            <div id="browser-view" class="space-y-4">
+                <div class="bg-white rounded-3xl p-6 shadow-xl border border-gray-100 mb-8">
+                    <div class="relative">
+                        <input type="text" id="search-input" placeholder="Find a tool (e.g. 'Extrude') or a key (e.g. 'Shift+A')..." class="w-full px-6 py-4 pl-14 border border-gray-100 rounded-2xl bg-gray-50 focus:ring-4 focus:ring-orange-200 outline-none transition-all text-lg font-medium">
+                        <div class="absolute left-6 top-1/2 transform -translate-y-1/2 text-gray-400 text-xl">🔍</div>
+                    </div>
+                </div>
+                <div id="hotkeys-container" class="grid grid-cols-1 md:grid-cols-2 gap-4"></div>
+            </div>
+
+            <div id="quiz-container" class="hidden">
+                <div class="bg-white rounded-[3.5rem] p-12 shadow-2xl text-center border border-gray-100 min-h-[550px] flex flex-col justify-center animate-in fade-in duration-500">
+                    <span class="bg-orange-100 text-orange-600 px-6 py-2 rounded-full text-xs font-black uppercase tracking-widest inline-block mx-auto mb-10">Blender Pro Gauntlet</span>
+                    <h2 class="text-gray-400 font-bold mb-2">What is the keyboard shortcut for:</h2>
+                    <h2 id="quiz-question" class="text-4xl md:text-5xl font-black text-gray-900 mb-14 leading-tight">Loading...</h2>
                     
-                    <!-- Progress -->
-                    <div class="mt-8 pt-6 border-t border-gray-200">
-                        <h4 class="text-sm font-semibold mb-3 text-gray-700">Your Progress</h4>
-                        <div class="space-y-3">
-                            <div class="flex justify-between text-sm">
-                                <span class="text-gray-600">Mastered</span>
-                                <span class="font-medium text-green-600" id="mastered-count">0</span>
-                            </div>
-                            <div class="flex justify-between text-sm">
-                                <span class="text-gray-600">Quiz Score</span>
-                                <span class="font-medium text-blue-600" id="quiz-score">0%</span>
-                            </div>
-                            <div class="w-full bg-gray-200 rounded-full h-2">
-                                <div class="bg-gradient-to-r from-green-500 to-blue-500 h-2 rounded-full transition-all duration-300" style="width: 0%" id="progress-bar"></div>
-                            </div>
+                    <div id="quiz-options" class="grid grid-cols-1 md:grid-cols-2 gap-4 mb-10"></div>
+
+                    <div id="quiz-feedback" class="hidden p-8 rounded-3xl font-black text-2xl mb-8 transform transition-all duration-300"></div>
+                    <button id="next-question-btn" onclick="nextQuestion()" class="hidden mx-auto bg-gray-900 text-white px-20 py-6 rounded-3xl font-black text-xl hover:bg-orange-600 transition-all hover:scale-105 shadow-2xl">NEXT CHALLENGE →</button>
+                    
+                    <div class="grid grid-cols-2 gap-6 mt-16 border-t pt-10">
+                        <div class="p-4 bg-green-50 rounded-2xl border border-green-100">
+                            <p class="text-[10px] font-black text-green-600 uppercase tracking-widest">Accuracy</p>
+                            <p id="correct-count" class="text-4xl font-black text-green-500">0</p>
+                        </div>
+                        <div class="p-4 bg-red-50 rounded-2xl border border-red-100">
+                            <p class="text-[10px] font-black text-red-600 uppercase tracking-widest">Mistakes</p>
+                            <p id="incorrect-count" class="text-4xl font-black text-red-500">0</p>
                         </div>
                     </div>
                 </div>
             </div>
 
-            <!-- Main Content Area -->
-            <div class="lg:col-span-3">
-                <!-- Search Bar -->
-                <div class="bg-white rounded-2xl p-6 shadow-lg border border-gray-200/50 mb-8">
-                    <div class="relative">
-                        <input type="text" id="search-input" placeholder="Search hotkeys by name, function, or key combination..." 
-                               class="w-full px-4 py-3 pl-12 border border-gray-300 rounded-xl focus:ring-2 focus:ring-orange-500 focus:border-transparent">
-                        <div class="absolute left-4 top-1/2 transform -translate-y-1/2 text-gray-400">
-                            🔍
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Hotkeys Display -->
-                <div id="hotkeys-container" class="space-y-6">
-                    <!-- Hotkeys will be dynamically loaded here -->
-                </div>
-
-                <!-- Quiz Mode -->
-                <div id="quiz-container" class="hidden">
-                    <div class="bg-white rounded-2xl p-8 shadow-lg border border-gray-200/50">
-                        <div class="text-center mb-8">
-                            <h2 class="text-3xl font-bold mb-4 gradient-text">Quiz Mode</h2>
-                            <p class="text-gray-600">Test your knowledge. How do you trigger:</p>
-                        </div>
-                        
-                        <div id="quiz-content" class="text-center">
-                            <div class="mb-8">
-                                <div class="text-2xl font-bold mb-6" id="quiz-question">Loading question...</div>
-                                <div class="space-y-4">
-                                    <button onclick="showAnswer()" id="show-answer-btn" class="bg-gradient-to-r from-orange-500 to-red-600 text-white px-8 py-4 rounded-xl font-semibold hover:from-orange-600 hover:to-red-700 transition-all duration-300">
-                                        Show Key
-                                    </button>
-                                    <div id="quiz-answer" class="hidden quiz-feedback p-4 rounded-xl text-xl font-bold key-combo"></div>
-                                    <button onclick="nextQuestion()" id="next-question-btn" class="hidden bg-gradient-to-r from-green-500 to-teal-600 text-white px-8 py-4 rounded-xl font-semibold hover:from-green-600 hover:to-teal-700 transition-all duration-300">
-                                        Next Question →
-                                    </button>
-                                </div>
-                            </div>
-                            
-                            <div class="grid grid-cols-2 gap-4 text-center">
-                                <div class="bg-green-50 p-4 rounded-xl">
-                                    <div class="text-2xl font-bold text-green-600" id="correct-count">0</div>
-                                    <div class="text-sm text-green-700">Correct</div>
-                                </div>
-                                <div class="bg-red-50 p-4 rounded-xl">
-                                    <div class="text-2xl font-bold text-red-600" id="incorrect-count">0</div>
-                                    <div class="text-sm text-red-700">Incorrect</div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Insights -->
-                <div id="insights-container" class="hidden">
-                    <div class="bg-white rounded-2xl p-8 shadow-lg border border-gray-200/50">
-                        <h2 class="text-3xl font-bold mb-6 gradient-text">Learning Insights</h2>
-                        <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
-                            <div>
-                                <h3 class="text-xl font-bold mb-4 text-gray-800">Most Difficult Hotkeys</h3>
-                                <div id="difficult-hotkeys-chart" class="h-64"></div>
-                            </div>
-                            <div>
-                                <h3 class="text-xl font-bold mb-4 text-gray-800">Learning Progress</h3>
-                                <div id="progress-chart" class="h-64"></div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
+            <div id="insights-container" class="hidden bg-white p-12 rounded-[3.5rem] shadow-2xl border border-gray-100 text-center">
+                <h2 class="text-3xl font-black mb-8 gradient-text">Workflow Analytics</h2>
+                <div id="progress-chart" class="h-96 w-full"></div>
+                <p class="mt-8 text-gray-400 font-medium italic">"Muscle memory is the key to artistic freedom."</p>
             </div>
         </div>
     </main>
 
-    <!-- Help Modal -->
-    <div id="help-modal" class="fixed inset-0 bg-black/50 backdrop-blur-sm hidden z-50">
-        <div class="flex items-center justify-center min-h-screen p-4">
-            <div class="bg-white rounded-2xl p-8 max-w-2xl w-full">
-                <div class="flex justify-between items-center mb-6">
-                    <h2 class="text-2xl font-bold gradient-text">How to Use</h2>
-                    <button onclick="hideHelp()" class="text-gray-500 hover:text-gray-700 text-2xl">&times;</button>
-                </div>
-                <div class="space-y-4 text-gray-600">
-                    <p><strong>Learning Modes:</strong></p>
-                    <ul class="list-disc list-inside space-y-2 ml-4">
-                        <li><strong>All Hotkeys:</strong> Browse all available shortcuts</li>
-                        <li><strong>General:</strong> Basic navigation and operations</li>
-                        <li><strong>Viewport:</strong> Camera and view controls</li>
-                        <li><strong>Edit Mode:</strong> Modeling and editing tools</li>
-                        <li><strong>Sculpt Mode:</strong> Sculpting and painting</li>
-                        <li><strong>Animation:</strong> Timeline and keyframe tools</li>
-                        <li><strong>Quiz Mode:</strong> Test your knowledge</li>
-                        <li><strong>Insights:</strong> Track your progress</li>
-                    </ul>
-                    <p><strong>Quiz Mode:</strong> Click "Show Key" to reveal the answer, then "Next Question" to continue.</p>
-                    <p><strong>Search:</strong> Type any function name or key combination to find specific hotkeys.</p>
-                </div>
-            </div>
-        </div>
-    </div>
-
     <script>
-        // Blender hotkeys data
-        const hotkeysData = {
-            general: [
-                { function: "Grab (Move)", key: "G", description: "Move selected objects or elements" },
-                { function: "Rotate", key: "R", description: "Rotate selected objects or elements" },
-                { function: "Scale", key: "S", description: "Scale selected objects or elements" },
-                { function: "Constrain to Axis", key: "X, Y, Z", description: "Lock transformation to specific axis" },
-                { function: "Constrain to Plane", key: "Shift + X/Y/Z", description: "Lock transformation to a plane" },
-                { function: "Duplicate", key: "Shift + D", description: "Duplicate selected objects" },
-                { function: "Duplicate Linked", key: "Alt + D", description: "Create linked duplicate" },
-                { function: "Hide", key: "H", description: "Hide selected objects" },
-                { function: "Unhide", key: "Alt + H", description: "Unhide all objects" },
-                { function: "Toggle Sidebar", key: "N", description: "Show/hide properties sidebar" },
-                { function: "Toggle Toolbar", key: "T", description: "Show/hide tools toolbar" },
-                { function: "New File", key: "Ctrl + N", description: "Create new Blender file" },
-                { function: "Save", key: "Ctrl + S", description: "Save current file" },
-                { function: "Save Incremental", key: "Alt + Ctrl + S", description: "Save with incremental number" },
-                { function: "Quick Favorites", key: "Q", description: "Access quick favorites menu" },
-                { function: "Delete", key: "Delete / X", description: "Delete selected objects" },
-                { function: "Undo", key: "Ctrl + Z", description: "Undo last action" },
-                { function: "Redo", key: "Shift + Ctrl + Z", description: "Redo last undone action" },
-                { function: "Add Menu", key: "Shift + A", description: "Open add object menu" },
-                { function: "Apply Menu", key: "Ctrl + A", description: "Open apply transformations menu" },
-                { function: "Search", key: "F3", description: "Open search function" },
-                { function: "File Context Menu", key: "F4", description: "Open file context menu" },
-                { function: "Adjust Last Operation", key: "F9", description: "Adjust last operation settings" },
-                { function: "Render", key: "F12", description: "Start rendering" },
-                { function: "Play Animation", key: "Space", description: "Play/pause animation" },
-                { function: "Open Tools", key: "Shift + Space", description: "Open tools menu" }
-            ],
-            viewport: [
-                { function: "Rotate View", key: "MMB", description: "Rotate 3D view" },
-                { function: "Pan View", key: "Shift + MMB", description: "Pan 3D view" },
-                { function: "Zoom View", key: "Ctrl + MMB", description: "Zoom in/out" },
-                { function: "Frame Selected", key: "Numpad .", description: "Frame selected objects" },
-                { function: "Camera View", key: "Numpad 0", description: "Switch to camera view" },
-                { function: "Front View", key: "Numpad 1", description: "Front orthographic view" },
-                { function: "Side View", key: "Numpad 3", description: "Side orthographic view" },
-                { function: "Top View", key: "Numpad 7", description: "Top orthographic view" },
-                { function: "Toggle Wireframe", key: "Z", description: "Toggle wireframe/shaded view" }
-            ],
-            edit: [
-                { function: "Extrude", key: "E", description: "Extrude selected elements" },
-                { function: "Inset Faces", key: "I", description: "Inset selected faces" },
-                { function: "Bevel", key: "Ctrl + B", description: "Bevel selected edges" },
-                { function: "Loop Cut", key: "Ctrl + R", description: "Create loop cut" },
-                { function: "Knife Tool", key: "K", description: "Activate knife tool" },
-                { function: "Fill", key: "F", description: "Fill selected edges" },
-                { function: "Merge", key: "M", description: "Merge selected vertices" },
-                { function: "Subdivide", key: "Right Click → Subdivide", description: "Subdivide selected elements" }
-            ],
-            sculpt: [
-                { function: "Brush Size", key: "F", description: "Adjust brush size" },
-                { function: "Brush Strength", key: "Shift + F", description: "Adjust brush strength" },
-                { function: "Smooth Brush", key: "Shift", description: "Enable smooth brush" },
-                { function: "Invert Brush", key: "Ctrl", description: "Invert brush effect" },
-                { function: "Grab Brush", key: "G", description: "Switch to grab brush" },
-                { function: "Draw Brush", key: "D", description: "Switch to draw brush" },
-                { function: "Clay Brush", key: "C", description: "Switch to clay brush" },
-                { function: "Flatten Brush", key: "Shift + T", description: "Switch to flatten brush" }
-            ],
-            animation: [
-                { function: "Insert Keyframe", key: "I", description: "Insert keyframe" },
-                { function: "Delete Keyframe", key: "Alt + I", description: "Delete keyframe" },
-                { function: "Next Frame", key: "Right Arrow", description: "Go to next frame" },
-                { function: "Previous Frame", key: "Left Arrow", description: "Go to previous frame" },
-                { function: "First Frame", key: "Shift + Left Arrow", description: "Go to first frame" },
-                { function: "Last Frame", key: "Shift + Right Arrow", description: "Go to last frame" },
-                { function: "Auto Keying", key: "Shift + Alt + I", description: "Toggle auto keying" },
-                { function: "Graph Editor", key: "Shift + F6", description: "Open graph editor" }
-            ]
-        };
+        const hotkeysData = [
+            // --- GENERAL INTERFACE ---
+            { func: "Search Menu (Command Search)", key: "F3", cat: "General" },
+            { func: "Quick Favorites Menu", key: "Q", cat: "General" },
+            { func: "Interaction Mode Pie Menu", key: "Tab", cat: "General" },
+            { func: "Shading Pie Menu", key: "Z", cat: "General" },
+            { func: "Workspace: Next/Prev", key: "Ctrl + PgUp/Dn", cat: "General" },
+            { func: "Maximize Area Toggle", key: "Ctrl + Space", cat: "General" },
+            { func: "Toggle Fullscreen Area", key: "Ctrl + Alt + Space", cat: "General" },
+            { func: "Render Image", key: "F12", cat: "General" },
+            { func: "Render Animation", key: "Ctrl + F12", cat: "General" },
+            { func: "Adjust Last Operation", key: "F9", cat: "General" },
+            { func: "Save File", key: "Ctrl + S", cat: "General" },
+            { func: "Undo", key: "Ctrl + Z", cat: "General" },
+            { func: "Redo", key: "Shift + Ctrl + Z", cat: "General" },
+            { func: "Toolbar Toggle", key: "T", cat: "General" },
+            { func: "Sidebar Toggle", key: "N", cat: "General" },
+            { func: "Repeat Last Action", key: "Shift + R", cat: "General" },
 
-        let currentMode = 'all';
-        let quizData = [];
-        let currentQuizIndex = 0;
-        let quizStats = { correct: 0, incorrect: 0 };
-        let userProgress = { mastered: new Set(), quizAttempts: [] };
+            // --- VIEWPORT NAVIGATION ---
+            { func: "Orbit Viewport", key: "MMB", cat: "Viewport" },
+            { func: "Pan Viewport", key: "Shift + MMB", cat: "Viewport" },
+            { func: "Zoom Viewport", key: "Ctrl + MMB", cat: "Viewport" },
+            { func: "View Pie Menu", key: "~", cat: "Viewport" },
+            { func: "Camera View", key: "Numpad 0", cat: "Viewport" },
+            { func: "Front View", key: "Numpad 1", cat: "Viewport" },
+            { func: "Right View", key: "Numpad 3", cat: "Viewport" },
+            { func: "Top View", key: "Numpad 7", cat: "Viewport" },
+            { func: "Flip Axis (Back/Left/Bottom)", key: "Ctrl + Numpad 1/3/7", cat: "Viewport" },
+            { func: "Frame Selected", key: "Numpad .", cat: "Viewport" },
+            { func: "Local View Toggle", key: "Numpad /", cat: "Viewport" },
+            { func: "Walk Navigation", key: "Shift + ~", cat: "Viewport" },
+            { func: "Fly Navigation", key: "Shift + F", cat: "Viewport" },
+            { func: "Toggle Orthographic/Perspective", key: "Numpad 5", cat: "Viewport" },
 
-        // Initialize the application
-        document.addEventListener('DOMContentLoaded', function() {
-            loadHotkeys();
+            // --- OBJECT MODE ---
+            { func: "Add Menu", key: "Shift + A", cat: "General" },
+            { func: "Grab / Move", key: "G", cat: "General" },
+            { func: "Rotate", key: "R", cat: "General" },
+            { func: "Scale", key: "S", cat: "General" },
+            { func: "Duplicate", key: "Shift + D", cat: "General" },
+            { func: "Duplicate Linked", key: "Alt + D", cat: "General" },
+            { func: "Move to Collection", key: "M", cat: "General" },
+            { func: "Join Objects", key: "Ctrl + J", cat: "General" },
+            { func: "Parent Object", key: "Ctrl + P", cat: "General" },
+            { func: "Clear Parent", key: "Alt + P", cat: "General" },
+            { func: "Hide Selected", key: "H", cat: "General" },
+            { func: "Unhide All", key: "Alt + H", cat: "General" },
+            { func: "Apply Transform Menu", key: "Ctrl + A", cat: "General" },
+            { func: "Snapping Toggle", key: "Shift + Tab", cat: "General" },
+            { func: "Orientation Pie Menu", key: ",", cat: "General" },
+            { func: "Pivot Point Pie Menu", key: ".", cat: "General" },
+
+            // --- EDIT MODE ---
+            { func: "Vertex Select", key: "1", cat: "Edit" },
+            { func: "Edge Select", key: "2", cat: "Edit" },
+            { func: "Face Select", key: "3", cat: "Edit" },
+            { func: "Extrude Region", key: "E", cat: "Edit" },
+            { func: "Inset Faces", key: "I", cat: "Edit" },
+            { func: "Bevel", key: "Ctrl + B", cat: "Edit" },
+            { func: "Loop Cut and Slide", key: "Ctrl + R", cat: "Edit" },
+            { func: "Knife Tool", key: "K", cat: "Edit" },
+            { func: "Merge Vertices Menu", key: "M", cat: "Edit" },
+            { func: "Dissolve Selection", key: "Ctrl + X", cat: "Edit" },
+            { func: "Edge Slide", key: "G, G", cat: "Edit" },
+            { func: "Fill Face/Edge", key: "F", cat: "Edit" },
+            { func: "Separate Selection", key: "P", cat: "Edit" },
+            { func: "Rip Vertices", key: "V", cat: "Edit" },
+            { func: "Connect Vertices/Path", key: "J", cat: "Edit" },
+            { func: "Proportional Editing Toggle", key: "O", cat: "Edit" },
+
+            // --- SCULPT MODE ---
+            { func: "Brush Size", key: "F", cat: "Sculpt" },
+            { func: "Brush Strength", key: "Shift + F", cat: "Sculpt" },
+            { func: "Smooth Brush (Hold)", key: "Shift", cat: "Sculpt" },
+            { func: "Invert Brush Effect (Hold)", key: "Ctrl", cat: "Sculpt" },
+            { func: "Mask Brush", key: "M", cat: "Sculpt" },
+            { func: "Clear Mask", key: "Alt + M", cat: "Sculpt" },
+            { func: "Invert Mask", key: "Ctrl + I", cat: "Sculpt" },
+            { func: "Remesh Operation", key: "Ctrl + R", cat: "Sculpt" },
+            { func: "Set Remesh Resolution", key: "Shift + R", cat: "Sculpt" },
+            { func: "Dyntopo Toggle", key: "Ctrl + D", cat: "Sculpt" },
+
+            // --- GREASE PENCIL ---
+            { func: "GP: Draw Mode", key: "Shift + Space", cat: "Grease" },
+            { func: "GP: Eraser (Hold while Drawing)", key: "Ctrl", cat: "Grease" },
+            { func: "GP: Fill Stroke", key: "Alt + F", cat: "Grease" },
+            { func: "GP: Stroke Smooth (Edit Mode)", key: "Alt + S", cat: "Grease" },
+            { func: "GP: Active Layer Menu", key: "U", cat: "Grease" },
+            { func: "GP: Material Palette", key: "Y", cat: "Grease" },
+            { func: "GP: Move to Layer", key: "M", cat: "Grease" },
+            { func: "GP: Join Strokes", key: "Ctrl + J", cat: "Grease" },
+            { func: "GP: Subdivide Strokes", key: "Ctrl + S", cat: "Grease" },
+            { func: "GP: Sculpt Mode Pie", key: "E", cat: "Grease" },
+            { func: "GP: Reproject Strokes", key: "Alt + P", cat: "Grease" },
+
+            // --- ANIMATION ---
+            { func: "Insert Keyframe Menu", key: "I", cat: "Animation" },
+            { func: "Delete Keyframe Menu", key: "Alt + I", cat: "Animation" },
+            { func: "Play / Stop", key: "Space", cat: "Animation" },
+            { func: "Next Frame", key: "Right Arrow", cat: "Animation" },
+            { func: "Previous Frame", key: "Left Arrow", cat: "Animation" },
+            { func: "Jump to First Frame", key: "Shift + Left Arrow", cat: "Animation" },
+            { func: "Jump to Last Frame", key: "Shift + Right Arrow", cat: "Animation" },
+            { func: "Next Keyframe", key: "Up Arrow", cat: "Animation" },
+            { func: "Previous Keyframe", key: "Down Arrow", cat: "Animation" },
+            { func: "Keying Set Pie Menu", key: "K", cat: "Animation" },
+            { func: "Auto-Keyframe Toggle", key: "Shift + Alt + I", cat: "Animation" }
+        ];
+
+        let userProgress = { mastered: new Set() };
+        let quizPool = [];
+        let currentIdx = 0;
+        let stats = { correct: 0, incorrect: 0 };
+        let currentFilter = 'all';
+
+        function init() {
+            loadMastery();
+            renderHotkeys();
             setupSearch();
-            loadUserProgress();
-        });
+        }
 
-        // Set learning mode
         function setMode(mode) {
-            currentMode = mode;
-            
-            // Update active button
-            document.querySelectorAll('[id^="mode-"]').forEach(btn => {
-                btn.classList.remove('active-mode');
-                btn.classList.add('hover:bg-gray-100');
-            });
-            
-            const activeBtn = document.getElementById(`mode-${mode}`);
-            activeBtn.classList.add('active-mode');
-            activeBtn.classList.remove('hover:bg-gray-100');
-            
-            // Show/hide appropriate containers
-            if (mode === 'quiz') {
-                document.getElementById('hotkeys-container').classList.add('hidden');
-                document.getElementById('quiz-container').classList.remove('hidden');
-                document.getElementById('insights-container').classList.add('hidden');
-                startQuiz();
-            } else if (mode === 'insights') {
-                document.getElementById('hotkeys-container').classList.add('hidden');
-                document.getElementById('quiz-container').classList.add('hidden');
-                document.getElementById('insights-container').classList.remove('hidden');
-                showInsights();
-            } else {
-                document.getElementById('hotkeys-container').classList.remove('hidden');
-                document.getElementById('quiz-container').classList.add('hidden');
-                document.getElementById('insights-container').classList.add('hidden');
-                loadHotkeys();
+            document.querySelectorAll('.mode-btn').forEach(btn => btn.classList.remove('active-mode'));
+            document.getElementById(`mode-${mode}`).classList.add('active-mode');
+
+            document.getElementById('browser-view').classList.toggle('hidden', !['all', 'General', 'Viewport', 'Edit', 'Sculpt', 'Grease', 'Animation'].includes(mode));
+            document.getElementById('quiz-container').classList.toggle('hidden', mode !== 'quiz');
+            document.getElementById('insights-container').classList.toggle('hidden', mode !== 'insights');
+
+            if (mode === 'quiz') startQuiz();
+            else if (mode === 'insights') drawInsights();
+            else {
+                currentFilter = mode;
+                renderHotkeys();
             }
         }
 
-        // Load hotkeys based on current mode
-        function loadHotkeys(searchTerm = '') {
+        function renderHotkeys(search = '') {
             const container = document.getElementById('hotkeys-container');
             container.innerHTML = '';
             
-            let hotkeys = [];
-            
-            if (currentMode === 'all') {
-                Object.values(hotkeysData).forEach(category => {
-                    hotkeys = hotkeys.concat(category);
-                });
-            } else {
-                hotkeys = hotkeysData[currentMode] || [];
-            }
-            
-            // Filter by search term
-            if (searchTerm) {
-                hotkeys = hotkeys.filter(hotkey => 
-                    hotkey.function.toLowerCase().includes(searchTerm.toLowerCase()) ||
-                    hotkey.key.toLowerCase().includes(searchTerm.toLowerCase()) ||
-                    hotkey.description.toLowerCase().includes(searchTerm.toLowerCase())
-                );
-            }
-            
-            // Group by category if showing all
-            if (currentMode === 'all') {
-                const categories = ['general', 'viewport', 'edit', 'sculpt', 'animation'];
-                categories.forEach(category => {
-                    const categoryHotkeys = hotkeysData[category];
-                    if (categoryHotkeys && categoryHotkeys.length > 0) {
-                        const categorySection = createCategorySection(category, categoryHotkeys);
-                        container.appendChild(categorySection);
-                    }
-                });
-            } else {
-                const hotkeysGrid = createHotkeysGrid(hotkeys);
-                container.appendChild(hotkeysGrid);
-            }
-        }
+            let filtered = hotkeysData;
+            if (currentFilter !== 'all') filtered = filtered.filter(h => h.cat === currentFilter);
+            if (search) filtered = filtered.filter(h => 
+                h.func.toLowerCase().includes(search.toLowerCase()) || 
+                h.key.toLowerCase().includes(search.toLowerCase())
+            );
 
-        // Create category section
-        function createCategorySection(category, hotkeys) {
-            const section = document.createElement('div');
-            section.className = 'mb-8';
-            
-            const title = document.createElement('h3');
-            title.className = 'text-2xl font-bold mb-6 text-gray-800 capitalize';
-            title.textContent = category.replace(/([A-Z])/g, ' $1').trim();
-            section.appendChild(title);
-            
-            const grid = createHotkeysGrid(hotkeys);
-            section.appendChild(grid);
-            
-            return section;
-        }
-
-        // Create hotkeys grid
-        function createHotkeysGrid(hotkeys) {
-            const grid = document.createElement('div');
-            grid.className = 'grid grid-cols-1 md:grid-cols-2 gap-4';
-            
-            hotkeys.forEach(hotkey => {
-                const card = createHotkeyCard(hotkey);
-                grid.appendChild(card);
+            filtered.forEach(h => {
+                const card = document.createElement('div');
+                const mastered = userProgress.mastered.has(h.func);
+                card.className = `hotkey-card bg-white p-6 rounded-3xl border ${mastered ? 'border-green-500 bg-green-50' : 'border-gray-100'} shadow-sm flex justify-between items-center hover:shadow-xl transition-all group`;
+                card.innerHTML = `
+                    <div class="flex-grow">
+                        <p class="text-[9px] font-black text-gray-300 uppercase tracking-widest mb-1 group-hover:text-orange-400 transition-colors">${h.cat}</p>
+                        <h4 class="text-md font-bold text-gray-800">${h.func}</h4>
+                    </div>
+                    <div class="flex items-center gap-4">
+                        <span class="key-tag bg-gray-900 border border-gray-700 px-3 py-1.5 rounded-xl text-orange-400 font-bold shadow-lg">${h.key}</span>
+                        <button onclick="toggleStar('${h.func}')" class="text-2xl transform hover:scale-125 transition-transform drop-shadow-sm">${mastered ? '⭐' : '☆'}</button>
+                    </div>
+                `;
+                container.appendChild(card);
             });
-            
-            return grid;
+            updateStats();
         }
 
-        // Create hotkey card
-        function createHotkeyCard(hotkey) {
-            const card = document.createElement('div');
-            card.className = 'hotkey-card bg-white rounded-xl p-6 border border-gray-200/50 shadow-sm hover:shadow-lg transition-all duration-200';
-            
-            const isMastered = userProgress.mastered.has(hotkey.function);
-            if (isMastered) {
-                card.classList.add('border-green-200', 'bg-green-50');
-            }
-            
-            card.innerHTML = `
-                <div class="flex justify-between items-start mb-3">
-                    <h4 class="text-lg font-semibold text-gray-800">${hotkey.function}</h4>
-                    <button onclick="toggleMastered('${hotkey.function}')" class="text-2xl ${isMastered ? 'text-green-500' : 'text-gray-300'} hover:text-green-500 transition-colors">
-                        ${isMastered ? '⭐' : '☆'}
-                    </button>
-                </div>
-                <div class="flex items-center justify-between">
-                    <div class="key-combo text-2xl font-bold text-orange-600">${hotkey.key}</div>
-                    <div class="text-sm text-gray-500">${hotkey.description}</div>
-                </div>
-            `;
-            
-            return card;
-        }
-
-        // Setup search functionality
-        function setupSearch() {
-            const searchInput = document.getElementById('search-input');
-            searchInput.addEventListener('input', function(e) {
-                loadHotkeys(e.target.value);
-            });
-        }
-
-        // Quiz functionality
         function startQuiz() {
-            // Create quiz data from all hotkeys
-            quizData = [];
-            Object.values(hotkeysData).forEach(category => {
-                quizData = quizData.concat(category);
-            });
-            
-            shuffleArray(quizData);
-            currentQuizIndex = 0;
-            quizStats = { correct: 0, incorrect: 0 };
-            
-            showNextQuestion();
+            quizPool = [...hotkeysData];
+            shuffle(quizPool);
+            currentIdx = 0;
+            stats = { correct: 0, incorrect: 0 };
+            document.getElementById('correct-count').innerText = "0";
+            document.getElementById('incorrect-count').innerText = "0";
+            loadQuestion();
         }
 
-        function showNextQuestion() {
-            if (currentQuizIndex >= quizData.length) {
-                // Quiz completed
-                showQuizComplete();
-                return;
-            }
-            
-            const question = quizData[currentQuizIndex];
-            document.getElementById('quiz-question').textContent = question.description;
-            document.getElementById('quiz-answer').textContent = question.key;
-            
-            // Reset UI
-            document.getElementById('show-answer-btn').classList.remove('hidden');
-            document.getElementById('quiz-answer').classList.add('hidden');
+        function loadQuestion() {
+            const q = quizPool[currentIdx];
+            document.getElementById('quiz-question').innerText = q.func;
+            const feed = document.getElementById('quiz-feedback');
+            feed.classList.add('hidden');
             document.getElementById('next-question-btn').classList.add('hidden');
-            document.getElementById('quiz-answer').classList.remove('correct', 'incorrect');
-        }
+            
+            const options = document.getElementById('quiz-options');
+            options.innerHTML = '';
+            options.classList.remove('pointer-events-none');
 
-        function showAnswer() {
-            document.getElementById('show-answer-btn').classList.add('hidden');
-            document.getElementById('quiz-answer').classList.remove('hidden');
-            document.getElementById('next-question-btn').classList.remove('hidden');
-            
-            // Mark as incorrect since user needed to see answer
-            quizStats.incorrect++;
-            updateQuizStats();
-            
-            document.getElementById('quiz-answer').classList.add('incorrect');
+            let choices = [q.key];
+            while(choices.length < 4) {
+                let r = hotkeysData[Math.floor(Math.random()*hotkeysData.length)].key;
+                if(!choices.includes(r)) choices.push(r);
+            }
+            shuffle(choices);
+
+            choices.forEach(c => {
+                const btn = document.createElement('button');
+                btn.className = "option-btn p-6 rounded-3xl font-black text-xl bg-white shadow-md hover:shadow-xl transition-all";
+                btn.innerText = c;
+                btn.onclick = () => {
+                    const isCorrect = c === q.key;
+                    document.getElementById('quiz-options').classList.add('pointer-events-none');
+                    btn.classList.add(isCorrect ? 'correct' : 'incorrect');
+                    
+                    if (isCorrect) stats.correct++;
+                    else {
+                        stats.incorrect++;
+                        document.querySelectorAll('.option-btn').forEach(b => {
+                            if(b.innerText === q.key) b.classList.add('correct');
+                        });
+                    }
+
+                    feed.innerText = isCorrect ? "MASTERFUL! +10 Points" : "The Pro key is: " + q.key;
+                    feed.className = `p-8 rounded-3xl font-black text-2xl mb-8 border-4 ${isCorrect ? 'bg-green-50 text-green-700 border-green-200' : 'bg-red-50 text-red-700 border-red-200'}`;
+                    feed.classList.remove('hidden');
+                    document.getElementById('next-question-btn').classList.remove('hidden');
+                    
+                    document.getElementById('correct-count').innerText = stats.correct;
+                    document.getElementById('incorrect-count').innerText = stats.incorrect;
+                    updateStats();
+                };
+                options.appendChild(btn);
+            });
         }
 
         function nextQuestion() {
-            currentQuizIndex++;
-            showNextQuestion();
+            currentIdx++;
+            if (currentIdx < quizPool.length) loadQuestion();
+            else { alert("Gauntlet complete!"); startQuiz(); }
         }
 
-        function showQuizComplete() {
-            const container = document.getElementById('quiz-content');
-            container.innerHTML = `
-                <div class="text-center">
-                    <div class="text-6xl mb-4">🎉</div>
-                    <h3 class="text-3xl font-bold mb-4 gradient-text">Quiz Complete!</h3>
-                    <div class="grid grid-cols-2 gap-4 max-w-md mx-auto mb-6">
-                        <div class="bg-green-50 p-4 rounded-xl">
-                            <div class="text-2xl font-bold text-green-600">${quizStats.correct}</div>
-                            <div class="text-sm text-green-700">Correct</div>
-                        </div>
-                        <div class="bg-red-50 p-4 rounded-xl">
-                            <div class="text-2xl font-bold text-red-600">${quizStats.incorrect}</div>
-                            <div class="text-sm text-red-700">Needed Help</div>
-                        </div>
-                    </div>
-                    <button onclick="startQuiz()" class="bg-gradient-to-r from-orange-500 to-red-600 text-white px-8 py-4 rounded-xl font-semibold hover:from-orange-600 hover:to-red-700 transition-all duration-300">
-                        Take Quiz Again
-                    </button>
-                </div>
-            `;
+        function toggleStar(f) {
+            if (userProgress.mastered.has(f)) userProgress.mastered.delete(f);
+            else userProgress.mastered.add(f);
+            saveMastery();
+            renderHotkeys();
         }
 
-        function updateQuizStats() {
-            document.getElementById('correct-count').textContent = quizStats.correct;
-            document.getElementById('incorrect-count').textContent = quizStats.incorrect;
+        function updateStats() {
+            const masterCount = userProgress.mastered.size;
+            const total = hotkeysData.length;
+            document.getElementById('mastered-count').innerText = masterCount + " / " + total;
+            document.getElementById('progress-bar').style.width = Math.round((masterCount/total)*100) + "%";
         }
 
-        // Insights functionality
-        function showInsights() {
-            showDifficultHotkeysChart();
-            showProgressChart();
+        function setupSearch() {
+            document.getElementById('search-input').addEventListener('input', (e) => renderHotkeys(e.target.value));
         }
 
-        function showDifficultHotkeysChart() {
-            const data = [{
-                x: ['Extrude', 'Loop Cut', 'Bevel', 'Knife Tool', 'Inset Faces'],
-                y: [85, 72, 68, 61, 55],
-                type: 'bar',
-                marker: {
-                    color: ['#ef4444', '#f97316', '#eab308', '#22c55e', '#3b82f6']
-                }
-            }];
-
-            const layout = {
-                title: 'Success Rate by Hotkey (%)',
-                xaxis: { title: 'Hotkey Function' },
-                yaxis: { title: 'Success Rate (%)' },
-                margin: { t: 50, b: 100, l: 50, r: 50 }
-            };
-
-            Plotly.newPlot('difficult-hotkeys-chart', data, layout, {responsive: true});
+        function shuffle(a) { for (let i = a.length - 1; i > 0; i--) { const j = Math.floor(Math.random() * (i + 1)); [a[i], a[j]] = [a[j], a[i]]; } }
+        function saveMastery() { localStorage.setItem('mastery-blender-5', JSON.stringify([...userProgress.mastered])); }
+        function loadMastery() { 
+            const s = localStorage.getItem('mastery-blender-5');
+            if (s) userProgress.mastered = new Set(JSON.parse(s));
         }
 
-        function showProgressChart() {
-            const totalHotkeys = Object.values(hotkeysData).reduce((sum, arr) => sum + arr.length, 0);
-            const masteredCount = userProgress.mastered.size;
-            const remaining = totalHotkeys - masteredCount;
-
-            const data = [{
-                values: [masteredCount, remaining],
-                labels: ['Mastered', 'Remaining'],
-                type: 'pie',
-                marker: {
-                    colors: ['#22c55e', '#e5e7eb']
-                }
-            }];
-
-            const layout = {
-                title: 'Learning Progress',
-                margin: { t: 50, b: 50, l: 50, r: 50 }
-            };
-
-            Plotly.newPlot('progress-chart', data, layout, {responsive: true});
+        function drawInsights() {
+            const m = userProgress.mastered.size;
+            const r = hotkeysData.length - m;
+            Plotly.newPlot('progress-chart', [{ values: [m, r], labels: ['Mastered', 'Remaining'], type: 'pie', marker: { colors: ['#f97316', '#e5e7eb'] }, hole: .4 }], { margin: {t:0, b:0, l:0, r:0}, showlegend: true });
         }
 
-        // User progress management
-        function toggleMastered(functionName) {
-            if (userProgress.mastered.has(functionName)) {
-                userProgress.mastered.delete(functionName);
-            } else {
-                userProgress.mastered.add(functionName);
-            }
-            
-            saveUserProgress();
-            updateProgressDisplay();
-            loadHotkeys(document.getElementById('search-input').value);
-        }
-
-        function updateProgressDisplay() {
-            const masteredCount = userProgress.mastered.size;
-            const totalHotkeys = Object.values(hotkeysData).reduce((sum, arr) => sum + arr.length, 0);
-            const percentage = Math.round((masteredCount / totalHotkeys) * 100);
-            
-            document.getElementById('mastered-count').textContent = masteredCount;
-            document.getElementById('progress-bar').style.width = `${percentage}%`;
-        }
-
-        function saveUserProgress() {
-            localStorage.setItem('blender-hotkey-progress', JSON.stringify({
-                mastered: Array.from(userProgress.mastered),
-                quizAttempts: userProgress.quizAttempts
-            }));
-        }
-
-        function loadUserProgress() {
-            const saved = localStorage.getItem('blender-hotkey-progress');
-            if (saved) {
-                const data = JSON.parse(saved);
-                userProgress.mastered = new Set(data.mastered || []);
-                userProgress.quizAttempts = data.quizAttempts || [];
-            }
-            updateProgressDisplay();
-        }
-
-        // Help modal
-        function showHelp() {
-            document.getElementById('help-modal').classList.remove('hidden');
-        }
-
-        function hideHelp() {
-            document.getElementById('help-modal').classList.add('hidden');
-        }
-
-        // Utility functions
-        function shuffleArray(array) {
-            for (let i = array.length - 1; i > 0; i--) {
-                const j = Math.floor(Math.random() * (i + 1));
-                [array[i], array[j]] = [array[j], array[i]];
-            }
-        }
-
-        // Close help modal on outside click
-        document.getElementById('help-modal').addEventListener('click', function(e) {
-            if (e.target === this) {
-                hideHelp();
-            }
-        });
+        window.onload = () => { init(); };
     </script>
 </body>
 </html>
