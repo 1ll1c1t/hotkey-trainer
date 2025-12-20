@@ -3,130 +3,130 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Illustrator Windows Interactive Hotkey Companion</title>
+    <title>Illustrator - Hotkey Trainer</title>
     <script src="https://cdn.tailwindcss.com"></script>
-    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap" rel="stylesheet">
     <style>
         body { font-family: 'Inter', sans-serif; }
-        
-        /* Custom Scrollbar */
-        ::-webkit-scrollbar { width: 8px; }
-        ::-webkit-scrollbar-track { background: #fff7ed; }
-        ::-webkit-scrollbar-thumb { background: #fdba74; border-radius: 4px; }
-        ::-webkit-scrollbar-thumb:hover { background: #f97316; }
-
-        /* Chart Container Styling */
-        .chart-container {
-            position: relative;
-            width: 100%;
-            max-width: 600px;
-            margin-left: auto;
-            margin-right: auto;
-            height: 300px;
-            max-height: 300px;
-        }
-        
-        .card-hover:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
-        }
-
-        .key-cap {
-            background: linear-gradient(to bottom, #f8fafc, #e2e8f0);
-            border-bottom: 3px solid #cbd5e1;
-        }
-        .key-cap:active {
-            border-bottom: 1px solid #cbd5e1;
-            transform: translateY(2px);
-        }
+        .gradient-text { background: linear-gradient(135deg, #f97316 0%, #ec4899 100%); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
+        .floating-key { animation: float 3s ease-in-out infinite; }
+        @keyframes float { 0%, 100% { transform: translateY(0px); } 50% { transform: translateY(-10px); } }
     </style>
-    <!-- Chosen Palette: Illustrator Orange (Orange, Amber, Slate) -->
-    <!-- Application Structure Plan:
-         1. **Sidebar Navigation**: Focused on Vector workflow (Pen Tool, Object Management, Typography, Artboards).
-         2. **Main Dashboard**: Standard grid layout.
-         3. **Analytics**: Visualizes the heavy reliance on Object Management (Grouping, Locking, Arranging) compared to Photoshop's Layer focus.
-    -->
 </head>
-<body class="bg-slate-50 text-slate-800 h-screen flex overflow-hidden">
-
-    <div id="mobile-menu-overlay" class="fixed inset-0 bg-black bg-opacity-50 z-20 hidden lg:hidden" onclick="toggleMobileMenu()"></div>
-
-    <aside id="sidebar" class="bg-white w-64 flex-shrink-0 border-r border-slate-200 flex flex-col fixed inset-y-0 left-0 transform -translate-x-full lg:relative lg:translate-x-0 transition-transform duration-200 ease-in-out z-30">
-        <div class="p-6 border-b border-slate-100 flex items-center justify-center">
-            <!-- LOGO HEADER -->
-            <img src="https://upload.wikimedia.org/wikipedia/commons/f/fb/Adobe_Illustrator_CC_icon.svg" alt="Illustrator Logo" class="w-16 h-16 drop-shadow-sm">
-        </div>
-        
-        <nav class="flex-1 overflow-y-auto py-4">
-            <ul class="space-y-1 px-3">
-                <li><button onclick="setView('dashboard')" class="nav-btn w-full text-left px-4 py-3 rounded-lg flex items-center space-x-3 hover:bg-orange-50 text-slate-600 hover:text-orange-600 transition-colors font-medium bg-orange-50 text-orange-600" id="btn-dashboard"><span>⌨️</span> <span>All Hotkeys</span></button></li>
-                <!-- ... existing nav items ... -->
-                <li><button onclick="setView('tools')" class="nav-btn w-full text-left px-4 py-3 rounded-lg flex items-center space-x-3 hover:bg-orange-50 text-slate-600 hover:text-orange-600 transition-colors font-medium" id="btn-tools"><span>✒️</span> <span>Tools & Pen</span></button></li>
-                <li><button onclick="setView('objects')" class="nav-btn w-full text-left px-4 py-3 rounded-lg flex items-center space-x-3 hover:bg-orange-50 text-slate-600 hover:text-orange-600 transition-colors font-medium" id="btn-objects"><span>📦</span> <span>Object Manager</span></button></li>
-                <li><button onclick="setView('type')" class="nav-btn w-full text-left px-4 py-3 rounded-lg flex items-center space-x-3 hover:bg-orange-50 text-slate-600 hover:text-orange-600 transition-colors font-medium" id="btn-type"><span>Aa</span> <span>Typography</span></button></li>
-                <li><button onclick="setView('view')" class="nav-btn w-full text-left px-4 py-3 rounded-lg flex items-center space-x-3 hover:bg-orange-50 text-slate-600 hover:text-orange-600 transition-colors font-medium" id="btn-view"><span>🔍</span> <span>View & Artboards</span></button></li>
-                <li class="pt-4 mt-4 border-t border-slate-100"><button onclick="setView('quiz')" class="nav-btn w-full text-left px-4 py-3 rounded-lg flex items-center space-x-3 hover:bg-amber-50 text-slate-600 hover:text-amber-600 transition-colors font-medium" id="btn-quiz"><span>🧠</span> <span>Quiz Mode</span></button></li>
-                <li><button onclick="setView('analytics')" class="nav-btn w-full text-left px-4 py-3 rounded-lg flex items-center space-x-3 hover:bg-purple-50 text-slate-600 hover:text-purple-600 transition-colors font-medium" id="btn-analytics"><span>📊</span> <span>Insights</span></button></li>
-            </ul>
-        </nav>
-        
-        <div class="p-4 border-t border-slate-200 bg-slate-50 flex justify-between items-center">
-            <p class="text-xs text-slate-400">Illustrator CC</p>
-            <a href="index.html" class="text-xs font-bold text-slate-500 hover:text-orange-600 transition-colors">Home 🏠</a>
-        </div>
-    </aside>
-
-    <!-- ... rest of content and scripts ... -->
-    <main class="flex-1 flex flex-col h-screen overflow-hidden relative">
-        <header class="bg-white border-b border-slate-200 p-4 lg:hidden flex justify-between items-center z-10">
-            <span class="font-bold text-orange-600">Illustrator</span>
-            <button onclick="toggleMobileMenu()" class="text-slate-600">☰ Menu</button>
-        </header>
-        <div class="bg-white border-b border-slate-200 px-6 py-4 flex flex-col sm:flex-row justify-between items-center gap-4 z-10 shadow-sm">
-            <div>
-                <h2 id="section-title" class="text-xl font-bold text-slate-800">All Hotkeys</h2>
-                <p id="section-desc" class="text-sm text-slate-500">Shortcuts for Vector Design.</p>
-            </div>
-            <div class="relative w-full sm:w-64">
-                <input type="text" id="search-input" placeholder="Search functionality or key..." class="w-full pl-10 pr-4 py-2 bg-slate-100 border-none rounded-full focus:ring-2 focus:ring-orange-500 focus:bg-white transition-all outline-none text-sm"><span class="absolute left-3 top-2.5 text-slate-400">🔍</span>
+<body class="bg-gray-50 text-gray-900">
+    <nav class="bg-white/90 backdrop-blur-md border-b border-gray-200/50 sticky top-0 z-50">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between items-center h-16">
+                <div class="flex items-center space-x-4">
+                    <a href="index.html" class="flex items-center space-x-2 hover:opacity-80 transition-opacity">
+                        <div class="w-8 h-8 bg-gradient-to-br from-indigo-500 to-purple-600 rounded-lg flex items-center justify-center">
+                            <span class="text-white font-bold text-sm">⌘</span>
+                        </div>
+                        <span class="font-bold text-xl gradient-text">Hotkey Trainer</span>
+                    </a>
+                    <div class="h-6 w-px bg-gray-300"></div>
+                    <span class="text-gray-600 font-medium">Illustrator</span>
+                </div>
+                <div class="flex space-x-4">
+                    <a href="index.html" class="text-gray-600 hover:text-indigo-600 transition-colors font-medium">
+                        🏠 Home
+                    </a>
+                </div>
             </div>
         </div>
-        <div id="content-area" class="flex-1 overflow-y-auto bg-slate-50 p-6 relative">
-            <div id="hotkey-grid" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4 pb-20"></div>
-            <div id="quiz-view" class="hidden h-full flex flex-col items-center justify-center max-w-2xl mx-auto"><div class="bg-white p-8 rounded-2xl shadow-xl w-full text-center border border-slate-100"><div class="mb-6"><span class="bg-amber-100 text-amber-700 px-3 py-1 rounded-full text-xs font-bold uppercase tracking-wide" id="quiz-category">Category</span></div><h3 class="text-slate-500 text-lg mb-2">How do you trigger:</h3><h2 class="text-3xl font-bold text-slate-800 mb-8" id="quiz-question"></h2><div id="quiz-answer-section" class="hidden mb-8 animate-fade-in"><div class="text-5xl font-mono font-bold text-orange-600 mb-2" id="quiz-answer-key"></div><p class="text-slate-400 text-sm">Correct Answer</p></div><div class="flex justify-center gap-4"><button onclick="revealAnswer()" id="btn-reveal" class="bg-slate-800 text-white px-6 py-3 rounded-lg hover:bg-slate-700 transition shadow-lg font-semibold w-full sm:w-auto">Show Key</button><button onclick="nextQuestion()" id="btn-next" class="hidden bg-orange-600 text-white px-6 py-3 rounded-lg hover:bg-orange-700 transition shadow-lg font-semibold w-full sm:w-auto">Next Card</button></div></div></div>
-            <div id="analytics-view" class="hidden max-w-5xl mx-auto space-y-6"><div class="bg-white p-6 rounded-xl shadow-sm border border-slate-200"><h3 class="text-lg font-bold text-slate-800 mb-4">Hotkey Distribution</h3><div class="chart-container"><canvas id="categoryChart"></canvas></div></div><div class="grid grid-cols-1 md:grid-cols-2 gap-6"><div class="bg-white p-6 rounded-xl shadow-sm border border-slate-200"><h3 class="text-lg font-bold text-slate-800 mb-4">Modifier Key Usage</h3><div class="chart-container"><canvas id="modifierChart"></canvas></div></div><div class="bg-white p-6 rounded-xl shadow-sm border border-slate-200"><h3 class="text-lg font-bold text-slate-800 mb-4">Action Types</h3><div class="chart-container"><canvas id="actionTypeChart"></canvas></div></div></div></div>
+    </nav>
+
+    <header class="bg-gradient-to-br from-orange-500 to-pink-600 text-white py-12">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+            <div class="floating-key inline-block mb-6">
+                <div class="w-20 h-20 bg-white/20 rounded-2xl flex items-center justify-center backdrop-blur-sm">
+                    <span class="text-4xl font-bold">Ai</span>
+                </div>
+            </div>
+            <h1 class="text-4xl md:text-5xl font-black mb-4">Illustrator</h1>
+            <p class="text-xl md:text-2xl opacity-90 mb-6">Vector Design Hotkeys</p>
+            <div class="flex justify-center items-center space-x-8 text-sm">
+                <div class="flex items-center space-x-2">
+                    <span class="bg-white/20 px-3 py-1 rounded-full">140+ Hotkeys</span>
+                </div>
+                <div class="flex items-center space-x-2">
+                    <span class="bg-white/20 px-3 py-1 rounded-full">Coming Soon</span>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <main class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
+        <div class="text-center">
+            <div class="text-6xl mb-6">🚧</div>
+            <h2 class="text-3xl font-bold mb-4 text-gray-800">Coming Soon</h2>
+            <p class="text-xl text-gray-600 mb-8 max-w-2xl mx-auto">
+                Illustrator vector design trainer is in development with comprehensive pen tool and shape shortcuts.
+            </p>
+            <div class="bg-white rounded-2xl p-8 shadow-lg border border-gray-200/50 max-w-2xl mx-auto">
+                <h3 class="text-2xl font-bold mb-6 gradient-text">Vector Features</h3>
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-6 text-left">
+                    <div class="flex items-start space-x-3">
+                        <div class="w-6 h-6 bg-orange-500 rounded-full flex items-center justify-center flex-shrink-0 mt-1">
+                            <span class="text-white text-sm">✓</span>
+                        </div>
+                        <div>
+                            <h4 class="font-semibold text-gray-800">Pen Tool Mastery</h4>
+                            <p class="text-gray-600 text-sm">Advanced pen tool shortcuts</p>
+                        </div>
+                    </div>
+                    <div class="flex items-start space-x-3">
+                        <div class="w-6 h-6 bg-orange-500 rounded-full flex items-center justify-center flex-shrink-0 mt-1">
+                            <span class="text-white text-sm">✓</span>
+                        </div>
+                        <div>
+                            <h4 class="font-semibold text-gray-800">Shape Operations</h4>
+                            <p class="text-gray-600 text-sm">Pathfinder and shape tools</p>
+                        </div>
+                    </div>
+                    <div class="flex items-start space-x-3">
+                        <div class="w-6 h-6 bg-orange-500 rounded-full flex items-center justify-center flex-shrink-0 mt-1">
+                            <span class="text-white text-sm">✓</span>
+                        </div>
+                        <div>
+                            <h4 class="font-semibold text-gray-800">Typography Tools</h4>
+                            <p class="text-gray-600 text-sm">Text and font management</p>
+                        </div>
+                    </div>
+                    <div class="flex items-start space-x-3">
+                        <div class="w-6 h-6 bg-orange-500 rounded-full flex items-center justify-center flex-shrink-0 mt-1">
+                            <span class="text-white text-sm">✓</span>
+                        </div>
+                        <div>
+                            <h4 class="font-semibold text-gray-800">Color Systems</h4>
+                            <p class="text-gray-600 text-sm">Swatches and color management</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="mt-12">
+                <a href="index.html" class="bg-gradient-to-r from-orange-500 to-pink-600 text-white px-8 py-4 rounded-xl font-semibold hover:from-orange-600 hover:to-pink-700 transition-all duration-300 inline-block">
+                    Back to Home
+                </a>
+            </div>
         </div>
     </main>
-    <script>
-        const hotkeyData = [ { key: "V", action: "Selection Tool", category: "Tools" }, { key: "A", action: "Direct Selection Tool", category: "Tools" }, { key: "Y", action: "Magic Wand", category: "Tools" }, { key: "Q", action: "Lasso Tool", category: "Tools" }, { key: "P", action: "Pen Tool", category: "Tools" }, { key: "Shift + +", action: "Curvature Tool", category: "Tools" }, { key: "T", action: "Type Tool", category: "Tools" }, { key: "\\", action: "Line Segment Tool", category: "Tools" }, { key: "M", action: "Rectangle Tool", category: "Tools" }, { key: "L", action: "Ellipse Tool", category: "Tools" }, { key: "B", action: "Paintbrush Tool", category: "Tools" }, { key: "Shift + B", action: "Blob Brush Tool", category: "Tools" }, { key: "N", action: "Pencil Tool", category: "Tools" }, { key: "Shift + E", action: "Eraser Tool", category: "Tools" }, { key: "R", action: "Rotate Tool", category: "Tools" }, { key: "S", action: "Scale Tool", category: "Tools" }, { key: "G", action: "Gradient Tool", category: "Tools" }, { key: "I", action: "Eyedropper", category: "Tools" }, { key: "Shift + O", action: "Artboard Tool", category: "Tools" }, { key: "Shift + M", action: "Shape Builder Tool", category: "Tools" }, { key: "Ctrl + G", action: "Group", category: "Objects" }, { key: "Ctrl + Shift + G", action: "Ungroup", category: "Objects" }, { key: "Ctrl + 2", action: "Lock Selection", category: "Objects" }, { key: "Ctrl + Alt + 2", action: "Unlock All", category: "Objects" }, { key: "Ctrl + 3", action: "Hide Selection", category: "Objects" }, { key: "Ctrl + Alt + 3", action: "Show All", category: "Objects" }, { key: "Ctrl + ]", action: "Bring Forward", category: "Objects" }, { key: "Ctrl + [", action: "Send Backward", category: "Objects" }, { key: "Ctrl + Shift + ]", action: "Bring to Front", category: "Objects" }, { key: "Ctrl + Shift + [", action: "Send to Back", category: "Objects" }, { key: "Ctrl + D", action: "Transform Again", category: "Objects" }, { key: "Ctrl + 7", action: "Make Clipping Mask", category: "Objects" }, { key: "Ctrl + Alt + 7", action: "Release Clipping Mask", category: "Objects" }, { key: "Ctrl + Y", action: "Outline / Preview Mode", category: "View" }, { key: "Ctrl + +", action: "Zoom In", category: "View" }, { key: "Ctrl + -", action: "Zoom Out", category: "View" }, { key: "Ctrl + 0", action: "Fit Artboard in Window", category: "View" }, { key: "Ctrl + Alt + 0", action: "Fit All in Window", category: "View" }, { key: "H", action: "Hand Tool", category: "View" }, { key: "Space (Hold)", action: "Temp Hand Tool", category: "View" }, { key: "Ctrl + \"", action: "Show/Hide Grid", category: "View" }, { key: "Ctrl + ;", action: "Show/Hide Guides", category: "View" }, { key: "Ctrl + U", action: "Smart Guides Toggle", category: "View" }, { key: "Ctrl + C", action: "Copy", category: "Editing" }, { key: "Ctrl + V", action: "Paste", category: "Editing" }, { key: "Ctrl + F", action: "Paste in Front", category: "Editing" }, { key: "Ctrl + B", action: "Paste in Back", category: "Editing" }, { key: "Ctrl + Shift + V", action: "Paste in Place", category: "Editing" }, { key: "Ctrl + Z", action: "Undo", category: "Editing" }, { key: "Ctrl + Shift + Z", action: "Redo", category: "Editing" }, { key: "Ctrl + Shift + O", action: "Create Outlines (Type)", category: "Type" }, { key: "Ctrl + T", action: "Character Panel", category: "Type" }, { key: "Ctrl + Shift + >", action: "Increase Font Size", category: "Type" }, { key: "Ctrl + Shift + <", action: "Decrease Font Size", category: "Type" }, { key: "Ctrl + Enter", action: "Commit Text Edit", category: "Type" } ];
-        let currentView = 'dashboard'; let searchQuery = ''; let quizCurrentIndex = 0; let chartInstances = {}; const gridEl = document.getElementById('hotkey-grid'); const titleEl = document.getElementById('section-title'); const descEl = document.getElementById('section-desc'); const searchInput = document.getElementById('search-input'); const quizView = document.getElementById('quiz-view'); const analyticsView = document.getElementById('analytics-view'); const mobileMenu = document.getElementById('sidebar'); const overlay = document.getElementById('mobile-menu-overlay');
-        document.addEventListener('DOMContentLoaded', () => { renderGrid(); searchInput.addEventListener('input', (e) => { searchQuery = e.target.value.toLowerCase(); renderGrid(); }); initCharts(); });
-        function setView(view) {
-            currentView = view; searchQuery = ''; searchInput.value = '';
-            document.querySelectorAll('.nav-btn').forEach(btn => { btn.classList.remove('bg-orange-50', 'text-orange-600', 'bg-amber-50', 'text-amber-600', 'bg-purple-50', 'text-purple-600'); btn.classList.add('text-slate-600'); });
-            gridEl.classList.remove('hidden'); quizView.classList.add('hidden'); analyticsView.classList.add('hidden');
-            if(window.innerWidth < 1024) toggleMobileMenu();
-            switch(view) {
-                case 'dashboard': titleEl.textContent = 'All Hotkeys'; descEl.textContent = 'Complete list of Illustrator shortcuts.'; document.getElementById('btn-dashboard').classList.add('bg-orange-50', 'text-orange-600'); renderGrid(); break;
-                case 'tools': titleEl.textContent = 'Tools & Pen'; descEl.textContent = 'Vector creation and manipulation tools.'; document.getElementById('btn-tools').classList.add('bg-orange-50', 'text-orange-600'); renderGrid('Tools'); break;
-                case 'objects': titleEl.textContent = 'Object Manager'; descEl.textContent = 'Grouping, Locking, and Stacking Order.'; document.getElementById('btn-objects').classList.add('bg-orange-50', 'text-orange-600'); renderGrid('Objects'); break;
-                case 'type': titleEl.textContent = 'Typography'; descEl.textContent = 'Text editing and font management.'; document.getElementById('btn-type').classList.add('bg-orange-50', 'text-orange-600'); renderGrid('Type'); break;
-                case 'view': titleEl.textContent = 'View & Artboards'; descEl.textContent = 'Navigation, Outline Mode, and Guides.'; document.getElementById('btn-view').classList.add('bg-orange-50', 'text-orange-600'); renderGrid('View'); break;
-                case 'quiz': titleEl.textContent = 'Quiz Mode'; descEl.textContent = 'Test your vector memory.'; document.getElementById('btn-quiz').classList.add('bg-amber-50', 'text-amber-600'); gridEl.classList.add('hidden'); quizView.classList.remove('hidden'); startQuiz(); break;
-                case 'analytics': titleEl.textContent = 'Insights'; descEl.textContent = 'Breakdown of shortcut categories.'; document.getElementById('btn-analytics').classList.add('bg-purple-50', 'text-purple-600'); gridEl.classList.add('hidden'); analyticsView.classList.remove('hidden'); break;
-            }
-        }
-        function renderGrid(filterCategory = null) {
-            gridEl.innerHTML = ''; const filteredData = hotkeyData.filter(item => { const matchesCategory = filterCategory ? item.category === filterCategory : true; const matchesSearch = item.action.toLowerCase().includes(searchQuery) || item.key.toLowerCase().includes(searchQuery); return matchesCategory && matchesSearch; });
-            if (filteredData.length === 0) { gridEl.innerHTML = `<div class="col-span-full text-center py-20"><div class="text-4xl mb-4">😶‍🌫️</div><h3 class="text-lg font-semibold text-slate-700">No hotkeys found</h3></div>`; return; }
-            filteredData.forEach(item => { const card = document.createElement('div'); card.className = 'bg-white rounded-xl p-5 border border-slate-200 card-hover flex flex-col justify-between h-full'; let tagColor = 'bg-slate-100 text-slate-600'; if(item.category === 'Tools') tagColor = 'bg-orange-50 text-orange-600'; if(item.category === 'Objects') tagColor = 'bg-amber-50 text-amber-600'; if(item.category === 'Type') tagColor = 'bg-pink-50 text-pink-600'; card.innerHTML = `<div class="mb-4"><span class="text-xs font-bold uppercase tracking-wider px-2 py-1 rounded-md ${tagColor}">${item.category}</span><h3 class="text-slate-600 font-medium mt-3 leading-snug">${item.action}</h3></div><div class="mt-auto"><div class="key-cap inline-block px-3 py-2 rounded-lg text-slate-800 font-mono font-bold text-lg shadow-sm border border-slate-200">${item.key}</div></div>`; gridEl.appendChild(card); });
-        }
-        function toggleMobileMenu() { mobileMenu.classList.toggle('-translate-x-full'); overlay.classList.toggle('hidden'); }
-        function startQuiz() { nextQuestion(); }
-        function nextQuestion() { const randomItem = hotkeyData[Math.floor(Math.random() * hotkeyData.length)]; document.getElementById('quiz-category').textContent = randomItem.category; document.getElementById('quiz-question').textContent = randomItem.action; document.getElementById('quiz-answer-key').textContent = randomItem.key; document.getElementById('quiz-answer-section').classList.add('hidden'); document.getElementById('btn-reveal').classList.remove('hidden'); document.getElementById('btn-next').classList.add('hidden'); }
-        function revealAnswer() { document.getElementById('quiz-answer-section').classList.remove('hidden'); document.getElementById('btn-reveal').classList.add('hidden'); document.getElementById('btn-next').classList.remove('hidden'); }
-        function initCharts() { const catCounts = {}; hotkeyData.forEach(d => catCounts[d.category] = (catCounts[d.category] || 0) + 1); new Chart(document.getElementById('categoryChart').getContext('2d'), { type: 'doughnut', data: { labels: Object.keys(catCounts), datasets: [{ data: Object.values(catCounts), backgroundColor: ['#f97316', '#fbbf24', '#ec4899', '#3b82f6', '#10b981'], borderWidth: 0 }] }, options: { responsive: true, maintainAspectRatio: false } }); let modCounts = { 'Ctrl+Shift': 0, 'Ctrl': 0, 'Single Key': 0 }; hotkeyData.forEach(d => { if(d.key.includes('Shift') && d.key.includes('Ctrl')) modCounts['Ctrl+Shift']++; else if(d.key.includes('Ctrl') || d.key.includes('Alt')) modCounts['Ctrl']++; else modCounts['Single Key']++; }); new Chart(document.getElementById('modifierChart').getContext('2d'), { type: 'bar', data: { labels: Object.keys(modCounts), datasets: [{ label: 'Frequency', data: Object.values(modCounts), backgroundColor: '#f97316', borderRadius: 6 }] }, options: { responsive: true, maintainAspectRatio: false } }); let types = { 'Tools': 0, 'Management': 0, 'Editing': 0 }; hotkeyData.forEach(d => { if(d.category === 'Tools') types['Tools']++; else if(d.category === 'Objects' || d.category === 'View') types['Management']++; else types['Editing']++; }); new Chart(document.getElementById('actionTypeChart').getContext('2d'), { type: 'pie', data: { labels: Object.keys(types), datasets: [{ data: Object.values(types), backgroundColor: ['#fb923c', '#f472b6', '#fbbf24'], borderWidth: 0 }] }, options: { responsive: true, maintainAspectRatio: false } }); }
-    </script>
+
+    <footer class="bg-gray-900 text-white py-12">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+            <div class="flex items-center justify-center space-x-2 mb-6">
+                <div class="w-8 h-8 bg-gradient-to-br from-indigo-500 to-purple-600 rounded-lg flex items-center justify-center">
+                    <span class="text-white font-bold text-sm">⌘</span>
+                </div>
+                <span class="font-bold text-xl">Hotkey Trainer</span>
+            </div>
+            <p class="text-gray-400 mb-4">
+                Master your creative software with interactive keyboard shortcut training.
+            </p>
+            <p class="text-gray-500 text-sm">
+                © 2025 Hotkey Trainer. All rights reserved. Made with ❤️ for the creative community.
+            </p>
+        </div>
+    </footer>
 </body>
 </html>
