@@ -1,0 +1,275 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <!-- Google tag (gtag.js) -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-GCG9LQ68MW"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+
+      gtag('config', 'G-GCG9LQ68MW');
+    </script>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ultimate Maya Hotkey Trainer</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/plotly.js/3.0.3/plotly.min.js"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+    <style>
+        body { font-family: 'Inter', sans-serif; }
+        .gradient-text { background: linear-gradient(135deg, #3b82f6 0%, #1e40af 100%); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
+        .active-mode { background: linear-gradient(135deg, #3b82f6 0%, #1e40af 100%); color: white !important; }
+        .correct { background-color: #10b981 !important; color: white !important; border-color: #059669 !important; }
+        .incorrect { background-color: #ef4444 !important; color: white !important; border-color: #b91c1c !important; }
+        .option-btn { transition: all 0.2s; border: 2px solid #f3f4f6; }
+        .option-btn:hover:not(:disabled) { border-color: #3b82f6; background-color: #eff6ff; transform: translateY(-2px); }
+        .hotkey-card { transition: all 0.2s ease; }
+        .custom-scroll::-webkit-scrollbar { width: 6px; }
+        .custom-scroll::-webkit-scrollbar-track { background: #f1f1f1; }
+        .custom-scroll::-webkit-scrollbar-thumb { background: #3b82f6; border-radius: 10px; }
+        .key-tag { font-family: 'Monaco', 'Consolas', monospace; font-size: 0.85rem; }
+    </style>
+</head>
+<body class="bg-gray-50 text-gray-900">
+    <!-- PayPal Donation Form -->
+    <div class="bg-gray-100 py-3 border-b border-gray-200 flex justify-center items-center sticky top-0 z-[100]">
+        <form action="https://www.paypal.com/donate" method="post" target="_top">
+            <input type="hidden" name="hosted_button_id" value="RSW8PUWLJJ8DC" />
+            <input type="image" src="https://www.paypalobjects.com/en_US/i/btn/btn_donate_LG.gif" border="0" name="submit" title="PayPal - The safer, easier way to pay online!" alt="Donate with PayPal button" />
+            <img alt="" border="0" src="https://www.paypal.com/en_US/i/scr/pixel.gif" width="1" height="1" />
+        </form>
+    </div>
+
+    <nav class="bg-white/90 backdrop-blur-md border-b sticky top-[52px] z-50 px-6 py-4 flex justify-between items-center shadow-sm">
+        <div class="flex items-center gap-3">
+            <div class="w-10 h-10 bg-blue-600 rounded-xl flex items-center justify-center text-white font-black italic shadow-lg">M</div>
+            <a href="index.html" class="font-bold text-2xl tracking-tighter gradient-text">Hotkey Trainer</a>
+        </div>
+        <a href="index.html" class="text-gray-600 hover:text-blue-600 transition-colors font-medium flex items-center gap-2">
+            <span>🏠</span> Home
+        </a>
+    </nav>
+    
+    <header class="bg-gradient-to-br from-blue-600 to-indigo-800 text-white py-14 text-center shadow-inner relative overflow-hidden">
+        <div class="absolute inset-0 opacity-10 pointer-events-none select-none text-[20rem] font-black -top-20 -right-10">MAYA</div>
+        <h1 class="text-6xl font-black mb-2 tracking-tight">Autodesk Maya 2025</h1>
+        <p class="text-xl opacity-90 font-medium">The Absolute Professional Database for Animation and VFX.</p>
+    </header>
+
+    <main class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8 grid grid-cols-1 lg:grid-cols-4 gap-8">
+        <!-- Sidebar Navigation -->
+        <div class="lg:col-span-1 space-y-4">
+            <div class="bg-white rounded-3xl p-6 shadow-xl border border-gray-100 sticky top-40">
+                <h3 class="text-sm font-black mb-4 text-gray-400 uppercase tracking-widest px-2">Workspaces</h3>
+                <div class="space-y-1 max-h-[65vh] overflow-y-auto custom-scroll pr-2">
+                    <button onclick="setMode('all')" id="mode-all" class="mode-btn w-full text-left px-4 py-3 rounded-xl active-mode transition-all font-bold">⌨️ Global Database</button>
+                    <button onclick="setMode('General')" id="mode-General" class="mode-btn w-full text-left px-4 py-3 rounded-xl hover:bg-gray-100 transition-all font-semibold">⚙️ UI & Nav</button>
+                    <button onclick="setMode('Modeling')" id="mode-Modeling" class="mode-btn w-full text-left px-4 py-3 rounded-xl hover:bg-gray-100 transition-all font-semibold">🟦 Poly Modeling</button>
+                    <button onclick="setMode('Animation')" id="mode-Animation" class="mode-btn w-full text-left px-4 py-3 rounded-xl hover:bg-gray-100 transition-all font-semibold text-blue-600">🎬 Animation & Keys</button>
+                    <button onclick="setMode('Rigging')" id="mode-Rigging" class="mode-btn w-full text-left px-4 py-3 rounded-xl hover:bg-gray-100 transition-all font-semibold">🦴 Rigging & Skin</button>
+                    <div class="h-px bg-gray-100 my-4"></div>
+                    <button onclick="setMode('quiz')" id="mode-quiz" class="mode-btn w-full text-left px-4 py-3 rounded-xl hover:bg-blue-600 hover:text-white transition-all font-black text-blue-600">🧠 Start Pro Gauntlet</button>
+                    <button onclick="setMode('insights')" id="mode-insights" class="mode-btn w-full text-left px-4 py-3 rounded-xl hover:bg-gray-100 transition-all font-semibold">📊 Mastery Stats</button>
+                </div>
+                
+                <div class="mt-8 pt-6 border-t border-gray-200 px-2">
+                    <h4 class="text-[10px] font-black mb-3 text-gray-400 uppercase tracking-widest">Training Progress</h4>
+                    <div class="space-y-4">
+                        <div class="flex justify-between items-end">
+                            <span class="text-xs text-gray-500 font-bold">Progress</span>
+                            <span class="font-black text-blue-600" id="mastered-count">0</span>
+                        </div>
+                        <div class="w-full bg-gray-100 rounded-full h-3">
+                            <div class="bg-gradient-to-r from-blue-500 to-indigo-600 h-3 rounded-full transition-all duration-700 shadow-sm" style="width: 0%" id="progress-bar"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Content Area -->
+        <div class="lg:col-span-3">
+            <div id="browser-view" class="space-y-4">
+                <div class="bg-white rounded-3xl p-6 shadow-xl border border-gray-100 mb-8">
+                    <div class="relative">
+                        <input type="text" id="search-input" placeholder="Search by tool (e.g. 'Extrude') or key (e.g. 'Ctrl+E')..." class="w-full px-6 py-4 pl-14 border border-gray-100 rounded-2xl bg-gray-50 focus:ring-4 focus:ring-blue-200 outline-none transition-all text-lg font-medium">
+                        <div class="absolute left-6 top-1/2 transform -translate-y-1/2 text-gray-400 text-xl">🔍</div>
+                    </div>
+                </div>
+                <div id="hotkeys-container" class="grid grid-cols-1 md:grid-cols-2 gap-4"></div>
+            </div>
+
+            <div id="quiz-container" class="hidden">
+                <div class="bg-white rounded-[3.5rem] p-12 shadow-2xl text-center border border-gray-100 min-h-[550px] flex flex-col justify-center animate-in fade-in duration-500">
+                    <span class="bg-blue-100 text-blue-600 px-6 py-2 rounded-full text-xs font-black uppercase tracking-widest inline-block mx-auto mb-10">Gauntlet Phase</span>
+                    <h2 class="text-gray-400 font-bold mb-2">Identify the shortcut for:</h2>
+                    <h2 id="quiz-question" class="text-4xl md:text-5xl font-black text-gray-900 mb-14 leading-tight">Loading...</h2>
+                    
+                    <div id="quiz-options" class="grid grid-cols-1 md:grid-cols-2 gap-4 mb-10"></div>
+
+                    <div id="quiz-feedback" class="hidden p-8 rounded-3xl font-black text-2xl mb-8 transform transition-all duration-300"></div>
+                    <button id="next-question-btn" onclick="nextQuestion()" class="hidden mx-auto bg-gray-900 text-white px-20 py-6 rounded-3xl font-black text-xl hover:bg-blue-600 transition-all hover:scale-105 shadow-2xl">NEXT CHALLENGE →</button>
+                    
+                    <div class="grid grid-cols-2 gap-6 mt-16 border-t pt-10">
+                        <div class="p-4 bg-green-50 rounded-2xl border border-green-100">
+                            <p class="text-[10px] font-black text-green-600 uppercase tracking-widest">Accuracy</p>
+                            <p id="correct-count" class="text-5xl font-black text-green-500">0</p>
+                        </div>
+                        <div class="p-4 bg-red-50 rounded-2xl border border-red-100">
+                            <p class="text-[10px] font-black text-red-600 uppercase tracking-widest">Failed Attempts</p>
+                            <p id="incorrect-count" class="text-5xl font-black text-red-500">0</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div id="insights-container" class="hidden bg-white p-12 rounded-[3.5rem] shadow-2xl border border-gray-100 text-center">
+                <h2 class="text-3xl font-black mb-8 gradient-text">Workflow Proficiency</h2>
+                <div id="progress-chart" class="h-96 w-full"></div>
+                <p class="mt-8 text-gray-400 font-medium italic">"Muscle memory is the key to cinematic flow."</p>
+            </div>
+        </div>
+    </main>
+
+    <script>
+        const hotkeysData = [
+            // --- UI & NAVIGATION ---
+            { func: "Select Tool", key: "Q", cat: "General" },
+            { func: "Move Tool", key: "W", cat: "General" },
+            { func: "Rotate Tool", key: "E", cat: "General" },
+            { func: "Scale Tool", key: "R", cat: "General" },
+            { func: "Show Manipulator Tool", key: "T", cat: "General" },
+            { func: "Repeat Last Action", key: "G", cat: "General" },
+            { func: "Undo", key: "Z", cat: "General" },
+            { func: "Redo", key: "Shift + Z", cat: "General" },
+            { func: "Group Objects", key: "Ctrl + G", cat: "General" },
+            { func: "Ungroup Objects", key: "Ctrl + Shift + G", cat: "General" },
+            { func: "Duplicate", key: "Ctrl + D", cat: "General" },
+            { func: "Duplicate Special", key: "Ctrl + Shift + D", cat: "General" },
+            { func: "Parent Object", key: "P", cat: "General" },
+            { func: "Unparent Object", key: "Shift + P", cat: "General" },
+            { func: "Frame Selected", key: "F", cat: "General" },
+            { func: "Frame All", key: "A", cat: "General" },
+            { func: "Hide Selected", key: "Ctrl + H", cat: "General" },
+            { func: "Show Last Hidden", key: "Ctrl + Shift + H", cat: "General" },
+            { func: "Isolate Selection Toggle", key: "Ctrl + 1", cat: "General" },
+            { func: "Open Hotbox", key: "Space (Hold)", cat: "General" },
+            { func: "Switch Viewport Mode", key: "Space (Tap)", cat: "General" },
+
+            // --- VIEWPORT DISPLAY ---
+            { func: "Wireframe Mode", key: "4", cat: "General" },
+            { func: "Shaded Mode", key: "5", cat: "General" },
+            { func: "Textured Mode", key: "6", cat: "General" },
+            { func: "Use All Lights", key: "7", cat: "General" },
+            { func: "Smooth Shade Toggle (Cage)", key: "2", cat: "General" },
+            { func: "Smooth Shade Mode (High)", key: "3", cat: "General" },
+            { func: "Rough Shade Mode (Low)", key: "1", cat: "General" },
+            { func: "X-Ray Mode Toggle", key: "Alt + X", cat: "General" },
+
+            // --- POLYGON MODELING ---
+            { func: "Object Mode", key: "F8", cat: "Modeling" },
+            { func: "Vertex Mode", key: "F9", cat: "Modeling" },
+            { func: "Edge Mode", key: "F10", cat: "Modeling" },
+            { func: "Face Mode", key: "F11", cat: "Modeling" },
+            { func: "UV Mode", key: "F12", cat: "Modeling" },
+            { func: "Extrude Component", key: "Ctrl + E", cat: "Modeling" },
+            { func: "Bevel Component", key: "Ctrl + B", cat: "Modeling" },
+            { func: "Bridge Components", key: "Ctrl + Shift + B", cat: "Modeling" },
+            { func: "Multi-Cut Tool", key: "Ctrl + Shift + X", cat: "Modeling" },
+            { func: "Target Weld Tool", key: "Shift + V", cat: "Modeling" },
+            { func: "Soft Selection Toggle", key: "B", cat: "Modeling" },
+            { func: "Modify Pivot Mode", key: "D", cat: "Modeling" },
+            { func: "Snap to Grid (Hold)", key: "X", cat: "Modeling" },
+            { func: "Snap to Curve (Hold)", key: "C", cat: "Modeling" },
+            { func: "Snap to Point (Hold)", key: "V", cat: "Modeling" },
+            { func: "Grow Selection", key: "Shift + .", cat: "Modeling" },
+            { func: "Shrink Selection", key: "Shift + ,", cat: "Modeling" },
+            { func: "Convert Selection to Verts", key: "Ctrl + F9", cat: "Modeling" },
+            { func: "Convert Selection to Faces", key: "Ctrl + F11", cat: "Modeling" },
+
+            // --- ANIMATION ---
+            { func: "Set Keyframe", key: "S", cat: "Animation" },
+            { func: "Set Key (Translate)", key: "Shift + W", cat: "Animation" },
+            { func: "Set Key (Rotate)", key: "Shift + E", cat: "Animation" },
+            { func: "Set Key (Scale)", key: "Shift + R", cat: "Animation" },
+            { func: "Play / Stop", key: "Alt + V", cat: "Animation" },
+            { func: "Go to Start", key: "Alt + Shift + V", cat: "Animation" },
+            { func: "Next Frame", key: "Alt + .", cat: "Animation" },
+            { func: "Previous Frame", key: "Alt + ,", cat: "Animation" },
+            { func: "Next Keyframe", key: ".", cat: "Animation" },
+            { func: "Previous Keyframe", key: ",", cat: "Animation" },
+            { func: "Toggle Auto Key", key: "Alt + Shift + K", cat: "Animation" },
+            { func: "Virtual Time Slider (Hold)", key: "K", cat: "Animation" },
+            { func: "Open Graph Editor", key: "Alt + Shift + G", cat: "Animation" },
+
+            // --- RIGGING & DEFORMERS ---
+            { func: "Joint Tool", key: "Alt + J", cat: "Rigging" },
+            { func: "Paint Skin Weights", key: "Shift + Ctrl + W", cat: "Rigging" },
+            { func: "Component Editor", key: "Shift + F1", cat: "Rigging" },
+            { func: "Cluster Deformer", key: "Ctrl + Alt + C", cat: "Rigging" },
+            { func: "Lattice Deformer", key: "Ctrl + Alt + L", cat: "Rigging" },
+            { func: "Create IK Handle", key: "Alt + I", cat: "Rigging" },
+            { func: "Set Preferred Angle", key: "Alt + P", cat: "Rigging" }
+        ];
+
+        let userProgress = { mastered: new Set() };
+        let quizPool = []; let currentIdx = 0; let stats = { correct: 0, incorrect: 0 }; let currentFilter = 'all';
+
+        function init() { loadMastery(); renderHotkeys(); setupSearch(); }
+
+        function setMode(mode) {
+            document.querySelectorAll('.mode-btn').forEach(btn => btn.classList.remove('active-mode'));
+            const targetBtn = document.getElementById(`mode-${mode}`); if(targetBtn) targetBtn.classList.add('active-mode');
+
+            document.getElementById('browser-view').classList.toggle('hidden', !['all', 'General', 'Modeling', 'Animation', 'Rigging'].includes(mode));
+            document.getElementById('quiz-container').classList.toggle('hidden', mode !== 'quiz');
+            document.getElementById('insights-container').classList.toggle('hidden', mode !== 'insights');
+
+            if (mode === 'quiz') startQuiz(); else if (mode === 'insights') drawInsights(); else { currentFilter = mode; renderHotkeys(); }
+        }
+
+        function renderHotkeys(search = '') {
+            const container = document.getElementById('hotkeys-container'); container.innerHTML = '';
+            let filtered = hotkeysData; if (currentFilter !== 'all') filtered = filtered.filter(h => h.cat === currentFilter || h.cat === 'General');
+            if (search) filtered = filtered.filter(h => h.func.toLowerCase().includes(search.toLowerCase()) || h.key.toLowerCase().includes(search.toLowerCase()));
+
+            filtered.forEach(h => {
+                const card = document.createElement('div'); const mastered = userProgress.mastered.has(h.func);
+                card.className = `hotkey-card bg-white p-6 rounded-3xl border ${mastered ? 'border-green-500 bg-green-50' : 'border-gray-100'} shadow-sm flex justify-between items-center hover:shadow-xl transition-all group`;
+                card.innerHTML = `<div class="flex-grow"><p class="text-[9px] font-black text-gray-300 uppercase mb-1 group-hover:text-blue-500">${h.cat}</p><h4 class="text-md font-bold text-gray-800">${h.func}</h4></div><div class="flex items-center gap-4"><span class="key-tag bg-gray-900 border border-gray-700 px-3 py-1.5 rounded-xl text-blue-400 font-bold whitespace-nowrap shadow-lg">${h.key}</span><button onclick="toggleStar('${h.func}')" class="text-2xl transform hover:scale-125 transition-transform">${mastered ? '⭐' : '☆'}</button></div>`;
+                container.appendChild(card);
+            });
+            updateStats();
+        }
+
+        function startQuiz() { quizPool = [...hotkeysData]; shuffle(quizPool); currentIdx = 0; stats = { correct: 0, incorrect: 0 }; document.getElementById('correct-count').innerText = "0"; document.getElementById('incorrect-count').innerText = "0"; loadQuestion(); }
+
+        function loadQuestion() {
+            const q = quizPool[currentIdx]; document.getElementById('quiz-question').innerText = q.func; document.getElementById('quiz-feedback').classList.add('hidden'); document.getElementById('next-question-btn').classList.add('hidden');
+            const options = document.getElementById('quiz-options'); options.innerHTML = ''; options.classList.remove('pointer-events-none');
+            let choices = [q.key]; while(choices.length < 4) { let r = hotkeysData[Math.floor(Math.random()*hotkeysData.length)].key; if(!choices.includes(r)) choices.push(r); } shuffle(choices);
+            choices.forEach(c => {
+                const btn = document.createElement('button'); btn.className = "option-btn p-6 rounded-3xl font-black text-xl bg-white shadow-md"; btn.innerText = c;
+                btn.onclick = () => {
+                    const isCorrect = c === q.key; options.classList.add('pointer-events-none'); btn.classList.add(isCorrect ? 'correct' : 'incorrect');
+                    if (isCorrect) stats.correct++; else { stats.incorrect++; document.querySelectorAll('.option-btn').forEach(b => { if(b.innerText === q.key) b.classList.add('correct'); }); }
+                    const feed = document.getElementById('quiz-feedback'); feed.innerText = isCorrect ? "PERFECT! +10 Points" : "The Pro key is: " + q.key; feed.className = `p-8 rounded-3xl font-black text-2xl mb-8 border-4 ${isCorrect ? 'bg-green-50 text-green-700 border-green-200' : 'bg-red-50 text-red-700 border-red-200'}`; feed.classList.remove('hidden'); document.getElementById('next-question-btn').classList.remove('hidden');
+                    document.getElementById('correct-count').innerText = stats.correct; document.getElementById('incorrect-count').innerText = stats.incorrect; updateStats();
+                };
+                options.appendChild(btn);
+            });
+        }
+
+        function nextQuestion() { currentIdx++; if (currentIdx < quizPool.length) loadQuestion(); else startQuiz(); }
+        function toggleStar(f) { if (userProgress.mastered.has(f)) userProgress.mastered.delete(f); else userProgress.mastered.add(f); saveMastery(); renderHotkeys(); }
+        function updateStats() { const mCount = userProgress.mastered.size; document.getElementById('mastered-count').innerText = mCount + " / " + hotkeysData.length; document.getElementById('progress-bar').style.width = (mCount/hotkeysData.length)*100 + "%"; }
+        function setupSearch() { document.getElementById('search-input').addEventListener('input', (e) => renderHotkeys(e.target.value)); }
+        function shuffle(a) { for (let i = a.length - 1; i > 0; i--) { const j = Math.floor(Math.random() * (i + 1)); [a[i], a[j]] = [a[j], a[i]]; } }
+        function saveMastery() { localStorage.setItem('mastery-maya-ultimate-v3', JSON.stringify([...userProgress.mastered])); }
+        function loadMastery() { const s = localStorage.getItem('mastery-maya-ultimate-v3'); if (s) userProgress.mastered = new Set(JSON.parse(s)); }
+        function drawInsights() { const m = userProgress.mastered.size; const r = hotkeysData.length - m; Plotly.newPlot('progress-chart', [{ values: [m, r], labels: ['Mastered', 'Learning'], type: 'pie', marker: { colors: ['#3b82f6', '#e5e7eb'] } }], { margin: {t:0, b:0, l:0, r:0} }); }
+        window.onload = () => { init(); };
+    </script>
+</body>
+</html>

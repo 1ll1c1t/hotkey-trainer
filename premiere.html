@@ -1,0 +1,280 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <!-- Google tag (gtag.js) -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-GCG9LQ68MW"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+      gtag('config', 'G-GCG9LQ68MW');
+    </script>
+
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ultimate Premiere Pro Hotkey Trainer</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/plotly.js/3.0.3/plotly.min.js"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+    <style>
+        body { font-family: 'Inter', sans-serif; }
+        .gradient-text { background: linear-gradient(135deg, #8b5cf6 0%, #ec4899 100%); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
+        .active-mode { background: linear-gradient(135deg, #8b5cf6 0%, #ec4899 100%); color: white !important; }
+        .correct { background-color: #10b981 !important; color: white !important; border-color: #059669 !important; }
+        .incorrect { background-color: #ef4444 !important; color: white !important; border-color: #b91c1c !important; }
+        .option-btn { transition: all 0.2s; border: 2px solid #f3f4f6; }
+        .option-btn:hover:not(:disabled) { border-color: #8b5cf6; background-color: #f5f3ff; transform: translateY(-2px); }
+        .hotkey-card { transition: all 0.2s ease; }
+        .custom-scroll::-webkit-scrollbar { width: 6px; }
+        .custom-scroll::-webkit-scrollbar-track { background: #f1f1f1; }
+        .custom-scroll::-webkit-scrollbar-thumb { background: #8b5cf6; border-radius: 10px; }
+        .key-tag { font-family: 'Monaco', 'Consolas', monospace; font-size: 0.85rem; }
+    </style>
+</head>
+<body class="bg-gray-50 text-gray-900">
+    <!-- PayPal Donation Form -->
+    <div class="bg-gray-100 py-3 border-b border-gray-200 flex justify-center items-center sticky top-0 z-[100]">
+        <form action="https://www.paypal.com/donate" method="post" target="_top">
+            <input type="hidden" name="hosted_button_id" value="RSW8PUWLJJ8DC" />
+            <input type="image" src="https://www.paypalobjects.com/en_US/i/btn/btn_donate_LG.gif" border="0" name="submit" title="PayPal - The safer, easier way to pay online!" alt="Donate with PayPal button" />
+            <img alt="" border="0" src="https://www.paypal.com/en_US/i/scr/pixel.gif" width="1" height="1" />
+        </form>
+    </div>
+
+    <nav class="bg-white/90 backdrop-blur-md border-b sticky top-[52px] z-50 px-6 py-4 flex justify-between items-center shadow-sm">
+        <div class="flex items-center gap-3">
+            <div class="w-10 h-10 bg-purple-600 rounded-xl flex items-center justify-center text-white font-black italic shadow-lg">Pr</div>
+            <a href="index.html" class="font-bold text-2xl tracking-tighter gradient-text">Hotkey Trainer</a>
+        </div>
+        <a href="index.html" class="text-gray-600 hover:text-purple-600 transition-colors font-medium">🏠 Home</a>
+    </nav>
+    
+    <header class="bg-gradient-to-br from-purple-600 to-pink-600 text-white py-14 text-center shadow-inner relative overflow-hidden">
+        <div class="absolute inset-0 opacity-10 pointer-events-none select-none text-[20rem] font-black -top-20 -right-10">EDIT</div>
+        <h1 class="text-6xl font-black mb-2 tracking-tight">Premiere Pro</h1>
+        <p class="text-xl opacity-90 font-medium">The Industry Standard for Video Editorial Speed.</p>
+    </header>
+
+    <main class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8 grid grid-cols-1 lg:grid-cols-4 gap-8">
+        <!-- Sidebar Navigation -->
+        <div class="lg:col-span-1 space-y-4">
+            <div class="bg-white rounded-3xl p-6 shadow-xl border border-gray-100 sticky top-40">
+                <h3 class="text-sm font-black mb-4 text-gray-400 uppercase tracking-widest px-2">Workspaces</h3>
+                <div class="space-y-1 max-h-[65vh] overflow-y-auto custom-scroll pr-2">
+                    <button onclick="setMode('all')" id="mode-all" class="mode-btn w-full text-left px-4 py-3 rounded-xl active-mode transition-all font-bold">⌨️ Global Database</button>
+                    <button onclick="setMode('Tools')" id="mode-Tools" class="mode-btn w-full text-left px-4 py-3 rounded-xl hover:bg-gray-100 transition-all font-semibold">🛠️ Toolbox</button>
+                    <button onclick="setMode('Timeline')" id="mode-Timeline" class="mode-btn w-full text-left px-4 py-3 rounded-xl hover:bg-gray-100 transition-all font-semibold">🎞️ Timeline Nav</button>
+                    <button onclick="setMode('Editing')" id="mode-Editing" class="mode-btn w-full text-left px-4 py-3 rounded-xl hover:bg-gray-100 transition-all font-semibold">✂️ Advanced Editing</button>
+                    <button onclick="setMode('Markers')" id="mode-Markers" class="mode-btn w-full text-left px-4 py-3 rounded-xl hover:bg-gray-100 transition-all font-semibold">📍 Markers & I/O</button>
+                    <button onclick="setMode('AV')" id="mode-AV" class="mode-btn w-full text-left px-4 py-3 rounded-xl hover:bg-gray-100 transition-all font-semibold">🔊 Audio/Video</button>
+                    <button onclick="setMode('Panels')" id="mode-Panels" class="mode-btn w-full text-left px-4 py-3 rounded-xl hover:bg-gray-100 transition-all font-semibold">🖥️ Panel Windows</button>
+                    <div class="h-px bg-gray-100 my-4"></div>
+                    <button onclick="setMode('quiz')" id="mode-quiz" class="mode-btn w-full text-left px-4 py-3 rounded-xl hover:bg-purple-600 hover:text-white transition-all font-black text-purple-600">🧠 Start Pro Quiz</button>
+                    <button onclick="setMode('insights')" id="mode-insights" class="mode-btn w-full text-left px-4 py-3 rounded-xl hover:bg-gray-100 transition-all font-semibold">📊 Mastery Stats</button>
+                </div>
+                
+                <div class="mt-8 pt-6 border-t border-gray-200 px-2">
+                    <h4 class="text-[10px] font-black mb-3 text-gray-400 uppercase tracking-widest">Mastery Status</h4>
+                    <div class="space-y-4">
+                        <div class="flex justify-between items-end">
+                            <span class="text-xs text-gray-500 font-bold">Progress</span>
+                            <span class="font-black text-purple-600" id="mastered-count">0</span>
+                        </div>
+                        <div class="w-full bg-gray-100 rounded-full h-3">
+                            <div class="bg-gradient-to-r from-purple-500 to-pink-600 h-3 rounded-full transition-all duration-700 shadow-sm" style="width: 0%" id="progress-bar"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Content Area -->
+        <div class="lg:col-span-3">
+            <div id="browser-view" class="space-y-4">
+                <div class="bg-white rounded-3xl p-6 shadow-xl border border-gray-100 mb-8">
+                    <div class="relative">
+                        <input type="text" id="search-input" placeholder="Find a tool (e.g. 'Razor') or a key (e.g. 'Ctrl+K')..." class="w-full px-6 py-4 pl-14 border border-gray-100 rounded-2xl bg-gray-50 focus:ring-4 focus:ring-purple-200 outline-none transition-all text-lg font-medium">
+                        <div class="absolute left-6 top-1/2 transform -translate-y-1/2 text-gray-400 text-xl">🔍</div>
+                    </div>
+                </div>
+                <div id="hotkeys-container" class="grid grid-cols-1 md:grid-cols-2 gap-4"></div>
+            </div>
+
+            <div id="quiz-container" class="hidden">
+                <div class="bg-white rounded-[3.5rem] p-12 shadow-2xl text-center border border-gray-100 min-h-[550px] flex flex-col justify-center animate-in fade-in duration-500">
+                    <span class="bg-purple-100 text-purple-600 px-6 py-2 rounded-full text-xs font-black uppercase tracking-widest inline-block mx-auto mb-10">Premiere Pro Gauntlet</span>
+                    <h2 class="text-gray-400 font-bold mb-2">What is the keyboard shortcut for:</h2>
+                    <h2 id="quiz-question" class="text-4xl md:text-5xl font-black text-gray-900 mb-14 leading-tight">Loading...</h2>
+                    
+                    <div id="quiz-options" class="grid grid-cols-1 md:grid-cols-2 gap-4 mb-10"></div>
+
+                    <div id="quiz-feedback" class="hidden p-8 rounded-3xl font-black text-2xl mb-8 transform transition-all duration-300"></div>
+                    <button id="next-question-btn" onclick="nextQuestion()" class="hidden mx-auto bg-gray-900 text-white px-20 py-6 rounded-3xl font-black text-xl hover:bg-purple-600 transition-all hover:scale-105 shadow-2xl">NEXT CHALLENGE →</button>
+                </div>
+            </div>
+
+            <div id="insights-container" class="hidden bg-white p-12 rounded-[3.5rem] shadow-2xl border border-gray-100 text-center">
+                <h2 class="text-3xl font-black mb-8 gradient-text">Workflow Analytics</h2>
+                <div id="progress-chart" class="h-96 w-full"></div>
+                <p class="mt-8 text-gray-400 font-medium italic">"Muscle memory is the foundation of creative flow."</p>
+            </div>
+        </div>
+    </main>
+
+    <script>
+        const hotkeysData = [
+            // --- TOOLS ---
+            { func: "Selection Tool", key: "V", cat: "Tools" },
+            { func: "Track Select Forward", key: "A", cat: "Tools" },
+            { func: "Track Select Backward", key: "Shift + A", cat: "Tools" },
+            { func: "Ripple Edit Tool", key: "B", cat: "Tools" },
+            { func: "Rolling Edit Tool", key: "N", cat: "Tools" },
+            { func: "Rate Stretch Tool", key: "R", cat: "Tools" },
+            { func: "Razor Tool", key: "C", cat: "Tools" },
+            { func: "Slip Tool", key: "Y", cat: "Tools" },
+            { func: "Slide Tool", key: "U", cat: "Tools" },
+            { func: "Pen Tool", key: "P", cat: "Tools" },
+            { func: "Hand Tool", key: "H", cat: "Tools" },
+            { func: "Zoom Tool", key: "Z", cat: "Tools" },
+            { func: "Type Tool", key: "T", cat: "Tools" },
+
+            // --- TIMELINE NAVIGATION ---
+            { func: "Play / Stop", key: "Space", cat: "Timeline" },
+            { func: "Shuttle Left (Reverse)", key: "J", cat: "Timeline" },
+            { func: "Shuttle Stop", key: "K", cat: "Timeline" },
+            { func: "Shuttle Right (Forward)", key: "L", cat: "Timeline" },
+            { func: "Go to Next Edit", key: "Down Arrow", cat: "Timeline" },
+            { func: "Go to Previous Edit", key: "Up Arrow", cat: "Timeline" },
+            { func: "Step Forward 1 Frame", key: "Right Arrow", cat: "Timeline" },
+            { func: "Step Backward 1 Frame", key: "Left Arrow", cat: "Timeline" },
+            { func: "Step Forward 5 Frames", key: "Shift + Right Arrow", cat: "Timeline" },
+            { func: "Step Backward 5 Frames", key: "Shift + Left Arrow", cat: "Timeline" },
+            { func: "Go to Start of Timeline", key: "Home", cat: "Timeline" },
+            { func: "Go to End of Timeline", key: "End", cat: "Timeline" },
+            { func: "Toggle Snapping", key: "S", cat: "Timeline" },
+            { func: "Match Frame", key: "F", cat: "Timeline" },
+            { func: "Reverse Match Frame", key: "Shift + R", cat: "Timeline" },
+            { func: "Zoom In Timeline", key: "=", cat: "Timeline" },
+            { func: "Zoom Out Timeline", key: "-", cat: "Timeline" },
+            { func: "Zoom to Sequence", key: "\\", cat: "Timeline" },
+
+            // --- ADVANCED EDITING ---
+            { func: "Add Edit (Cut)", key: "Ctrl + K", cat: "Editing" },
+            { func: "Add Edit to All Tracks", key: "Ctrl + Shift + K", cat: "Editing" },
+            { func: "Ripple Delete", key: "Shift + Del", cat: "Editing" },
+            { func: "Clear Selection", key: "Backspace", cat: "Editing" },
+            { func: "Trim Forward", key: "Ctrl + Right Arrow", cat: "Editing" },
+            { func: "Trim Backward", key: "Ctrl + Left Arrow", cat: "Editing" },
+            { func: "Extend Selection to Playhead", key: "E", cat: "Editing" },
+            { func: "Apply Default Transition", key: "Ctrl + D", cat: "Editing" },
+            { func: "Apply Audio Transition", key: "Ctrl + Shift + D", cat: "Editing" },
+            { func: "Lift", key: ";", cat: "Editing" },
+            { func: "Extract", key: "'", cat: "Editing" },
+            { func: "Duplicate Clip", key: "Alt + Drag", cat: "Editing" },
+            { func: "Enable/Disable Clip", key: "Shift + E", cat: "Editing" },
+            { func: "Link/Unlink Clips", key: "Ctrl + L", cat: "Editing" },
+            { func: "Group Clips", key: "Ctrl + G", cat: "Editing" },
+            { func: "Ungroup Clips", key: "Ctrl + Shift + G", cat: "Editing" },
+            { func: "Nudge Clip Left", key: "Alt + Left Arrow", cat: "Editing" },
+            { func: "Nudge Clip Right", key: "Alt + Right Arrow", cat: "Editing" },
+
+            // --- MARKERS & I/O ---
+            { func: "Mark In", key: "I", cat: "Markers" },
+            { func: "Mark Out", key: "O", cat: "Markers" },
+            { func: "Mark Selection/Clip", key: "X", cat: "Markers" },
+            { func: "Clear In Point", key: "Alt + I", cat: "Markers" },
+            { func: "Clear Out Point", key: "Alt + O", cat: "Markers" },
+            { func: "Clear In and Out", key: "Ctrl + Shift + X", cat: "Markers" },
+            { func: "Go to In Point", key: "Shift + I", cat: "Markers" },
+            { func: "Go to Out Point", key: "Shift + O", cat: "Markers" },
+            { func: "Add Marker", key: "M", cat: "Markers" },
+            { func: "Go to Next Marker", key: "Shift + M", cat: "Markers" },
+            { func: "Go to Previous Marker", key: "Ctrl + Shift + M", cat: "Markers" },
+            { func: "Clear All Markers", key: "Ctrl + Alt + M", cat: "Markers" },
+
+            // --- AUDIO & VIDEO ---
+            { func: "Audio Gain Menu", key: "G", cat: "AV" },
+            { func: "Speed / Duration", key: "Ctrl + R", cat: "AV" },
+            { func: "Replace with Clip from Bin", key: "Ctrl + Alt + \\", cat: "AV" },
+            { func: "Toggle All Video Target Tracks", key: "Ctrl + 9", cat: "AV" },
+            { func: "Toggle All Audio Target Tracks", key: "Ctrl + 0", cat: "AV" },
+
+            // --- PANEL WINDOWS ---
+            { func: "Focus Project Panel", key: "Shift + 1", cat: "Panels" },
+            { func: "Focus Source Monitor", key: "Shift + 2", cat: "Panels" },
+            { func: "Focus Timeline", key: "Shift + 3", cat: "Panels" },
+            { func: "Focus Program Monitor", key: "Shift + 4", cat: "Panels" },
+            { func: "Focus Effect Controls", key: "Shift + 5", cat: "Panels" },
+            { func: "Focus Audio Track Mixer", key: "Shift + 6", cat: "Panels" },
+            { func: "Focus Effects Panel", key: "Shift + 7", cat: "Panels" },
+            { func: "Focus Media Browser", key: "Shift + 8", cat: "Panels" },
+            { func: "Maximize/Restore Panel Under Cursor", key: "`", cat: "Panels" },
+
+            // --- GENERAL OPERATIONS ---
+            { func: "Export Media", key: "Ctrl + M", cat: "General" },
+            { func: "New Sequence", key: "Ctrl + N", cat: "General" },
+            { func: "Import File", key: "Ctrl + I", cat: "General" },
+            { func: "Save Project", key: "Ctrl + S", cat: "General" },
+            { func: "Undo", key: "Ctrl + Z", cat: "General" },
+            { func: "Redo", key: "Ctrl + Shift + Z", cat: "General" },
+            { func: "Keyboard Shortcuts Menu", key: "Ctrl + Alt + K", cat: "General" }
+        ];
+
+        let userProgress = { mastered: new Set() };
+        let quizPool = []; let currentIdx = 0; let stats = { correct: 0, incorrect: 0 }; let currentFilter = 'all';
+
+        function init() { loadMastery(); renderHotkeys(); setupSearch(); }
+
+        function setMode(mode) {
+            document.querySelectorAll('.mode-btn').forEach(btn => btn.classList.remove('active-mode'));
+            const targetBtn = document.getElementById(`mode-${mode}`); if(targetBtn) targetBtn.classList.add('active-mode');
+            document.getElementById('browser-view').classList.toggle('hidden', !['all', 'Tools', 'Timeline', 'Editing', 'Markers', 'AV', 'Panels', 'General'].includes(mode));
+            document.getElementById('quiz-container').classList.toggle('hidden', mode !== 'quiz');
+            document.getElementById('insights-container').classList.toggle('hidden', mode !== 'insights');
+            if (mode === 'quiz') startQuiz(); else if (mode === 'insights') drawInsights(); else { currentFilter = mode; renderHotkeys(); }
+        }
+
+        function renderHotkeys(search = '') {
+            const container = document.getElementById('hotkeys-container'); container.innerHTML = '';
+            let filtered = hotkeysData; if (currentFilter !== 'all') filtered = filtered.filter(h => h.cat === currentFilter || h.cat === 'General');
+            if (search) filtered = filtered.filter(h => h.func.toLowerCase().includes(search.toLowerCase()) || h.key.toLowerCase().includes(search.toLowerCase()));
+
+            filtered.forEach(h => {
+                const card = document.createElement('div'); const mastered = userProgress.mastered.has(h.func);
+                card.className = `hotkey-card bg-white p-6 rounded-3xl border ${mastered ? 'border-green-500 bg-green-50' : 'border-gray-100'} shadow-sm flex justify-between items-center hover:shadow-xl group transition-all`;
+                card.innerHTML = `<div class="flex-grow"><p class="text-[9px] font-black text-gray-300 uppercase mb-1 group-hover:text-purple-400">${h.cat}</p><h4 class="text-md font-bold text-gray-800">${h.func}</h4></div><div class="flex items-center gap-4"><span class="key-tag bg-gray-900 border border-gray-700 px-3 py-1.5 rounded-xl text-purple-400 font-bold whitespace-nowrap shadow-lg">${h.key}</span><button onclick="toggleStar('${h.func}')" class="text-2xl">${mastered ? '⭐' : '☆'}</button></div>`;
+                container.appendChild(card);
+            });
+            updateStats();
+        }
+
+        function startQuiz() { quizPool = [...hotkeysData]; shuffle(quizPool); currentIdx = 0; stats = { correct: 0, incorrect: 0 }; loadQuestion(); }
+
+        function loadQuestion() {
+            const q = quizPool[currentIdx]; document.getElementById('quiz-question').innerText = q.func; document.getElementById('quiz-feedback').classList.add('hidden'); document.getElementById('next-question-btn').classList.add('hidden');
+            const options = document.getElementById('quiz-options'); options.innerHTML = ''; options.classList.remove('pointer-events-none');
+            let choices = [q.key]; while(choices.length < 4) { let r = hotkeysData[Math.floor(Math.random()*hotkeysData.length)].key; if(!choices.includes(r)) choices.push(r); } shuffle(choices);
+            choices.forEach(c => {
+                const btn = document.createElement('button'); btn.className = "option-btn p-6 rounded-3xl font-black text-xl bg-white shadow-md"; btn.innerText = c;
+                btn.onclick = () => {
+                    const isCorrect = c === q.key; options.classList.add('pointer-events-none'); btn.classList.add(isCorrect ? 'correct' : 'incorrect');
+                    if (isCorrect) stats.correct++; else { stats.incorrect++; document.querySelectorAll('.option-btn').forEach(b => { if(b.innerText === q.key) b.classList.add('correct'); }); }
+                    const feed = document.getElementById('quiz-feedback'); feed.innerText = isCorrect ? "PERFECT! +10 Points" : "The Pro key is: " + q.key; feed.className = `p-8 rounded-3xl font-black text-2xl mb-8 border-4 ${isCorrect ? 'bg-green-50 text-green-700 border-green-200' : 'bg-red-50 text-red-700 border-red-200'}`; feed.classList.remove('hidden'); document.getElementById('next-question-btn').classList.remove('hidden');
+                    updateStats();
+                };
+                options.appendChild(btn);
+            });
+        }
+
+        function nextQuestion() { currentIdx++; if (currentIdx < quizPool.length) loadQuestion(); else startQuiz(); }
+        function toggleStar(f) { if (userProgress.mastered.has(f)) userProgress.mastered.delete(f); else userProgress.mastered.add(f); saveMastery(); renderHotkeys(); }
+        function updateStats() { const mCount = userProgress.mastered.size; document.getElementById('mastered-count').innerText = mCount + " / " + hotkeysData.length; document.getElementById('progress-bar').style.width = (mCount/hotkeysData.length)*100 + "%"; }
+        function setupSearch() { document.getElementById('search-input').addEventListener('input', (e) => renderHotkeys(e.target.value)); }
+        function shuffle(a) { for (let i = a.length - 1; i > 0; i--) { const j = Math.floor(Math.random() * (i + 1)); [a[i], a[j]] = [a[j], a[i]]; } }
+        function saveMastery() { localStorage.setItem('mastery-premiere-pro-ultimate', JSON.stringify([...userProgress.mastered])); }
+        function loadMastery() { const s = localStorage.getItem('mastery-premiere-pro-ultimate'); if (s) userProgress.mastered = new Set(JSON.parse(s)); }
+        function drawInsights() { const m = userProgress.mastered.size; const r = hotkeysData.length - m; Plotly.newPlot('progress-chart', [{ values: [m, r], labels: ['Mastered', 'Learning'], type: 'pie', marker: { colors: ['#8b5cf6', '#e5e7eb'] } }], { margin: {t:0, b:0, l:0, r:0} }); }
+        window.onload = () => { init(); };
+    </script>
+</body>
+</html>

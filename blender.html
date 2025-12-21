@@ -1,0 +1,225 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <!-- Google tag (gtag.js) -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-GCG9LQ68MW"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+      gtag('config', 'G-GCG9LQ68MW');
+    </script>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ultimate Blender 5.0 Hotkey Trainer</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/plotly.js/3.0.3/plotly.min.js"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+    <style>
+        body { font-family: 'Inter', sans-serif; }
+        .gradient-text { background: linear-gradient(135deg, #f97316 0%, #dc2626 100%); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
+        .active-mode { background: linear-gradient(135deg, #f97316 0%, #dc2626 100%); color: white !important; }
+        .correct { background-color: #10b981 !important; color: white !important; border-color: #059669 !important; }
+        .incorrect { background-color: #ef4444 !important; color: white !important; border-color: #b91c1c !important; }
+        .option-btn { transition: all 0.2s; border: 2px solid #f3f4f6; }
+        .option-btn:hover:not(:disabled) { border-color: #f97316; background-color: #fff7ed; transform: translateY(-2px); }
+        .hotkey-card { transition: all 0.2s ease; }
+        .custom-scroll::-webkit-scrollbar { width: 6px; }
+        .custom-scroll::-webkit-scrollbar-track { background: #f1f1f1; }
+        .custom-scroll::-webkit-scrollbar-thumb { background: #f97316; border-radius: 10px; }
+        .key-tag { font-family: 'Monaco', monospace; font-size: 0.85rem; }
+    </style>
+</head>
+<body class="bg-gray-50 text-gray-900">
+    <!-- PayPal Donation Form -->
+    <div class="bg-gray-100 py-3 border-b border-gray-200 flex justify-center items-center sticky top-0 z-[100]">
+        <form action="https://www.paypal.com/donate" method="post" target="_top">
+            <input type="hidden" name="hosted_button_id" value="RSW8PUWLJJ8DC" />
+            <input type="image" src="https://www.paypalobjects.com/en_US/i/btn/btn_donate_LG.gif" border="0" name="submit" title="PayPal - The safer, easier way to pay online!" alt="Donate with PayPal button" />
+            <img alt="" border="0" src="https://www.paypal.com/en_US/i/scr/pixel.gif" width="1" height="1" />
+        </form>
+    </div>
+
+    <nav class="bg-white/90 backdrop-blur-md border-b sticky top-[52px] z-50 px-6 py-4 flex justify-between items-center shadow-sm">
+        <div class="flex items-center gap-3">
+            <div class="w-10 h-10 bg-orange-500 rounded-xl flex items-center justify-center text-white font-black italic shadow-lg">B</div>
+            <a href="index.html" class="font-bold text-2xl tracking-tighter gradient-text">Hotkey Trainer</a>
+        </div>
+        <a href="index.html" class="text-gray-600 hover:text-orange-600 transition-colors font-medium">🏠 Home</a>
+    </nav>
+    
+    <header class="bg-gradient-to-br from-orange-500 to-red-600 text-white py-14 text-center shadow-inner relative overflow-hidden">
+        <h1 class="text-6xl font-black mb-2 tracking-tight">Blender 5.0</h1>
+        <p class="text-xl opacity-90 font-medium">The Ultimate Professional Shortcut Database.</p>
+    </header>
+
+    <main class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8 grid grid-cols-1 lg:grid-cols-4 gap-8">
+        <div class="lg:col-span-1 space-y-4">
+            <div class="bg-white rounded-3xl p-6 shadow-xl border border-gray-100 sticky top-40">
+                <h3 class="text-sm font-black mb-4 text-gray-400 uppercase tracking-widest px-2">Workspaces</h3>
+                <div class="space-y-1 max-h-[60vh] overflow-y-auto custom-scroll pr-2">
+                    <button onclick="setMode('all')" id="mode-all" class="mode-btn w-full text-left px-4 py-3 rounded-xl active-mode transition-all font-bold">⌨️ All Keys</button>
+                    <button onclick="setMode('General')" id="mode-General" class="mode-btn w-full text-left px-4 py-3 rounded-xl hover:bg-gray-100 transition-all font-semibold">⚙️ Interface</button>
+                    <button onclick="setMode('Viewport')" id="mode-Viewport" class="mode-btn w-full text-left px-4 py-3 rounded-xl hover:bg-gray-100 transition-all font-semibold">👁️ Viewport Nav</button>
+                    <button onclick="setMode('Edit')" id="mode-Edit" class="mode-btn w-full text-left px-4 py-3 rounded-xl hover:bg-gray-100 transition-all font-semibold">🟦 Mesh Editing</button>
+                    <button onclick="setMode('Sculpt')" id="mode-Sculpt" class="mode-btn w-full text-left px-4 py-3 rounded-xl hover:bg-gray-100 transition-all font-semibold">🗿 Sculpt Mode</button>
+                    <button onclick="setMode('Grease')" id="mode-Grease" class="mode-btn w-full text-left px-4 py-3 rounded-xl hover:bg-gray-100 transition-all font-bold text-orange-600">✏️ Grease Pencil</button>
+                    <button onclick="setMode('Animation')" id="mode-Animation" class="mode-btn w-full text-left px-4 py-3 rounded-xl hover:bg-gray-100 transition-all font-semibold">🎬 Animation</button>
+                    <div class="h-px bg-gray-100 my-4"></div>
+                    <button onclick="setMode('quiz')" id="mode-quiz" class="mode-btn w-full text-left px-4 py-3 rounded-xl hover:bg-orange-500 hover:text-white transition-all font-black text-orange-600">🧠 Start Gauntlet</button>
+                </div>
+                <div class="mt-8 pt-6 border-t border-gray-200 px-2">
+                    <h4 class="text-[10px] font-black mb-3 text-gray-400 uppercase tracking-widest">Mastery</h4>
+                    <div class="space-y-4">
+                        <div class="flex justify-between items-end"><span class="font-black text-orange-600" id="mastered-count">0</span></div>
+                        <div class="w-full bg-gray-100 rounded-full h-3"><div class="bg-gradient-to-r from-orange-500 to-red-600 h-3 rounded-full shadow-sm" style="width: 0%" id="progress-bar"></div></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="lg:col-span-3">
+            <div id="browser-view" class="space-y-4">
+                <div class="bg-white rounded-3xl p-6 shadow-xl border border-gray-100 mb-8">
+                    <input type="text" id="search-input" placeholder="Search Blender hotkeys (e.g. 'Extrude', 'F3')..." class="w-full px-6 py-4 border border-gray-100 rounded-2xl bg-gray-50 focus:ring-4 focus:ring-orange-200 outline-none transition-all text-lg font-medium">
+                </div>
+                <div id="hotkeys-container" class="grid grid-cols-1 md:grid-cols-2 gap-4"></div>
+            </div>
+            <div id="quiz-container" class="hidden">
+                <div class="bg-white rounded-[3.5rem] p-12 shadow-2xl text-center border border-gray-100 min-h-[550px] flex flex-col justify-center animate-in fade-in duration-500">
+                    <h2 id="quiz-question" class="text-4xl md:text-5xl font-black text-gray-900 mb-14 leading-tight">Loading...</h2>
+                    <div id="quiz-options" class="grid grid-cols-1 md:grid-cols-2 gap-4 mb-10"></div>
+                    <div id="quiz-feedback" class="hidden p-8 rounded-3xl font-black text-2xl mb-8 transform transition-all"></div>
+                    <button id="next-question-btn" onclick="nextQuestion()" class="hidden mx-auto bg-gray-900 text-white px-20 py-6 rounded-3xl font-black text-xl hover:bg-orange-600 transition-all shadow-2xl">NEXT CHALLENGE →</button>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <script>
+        const hotkeysData = [
+            // General
+            { func: "Search Menu", key: "F3", cat: "General" },
+            { func: "Quick Favorites", key: "Q", cat: "General" },
+            { func: "Interaction Mode Pie", key: "Tab", cat: "General" },
+            { func: "Shading Pie Menu", key: "Z", cat: "General" },
+            { func: "Maximize Area Toggle", key: "Ctrl + Space", cat: "General" },
+            { func: "Render Image", key: "F12", cat: "General" },
+            { func: "Render Animation", key: "Ctrl + F12", cat: "General" },
+            { func: "Save File", key: "Ctrl + S", cat: "General" },
+            { func: "Undo", key: "Ctrl + Z", cat: "General" },
+            { func: "Redo", key: "Shift + Ctrl + Z", cat: "General" },
+            { func: "Toolbar Toggle", key: "T", cat: "General" },
+            { func: "Sidebar Toggle", key: "N", cat: "General" },
+            { func: "Grab / Move", key: "G", cat: "General" },
+            { func: "Rotate", key: "R", cat: "General" },
+            { func: "Scale", key: "S", cat: "General" },
+            { func: "Add Menu", key: "Shift + A", cat: "General" },
+            { func: "Duplicate", key: "Shift + D", cat: "General" },
+            { func: "Join Objects", key: "Ctrl + J", cat: "General" },
+            { func: "Parent Object", key: "Ctrl + P", cat: "General" },
+            
+            // Viewport
+            { func: "Orbit Viewport", key: "MMB", cat: "Viewport" },
+            { func: "Pan Viewport", key: "Shift + MMB", cat: "Viewport" },
+            { func: "Zoom Viewport", key: "Ctrl + MMB", cat: "Viewport" },
+            { func: "Camera View", key: "Numpad 0", cat: "Viewport" },
+            { func: "Front View", key: "Numpad 1", cat: "Viewport" },
+            { func: "Right View", key: "Numpad 3", cat: "Viewport" },
+            { func: "Top View", key: "Numpad 7", cat: "Viewport" },
+            { func: "Frame Selected", key: "Numpad .", cat: "Viewport" },
+            { func: "Local View Toggle", key: "Numpad /", cat: "Viewport" },
+            { func: "Walk Navigation", key: "Shift + ~", cat: "Viewport" },
+
+            // Edit Mode
+            { func: "Vertex Select", key: "1", cat: "Edit" },
+            { func: "Edge Select", key: "2", cat: "Edit" },
+            { func: "Face Select", key: "3", cat: "Edit" },
+            { func: "Extrude Region", key: "E", cat: "Edit" },
+            { func: "Inset Faces", key: "I", cat: "Edit" },
+            { func: "Bevel", key: "Ctrl + B", cat: "Edit" },
+            { func: "Loop Cut", key: "Ctrl + R", cat: "Edit" },
+            { func: "Knife Tool", key: "K", cat: "Edit" },
+            { func: "Merge Menu", key: "M", cat: "Edit" },
+            { func: "Edge Slide", key: "G, G", cat: "Edit" },
+            { func: "Connect Path/Vertices", key: "J", cat: "Edit" },
+
+            // Sculpt
+            { func: "Brush Size", key: "F", cat: "Sculpt" },
+            { func: "Brush Strength", key: "Shift + F", cat: "Sculpt" },
+            { func: "Smooth (Hold)", key: "Shift", cat: "Sculpt" },
+            { func: "Mask Brush", key: "M", cat: "Sculpt" },
+            { func: "Clear Mask", key: "Alt + M", cat: "Sculpt" },
+
+            // Grease Pencil
+            { func: "GP: Draw Mode", key: "Shift + Space", cat: "Grease" },
+            { func: "GP: Eraser (Hold)", key: "Ctrl", cat: "Grease" },
+            { func: "GP: Fill Stroke", key: "Alt + F", cat: "Grease" },
+            { func: "GP: Active Layer Menu", key: "U", cat: "Grease" },
+            { func: "GP: Subdivide Strokes", key: "Ctrl + S", cat: "Grease" },
+            { func: "GP: Sculpt Mode Pie", key: "E", cat: "Grease" },
+            { func: "GP: Material Palette", key: "Y", cat: "Grease" },
+            
+            // Animation
+            { func: "Insert Keyframe Menu", key: "I", cat: "Animation" },
+            { func: "Delete Keyframe Menu", key: "Alt + I", cat: "Animation" },
+            { func: "Play / Stop", key: "Space", cat: "Animation" },
+            { func: "Next Frame", key: "Right Arrow", cat: "Animation" },
+            { func: "Previous Frame", key: "Left Arrow", cat: "Animation" },
+            { func: "Next Keyframe", key: "Up Arrow", cat: "Animation" },
+            { func: "Previous Keyframe", key: "Down Arrow", cat: "Animation" }
+        ];
+
+        let userProgress = { mastered: new Set() };
+        let quizPool = []; let currentIdx = 0; let currentFilter = 'all';
+
+        function init() { loadMastery(); renderHotkeys(); setupSearch(); }
+
+        function setMode(mode) {
+            document.querySelectorAll('.mode-btn').forEach(btn => btn.classList.remove('active-mode'));
+            const targetBtn = document.getElementById(`mode-${mode}`); if(targetBtn) targetBtn.classList.add('active-mode');
+            document.getElementById('browser-view').classList.toggle('hidden', mode === 'quiz');
+            document.getElementById('quiz-container').classList.toggle('hidden', mode !== 'quiz');
+            if (mode === 'quiz') startQuiz(); else { currentFilter = mode; renderHotkeys(); }
+        }
+
+        function renderHotkeys(search = '') {
+            const container = document.getElementById('hotkeys-container'); container.innerHTML = '';
+            let filtered = hotkeysData; if (currentFilter !== 'all') filtered = filtered.filter(h => h.cat === currentFilter);
+            if (search) filtered = filtered.filter(h => h.func.toLowerCase().includes(search.toLowerCase()) || h.key.toLowerCase().includes(search.toLowerCase()));
+
+            filtered.forEach(h => {
+                const card = document.createElement('div'); const mastered = userProgress.mastered.has(h.func);
+                card.className = `hotkey-card bg-white p-6 rounded-3xl border ${mastered ? 'border-green-500 bg-green-50' : 'border-gray-100'} shadow-sm flex justify-between items-center group transition-all`;
+                card.innerHTML = `<div class="flex-grow"><p class="text-[9px] font-black text-gray-300 uppercase mb-1 group-hover:text-orange-500">${h.cat}</p><h4 class="text-md font-bold text-gray-800">${h.func}</h4></div><div class="flex items-center gap-4"><span class="key-tag bg-gray-900 border border-gray-700 px-3 py-1.5 rounded-xl text-orange-400 font-bold shadow-lg">${h.key}</span><button onclick="toggleStar('${h.func}')" class="text-2xl">${mastered ? '⭐' : '☆'}</button></div>`;
+                container.appendChild(card);
+            });
+            updateStats();
+        }
+
+        function startQuiz() { quizPool = [...hotkeysData]; shuffle(quizPool); currentIdx = 0; loadQuestion(); }
+        function loadQuestion() {
+            const q = quizPool[currentIdx]; document.getElementById('quiz-question').innerText = q.func; document.getElementById('quiz-feedback').classList.add('hidden'); document.getElementById('next-question-btn').classList.add('hidden');
+            const options = document.getElementById('quiz-options'); options.innerHTML = ''; options.classList.remove('pointer-events-none');
+            let choices = [q.key]; while(choices.length < 4) { let r = hotkeysData[Math.floor(Math.random()*hotkeysData.length)].key; if(!choices.includes(r)) choices.push(r); } shuffle(choices);
+            choices.forEach(c => {
+                const btn = document.createElement('button'); btn.className = "option-btn p-6 rounded-3xl font-black text-xl bg-white shadow-md"; btn.innerText = c;
+                btn.onclick = () => {
+                    const isCorrect = c === q.key; options.classList.add('pointer-events-none'); btn.classList.add(isCorrect ? 'correct' : 'incorrect');
+                    const feed = document.getElementById('quiz-feedback'); feed.innerText = isCorrect ? "MASTERFUL!" : "Correct: " + q.key; feed.classList.remove('hidden'); document.getElementById('next-question-btn').classList.remove('hidden');
+                    updateStats();
+                };
+                options.appendChild(btn);
+            });
+        }
+        function nextQuestion() { currentIdx++; if (currentIdx < quizPool.length) loadQuestion(); else startQuiz(); }
+        function toggleStar(f) { if (userProgress.mastered.has(f)) userProgress.mastered.delete(f); else userProgress.mastered.add(f); saveMastery(); renderHotkeys(); }
+        function updateStats() { const mCount = userProgress.mastered.size; document.getElementById('mastered-count').innerText = mCount + " / " + hotkeysData.length; document.getElementById('progress-bar').style.width = (mCount/hotkeysData.length)*100 + "%"; }
+        function setupSearch() { document.getElementById('search-input').addEventListener('input', (e) => renderHotkeys(e.target.value)); }
+        function shuffle(a) { for (let i = a.length - 1; i > 0; i--) { const j = Math.floor(Math.random() * (i + 1)); [a[i], a[j]] = [a[j], a[i]]; } }
+        function saveMastery() { localStorage.setItem('mastery-blender-5-pro-v4', JSON.stringify([...userProgress.mastered])); }
+        function loadMastery() { const s = localStorage.getItem('mastery-blender-5-pro-v4'); if (s) userProgress.mastered = new Set(JSON.parse(s)); }
+        window.onload = () => { init(); };
+    </script>
+</body>
+</html>
