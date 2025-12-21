@@ -9,6 +9,7 @@
       gtag('js', new Date());
       gtag('config', 'G-GCG9LQ68MW');
     </script>
+
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Ultimate DaVinci Resolve Hotkey Trainer</title>
@@ -24,107 +25,293 @@
         .option-btn { transition: all 0.2s; border: 2px solid #f3f4f6; }
         .option-btn:hover:not(:disabled) { border-color: #3b82f6; background-color: #eff6ff; transform: translateY(-2px); }
         .hotkey-card { transition: all 0.2s ease; }
+        .custom-scroll::-webkit-scrollbar { width: 6px; }
+        .custom-scroll::-webkit-scrollbar-track { background: #f1f1f1; }
+        .custom-scroll::-webkit-scrollbar-thumb { background: #3b82f6; border-radius: 10px; }
+        .key-tag { font-family: 'Monaco', 'Consolas', monospace; font-size: 0.85rem; }
     </style>
 </head>
 <body class="bg-gray-50 text-gray-900">
-    <nav class="bg-white/90 backdrop-blur-md border-b sticky top-0 z-50 px-6 py-4 flex justify-between items-center shadow-sm">
+    <!-- PayPal Donation Form -->
+    <div class="bg-gray-100 py-3 border-b border-gray-200 flex justify-center items-center sticky top-0 z-[100]">
+        <form action="https://www.paypal.com/donate" method="post" target="_top">
+            <input type="hidden" name="hosted_button_id" value="RSW8PUWLJJ8DC" />
+            <input type="image" src="https://www.paypalobjects.com/en_US/i/btn/btn_donate_LG.gif" border="0" name="submit" title="PayPal - The safer, easier way to pay online!" alt="Donate with PayPal button" />
+            <img alt="" border="0" src="https://www.paypal.com/en_US/i/scr/pixel.gif" width="1" height="1" />
+        </form>
+    </div>
+
+    <nav class="bg-white/90 backdrop-blur-md border-b sticky top-[52px] z-50 px-6 py-4 flex justify-between items-center shadow-sm">
         <div class="flex items-center gap-3">
-            <div class="w-10 h-10 bg-blue-600 rounded-xl flex items-center justify-center text-white font-black italic shadow-lg">Dr</div>
+            <div class="w-10 h-10 bg-blue-600 rounded-xl flex items-center justify-center text-white font-black italic shadow-lg text-sm">Dr</div>
             <a href="index.html" class="font-bold text-2xl tracking-tighter gradient-text">Hotkey Trainer</a>
         </div>
-        <a href="index.html" class="text-gray-600 hover:text-blue-600 transition-colors font-medium">🏠 Home</a>
+        <a href="index.html" class="text-gray-600 hover:text-blue-600 transition-colors font-medium flex items-center gap-2">
+            <span>🏠</span> Home
+        </a>
     </nav>
+    
     <header class="bg-gradient-to-br from-blue-600 to-indigo-800 text-white py-14 text-center shadow-inner relative overflow-hidden">
+        <div class="absolute inset-0 opacity-10 pointer-events-none select-none text-[20rem] font-black -top-20 -right-10">RESOLVE</div>
         <h1 class="text-6xl font-black mb-2 tracking-tight">DaVinci Resolve</h1>
-        <p class="text-xl opacity-90 font-medium">Professional Post-Production Excellence.</p>
+        <p class="text-xl opacity-90 font-medium">Professional Post-Production Excellence for Color and Audio.</p>
     </header>
+
     <main class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8 grid grid-cols-1 lg:grid-cols-4 gap-8">
+        <!-- Sidebar Navigation -->
         <div class="lg:col-span-1 space-y-4">
-            <div class="bg-white rounded-3xl p-6 shadow-xl border border-gray-100 sticky top-24">
+            <div class="bg-white rounded-3xl p-6 shadow-xl border border-gray-100 sticky top-40">
                 <h3 class="text-sm font-black mb-4 text-gray-400 uppercase tracking-widest px-2">Workspaces</h3>
-                <div class="space-y-1 max-h-[65vh] overflow-y-auto custom-scroll pr-2">
-                    <button onclick="setMode('all')" id="mode-all" class="mode-btn w-full text-left px-4 py-3 rounded-xl active-mode font-bold">⌨️ All Keys</button>
-                    <button onclick="setMode('Edit')" id="mode-Edit" class="mode-btn w-full text-left px-4 py-3 rounded-xl hover:bg-gray-100 font-semibold">🎬 Timeline Edit</button>
-                    <button onclick="setMode('Color')" id="mode-Color" class="mode-btn w-full text-left px-4 py-3 rounded-xl hover:bg-gray-100 font-semibold text-blue-600">🎨 Color Grading</button>
-                    <button onclick="setMode('Fusion')" id="mode-Fusion" class="mode-btn w-full text-left px-4 py-3 rounded-xl hover:bg-gray-100 font-semibold">✨ Fusion VFX</button>
-                    <button onclick="setMode('Fairlight')" id="mode-Fairlight" class="mode-btn w-full text-left px-4 py-3 rounded-xl hover:bg-gray-100 font-semibold">🔊 Fairlight Audio</button>
-                    <button onclick="setMode('Media')" id="mode-Media" class="mode-btn w-full text-left px-4 py-3 rounded-xl hover:bg-gray-100 font-semibold">📁 Media Page</button>
+                <div class="space-y-1 max-h-[60vh] overflow-y-auto custom-scroll pr-2">
+                    <button onclick="setMode('all')" id="mode-all" class="mode-btn w-full text-left px-4 py-3 rounded-xl active-mode transition-all font-bold">⌨️ Global Database</button>
+                    <button onclick="setMode('Media')" id="mode-Media" class="mode-btn w-full text-left px-4 py-3 rounded-xl hover:bg-gray-100 transition-all font-semibold">📁 Media & Capture</button>
+                    <button onclick="setMode('Cut')" id="mode-Cut" class="mode-btn w-full text-left px-4 py-3 rounded-xl hover:bg-gray-100 transition-all font-semibold">✂️ Cut & Review</button>
+                    <button onclick="setMode('Edit')" id="mode-Edit" class="mode-btn w-full text-left px-4 py-3 rounded-xl hover:bg-gray-100 transition-all font-semibold">🎬 Timeline Edit</button>
+                    <button onclick="setMode('Fusion')" id="mode-Fusion" class="mode-btn w-full text-left px-4 py-3 rounded-xl hover:bg-gray-100 transition-all font-semibold">✨ Fusion VFX</button>
+                    <button onclick="setMode('Color')" id="mode-Color" class="mode-btn w-full text-left px-4 py-3 rounded-xl hover:bg-gray-100 transition-all font-semibold text-blue-600">🎨 Color Grading</button>
+                    <button onclick="setMode('Fairlight')" id="mode-Fairlight" class="mode-btn w-full text-left px-4 py-3 rounded-xl hover:bg-gray-100 transition-all font-semibold">🔊 Fairlight Audio</button>
+                    <button onclick="setMode('Nav')" id="mode-Nav" class="mode-btn w-full text-left px-4 py-3 rounded-xl hover:bg-gray-100 transition-all font-semibold">🧭 Navigation</button>
                     <div class="h-px bg-gray-100 my-4"></div>
-                    <button onclick="setMode('quiz')" id="mode-quiz" class="mode-btn w-full text-left px-4 py-3 rounded-xl hover:bg-blue-600 hover:text-white font-black text-blue-600">🧠 Start Pro Quiz</button>
+                    <button onclick="setMode('quiz')" id="mode-quiz" class="mode-btn w-full text-left px-4 py-3 rounded-xl hover:bg-blue-600 hover:text-white transition-all font-black text-blue-600">🧠 Start Pro Quiz</button>
+                    <button onclick="setMode('insights')" id="mode-insights" class="mode-btn w-full text-left px-4 py-3 rounded-xl hover:bg-gray-100 transition-all font-semibold">📊 Mastery Stats</button>
+                </div>
+                
+                <div class="mt-8 pt-6 border-t border-gray-200 px-2">
+                    <h4 class="text-[10px] font-black mb-3 text-gray-400 uppercase tracking-widest">Training Progress</h4>
+                    <div class="space-y-4">
+                        <div class="flex justify-between items-end">
+                            <span class="text-xs text-gray-500 font-bold">Progress</span>
+                            <span class="font-black text-blue-600" id="mastered-count">0</span>
+                        </div>
+                        <div class="w-full bg-gray-100 rounded-full h-3">
+                            <div class="bg-gradient-to-r from-blue-500 to-purple-600 h-3 rounded-full transition-all duration-700 shadow-sm" style="width: 0%" id="progress-bar"></div>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
+
+        <!-- Content Area -->
         <div class="lg:col-span-3">
             <div id="browser-view" class="space-y-4">
-                <div class="bg-white rounded-3xl p-6 shadow-xl border border-gray-100 mb-8"><input type="text" id="search-input" placeholder="Search Resolve hotkeys..." class="w-full px-6 py-4 border border-gray-100 rounded-2xl bg-gray-50 outline-none transition-all text-lg font-medium"></div>
+                <div class="bg-white rounded-3xl p-6 shadow-xl border border-gray-100 mb-8">
+                    <div class="relative">
+                        <input type="text" id="search-input" placeholder="Search Resolve shortcuts (e.g. 'Node', 'Import', 'Fairlight')..." class="w-full px-6 py-4 pl-14 border border-gray-100 rounded-2xl bg-gray-50 focus:ring-4 focus:ring-blue-200 outline-none transition-all text-lg font-medium">
+                        <div class="absolute left-6 top-1/2 transform -translate-y-1/2 text-gray-400 text-xl">🔍</div>
+                    </div>
+                </div>
                 <div id="hotkeys-container" class="grid grid-cols-1 md:grid-cols-2 gap-4"></div>
             </div>
+
             <div id="quiz-container" class="hidden">
                 <div class="bg-white rounded-[3.5rem] p-12 shadow-2xl text-center border border-gray-100 min-h-[550px] flex flex-col justify-center animate-in fade-in duration-500">
+                    <span class="bg-blue-100 text-blue-600 px-6 py-2 rounded-full text-xs font-black uppercase tracking-widest inline-block mx-auto mb-10">Resolve Pro Gauntlet</span>
+                    <h2 class="text-gray-400 font-bold mb-2">What is the keyboard shortcut for:</h2>
                     <h2 id="quiz-question" class="text-4xl md:text-5xl font-black text-gray-900 mb-14 leading-tight">Loading...</h2>
+                    
                     <div id="quiz-options" class="grid grid-cols-1 md:grid-cols-2 gap-4 mb-10"></div>
-                    <div id="quiz-feedback" class="hidden p-8 rounded-3xl font-black text-2xl mb-8 transform transition-all"></div>
-                    <button id="next-question-btn" onclick="nextQuestion()" class="hidden mx-auto bg-gray-900 text-white px-20 py-6 rounded-3xl font-black text-xl hover:bg-blue-600">NEXT CHALLENGE →</button>
+
+                    <div id="quiz-feedback" class="hidden p-8 rounded-3xl font-black text-2xl mb-8 transform transition-all duration-300"></div>
+                    <button id="next-question-btn" onclick="nextQuestion()" class="hidden mx-auto bg-gray-900 text-white px-20 py-6 rounded-3xl font-black text-xl hover:bg-blue-600 transition-all hover:scale-105 shadow-2xl">NEXT CHALLENGE →</button>
+                    
+                    <div class="grid grid-cols-2 gap-6 mt-16 border-t pt-10">
+                        <div class="p-4 bg-green-50 rounded-2xl border border-green-100">
+                            <p class="text-[10px] font-black text-green-600 uppercase tracking-widest">Accuracy</p>
+                            <p id="correct-count" class="text-4xl font-black text-green-500">0</p>
+                        </div>
+                        <div class="p-4 bg-red-50 rounded-2xl border border-red-100">
+                            <p class="text-[10px] font-black text-red-600 uppercase tracking-widest">Mistakes</p>
+                            <p id="incorrect-count" class="text-4xl font-black text-red-500">0</p>
+                        </div>
+                    </div>
                 </div>
+            </div>
+
+            <div id="insights-container" class="hidden bg-white p-12 rounded-[3.5rem] shadow-2xl border border-gray-100 text-center">
+                <h2 class="text-3xl font-black mb-8 gradient-text">Post-Production Analytics</h2>
+                <div id="progress-chart" class="h-96 w-full"></div>
+                <p class="mt-8 text-gray-400 font-medium italic">"The state of flow is reached when the tool becomes an extension of the mind."</p>
             </div>
         </div>
     </main>
+
+    <footer class="bg-gray-900 text-white py-12 mt-12">
+        <div class="max-w-7xl mx-auto px-4 text-center">
+            <p class="text-gray-500 text-sm mb-4">Master your software, master your craft.</p>
+            <p class="text-gray-400 text-xs">© 2025 thethreeplays.com. All rights reserved.</p>
+        </div>
+    </footer>
+
     <script>
         const hotkeysData = [
+            // --- MEDIA PAGE ---
             { func: "Import Media", key: "Ctrl + I", cat: "Media" },
+            { func: "Import Folder", key: "Ctrl + Shift + I", cat: "Media" },
             { func: "New Bin", key: "Ctrl + B", cat: "Media" },
+            { func: "Show/Hide Metadata", key: "P", cat: "Media" },
+            { func: "Create Optimized Media", key: "Right Click > Optimize", cat: "Media" },
+            { func: "Clone Tool", key: "Alt + C", cat: "Media" },
+
+            // --- CUT PAGE ---
+            { func: "Smart Insert", key: "F9", cat: "Cut" },
+            { func: "Append to End", key: "Shift + F9", cat: "Cut" },
+            { func: "Ripple Overwrite", key: "Shift + F10", cat: "Cut" },
+            { func: "Close Up Edit", key: "F12", cat: "Cut" },
+            { func: "Source Tape Toggle", key: "Alt + Y", cat: "Cut" },
+            { func: "Fast Review Playback", key: "Shift + Space", cat: "Cut" },
+            { func: "Boring Detector", key: "Alt + B", cat: "Cut" },
+            { func: "Sync Bin", key: "Ctrl + Alt + S", cat: "Cut" },
+
+            // --- EDIT PAGE TOOLS ---
             { func: "Selection Mode", key: "A", cat: "Edit" },
             { func: "Blade Tool", key: "B", cat: "Edit" },
             { func: "Trim Mode", key: "T", cat: "Edit" },
+            { func: "Dynamic Trim Toggle", key: "W", cat: "Edit" },
             { func: "Snapping Toggle", key: "N", cat: "Edit" },
+            { func: "Linked Selection Toggle", key: "Ctrl + Shift + L", cat: "Edit" },
+            { func: "Position Lock", key: "Alt + L", cat: "Edit" },
+
+            // --- EDIT PAGE OPERATIONS ---
+            { func: "Insert Clip", key: "F9", cat: "Edit" },
+            { func: "Overwrite Clip", key: "F10", cat: "Edit" },
+            { func: "Replace Clip", key: "F11", cat: "Edit" },
             { func: "Ripple Delete", key: "Shift + Backspace", cat: "Edit" },
-            { func: "Add Transition", key: "Ctrl + T", cat: "Edit" },
+            { func: "Join Clips", key: "Alt + \\", cat: "Edit" },
             { func: "Split Clip", key: "Ctrl + \\", cat: "Edit" },
+            { func: "Add Transition", key: "Ctrl + T", cat: "Edit" },
+            { func: "Add Video Only Transition", key: "Alt + T", cat: "Edit" },
+            { func: "Add Audio Only Transition", key: "Shift + T", cat: "Edit" },
+            { func: "Match Frame", key: "F", cat: "Edit" },
+            { func: "Reverse Match Frame", key: "Shift + F", cat: "Edit" },
+            { func: "Mark Selection", key: "Shift + A", cat: "Edit" },
+            { func: "Toggle Inspector", key: "Ctrl + 8", cat: "Edit" },
+
+            // --- FUSION PAGE ---
             { func: "Select Tool / Search", key: "Shift + Space", cat: "Fusion" },
             { func: "Load to Left Viewer", key: "1", cat: "Fusion" },
             { func: "Load to Right Viewer", key: "2", cat: "Fusion" },
             { func: "Group Nodes", key: "Ctrl + G", cat: "Fusion" },
+            { func: "Rename Node", key: "F2", cat: "Fusion" },
+            { func: "Toggle Node Enable", key: "Ctrl + P", cat: "Fusion" },
             { func: "Force Render", key: "Ctrl + R", cat: "Fusion" },
+            { func: "Show Keyframes Window", key: "Ctrl + K", cat: "Fusion" },
+            { func: "Show Splines Window", key: "Ctrl + S", cat: "Fusion" },
+            { func: "Disconnect Node", key: "Shift + Drag", cat: "Fusion" },
+            { func: "Underlay Node", key: "Alt + Hold", cat: "Fusion" },
+
+            // --- COLOR PAGE NODES ---
             { func: "Add Serial Node", key: "Alt + S", cat: "Color" },
             { func: "Add Parallel Node", key: "Alt + P", cat: "Color" },
             { func: "Add Layer Node", key: "Alt + L", cat: "Color" },
-            { func: "Disable Selected Node", key: "Ctrl + D", cat: "Color" },
+            { func: "Add Outside Node", key: "Alt + O", cat: "Color" },
+            { func: "Add Serial Before", key: "Shift + S", cat: "Color" },
+            { func: "Add Splitter-Combiner", key: "Alt + Y", cat: "Color" },
+            { func: "Append Serial Node", key: "Alt + Shift + S", cat: "Color" },
+
+            // --- COLOR PAGE OPERATIONS ---
             { func: "Toggle Grade Bypass", key: "Alt + D", cat: "Color" },
+            { func: "Disable Selected Node", key: "Ctrl + D", cat: "Color" },
             { func: "Highlight Toggle", key: "Shift + H", cat: "Color" },
             { func: "Reset Current Grade", key: "Ctrl + Home", cat: "Color" },
             { func: "Grab Still", key: "Ctrl + Alt + G", cat: "Color" },
             { func: "Cinema Viewer", key: "Ctrl + F", cat: "Color" },
+            { func: "Show Scopes", key: "Ctrl + Shift + W", cat: "Color" },
+            { func: "Printer Light +Red", key: "Num 7", cat: "Color" },
+            { func: "Printer Light -Red", key: "Num 1", cat: "Color" },
+            { func: "Printer Light +Green", key: "Num 8", cat: "Color" },
+            { func: "Printer Light -Green", key: "Num 2", cat: "Color" },
+            { func: "Printer Light +Blue", key: "Num 9", cat: "Color" },
+            { func: "Printer Light -Blue", key: "Num 3", cat: "Color" },
+            { func: "Loop Playback Toggle", key: "Ctrl + L", cat: "Color" },
+
+            // --- FAIRLIGHT ---
             { func: "Automation Toggle", key: "Alt + A", cat: "Fairlight" },
             { func: "Mixer Toggle", key: "Alt + M", cat: "Fairlight" },
+            { func: "Meter Toggle", key: "Alt + I", cat: "Fairlight" },
+            { func: "ADR Panel Toggle", key: "Alt + F", cat: "Fairlight" },
             { func: "Solo Selected Track", key: "Shift + S", cat: "Fairlight" },
+            { func: "Mute Selected Track", key: "Shift + M", cat: "Fairlight" },
+            { func: "Range Selection Tool", key: "R", cat: "Fairlight" },
+            { func: "Normalize Audio Levels", key: "Ctrl + Alt + N", cat: "Fairlight" },
+
+            // --- NAVIGATION & GLOBAL ---
+            { func: "Project Manager", key: "Shift + 1", cat: "Nav" },
             { func: "Media Page", key: "Shift + 2", cat: "Nav" },
             { func: "Cut Page", key: "Shift + 3", cat: "Nav" },
             { func: "Edit Page", key: "Shift + 4", cat: "Nav" },
+            { func: "Fusion Page", key: "Shift + 5", cat: "Nav" },
             { func: "Color Page", key: "Shift + 6", cat: "Nav" },
-            { func: "Project Manager", key: "Shift + 1", cat: "Nav" }
+            { func: "Fairlight Page", key: "Shift + 7", cat: "Nav" },
+            { func: "Deliver Page", key: "Shift + 8", cat: "Nav" },
+            { func: "Project Settings", key: "Shift + 9", cat: "Nav" },
+            { func: "Keyboard Customization", key: "Ctrl + Alt + K", cat: "Nav" },
+            { func: "Save Project", key: "Ctrl + S", cat: "Nav" },
+            { func: "Undo", key: "Ctrl + Z", cat: "Nav" },
+            { func: "Redo", key: "Ctrl + Shift + Z", cat: "Nav" },
+
+            // --- PLAYBACK ---
+            { func: "Play / Stop", key: "Space", cat: "Nav" },
+            { func: "Shuttle Reverse", key: "J", cat: "Nav" },
+            { func: "Shuttle Stop", key: "K", cat: "Nav" },
+            { func: "Shuttle Forward", key: "L", cat: "Nav" },
+            { func: "Next Frame", key: "Right Arrow", cat: "Nav" },
+            { func: "Previous Frame", key: "Left Arrow", cat: "Nav" },
+            { func: "Next Second", key: "Shift + Right Arrow", cat: "Nav" },
+            { func: "Previous Second", key: "Shift + Left Arrow", cat: "Nav" },
+            { func: "Go to Next Keyframe", key: "]", cat: "Nav" },
+            { func: "Go to Previous Keyframe", key: "[", cat: "Nav" }
         ];
+
         let userProgress = { mastered: new Set() };
-        let quizPool = []; let currentIdx = 0; let currentFilter = 'all';
+        let quizPool = []; let currentIdx = 0; let stats = { correct: 0, incorrect: 0 }; let currentFilter = 'all';
+
         function init() { loadMastery(); renderHotkeys(); setupSearch(); }
+
         function setMode(mode) {
             document.querySelectorAll('.mode-btn').forEach(btn => btn.classList.remove('active-mode'));
-            const b = document.getElementById(`mode-${mode}`); if(b) b.classList.add('active-mode');
-            document.getElementById('browser-view').classList.toggle('hidden', mode === 'quiz');
-            document.getElementById('quiz-container').classList.toggle('hidden', mode !== 'quiz');
-            if (mode === 'quiz') startQuiz(); else { currentFilter = mode; renderHotkeys(); }
+            const targetBtn = document.getElementById(`mode-${mode}`); if(targetBtn) targetBtn.classList.add('active-mode');
+
+            const views = ['browser-view', 'quiz-container', 'insights-container'];
+            views.forEach(v => document.getElementById(v).classList.add('hidden'));
+
+            if (mode === 'quiz') {
+                document.getElementById('quiz-container').classList.remove('hidden');
+                startQuiz();
+            } else if (mode === 'insights') {
+                document.getElementById('insights-container').classList.remove('hidden');
+                drawInsights();
+            } else {
+                document.getElementById('browser-view').classList.remove('hidden');
+                currentFilter = mode;
+                renderHotkeys();
+            }
         }
+
+        function updateStats() {
+            const mCount = userProgress.mastered.size;
+            const total = hotkeysData.length;
+            const masteredEl = document.getElementById('mastered-count');
+            const progressEl = document.getElementById('progress-bar');
+            if (masteredEl) masteredEl.innerText = mCount + " / " + total;
+            if (progressEl) progressEl.style.width = Math.round((mCount / total) * 100) + "%";
+        }
+
         function renderHotkeys(search = '') {
             const container = document.getElementById('hotkeys-container'); container.innerHTML = '';
-            let filtered = hotkeysData; if (currentFilter !== 'all') filtered = filtered.filter(h => h.cat === currentFilter);
+            let filtered = hotkeysData; if (currentFilter !== 'all') filtered = filtered.filter(h => h.cat === currentFilter || h.cat === 'Nav');
             if (search) filtered = filtered.filter(h => h.func.toLowerCase().includes(search.toLowerCase()) || h.key.toLowerCase().includes(search.toLowerCase()));
+
             filtered.forEach(h => {
                 const card = document.createElement('div'); const mastered = userProgress.mastered.has(h.func);
-                card.className = `hotkey-card bg-white p-6 rounded-3xl border ${mastered ? 'border-green-500 bg-blue-50' : 'border-gray-100'} shadow-sm flex justify-between items-center group`;
-                card.innerHTML = `<div class="flex-grow"><p class="text-[9px] font-black text-gray-300 uppercase mb-1 group-hover:text-blue-500">${h.cat}</p><h4 class="text-md font-bold text-gray-800">${h.func}</h4></div><div class="flex items-center gap-4"><span class="bg-gray-900 border px-3 py-1.5 rounded-xl text-blue-400 font-bold shadow-lg">${h.key}</span><button onclick="toggleStar('${h.func}')" class="text-2xl">${mastered ? '⭐' : '☆'}</button></div>`;
+                card.className = `hotkey-card bg-white p-6 rounded-3xl border ${mastered ? 'border-green-500 bg-green-50' : 'border-gray-100'} shadow-sm flex justify-between items-center group transition-all`;
+                card.innerHTML = `<div class="flex-grow"><p class="text-[9px] font-black text-gray-300 uppercase mb-1 group-hover:text-blue-500">${h.cat}</p><h4 class="text-md font-bold text-gray-800">${h.func}</h4></div><div class="flex items-center gap-4"><span class="key-tag bg-gray-900 border border-gray-700 px-3 py-1.5 rounded-xl text-blue-400 font-bold shadow-lg whitespace-nowrap">${h.key}</span><button onclick="toggleStar('${h.func}')" class="text-2xl transform hover:scale-125 transition-transform">${mastered ? '⭐' : '☆'}</button></div>`;
                 container.appendChild(card);
             });
+            updateStats();
         }
-        function startQuiz() { quizPool = [...hotkeysData]; shuffle(quizPool); currentIdx = 0; loadQuestion(); }
+
+        function startQuiz() { quizPool = [...hotkeysData]; shuffle(quizPool); currentIdx = 0; stats = { correct: 0, incorrect: 0 }; document.getElementById('correct-count').innerText = "0"; document.getElementById('incorrect-count').innerText = "0"; loadQuestion(); }
+        
         function loadQuestion() {
             const q = quizPool[currentIdx]; document.getElementById('quiz-question').innerText = q.func; document.getElementById('quiz-feedback').classList.add('hidden'); document.getElementById('next-question-btn').classList.add('hidden');
             const options = document.getElementById('quiz-options'); options.innerHTML = ''; options.classList.remove('pointer-events-none');
@@ -133,17 +320,21 @@
                 const btn = document.createElement('button'); btn.className = "option-btn p-6 rounded-3xl font-black text-xl bg-white shadow-md"; btn.innerText = c;
                 btn.onclick = () => {
                     const isCorrect = c === q.key; options.classList.add('pointer-events-none'); btn.classList.add(isCorrect ? 'correct' : 'incorrect');
-                    const feed = document.getElementById('quiz-feedback'); feed.innerText = isCorrect ? "EXCELLENT!" : "Correct: " + q.key; feed.classList.remove('hidden'); document.getElementById('next-question-btn').classList.remove('hidden');
+                    if (isCorrect) stats.correct++; else { stats.incorrect++; document.querySelectorAll('.option-btn').forEach(b => { if(b.innerText === q.key) b.classList.add('correct'); }); }
+                    const feed = document.getElementById('quiz-feedback'); feed.innerText = isCorrect ? "PERFECT! +10 Points" : "The Correct Shortcut: " + q.key; feed.className = `p-8 rounded-3xl font-black text-2xl mb-8 border-4 ${isCorrect ? 'bg-green-50 text-green-700 border-green-200' : 'bg-red-50 text-red-700 border-red-200'}`; feed.classList.remove('hidden'); document.getElementById('next-question-btn').classList.remove('hidden');
+                    document.getElementById('correct-count').innerText = stats.correct; document.getElementById('incorrect-count').innerText = stats.incorrect; updateStats();
                 };
                 options.appendChild(btn);
             });
         }
+
         function nextQuestion() { currentIdx++; if (currentIdx < quizPool.length) loadQuestion(); else startQuiz(); }
         function toggleStar(f) { if (userProgress.mastered.has(f)) userProgress.mastered.delete(f); else userProgress.mastered.add(f); saveMastery(); renderHotkeys(); }
         function setupSearch() { document.getElementById('search-input').addEventListener('input', (e) => renderHotkeys(e.target.value)); }
         function shuffle(a) { for (let i = a.length - 1; i > 0; i--) { const j = Math.floor(Math.random() * (i + 1)); [a[i], a[j]] = [a[j], a[i]]; } }
-        function saveMastery() { localStorage.setItem('mastery-resolve-pro-tracking', JSON.stringify([...userProgress.mastered])); }
-        function loadMastery() { const s = localStorage.getItem('mastery-resolve-pro-tracking'); if (s) userProgress.mastered = new Set(JSON.parse(s)); }
+        function saveMastery() { localStorage.setItem('mastery-resolve-ultimate-v4', JSON.stringify([...userProgress.mastered])); }
+        function loadMastery() { const s = localStorage.getItem('mastery-resolve-ultimate-v4'); if (s) userProgress.mastered = new Set(JSON.parse(s)); }
+        function drawInsights() { const m = userProgress.mastered.size; const r = hotkeysData.length - m; Plotly.newPlot('progress-chart', [{ values: [m, r], labels: ['Mastered', 'Learning'], type: 'pie', marker: { colors: ['#3b82f6', '#e5e7eb'] }, hole: .4 }], { margin: {t:0, b:0, l:0, r:0} }); }
         window.onload = () => { init(); };
     </script>
 </body>
