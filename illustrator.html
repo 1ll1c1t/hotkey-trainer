@@ -1,9 +1,16 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+    <!-- Google tag (gtag.js) -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-GCG9LQ68MW"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+      gtag('config', 'G-GCG9LQ68MW');
+    </script>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<<<<<<< HEAD
     <title>Ultimate Illustrator Hotkey Trainer</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/plotly.js/3.0.3/plotly.min.js"></script>
@@ -17,252 +24,76 @@
         .option-btn { transition: all 0.2s; border: 2px solid #f3f4f6; }
         .option-btn:hover:not(:disabled) { border-color: #f59e0b; background-color: #fff7ed; transform: translateY(-2px); }
         .hotkey-card { transition: all 0.2s ease; }
-        .custom-scroll::-webkit-scrollbar { width: 6px; }
-        .custom-scroll::-webkit-scrollbar-track { background: #f1f1f1; }
-        .custom-scroll::-webkit-scrollbar-thumb { background: #f59e0b; border-radius: 10px; }
-        .key-tag { font-family: 'Monaco', 'Consolas', monospace; font-size: 0.85rem; }
     </style>
 </head>
 <body class="bg-gray-50 text-gray-900">
-    <nav class="bg-white/90 backdrop-blur-md border-b sticky top-0 z-50 px-6 py-4 flex justify-between items-center shadow-sm">
+    <!-- PayPal Donation Form -->
+    <div class="bg-gray-100 py-3 border-b border-gray-200 flex justify-center items-center sticky top-0 z-[100]">
+        <form action="https://www.paypal.com/donate" method="post" target="_top">
+            <input type="hidden" name="hosted_button_id" value="RSW8PUWLJJ8DC" />
+            <input type="image" src="https://www.paypalobjects.com/en_US/i/btn/btn_donate_LG.gif" border="0" name="submit" title="PayPal - The safer, easier way to pay online!" alt="Donate with PayPal button" />
+            <img alt="" border="0" src="https://www.paypal.com/en_US/i/scr/pixel.gif" width="1" height="1" />
+        </form>
+    </div>
+
+    <nav class="bg-white/90 backdrop-blur-md border-b sticky top-[52px] z-50 px-6 py-4 flex justify-between items-center shadow-sm">
         <div class="flex items-center gap-3">
             <div class="w-10 h-10 bg-orange-500 rounded-xl flex items-center justify-center text-white font-black italic shadow-lg">Ai</div>
             <a href="index.html" class="font-bold text-2xl tracking-tighter gradient-text">Hotkey Trainer</a>
         </div>
-        <a href="index.html" class="text-gray-600 hover:text-orange-600 transition-colors font-medium flex items-center gap-2">
-            <span>🏠</span> Home
-        </a>
+        <a href="index.html" class="text-gray-600 hover:text-orange-600 transition-colors font-medium">🏠 Home</a>
     </nav>
-    
     <header class="bg-gradient-to-br from-orange-500 to-pink-600 text-white py-14 text-center shadow-inner relative overflow-hidden">
-        <div class="absolute inset-0 opacity-10 pointer-events-none select-none text-[20rem] font-black -top-20 -right-10">VECTOR</div>
         <h1 class="text-6xl font-black mb-2 tracking-tight">Adobe Illustrator</h1>
-        <p class="text-xl opacity-90 font-medium">The Absolute Professional Database for Vector Precision.</p>
+        <p class="text-xl opacity-90 font-medium">Professional Vector Precision Database.</p>
     </header>
 
     <main class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8 grid grid-cols-1 lg:grid-cols-4 gap-8">
-        <!-- Sidebar Navigation -->
         <div class="lg:col-span-1 space-y-4">
-            <div class="bg-white rounded-3xl p-6 shadow-xl border border-gray-100 sticky top-24">
+            <div class="bg-white rounded-3xl p-6 shadow-xl border border-gray-100 sticky top-40">
                 <h3 class="text-sm font-black mb-4 text-gray-400 uppercase tracking-widest px-2">Workspaces</h3>
-                <div class="space-y-1 max-h-[65vh] overflow-y-auto custom-scroll pr-2">
-                    <button onclick="setMode('all')" id="mode-all" class="mode-btn w-full text-left px-4 py-3 rounded-xl active-mode transition-all font-bold">⌨️ Global Database</button>
+                <div class="space-y-1 max-h-[60vh] overflow-y-auto custom-scroll pr-2">
+                    <button onclick="setMode('all')" id="mode-all" class="mode-btn w-full text-left px-4 py-3 rounded-xl active-mode transition-all font-bold">⌨️ All Keys</button>
                     <button onclick="setMode('Tools')" id="mode-Tools" class="mode-btn w-full text-left px-4 py-3 rounded-xl hover:bg-gray-100 transition-all font-semibold">🖌️ Creative Tools</button>
-                    <button onclick="setMode('Object')" id="mode-Object" class="mode-btn w-full text-left px-4 py-3 rounded-xl hover:bg-gray-100 transition-all font-semibold">📦 Object & Paths</button>
+                    <button onclick="setMode('Object')" id="mode-Object" class="mode-btn w-full text-left px-4 py-3 rounded-xl hover:bg-gray-100 transition-all font-semibold">📦 Paths & Objects</button>
                     <button onclick="setMode('Type')" id="mode-Type" class="mode-btn w-full text-left px-4 py-3 rounded-xl hover:bg-gray-100 transition-all font-semibold">🔤 Typography</button>
-                    <button onclick="setMode('Selection')" id="mode-Selection" class="mode-btn w-full text-left px-4 py-3 rounded-xl hover:bg-gray-100 transition-all font-semibold">✨ Select & Arrange</button>
-                    <button onclick="setMode('View')" id="mode-View" class="mode-btn w-full text-left px-4 py-3 rounded-xl hover:bg-gray-100 transition-all font-semibold">👁️ Stage & UI</button>
-                    <button onclick="setMode('General')" id="mode-General" class="mode-btn w-full text-left px-4 py-3 rounded-xl hover:bg-gray-100 transition-all font-semibold">⚙️ File Ops</button>
                     <div class="h-px bg-gray-100 my-4"></div>
                     <button onclick="setMode('quiz')" id="mode-quiz" class="mode-btn w-full text-left px-4 py-3 rounded-xl hover:bg-orange-600 hover:text-white transition-all font-black text-orange-600">🧠 Start Pro Quiz</button>
-                    <button onclick="setMode('insights')" id="mode-insights" class="mode-btn w-full text-left px-4 py-3 rounded-xl hover:bg-gray-100 transition-all font-semibold">📊 Mastery Stats</button>
-                </div>
-                
-                <div class="mt-8 pt-6 border-t border-gray-200 px-2">
-                    <h4 class="text-[10px] font-black mb-3 text-gray-400 uppercase tracking-widest">Training Progress</h4>
-                    <div class="space-y-4">
-                        <div class="flex justify-between items-end">
-                            <span class="text-xs text-gray-500 font-bold">Progress</span>
-                            <span class="font-black text-orange-600" id="mastered-count">0</span>
-                        </div>
-                        <div class="w-full bg-gray-100 rounded-full h-3">
-                            <div class="bg-gradient-to-r from-orange-500 to-pink-600 h-3 rounded-full transition-all duration-700 shadow-sm" style="width: 0%" id="progress-bar"></div>
-                        </div>
-                    </div>
                 </div>
             </div>
         </div>
-
-        <!-- Content Area -->
         <div class="lg:col-span-3">
             <div id="browser-view" class="space-y-4">
-                <div class="bg-white rounded-3xl p-6 shadow-xl border border-gray-100 mb-8">
-                    <div class="relative">
-                        <input type="text" id="search-input" placeholder="Search Ai shortcuts (e.g. 'Pathfinder', 'V', 'Mask')..." class="w-full px-6 py-4 pl-14 border border-gray-100 rounded-2xl bg-gray-50 focus:ring-4 focus:ring-orange-200 outline-none transition-all text-lg font-medium">
-                        <div class="absolute left-6 top-1/2 transform -translate-y-1/2 text-gray-400 text-xl">🔍</div>
-                    </div>
-                </div>
                 <div id="hotkeys-container" class="grid grid-cols-1 md:grid-cols-2 gap-4"></div>
             </div>
-
             <div id="quiz-container" class="hidden">
                 <div class="bg-white rounded-[3.5rem] p-12 shadow-2xl text-center border border-gray-100 min-h-[550px] flex flex-col justify-center animate-in fade-in duration-500">
-                    <span class="bg-orange-100 text-orange-600 px-6 py-2 rounded-full text-xs font-black uppercase tracking-widest inline-block mx-auto mb-10">Illustrator Pro Gauntlet</span>
-                    <h2 class="text-gray-400 font-bold mb-2">What is the keyboard shortcut for:</h2>
-                    <h2 id="quiz-question" class="text-4xl md:text-5xl font-black text-gray-900 mb-14 leading-tight">Loading...</h2>
-                    
+                    <h2 id="quiz-question" class="text-4xl font-black text-gray-900 mb-14 leading-tight">Loading...</h2>
                     <div id="quiz-options" class="grid grid-cols-1 md:grid-cols-2 gap-4 mb-10"></div>
-
-                    <div id="quiz-feedback" class="hidden p-8 rounded-3xl font-black text-2xl mb-8 transform transition-all duration-300"></div>
-                    <button id="next-question-btn" onclick="nextQuestion()" class="hidden mx-auto bg-gray-900 text-white px-20 py-6 rounded-3xl font-black text-xl hover:bg-orange-600 transition-all hover:scale-105 shadow-2xl">NEXT CHALLENGE →</button>
-                    
-                    <div class="grid grid-cols-2 gap-6 mt-16 border-t pt-10">
-                        <div class="p-4 bg-green-50 rounded-2xl border border-green-100">
-                            <p class="text-[10px] font-black text-green-600 uppercase tracking-widest">Accuracy</p>
-                            <p id="correct-count" class="text-4xl font-black text-green-500">0</p>
-                        </div>
-                        <div class="p-4 bg-red-50 rounded-2xl border border-red-100">
-                            <p class="text-[10px] font-black text-red-600 uppercase tracking-widest">Mistakes</p>
-                            <p id="incorrect-count" class="text-4xl font-black text-red-500">0</p>
-=======
-    <title>Illustrator - Hotkey Trainer</title>
-    <script src="https://cdn.tailwindcss.com"></script>
-    <style>
-        body { font-family: 'Inter', sans-serif; }
-        .gradient-text { background: linear-gradient(135deg, #f97316 0%, #ec4899 100%); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
-        .floating-key { animation: float 3s ease-in-out infinite; }
-        @keyframes float { 0%, 100% { transform: translateY(0px); } 50% { transform: translateY(-10px); } }
-    </style>
-</head>
-<body class="bg-gray-50 text-gray-900">
-    <nav class="bg-white/90 backdrop-blur-md border-b border-gray-200/50 sticky top-0 z-50">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div class="flex justify-between items-center h-16">
-                <div class="flex items-center space-x-4">
-                    <a href="index.html" class="flex items-center space-x-2 hover:opacity-80 transition-opacity">
-                        <div class="w-8 h-8 bg-gradient-to-br from-indigo-500 to-purple-600 rounded-lg flex items-center justify-center">
-                            <span class="text-white font-bold text-sm">⌘</span>
-                        </div>
-                        <span class="font-bold text-xl gradient-text">Hotkey Trainer</span>
-                    </a>
-                    <div class="h-6 w-px bg-gray-300"></div>
-                    <span class="text-gray-600 font-medium">Illustrator</span>
+                    <div id="quiz-feedback" class="hidden p-8 rounded-3xl font-black text-2xl mb-8 transform transition-all"></div>
+                    <button id="next-question-btn" onclick="nextQuestion()" class="hidden mx-auto bg-gray-900 text-white px-20 py-6 rounded-3xl font-black text-xl hover:bg-orange-600 transition-all shadow-2xl">NEXT CHALLENGE →</button>
                 </div>
-                <div class="flex space-x-4">
-                    <a href="index.html" class="text-gray-600 hover:text-indigo-600 transition-colors font-medium">
-                        🏠 Home
-                    </a>
-                </div>
-            </div>
-        </div>
-    </nav>
-
-    <header class="bg-gradient-to-br from-orange-500 to-pink-600 text-white py-12">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-            <div class="floating-key inline-block mb-6">
-                <div class="w-20 h-20 bg-white/20 rounded-2xl flex items-center justify-center backdrop-blur-sm">
-                    <span class="text-4xl font-bold">Ai</span>
-                </div>
-            </div>
-            <h1 class="text-4xl md:text-5xl font-black mb-4">Illustrator</h1>
-            <p class="text-xl md:text-2xl opacity-90 mb-6">Vector Design Hotkeys</p>
-            <div class="flex justify-center items-center space-x-8 text-sm">
-                <div class="flex items-center space-x-2">
-                    <span class="bg-white/20 px-3 py-1 rounded-full">140+ Hotkeys</span>
-                </div>
-                <div class="flex items-center space-x-2">
-                    <span class="bg-white/20 px-3 py-1 rounded-full">Coming Soon</span>
-                </div>
-            </div>
-        </div>
-    </header>
-
-    <main class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
-        <div class="text-center">
-            <div class="text-6xl mb-6">🚧</div>
-            <h2 class="text-3xl font-bold mb-4 text-gray-800">Coming Soon</h2>
-            <p class="text-xl text-gray-600 mb-8 max-w-2xl mx-auto">
-                Illustrator vector design trainer is in development with comprehensive pen tool and shape shortcuts.
-            </p>
-            <div class="bg-white rounded-2xl p-8 shadow-lg border border-gray-200/50 max-w-2xl mx-auto">
-                <h3 class="text-2xl font-bold mb-6 gradient-text">Vector Features</h3>
-                <div class="grid grid-cols-1 md:grid-cols-2 gap-6 text-left">
-                    <div class="flex items-start space-x-3">
-                        <div class="w-6 h-6 bg-orange-500 rounded-full flex items-center justify-center flex-shrink-0 mt-1">
-                            <span class="text-white text-sm">✓</span>
-                        </div>
-                        <div>
-                            <h4 class="font-semibold text-gray-800">Pen Tool Mastery</h4>
-                            <p class="text-gray-600 text-sm">Advanced pen tool shortcuts</p>
-                        </div>
-                    </div>
-                    <div class="flex items-start space-x-3">
-                        <div class="w-6 h-6 bg-orange-500 rounded-full flex items-center justify-center flex-shrink-0 mt-1">
-                            <span class="text-white text-sm">✓</span>
-                        </div>
-                        <div>
-                            <h4 class="font-semibold text-gray-800">Shape Operations</h4>
-                            <p class="text-gray-600 text-sm">Pathfinder and shape tools</p>
-                        </div>
-                    </div>
-                    <div class="flex items-start space-x-3">
-                        <div class="w-6 h-6 bg-orange-500 rounded-full flex items-center justify-center flex-shrink-0 mt-1">
-                            <span class="text-white text-sm">✓</span>
-                        </div>
-                        <div>
-                            <h4 class="font-semibold text-gray-800">Typography Tools</h4>
-                            <p class="text-gray-600 text-sm">Text and font management</p>
-                        </div>
-                    </div>
-                    <div class="flex items-start space-x-3">
-                        <div class="w-6 h-6 bg-orange-500 rounded-full flex items-center justify-center flex-shrink-0 mt-1">
-                            <span class="text-white text-sm">✓</span>
-                        </div>
-                        <div>
-                            <h4 class="font-semibold text-gray-800">Color Systems</h4>
-                            <p class="text-gray-600 text-sm">Swatches and color management</p>
->>>>>>> a47752807d51b9f324fb5542ddb96d50ed6527ef
-                        </div>
-                    </div>
-                </div>
-            </div>
-<<<<<<< HEAD
-
-            <div id="insights-container" class="hidden bg-white p-12 rounded-[3.5rem] shadow-2xl border border-gray-100 text-center">
-                <h2 class="text-3xl font-black mb-8 gradient-text">Vector Workflow Analytics</h2>
-                <div id="progress-chart" class="h-96 w-full"></div>
-                <p class="mt-8 text-gray-400 font-medium italic">"Precision in vector art starts with muscle memory."</p>
-=======
-            
-            <div class="mt-12">
-                <a href="index.html" class="bg-gradient-to-r from-orange-500 to-pink-600 text-white px-8 py-4 rounded-xl font-semibold hover:from-orange-600 hover:to-pink-700 transition-all duration-300 inline-block">
-                    Back to Home
-                </a>
->>>>>>> a47752807d51b9f324fb5542ddb96d50ed6527ef
             </div>
         </div>
     </main>
 
-<<<<<<< HEAD
     <script>
         const hotkeysData = [
-            // --- TOOLS ---
             { func: "Selection Tool", key: "V", cat: "Tools" },
             { func: "Direct Selection Tool", key: "A", cat: "Tools" },
-            { func: "Group Selection Tool", key: "Alt + Click Tool", cat: "Tools" },
             { func: "Magic Wand Tool", key: "Y", cat: "Tools" },
             { func: "Lasso Tool", key: "Q", cat: "Tools" },
             { func: "Pen Tool", key: "P", cat: "Tools" },
-            { func: "Anchor Point Tool", key: "Shift + C", cat: "Tools" },
-            { func: "Add Anchor Point", key: "+", cat: "Tools" },
-            { func: "Delete Anchor Point", key: "-", cat: "Tools" },
             { func: "Curvature Tool", key: "Shift + ~", cat: "Tools" },
             { func: "Type Tool", key: "T", cat: "Tools" },
-            { func: "Touch Type Tool", key: "Shift + T", cat: "Tools" },
-            { func: "Line Segment Tool", key: "\\", cat: "Tools" },
             { func: "Rectangle Tool", key: "M", cat: "Tools" },
             { func: "Ellipse Tool", key: "L", cat: "Tools" },
-            { func: "Paintbrush Tool", key: "B", cat: "Tools" },
-            { func: "Pencil Tool", key: "N", cat: "Tools" },
-            { func: "Shaper Tool", key: "Shift + N", cat: "Tools" },
             { func: "Rotate Tool", key: "R", cat: "Tools" },
             { func: "Reflect Tool", key: "O", cat: "Tools" },
             { func: "Scale Tool", key: "S", cat: "Tools" },
-            { func: "Width Tool", key: "Shift + W", cat: "Tools" },
-            { func: "Free Transform", key: "E", cat: "Tools" },
             { func: "Shape Builder Tool", key: "Shift + M", cat: "Tools" },
-            { func: "Live Paint Bucket", key: "K", cat: "Tools" },
-            { func: "Mesh Tool", key: "U", cat: "Tools" },
-            { func: "Gradient Tool", key: "G", cat: "Tools" },
             { func: "Eyedropper Tool", key: "I", cat: "Tools" },
-            { func: "Blend Tool", key: "W", cat: "Tools" },
             { func: "Artboard Tool", key: "Shift + O", cat: "Tools" },
-            { func: "Eraser Tool", key: "Shift + E", cat: "Tools" },
-            { func: "Scissors Tool", key: "C", cat: "Tools" },
-            { func: "Knife Tool", key: "Alt + Click Scissors", cat: "Tools" },
-            { func: "Perspective Grid", key: "Shift + P", cat: "Tools" },
-
-            // --- OBJECT & PATHS ---
             { func: "Group Objects", key: "Ctrl + G", cat: "Object" },
             { func: "Ungroup Objects", key: "Ctrl + Shift + G", cat: "Object" },
             { func: "Lock Selection", key: "Ctrl + 2", cat: "Object" },
@@ -271,244 +102,57 @@
             { func: "Show All", key: "Ctrl + Alt + 3", cat: "Object" },
             { func: "Make Clipping Mask", key: "Ctrl + 7", cat: "Object" },
             { func: "Release Clipping Mask", key: "Ctrl + Alt + 7", cat: "Object" },
-            { func: "Make Compound Path", key: "Ctrl + 8", cat: "Object" },
-            { func: "Release Compound Path", key: "Ctrl + Alt + 8", cat: "Object" },
             { func: "Join Paths", key: "Ctrl + J", cat: "Object" },
-            { func: "Average Anchor Points", key: "Ctrl + Alt + J", cat: "Object" },
-            { func: "Outline Stroke", key: "Object > Path > Outline", cat: "Object" },
-            { func: "Transform Again", key: "Ctrl + D", cat: "Object" },
-            { func: "Simplify Path", key: "Object > Path > Simplify", cat: "Object" },
-            { func: "Pathfinder: Unite", key: "Alt + Click Unite", cat: "Object" },
-
-            // --- TYPOGRAPHY ---
             { func: "Create Outlines", key: "Ctrl + Shift + O", cat: "Type" },
-            { func: "Increase Font Size", key: "Ctrl + Shift + >", cat: "Type" },
-            { func: "Decrease Font Size", key: "Ctrl + Shift + <", cat: "Type" },
-            { func: "Increase Leading", key: "Alt + Down Arrow", cat: "Type" },
-            { func: "Decrease Leading", key: "Alt + Up Arrow", cat: "Type" },
-            { func: "Increase Tracking/Kerning", key: "Alt + Right Arrow", cat: "Type" },
-            { func: "Decrease Tracking/Kerning", key: "Alt + Left Arrow", cat: "Type" },
-            { func: "Increase Baseline Shift", key: "Alt + Shift + Up", cat: "Type" },
-            { func: "Decrease Baseline Shift", key: "Alt + Shift + Down", cat: "Type" },
-            { func: "Align Left", key: "Ctrl + Shift + L", cat: "Type" },
-            { func: "Align Center", key: "Ctrl + Shift + C", cat: "Type" },
-            { func: "Align Right", key: "Ctrl + Shift + R", cat: "Type" },
-            { func: "Justify Full (Last Left)", key: "Ctrl + Shift + J", cat: "Type" },
-
-            // --- SELECTION & ARRANGEMENT ---
-            { func: "Select All", key: "Ctrl + A", cat: "Selection" },
-            { func: "Deselect All", key: "Ctrl + Shift + A", cat: "Selection" },
-            { func: "Bring to Front", key: "Ctrl + Shift + ]", cat: "Selection" },
-            { func: "Send to Back", key: "Ctrl + Shift + [", cat: "Selection" },
-            { func: "Bring Forward", key: "Ctrl + ]", cat: "Selection" },
-            { func: "Send Backward", key: "Ctrl + [", cat: "Selection" },
-            { func: "Select Object Behind", key: "Ctrl + Click", cat: "Selection" },
-            { func: "Invert Selection", key: "Select > Inverse", cat: "Selection" },
-
-            // --- VIEW & UI ---
-            { func: "Outline View Toggle", key: "Ctrl + Y", cat: "View" },
-            { func: "Pixel Preview Toggle", key: "Ctrl + Alt + Y", cat: "View" },
-            { func: "Overprint Preview Toggle", key: "Ctrl + Alt + Shift + Y", cat: "View" },
-            { func: "Screen Mode Toggle", key: "F", cat: "View" },
-            { func: "Show/Hide Rulers", key: "Ctrl + R", cat: "View" },
-            { func: "Show/Hide Guides", key: "Ctrl + ;", cat: "View" },
-            { func: "Lock Guides Toggle", key: "Ctrl + Alt + ;", cat: "View" },
-            { func: "Show/Hide Grid", key: "Ctrl + '", cat: "View" },
-            { func: "Snap to Grid Toggle", key: "Ctrl + Shift + '", cat: "View" },
-            { func: "Fit Artboard in Window", key: "Ctrl + 0", cat: "View" },
-            { func: "100% Magnification", key: "Ctrl + 1", cat: "View" },
-            { func: "Zoom In", key: "Ctrl + +", cat: "View" },
-            { func: "Zoom Out", key: "Ctrl + -", cat: "View" },
-            { func: "Toggle All Panels", key: "Tab", cat: "View" },
-
-            // --- GENERAL OPERATIONS ---
-            { func: "New Document", key: "Ctrl + N", cat: "General" },
-            { func: "Open File", key: "Ctrl + O", cat: "General" },
-            { func: "Save File", key: "Ctrl + S", cat: "General" },
-            { func: "Save As", key: "Ctrl + Shift + S", cat: "General" },
-            { func: "Export Media/Web", key: "Ctrl + Alt + Shift + S", cat: "General" },
+            { func: "Outline View Toggle", key: "Ctrl + Y", cat: "Object" },
             { func: "Undo", key: "Ctrl + Z", cat: "General" },
-            { func: "Redo", key: "Ctrl + Shift + Z", cat: "General" },
+            { func: "New Document", key: "Ctrl + N", cat: "General" },
             { func: "Default Fill/Stroke", key: "D", cat: "General" },
-            { func: "Swap Fill/Stroke", key: "X", cat: "General" },
-            { func: "Apply Color", key: ",", cat: "General" },
-            { func: "Apply Gradient", key: ".", cat: "General" },
-            { func: "Apply None", key: "/", cat: "General" }
+            { func: "Swap Fill/Stroke", key: "X", cat: "General" }
         ];
-
         let userProgress = { mastered: new Set() };
-        let quizPool = [];
-        let currentIdx = 0;
-        let stats = { correct: 0, incorrect: 0 };
-        let currentFilter = 'all';
-
-        function init() {
-            loadMastery();
-            renderHotkeys();
-            setupSearch();
-        }
-
+        let quizPool = []; let currentIdx = 0; let currentFilter = 'all';
+        function init() { loadMastery(); renderHotkeys(); }
         function setMode(mode) {
             document.querySelectorAll('.mode-btn').forEach(btn => btn.classList.remove('active-mode'));
-            const targetBtn = document.getElementById(`mode-${mode}`);
-            if(targetBtn) targetBtn.classList.add('active-mode');
-
-            document.getElementById('browser-view').classList.toggle('hidden', !['all', 'Tools', 'Object', 'Type', 'Selection', 'View', 'General'].includes(mode));
+            const targetBtn = document.getElementById(`mode-${mode}`); if(targetBtn) targetBtn.classList.add('active-mode');
+            document.getElementById('browser-view').classList.toggle('hidden', mode === 'quiz');
             document.getElementById('quiz-container').classList.toggle('hidden', mode !== 'quiz');
-            document.getElementById('insights-container').classList.toggle('hidden', mode !== 'insights');
-
-            if (mode === 'quiz') startQuiz();
-            else if (mode === 'insights') drawInsights();
-            else {
-                currentFilter = mode;
-                renderHotkeys();
-            }
+            if (mode === 'quiz') startQuiz(); else { currentFilter = mode; renderHotkeys(); }
         }
-
-        function renderHotkeys(search = '') {
-            const container = document.getElementById('hotkeys-container');
-            container.innerHTML = '';
-            
-            let filtered = hotkeysData;
-            if (currentFilter !== 'all') filtered = filtered.filter(h => h.cat === currentFilter || h.cat === 'General');
-            if (search) filtered = filtered.filter(h => 
-                h.func.toLowerCase().includes(search.toLowerCase()) || 
-                h.key.toLowerCase().includes(search.toLowerCase())
-            );
-
+        function renderHotkeys() {
+            const container = document.getElementById('hotkeys-container'); container.innerHTML = '';
+            let filtered = hotkeysData; if (currentFilter !== 'all') filtered = filtered.filter(h => h.cat === currentFilter);
             filtered.forEach(h => {
-                const card = document.createElement('div');
-                const mastered = userProgress.mastered.has(h.func);
-                card.className = `hotkey-card bg-white p-6 rounded-3xl border ${mastered ? 'border-green-500 bg-green-50' : 'border-gray-100'} shadow-sm flex justify-between items-center hover:shadow-xl transition-all group`;
-                card.innerHTML = `
-                    <div class="flex-grow">
-                        <p class="text-[9px] font-black text-gray-300 uppercase tracking-widest mb-1 group-hover:text-orange-400 transition-colors">${h.cat}</p>
-                        <h4 class="text-md font-bold text-gray-800">${h.func}</h4>
-                    </div>
-                    <div class="flex items-center gap-4">
-                        <span class="key-tag bg-gray-900 border border-gray-700 px-3 py-1.5 rounded-xl text-orange-400 font-bold shadow-lg whitespace-nowrap">${h.key}</span>
-                        <button onclick="toggleStar('${h.func}')" class="text-2xl transform hover:scale-125 transition-transform drop-shadow-sm">${mastered ? '⭐' : '☆'}</button>
-                    </div>
-                `;
+                const card = document.createElement('div'); const mastered = userProgress.mastered.has(h.func);
+                card.className = `hotkey-card bg-white p-6 rounded-3xl border ${mastered ? 'border-green-500 bg-green-50' : 'border-gray-100'} shadow-sm flex justify-between items-center group transition-all`;
+                card.innerHTML = `<div class="flex-grow"><p class="text-[9px] font-black text-gray-300 uppercase mb-1 group-hover:text-pink-500">${h.cat}</p><h4 class="text-md font-bold text-gray-800">${h.func}</h4></div><div class="flex items-center gap-4"><span class="key-tag bg-gray-900 border border-gray-700 px-3 py-1.5 rounded-xl text-orange-400 font-bold shadow-lg">${h.key}</span><button onclick="toggleStar('${h.func}')" class="text-2xl">${mastered ? '⭐' : '☆'}</button></div>`;
                 container.appendChild(card);
             });
             updateStats();
         }
-
-        function startQuiz() {
-            quizPool = [...hotkeysData];
-            shuffle(quizPool);
-            currentIdx = 0;
-            stats = { correct: 0, incorrect: 0 };
-            document.getElementById('correct-count').innerText = "0";
-            document.getElementById('incorrect-count').innerText = "0";
-            loadQuestion();
-        }
-
+        function startQuiz() { quizPool = [...hotkeysData]; shuffle(quizPool); currentIdx = 0; loadQuestion(); }
         function loadQuestion() {
-            const q = quizPool[currentIdx];
-            document.getElementById('quiz-question').innerText = q.func;
-            const feed = document.getElementById('quiz-feedback');
-            feed.classList.add('hidden');
-            document.getElementById('next-question-btn').classList.add('hidden');
-            
-            const options = document.getElementById('quiz-options');
-            options.innerHTML = '';
-            options.classList.remove('pointer-events-none');
-
-            let choices = [q.key];
-            while(choices.length < 4) {
-                let r = hotkeysData[Math.floor(Math.random()*hotkeysData.length)].key;
-                if(!choices.includes(r)) choices.push(r);
-            }
-            shuffle(choices);
-
+            const q = quizPool[currentIdx]; document.getElementById('quiz-question').innerText = q.func; document.getElementById('quiz-feedback').classList.add('hidden'); document.getElementById('next-question-btn').classList.add('hidden');
+            const options = document.getElementById('quiz-options'); options.innerHTML = ''; options.classList.remove('pointer-events-none');
+            let choices = [q.key]; while(choices.length < 4) { let r = hotkeysData[Math.floor(Math.random()*hotkeysData.length)].key; if(!choices.includes(r)) choices.push(r); } shuffle(choices);
             choices.forEach(c => {
-                const btn = document.createElement('button');
-                btn.className = "option-btn p-6 rounded-3xl font-black text-xl bg-white shadow-md hover:shadow-xl transition-all";
-                btn.innerText = c;
+                const btn = document.createElement('button'); btn.className = "option-btn p-6 rounded-3xl font-black text-xl bg-white shadow-md"; btn.innerText = c;
                 btn.onclick = () => {
-                    const isCorrect = c === q.key;
-                    document.getElementById('quiz-options').classList.add('pointer-events-none');
-                    btn.classList.add(isCorrect ? 'correct' : 'incorrect');
-                    
-                    if (isCorrect) stats.correct++;
-                    else {
-                        stats.incorrect++;
-                        document.querySelectorAll('.option-btn').forEach(b => {
-                            if(b.innerText === q.key) b.classList.add('correct');
-                        });
-                    }
-
-                    feed.innerText = isCorrect ? "MASTERFUL! +10 Points" : "The Correct Shortcut is: " + q.key;
-                    feed.className = `p-8 rounded-3xl font-black text-2xl mb-8 border-4 ${isCorrect ? 'bg-green-50 text-green-700 border-green-200' : 'bg-red-50 text-red-700 border-red-200'}`;
-                    feed.classList.remove('hidden');
-                    document.getElementById('next-question-btn').classList.remove('hidden');
-                    
-                    document.getElementById('correct-count').innerText = stats.correct;
-                    document.getElementById('incorrect-count').innerText = stats.incorrect;
+                    const isCorrect = c === q.key; options.classList.add('pointer-events-none'); btn.classList.add(isCorrect ? 'correct' : 'incorrect');
+                    const feed = document.getElementById('quiz-feedback'); feed.innerText = isCorrect ? "MASTERFUL!" : "Correct: " + q.key; feed.classList.remove('hidden'); document.getElementById('next-question-btn').classList.remove('hidden');
                     updateStats();
                 };
                 options.appendChild(btn);
             });
         }
-
-        function nextQuestion() {
-            currentIdx++;
-            if (currentIdx < quizPool.length) loadQuestion();
-            else { alert("Illustrator Gauntlet Complete!"); startQuiz(); }
-        }
-
-        function toggleStar(f) {
-            if (userProgress.mastered.has(f)) userProgress.mastered.delete(f);
-            else userProgress.mastered.add(f);
-            saveMastery();
-            renderHotkeys();
-        }
-
-        function updateStats() {
-            const masterCount = userProgress.mastered.size;
-            const total = hotkeysData.length;
-            document.getElementById('mastered-count').innerText = masterCount + " / " + total;
-            document.getElementById('progress-bar').style.width = Math.round((masterCount/total)*100) + "%";
-        }
-
-        function setupSearch() {
-            document.getElementById('search-input').addEventListener('input', (e) => renderHotkeys(e.target.value));
-        }
-
+        function nextQuestion() { currentIdx++; if (currentIdx < quizPool.length) loadQuestion(); else startQuiz(); }
+        function toggleStar(f) { if (userProgress.mastered.has(f)) userProgress.mastered.delete(f); else userProgress.mastered.add(f); saveMastery(); renderHotkeys(); }
+        function updateStats() { const mCount = userProgress.mastered.size; document.getElementById('mastered-count').innerText = mCount + " / " + hotkeysData.length; document.getElementById('progress-bar').style.width = (mCount/hotkeysData.length)*100 + "%"; }
         function shuffle(a) { for (let i = a.length - 1; i > 0; i--) { const j = Math.floor(Math.random() * (i + 1)); [a[i], a[j]] = [a[j], a[i]]; } }
-        function saveMastery() { localStorage.setItem('mastery-illustrator-pro-fixed', JSON.stringify([...userProgress.mastered])); }
-        function loadMastery() { 
-            const s = localStorage.getItem('mastery-illustrator-pro-fixed');
-            if (s) userProgress.mastered = new Set(JSON.parse(s));
-        }
-
-        function drawInsights() {
-            const m = userProgress.mastered.size;
-            const r = hotkeysData.length - m;
-            Plotly.newPlot('progress-chart', [{ values: [m, r], labels: ['Mastered', 'Remaining'], type: 'pie', marker: { colors: ['#f59e0b', '#e5e7eb'] }, hole: .4 }], { margin: {t:0, b:0, l:0, r:0}, showlegend: true });
-        }
-
+        function saveMastery() { localStorage.setItem('mastery-illustrator-ultimate-v2', JSON.stringify([...userProgress.mastered])); }
+        function loadMastery() { const s = localStorage.getItem('mastery-illustrator-ultimate-v2'); if (s) userProgress.mastered = new Set(JSON.parse(s)); }
         window.onload = () => { init(); };
     </script>
-=======
-    <footer class="bg-gray-900 text-white py-12">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-            <div class="flex items-center justify-center space-x-2 mb-6">
-                <div class="w-8 h-8 bg-gradient-to-br from-indigo-500 to-purple-600 rounded-lg flex items-center justify-center">
-                    <span class="text-white font-bold text-sm">⌘</span>
-                </div>
-                <span class="font-bold text-xl">Hotkey Trainer</span>
-            </div>
-            <p class="text-gray-400 mb-4">
-                Master your creative software with interactive keyboard shortcut training.
-            </p>
-            <p class="text-gray-500 text-sm">
-                © 2025 Hotkey Trainer. All rights reserved. Made with ❤️ for the creative community.
-            </p>
-        </div>
-    </footer>
->>>>>>> a47752807d51b9f324fb5542ddb96d50ed6527ef
 </body>
 </html>
