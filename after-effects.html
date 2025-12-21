@@ -9,9 +9,10 @@
       gtag('js', new Date());
       gtag('config', 'G-GCG9LQ68MW');
     </script>
+
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Ultimate After Effects Hotkey Trainer</title>
+    <title>Ultimate Adobe After Effects Hotkey Trainer</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/plotly.js/3.0.3/plotly.min.js"></script>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
@@ -42,52 +43,120 @@
 
     <nav class="bg-white/90 backdrop-blur-md border-b sticky top-[52px] z-50 px-6 py-4 flex justify-between items-center shadow-sm">
         <div class="flex items-center gap-3">
-            <div class="w-10 h-10 bg-indigo-600 rounded-xl flex items-center justify-center text-white font-black italic shadow-lg text-sm">Ae</div>
+            <div class="w-10 h-10 bg-indigo-600 rounded-xl flex items-center justify-center text-white font-black italic shadow-lg">Ae</div>
             <a href="index.html" class="font-bold text-2xl tracking-tighter gradient-text">Hotkey Trainer</a>
         </div>
-        <a href="index.html" class="text-gray-600 hover:text-indigo-600 transition-colors font-medium">🏠 Home</a>
+        <a href="index.html" class="text-gray-600 hover:text-indigo-600 transition-colors font-medium flex items-center gap-2">
+            <span>🏠</span> Home
+        </a>
     </nav>
     
     <header class="bg-gradient-to-br from-indigo-700 to-purple-700 text-white py-14 text-center shadow-inner relative overflow-hidden">
+        <div class="absolute inset-0 opacity-10 pointer-events-none select-none text-[20rem] font-black -top-20 -right-10">MOTION</div>
         <h1 class="text-6xl font-black mb-2 tracking-tight">Adobe After Effects</h1>
         <p class="text-xl opacity-90 font-medium">Professional Motion Graphics and VFX Workflow.</p>
     </header>
 
     <main class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8 grid grid-cols-1 lg:grid-cols-4 gap-8">
+        <!-- Sidebar Navigation -->
         <div class="lg:col-span-1 space-y-4">
             <div class="bg-white rounded-3xl p-6 shadow-xl border border-gray-100 sticky top-40">
                 <h3 class="text-sm font-black mb-4 text-gray-400 uppercase tracking-widest px-2">Workspaces</h3>
                 <div class="space-y-1 max-h-[60vh] overflow-y-auto custom-scroll pr-2">
                     <button onclick="setMode('all')" id="mode-all" class="mode-btn w-full text-left px-4 py-3 rounded-xl active-mode transition-all font-bold">⌨️ All Keys</button>
                     <button onclick="setMode('Tools')" id="mode-Tools" class="mode-btn w-full text-left px-4 py-3 rounded-xl hover:bg-gray-100 transition-all font-semibold">🛠️ Toolbox</button>
-                    <button onclick="setMode('Properties')" id="mode-Properties" class="mode-btn w-full text-left px-4 py-3 rounded-xl hover:bg-gray-100 transition-all font-semibold text-indigo-600">⚙️ Layer Properties</button>
+                    <button onclick="setMode('Properties')" id="mode-Properties" class="mode-btn w-full text-left px-4 py-3 rounded-xl hover:bg-gray-100 transition-all font-semibold">⚙️ Layer Properties</button>
                     <button onclick="setMode('Timeline')" id="mode-Timeline" class="mode-btn w-full text-left px-4 py-3 rounded-xl hover:bg-gray-100 transition-all font-semibold">🎞️ Timeline Nav</button>
+                    <button onclick="setMode('Animation')" id="mode-Animation" class="mode-btn w-full text-left px-4 py-3 rounded-xl hover:bg-gray-100 transition-all font-semibold text-indigo-600">✨ Keyframes & Ease</button>
+                    <button onclick="setMode('Composition')" id="mode-Composition" class="mode-btn w-full text-left px-4 py-3 rounded-xl hover:bg-gray-100 transition-all font-semibold">📦 Comp & Project</button>
                     <div class="h-px bg-gray-100 my-4"></div>
                     <button onclick="setMode('quiz')" id="mode-quiz" class="mode-btn w-full text-left px-4 py-3 rounded-xl hover:bg-indigo-600 hover:text-white transition-all font-black text-indigo-600">🧠 Start Pro Quiz</button>
+                    <button onclick="setMode('insights')" id="mode-insights" class="mode-btn w-full text-left px-4 py-3 rounded-xl hover:bg-gray-100 transition-all font-semibold">📊 Mastery Stats</button>
+                </div>
+                
+                <div class="mt-8 pt-6 border-t border-gray-200 px-2">
+                    <h4 class="text-[10px] font-black mb-3 text-gray-400 uppercase tracking-widest">Training Progress</h4>
+                    <div class="space-y-4">
+                        <div class="flex justify-between items-end">
+                            <span class="text-xs text-gray-500 font-bold">Progress</span>
+                            <span class="font-black text-indigo-600" id="mastered-count">0</span>
+                        </div>
+                        <div class="w-full bg-gray-100 rounded-full h-3">
+                            <div class="bg-gradient-to-r from-indigo-500 to-purple-600 h-3 rounded-full transition-all duration-700 shadow-sm" style="width: 0%" id="progress-bar"></div>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
 
+        <!-- Content Area -->
         <div class="lg:col-span-3">
             <div id="browser-view" class="space-y-4">
                 <div class="bg-white rounded-3xl p-6 shadow-xl border border-gray-100 mb-8">
-                    <input type="text" id="search-input" placeholder="Search AE hotkeys (e.g. 'Keyframe', 'U', 'Pre-comp')..." class="w-full px-6 py-4 border border-gray-100 rounded-2xl bg-gray-50 focus:ring-4 focus:ring-indigo-200 outline-none transition-all text-lg font-medium">
+                    <div class="relative">
+                        <input type="text" id="search-input" placeholder="Search AE shortcuts (e.g. 'Keyframe', 'U', 'Pre-comp')..." class="w-full px-6 py-4 pl-14 border border-gray-100 rounded-2xl bg-gray-50 focus:ring-4 focus:ring-indigo-200 outline-none transition-all text-lg font-medium">
+                        <div class="absolute left-6 top-1/2 transform -translate-y-1/2 text-gray-400 text-xl">🔍</div>
+                    </div>
                 </div>
                 <div id="hotkeys-container" class="grid grid-cols-1 md:grid-cols-2 gap-4"></div>
             </div>
+
             <div id="quiz-container" class="hidden">
                 <div class="bg-white rounded-[3.5rem] p-12 shadow-2xl text-center border border-gray-100 min-h-[550px] flex flex-col justify-center animate-in fade-in duration-500">
+                    <span class="bg-indigo-100 text-indigo-600 px-6 py-2 rounded-full text-xs font-black uppercase tracking-widest inline-block mx-auto mb-10">After Effects Gauntlet</span>
+                    <h2 class="text-gray-400 font-bold mb-2">What is the keyboard shortcut for:</h2>
                     <h2 id="quiz-question" class="text-4xl md:text-5xl font-black text-gray-900 mb-14 leading-tight">Loading...</h2>
+                    
                     <div id="quiz-options" class="grid grid-cols-1 md:grid-cols-2 gap-4 mb-10"></div>
+
                     <div id="quiz-feedback" class="hidden p-8 rounded-3xl font-black text-2xl mb-8 transform transition-all duration-300"></div>
-                    <button id="next-question-btn" onclick="nextQuestion()" class="hidden mx-auto bg-gray-900 text-white px-20 py-6 rounded-3xl font-black text-xl hover:bg-indigo-600 transition-all shadow-2xl">NEXT CHALLENGE →</button>
+                    <button id="next-question-btn" onclick="nextQuestion()" class="hidden mx-auto bg-gray-900 text-white px-20 py-6 rounded-3xl font-black text-xl hover:bg-indigo-600 transition-all hover:scale-105 shadow-2xl">NEXT CHALLENGE →</button>
+                    
+                    <div class="grid grid-cols-2 gap-6 mt-16 border-t pt-10">
+                        <div class="p-4 bg-green-50 rounded-2xl border border-green-100">
+                            <p class="text-[10px] font-black text-green-600 uppercase tracking-widest">Accuracy</p>
+                            <p id="correct-count" class="text-4xl font-black text-green-500">0</p>
+                        </div>
+                        <div class="p-4 bg-red-50 rounded-2xl border border-red-100">
+                            <p class="text-[10px] font-black text-red-600 uppercase tracking-widest">Mistakes</p>
+                            <p id="incorrect-count" class="text-4xl font-black text-red-500">0</p>
+                        </div>
+                    </div>
                 </div>
+            </div>
+
+            <div id="insights-container" class="hidden bg-white p-12 rounded-[3.5rem] shadow-2xl border border-gray-100 text-center">
+                <h2 class="text-3xl font-black mb-8 gradient-text">Motion Workflow Analytics</h2>
+                <div id="progress-chart" class="h-96 w-full"></div>
+                <p class="mt-8 text-gray-400 font-medium italic">"The speed of your design is limited only by your muscle memory."</p>
             </div>
         </div>
     </main>
 
+    <footer class="bg-gray-900 text-white py-12">
+        <div class="max-w-7xl mx-auto px-4 text-center">
+            <p class="text-gray-500 text-sm mb-4">Master your software, master your craft.</p>
+            <p class="text-gray-400 text-xs">© 2025 thethreeplays.com. All rights reserved.</p>
+        </div>
+    </footer>
+
     <script>
         const hotkeysData = [
+            // --- TOOLS ---
+            { func: "Selection Tool", key: "V", cat: "Tools" },
+            { func: "Hand Tool", key: "H", cat: "Tools" },
+            { func: "Zoom Tool", key: "Z", cat: "Tools" },
+            { func: "Rotation Tool", key: "W", cat: "Tools" },
+            { func: "Unified Camera Tool", key: "C", cat: "Tools" },
+            { func: "Pan Behind Tool", key: "Y", cat: "Tools" },
+            { func: "Rectangle/Shape Tool", key: "Q", cat: "Tools" },
+            { func: "Pen Tool", key: "G", cat: "Tools" },
+            { func: "Horizontal Type Tool", key: "Ctrl + T", cat: "Tools" },
+            { func: "Brush / Stamp / Eraser", key: "Ctrl + B", cat: "Tools" },
+            { func: "Roto Brush Tool", key: "Alt + W", cat: "Tools" },
+            { func: "Puppet Pin Tool", key: "Ctrl + P", cat: "Tools" },
+
+            // --- LAYER PROPERTIES ---
             { func: "Anchor Point", key: "A", cat: "Properties" },
             { func: "Position", key: "P", cat: "Properties" },
             { func: "Scale", key: "S", cat: "Properties" },
@@ -98,51 +167,89 @@
             { func: "Effects", key: "E", cat: "Properties" },
             { func: "Masks", key: "M", cat: "Properties" },
             { func: "Mask Feather", key: "F", cat: "Properties" },
+            { func: "Mask Expansion", key: "Shift + M", cat: "Properties" },
+            { func: "Mask Opacity", key: "Shift + T", cat: "Properties" },
             { func: "Audio Levels", key: "L", cat: "Properties" },
+            { func: "Audio Waveform", key: "LL", cat: "Properties" },
             { func: "Expressions", key: "EE", cat: "Properties" },
+            { func: "Paint Strokes", key: "PP", cat: "Properties" },
+
+            // --- TIMELINE & NAVIGATION ---
             { func: "Go to In Point", key: "I", cat: "Timeline" },
             { func: "Go to Out Point", key: "O", cat: "Timeline" },
-            { func: "Set In Point", key: "[", cat: "Timeline" },
-            { func: "Set Out Point", key: "]", cat: "Timeline" },
+            { func: "Set In Point to Playhead", key: "[", cat: "Timeline" },
+            { func: "Set Out Point to Playhead", key: "]", cat: "Timeline" },
+            { func: "Trim Layer In Point", key: "Alt + [", cat: "Timeline" },
+            { func: "Trim Layer Out Point", key: "Alt + ]", cat: "Timeline" },
             { func: "Split Layer", key: "Ctrl + Shift + D", cat: "Timeline" },
             { func: "Duplicate Layer", key: "Ctrl + D", cat: "Timeline" },
-            { func: "New Composition", key: "Ctrl + N", cat: "Timeline" },
-            { func: "Pre-compose", key: "Ctrl + Shift + C", cat: "Timeline" },
-            { func: "New Solid", key: "Ctrl + Y", cat: "Timeline" },
-            { func: "Easy Ease", key: "F9", cat: "Timeline" },
-            { func: "Easy Ease In", key: "Shift + F9", cat: "Timeline" },
-            { func: "Selection Tool", key: "V", cat: "Tools" },
-            { func: "Rotation Tool", key: "W", cat: "Tools" },
-            { func: "Pen Tool", key: "G", cat: "Tools" },
-            { func: "Rectangle/Shape Tool", key: "Q", cat: "Tools" },
-            { func: "Hand Tool", key: "H", cat: "Tools" },
-            { func: "Add to Render Queue", key: "Ctrl + M", cat: "Timeline" },
-            { func: "Open Preferences", key: "Ctrl + Alt + ;", cat: "General" }
+            { func: "Move Playhead Forward 1 Frame", key: "Ctrl + Right Arrow", cat: "Timeline" },
+            { func: "Move Playhead Backward 1 Frame", key: "Ctrl + Left Arrow", cat: "Timeline" },
+            { func: "Move Playhead Forward 10 Frames", key: "Ctrl + Shift + Right Arrow", cat: "Timeline" },
+            { func: "Move Playhead Backward 10 Frames", key: "Ctrl + Shift + Left Arrow", cat: "Timeline" },
+            { func: "Zoom In Timeline", key: "+", cat: "Timeline" },
+            { func: "Zoom Out Timeline", key: "-", cat: "Timeline" },
+            { func: "Zoom to Fit Layers", key: "Shift + ;", cat: "Timeline" },
+            { func: "Toggle Switch/Modes Column", key: "F4", cat: "Timeline" },
+            { func: "Move Layer to Top", key: "Ctrl + Shift + ]", cat: "Timeline" },
+            { func: "Move Layer to Bottom", key: "Ctrl + Shift + [", cat: "Timeline" },
+
+            // --- ANIMATION & KEYFRAMES ---
+            { func: "Add/Remove Keyframe", key: "Alt + Shift + (Prop Key)", cat: "Animation" },
+            { func: "Next Keyframe", key: "K", cat: "Animation" },
+            { func: "Previous Keyframe", key: "J", cat: "Animation" },
+            { func: "Easy Ease", key: "F9", cat: "Animation" },
+            { func: "Easy Ease In", key: "Shift + F9", cat: "Animation" },
+            { func: "Easy Ease Out", key: "Ctrl + Shift + F9", cat: "Animation" },
+            { func: "Toggle Graph Editor", key: "Shift + F3", cat: "Animation" },
+            { func: "Convert Keyframe to Linear", key: "Ctrl + Click", cat: "Animation" },
+            { func: "Toggle Keyframe Hold", key: "Ctrl + Alt + H", cat: "Animation" },
+            { func: "Add Expression (Alt+Click)", key: "Alt + Click Stopwatch", cat: "Animation" },
+
+            // --- COMPOSITION & PROJECT ---
+            { func: "New Composition", key: "Ctrl + N", cat: "Composition" },
+            { func: "Composition Settings", key: "Ctrl + K", cat: "Composition" },
+            { func: "Pre-compose Layers", key: "Ctrl + Shift + C", cat: "Composition" },
+            { func: "Add to Render Queue", key: "Ctrl + M", cat: "Composition" },
+            { func: "New Solid", key: "Ctrl + Y", cat: "Composition" },
+            { func: "New Adjustment Layer", key: "Ctrl + Alt + Y", cat: "Composition" },
+            { func: "New Null Object", key: "Ctrl + Alt + Shift + Y", cat: "Composition" },
+            { func: "New Camera", key: "Ctrl + Alt + Shift + C", cat: "Composition" },
+            { func: "New Light", key: "Ctrl + Alt + Shift + L", cat: "Composition" },
+            { func: "Replace Clip in Timeline", key: "Ctrl + Alt + /", cat: "Composition" },
+            { func: "Import File", key: "Ctrl + I", cat: "Composition" },
+            { func: "Save Project", key: "Ctrl + S", cat: "Composition" }
         ];
 
         let userProgress = { mastered: new Set() };
-        let quizPool = []; let currentIdx = 0; let currentFilter = 'all';
+        let quizPool = []; let currentIdx = 0; let stats = { correct: 0, incorrect: 0 }; let currentFilter = 'all';
+
         function init() { loadMastery(); renderHotkeys(); setupSearch(); }
+
         function setMode(mode) {
             document.querySelectorAll('.mode-btn').forEach(btn => btn.classList.remove('active-mode'));
             const targetBtn = document.getElementById(`mode-${mode}`); if(targetBtn) targetBtn.classList.add('active-mode');
             document.getElementById('browser-view').classList.toggle('hidden', mode === 'quiz');
             document.getElementById('quiz-container').classList.toggle('hidden', mode !== 'quiz');
-            if (mode === 'quiz') startQuiz(); else { currentFilter = mode; renderHotkeys(); }
+            document.getElementById('insights-container').classList.toggle('hidden', mode !== 'insights');
+            if (mode === 'quiz') startQuiz(); else if (mode === 'insights') drawInsights(); else { currentFilter = mode; renderHotkeys(); }
         }
+
         function renderHotkeys(search = '') {
             const container = document.getElementById('hotkeys-container'); container.innerHTML = '';
-            let filtered = hotkeysData; if (currentFilter !== 'all') filtered = filtered.filter(h => h.cat === currentFilter);
+            let filtered = hotkeysData; if (currentFilter !== 'all') filtered = filtered.filter(h => h.cat === currentFilter || h.cat === 'General');
             if (search) filtered = filtered.filter(h => h.func.toLowerCase().includes(search.toLowerCase()) || h.key.toLowerCase().includes(search.toLowerCase()));
+
             filtered.forEach(h => {
                 const card = document.createElement('div'); const mastered = userProgress.mastered.has(h.func);
-                card.className = `hotkey-card bg-white p-6 rounded-3xl border ${mastered ? 'border-green-500 bg-green-50' : 'border-gray-100'} shadow-sm flex justify-between items-center group transition-all`;
-                card.innerHTML = `<div class="flex-grow"><p class="text-[9px] font-black text-gray-300 uppercase mb-1 group-hover:text-indigo-500">${h.cat}</p><h4 class="text-md font-bold text-gray-800">${h.func}</h4></div><div class="flex items-center gap-4"><span class="key-tag bg-gray-900 border border-gray-700 px-3 py-1.5 rounded-xl text-indigo-400 font-bold shadow-lg">${h.key}</span><button onclick="toggleStar('${h.func}')" class="text-2xl">${mastered ? '⭐' : '☆'}</button></div>`;
+                card.className = `hotkey-card bg-white p-6 rounded-3xl border ${mastered ? 'border-green-500 bg-green-50' : 'border-gray-100'} shadow-sm flex justify-between items-center hover:shadow-xl transition-all group transition-all`;
+                card.innerHTML = `<div class="flex-grow"><p class="text-[9px] font-black text-gray-300 uppercase mb-1 group-hover:text-indigo-400">${h.cat}</p><h4 class="text-md font-bold text-gray-800">${h.func}</h4></div><div class="flex items-center gap-4"><span class="key-tag bg-gray-900 border border-gray-700 px-3 py-1.5 rounded-xl text-indigo-400 font-bold whitespace-nowrap shadow-lg">${h.key}</span><button onclick="toggleStar('${h.func}')" class="text-2xl transform hover:scale-125 transition-transform">${mastered ? '⭐' : '☆'}</button></div>`;
                 container.appendChild(card);
             });
             updateStats();
         }
-        function startQuiz() { quizPool = [...hotkeysData]; shuffle(quizPool); currentIdx = 0; loadQuestion(); }
+
+        function startQuiz() { quizPool = [...hotkeysData]; shuffle(quizPool); currentIdx = 0; stats = { correct: 0, incorrect: 0 }; document.getElementById('correct-count').innerText = "0"; document.getElementById('incorrect-count').innerText = "0"; loadQuestion(); }
         function loadQuestion() {
             const q = quizPool[currentIdx]; document.getElementById('quiz-question').innerText = q.func; document.getElementById('quiz-feedback').classList.add('hidden'); document.getElementById('next-question-btn').classList.add('hidden');
             const options = document.getElementById('quiz-options'); options.innerHTML = ''; options.classList.remove('pointer-events-none');
@@ -151,17 +258,21 @@
                 const btn = document.createElement('button'); btn.className = "option-btn p-6 rounded-3xl font-black text-xl bg-white shadow-md"; btn.innerText = c;
                 btn.onclick = () => {
                     const isCorrect = c === q.key; options.classList.add('pointer-events-none'); btn.classList.add(isCorrect ? 'correct' : 'incorrect');
-                    const feed = document.getElementById('quiz-feedback'); feed.innerText = isCorrect ? "MASTERFUL!" : "Correct: " + q.key; feed.classList.remove('hidden'); document.getElementById('next-question-btn').classList.remove('hidden');
+                    if (isCorrect) stats.correct++; else { stats.incorrect++; document.querySelectorAll('.option-btn').forEach(b => { if(b.innerText === q.key) b.classList.add('correct'); }); }
+                    const feed = document.getElementById('quiz-feedback'); feed.innerText = isCorrect ? "PERFECT! +10 Points" : "The Pro key is: " + q.key; feed.className = `p-8 rounded-3xl font-black text-2xl mb-8 border-4 ${isCorrect ? 'bg-green-50 text-green-700 border-green-200' : 'bg-red-50 text-red-700 border-red-200'}`; feed.classList.remove('hidden'); document.getElementById('next-question-btn').classList.remove('hidden');
+                    updateStats();
                 };
                 options.appendChild(btn);
             });
         }
         function nextQuestion() { currentIdx++; if (currentIdx < quizPool.length) loadQuestion(); else startQuiz(); }
         function toggleStar(f) { if (userProgress.mastered.has(f)) userProgress.mastered.delete(f); else userProgress.mastered.add(f); saveMastery(); renderHotkeys(); }
+        function updateStats() { const mCount = userProgress.mastered.size; document.getElementById('mastered-count').innerText = mCount + " / " + hotkeysData.length; document.getElementById('progress-bar').style.width = (mCount/hotkeysData.length)*100 + "%"; }
         function setupSearch() { document.getElementById('search-input').addEventListener('input', (e) => renderHotkeys(e.target.value)); }
         function shuffle(a) { for (let i = a.length - 1; i > 0; i--) { const j = Math.floor(Math.random() * (i + 1)); [a[i], a[j]] = [a[j], a[i]]; } }
-        function saveMastery() { localStorage.setItem('mastery-ae-ultimate-v2', JSON.stringify([...userProgress.mastered])); }
-        function loadMastery() { const s = localStorage.getItem('mastery-ae-ultimate-v2'); if (s) userProgress.mastered = new Set(JSON.parse(s)); }
+        function saveMastery() { localStorage.setItem('mastery-ae-ultimate-final', JSON.stringify([...userProgress.mastered])); }
+        function loadMastery() { const s = localStorage.getItem('mastery-ae-ultimate-final'); if (s) userProgress.mastered = new Set(JSON.parse(s)); }
+        function drawInsights() { const m = userProgress.mastered.size; const r = hotkeysData.length - m; Plotly.newPlot('progress-chart', [{ values: [m, r], labels: ['Mastered', 'Learning'], type: 'pie', marker: { colors: ['#6366f1', '#e5e7eb'] } }], { margin: {t:0, b:0, l:0, r:0} }); }
         window.onload = () => { init(); };
     </script>
 </body>
