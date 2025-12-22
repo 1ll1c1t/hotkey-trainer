@@ -12,22 +12,22 @@
 
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Ultimate Adobe After Effects Hotkey Trainer</title>
+    <title>Adobe Photoshop (Web) Hotkey Trainer</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/plotly.js/3.0.3/plotly.min.js"></script>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
     <style>
         body { font-family: 'Inter', sans-serif; }
-        .gradient-text { background: linear-gradient(135deg, #6366f1 0%, #a855f7 100%); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
-        .active-mode { background: linear-gradient(135deg, #6366f1 0%, #a855f7 100%); color: white !important; }
+        .gradient-text { background: linear-gradient(135deg, #06b6d4 0%, #3b82f6 100%); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
+        .active-mode { background: linear-gradient(135deg, #06b6d4 0%, #3b82f6 100%); color: white !important; }
         .correct { background-color: #10b981 !important; color: white !important; border-color: #059669 !important; }
         .incorrect { background-color: #ef4444 !important; color: white !important; border-color: #b91c1c !important; }
         .option-btn { transition: all 0.2s; border: 2px solid #f3f4f6; }
-        .option-btn:hover:not(:disabled) { border-color: #6366f1; background-color: #f5f3ff; transform: translateY(-2px); }
+        .option-btn:hover:not(:disabled) { border-color: #06b6d4; background-color: #ecfeff; transform: translateY(-2px); }
         .hotkey-card { transition: all 0.2s ease; }
         .custom-scroll::-webkit-scrollbar { width: 6px; }
         .custom-scroll::-webkit-scrollbar-track { background: #f1f1f1; }
-        .custom-scroll::-webkit-scrollbar-thumb { background: #6366f1; border-radius: 10px; }
+        .custom-scroll::-webkit-scrollbar-thumb { background: #06b6d4; border-radius: 10px; }
         .key-tag { font-family: 'Monaco', 'Consolas', monospace; font-size: 0.85rem; }
     </style>
 </head>
@@ -43,18 +43,19 @@
 
     <nav class="bg-white/90 backdrop-blur-md border-b sticky top-[52px] z-50 px-6 py-4 flex justify-between items-center shadow-sm">
         <div class="flex items-center gap-3">
-            <div class="w-10 h-10 bg-indigo-600 rounded-xl flex items-center justify-center text-white font-black italic shadow-lg text-sm">Ae</div>
+            <div class="w-10 h-10 bg-cyan-600 rounded-xl flex items-center justify-center text-white font-black italic shadow-lg text-sm">W</div>
             <a href="index.html" class="font-bold text-2xl tracking-tighter gradient-text">Hotkey Trainer</a>
         </div>
-        <a href="index.html" class="text-gray-600 hover:text-indigo-600 transition-colors font-medium flex items-center gap-2">
+        <a href="index.html" class="text-gray-600 hover:text-cyan-600 transition-colors font-medium flex items-center gap-2">
             <span>🏠</span> Home
         </a>
     </nav>
     
-    <header class="bg-gradient-to-br from-indigo-700 to-purple-700 text-white py-14 text-center shadow-inner relative overflow-hidden">
-        <div class="absolute inset-0 opacity-10 pointer-events-none select-none text-[20rem] font-black -top-20 -right-10">MOTION</div>
-        <h1 class="text-6xl font-black mb-2 tracking-tight">Adobe After Effects</h1>
-        <p class="text-xl opacity-90 font-medium">The Absolute Professional Database for Motion Graphics and VFX.</p>
+    <header class="bg-gradient-to-br from-cyan-600 to-blue-600 text-white py-14 text-center shadow-inner relative overflow-hidden">
+        <div class="absolute inset-0 opacity-10 pointer-events-none select-none text-[20rem] font-black -top-20 -right-10">WEB</div>
+        <h1 class="text-6xl font-black mb-2 tracking-tight">Adobe Photoshop</h1>
+        <p class="text-2xl opacity-90 font-medium">(Web)</p>
+        <p class="text-lg opacity-80 mt-2 italic">Professional Browser-based Image Editing mastery.</p>
     </header>
 
     <main class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8 grid grid-cols-1 lg:grid-cols-4 gap-8">
@@ -63,15 +64,14 @@
             <div class="bg-white rounded-3xl p-6 shadow-xl border border-gray-100 sticky top-40">
                 <h3 class="text-sm font-black mb-4 text-gray-400 uppercase tracking-widest px-2">Workspaces</h3>
                 <div class="space-y-1 max-h-[60vh] overflow-y-auto custom-scroll pr-2">
-                    <button onclick="setMode('all')" id="mode-all" class="mode-btn w-full text-left px-4 py-3 rounded-xl active-mode transition-all font-bold">⌨️ All Keys</button>
-                    <button onclick="setMode('Tools')" id="mode-Tools" class="mode-btn w-full text-left px-4 py-3 rounded-xl hover:bg-gray-100 transition-all font-semibold">🛠️ Creative Tools</button>
-                    <button onclick="setMode('Properties')" id="mode-Properties" class="mode-btn w-full text-left px-4 py-3 rounded-xl hover:bg-gray-100 transition-all font-semibold text-indigo-600">⚙️ Layer Properties</button>
-                    <button onclick="setMode('Timeline')" id="mode-Timeline" class="mode-btn w-full text-left px-4 py-3 rounded-xl hover:bg-gray-100 transition-all font-semibold">🎞️ Timeline Nav</button>
-                    <button onclick="setMode('Animation')" id="mode-Animation" class="mode-btn w-full text-left px-4 py-3 rounded-xl hover:bg-gray-100 transition-all font-semibold">✨ Keyframes & Ease</button>
-                    <button onclick="setMode('LayerOps')" id="mode-LayerOps" class="mode-btn w-full text-left px-4 py-3 rounded-xl hover:bg-gray-100 transition-all font-semibold">🗂️ Layer Management</button>
-                    <button onclick="setMode('Composition')" id="mode-Composition" class="mode-btn w-full text-left px-4 py-3 rounded-xl hover:bg-gray-100 transition-all font-semibold">📦 Comp & Project</button>
+                    <button onclick="setMode('all')" id="mode-all" class="mode-btn w-full text-left px-4 py-3 rounded-xl active-mode transition-all font-bold">⌨️ All Hotkeys</button>
+                    <button onclick="setMode('Tools')" id="mode-Tools" class="mode-btn w-full text-left px-4 py-3 rounded-xl hover:bg-gray-100 transition-all font-semibold">🖌️ Tool Selection</button>
+                    <button onclick="setMode('Selection')" id="mode-Selection" class="mode-btn w-full text-left px-4 py-3 rounded-xl hover:bg-gray-100 transition-all font-semibold">✨ Selection & Mask</button>
+                    <button onclick="setMode('Layers')" id="mode-Layers" class="mode-btn w-full text-left px-4 py-3 rounded-xl hover:bg-gray-100 transition-all font-semibold">📂 Layers & Masks</button>
+                    <button onclick="setMode('Adjust')" id="mode-Adjust" class="mode-btn w-full text-left px-4 py-3 rounded-xl hover:bg-gray-100 transition-all font-semibold">🎨 Adjustments</button>
+                    <button onclick="setMode('General')" id="mode-General" class="mode-btn w-full text-left px-4 py-3 rounded-xl hover:bg-gray-100 transition-all font-semibold">⚙️ File & UI</button>
                     <div class="h-px bg-gray-100 my-4"></div>
-                    <button onclick="setMode('quiz')" id="mode-quiz" class="mode-btn w-full text-left px-4 py-3 rounded-xl hover:bg-indigo-600 hover:text-white transition-all font-black text-indigo-600">🧠 Start Pro Quiz</button>
+                    <button onclick="setMode('quiz')" id="mode-quiz" class="mode-btn w-full text-left px-4 py-3 rounded-xl hover:bg-cyan-600 hover:text-white transition-all font-black text-cyan-600">🧠 Start Pro Quiz</button>
                     <button onclick="setMode('insights')" id="mode-insights" class="mode-btn w-full text-left px-4 py-3 rounded-xl hover:bg-gray-100 transition-all font-semibold">📊 Mastery Stats</button>
                 </div>
                 
@@ -80,10 +80,10 @@
                     <div class="space-y-4">
                         <div class="flex justify-between items-end">
                             <span class="text-xs text-gray-500 font-bold">Overall Mastery</span>
-                            <span class="font-black text-indigo-600" id="mastered-count">0</span>
+                            <span class="font-black text-cyan-600" id="mastered-count">0</span>
                         </div>
                         <div class="w-full bg-gray-100 rounded-full h-3">
-                            <div class="bg-gradient-to-r from-indigo-500 to-purple-600 h-3 rounded-full transition-all duration-700 shadow-sm" style="width: 0%" id="progress-bar"></div>
+                            <div class="bg-gradient-to-r from-cyan-500 to-blue-600 h-3 rounded-full transition-all duration-700 shadow-sm" style="width: 0%" id="progress-bar"></div>
                         </div>
                     </div>
                 </div>
@@ -95,7 +95,7 @@
             <div id="browser-view" class="space-y-4">
                 <div class="bg-white rounded-3xl p-6 shadow-xl border border-gray-100 mb-8">
                     <div class="relative">
-                        <input type="text" id="search-input" placeholder="Search AE shortcuts (e.g. 'Keyframe', 'U', 'Pre-comp')..." class="w-full px-6 py-4 pl-14 border border-gray-100 rounded-2xl bg-gray-50 focus:ring-4 focus:ring-indigo-200 outline-none transition-all text-lg font-medium">
+                        <input type="text" id="search-input" placeholder="Search web shortcuts (e.g. 'Brush', 'Ctrl+J', 'Lasso')..." class="w-full px-6 py-4 pl-14 border border-gray-100 rounded-2xl bg-gray-50 focus:ring-4 focus:ring-cyan-200 outline-none transition-all text-lg font-medium">
                         <div class="absolute left-6 top-1/2 transform -translate-y-1/2 text-gray-400 text-xl">🔍</div>
                     </div>
                 </div>
@@ -104,14 +104,14 @@
 
             <div id="quiz-container" class="hidden">
                 <div class="bg-white rounded-[3.5rem] p-12 shadow-2xl text-center border border-gray-100 min-h-[550px] flex flex-col justify-center animate-in fade-in duration-500">
-                    <span class="bg-indigo-100 text-indigo-600 px-6 py-2 rounded-full text-xs font-black uppercase tracking-widest inline-block mx-auto mb-10">After Effects Gauntlet</span>
+                    <span class="bg-cyan-100 text-cyan-600 px-6 py-2 rounded-full text-xs font-black uppercase tracking-widest inline-block mx-auto mb-10">Web Pro Gauntlet</span>
                     <h2 class="text-gray-400 font-bold mb-2">What is the keyboard shortcut for:</h2>
                     <h2 id="quiz-question" class="text-4xl md:text-5xl font-black text-gray-900 mb-14 leading-tight">Loading...</h2>
                     
                     <div id="quiz-options" class="grid grid-cols-1 md:grid-cols-2 gap-4 mb-10"></div>
 
                     <div id="quiz-feedback" class="hidden p-8 rounded-3xl font-black text-2xl mb-8 transform transition-all duration-300"></div>
-                    <button id="next-question-btn" onclick="nextQuestion()" class="hidden mx-auto bg-gray-900 text-white px-20 py-6 rounded-3xl font-black text-xl hover:bg-indigo-600 transition-all hover:scale-105 shadow-2xl">NEXT CHALLENGE →</button>
+                    <button id="next-question-btn" onclick="nextQuestion()" class="hidden mx-auto bg-gray-900 text-white px-20 py-6 rounded-3xl font-black text-xl hover:bg-cyan-600 transition-all hover:scale-105 shadow-2xl">NEXT CHALLENGE →</button>
                     
                     <div class="grid grid-cols-2 gap-6 mt-16 border-t pt-10">
                         <div class="p-4 bg-green-50 rounded-2xl border border-green-100">
@@ -128,16 +128,16 @@
 
             <div id="insights-container" class="hidden animate-in fade-in duration-500">
                 <div class="bg-white p-12 rounded-[3.5rem] shadow-2xl border border-gray-100 text-center">
-                    <h2 class="text-3xl font-black mb-8 gradient-text">Motion Workflow Analytics</h2>
+                    <h2 class="text-3xl font-black mb-8 gradient-text">Web Workflow Analytics</h2>
                     <div id="progress-chart" class="h-96 w-full mb-10"></div>
                     
                     <div id="streak-list-container" class="max-w-2xl mx-auto text-left">
                         <h3 class="text-xl font-black text-gray-800 mb-4 uppercase tracking-tighter flex items-center gap-2">
                             <span>🚀</span> Subconscious Mastery (5+ Streak)
                         </h3>
-                        <p class="text-gray-500 text-sm mb-6 font-medium">These shortcuts have been correctly identified 5 times and are now automatically starred.</p>
+                        <p class="text-gray-500 text-sm mb-6">Shortcuts automatically added to mastery after 5 correct quiz answers in a row.</p>
                         <div id="streak-list" class="grid grid-cols-1 sm:grid-cols-2 gap-3">
-                            <!-- Injected by JS -->
+                            <!-- Items will be injected here -->
                         </div>
                     </div>
                 </div>
@@ -145,7 +145,7 @@
         </div>
     </main>
 
-    <footer class="bg-gray-900 text-white py-12 mt-12">
+    <footer class="bg-gray-900 text-white py-12">
         <div class="max-w-7xl mx-auto px-4 text-center">
             <p class="text-gray-500 text-sm mb-4">Master your software, master your craft.</p>
             <p class="text-gray-400 text-xs">© 2025 thethreeplays.com. All rights reserved.</p>
@@ -155,122 +155,89 @@
     <script>
         const hotkeysData = [
             // --- TOOLS ---
-            { func: "Selection Tool", key: "V", cat: "Tools" },
+            { func: "Move Tool", key: "V", cat: "Tools" },
+            { func: "Marquee Tools (Cycle)", key: "M", cat: "Tools" },
+            { func: "Lasso Tools (Cycle)", key: "L", cat: "Tools" },
+            { func: "Quick Selection / Magic Wand", key: "W", cat: "Tools" },
+            { func: "Object Selection Tool", key: "W (Cycle)", cat: "Tools" },
+            { func: "Crop Tool", key: "C", cat: "Tools" },
+            { func: "Eyedropper", key: "I", cat: "Tools" },
+            { func: "Healing Brush / Spot Healing", key: "J", cat: "Tools" },
+            { func: "Brush Tool", key: "B", cat: "Tools" },
+            { func: "Clone Stamp Tool", key: "S", cat: "Tools" },
+            { func: "History Brush", key: "Y", cat: "Tools" },
+            { func: "Eraser Tool", key: "E", cat: "Tools" },
+            { func: "Paint Bucket / Gradient", key: "G", cat: "Tools" },
+            { func: "Dodge / Burn / Sponge", key: "O", cat: "Tools" },
+            { func: "Pen Tool", key: "P", cat: "Tools" },
+            { func: "Type Tool", key: "T", cat: "Tools" },
+            { func: "Path Selection / Direct Selection", key: "A", cat: "Tools" },
+            { func: "Shape Tool (Rectangle/Ellipse)", key: "U", cat: "Tools" },
             { func: "Hand Tool", key: "H", cat: "Tools" },
             { func: "Zoom Tool", key: "Z", cat: "Tools" },
-            { func: "Rotation Tool", key: "W", cat: "Tools" },
-            { func: "Camera Tool (Cycle)", key: "C", cat: "Tools" },
-            { func: "Pan Behind (Anchor Point) Tool", key: "Y", cat: "Tools" },
-            { func: "Rectangle / Shape Tool (Cycle)", key: "Q", cat: "Tools" },
-            { func: "Pen Tool (Cycle)", key: "G", cat: "Tools" },
-            { func: "Horizontal Type Tool", key: "Ctrl + T", cat: "Tools" },
-            { func: "Brush Tool", key: "Ctrl + B", cat: "Tools" },
-            { func: "Clone Stamp Tool", key: "Ctrl + B (Cycle)", cat: "Tools" },
-            { func: "Eraser Tool", key: "Ctrl + B (Cycle)", cat: "Tools" },
-            { func: "Roto Brush / Refine Edge Tool", key: "Alt + W", cat: "Tools" },
-            { func: "Puppet Pin Tool", key: "Ctrl + P", cat: "Tools" },
+            { func: "Default Foreground/Background Colors", key: "D", cat: "Tools" },
+            { func: "Swap Foreground/Background Colors", key: "X", cat: "Tools" },
+            { func: "Increase Brush Size", key: "]", cat: "Tools" },
+            { func: "Decrease Brush Size", key: "[", cat: "Tools" },
+            { func: "Increase Brush Hardness", key: "Shift + ]", cat: "Tools" },
+            { func: "Decrease Brush Hardness", key: "Shift + [", cat: "Tools" },
 
-            // --- LAYER PROPERTIES ---
-            { func: "Anchor Point Property", key: "A", cat: "Properties" },
-            { func: "Position Property", key: "P", cat: "Properties" },
-            { func: "Scale Property", key: "S", cat: "Properties" },
-            { func: "Rotation Property", key: "R", cat: "Properties" },
-            { func: "Opacity Property", key: "T", cat: "Properties" },
-            { func: "Show All Keyframed Properties", key: "U", cat: "Properties" },
-            { func: "Show All Modified Properties", key: "UU", cat: "Properties" },
-            { func: "Effects Property", key: "E", cat: "Properties" },
-            { func: "Masks Property", key: "M", cat: "Properties" },
-            { func: "Mask Feather Property", key: "F", cat: "Properties" },
-            { func: "Mask Opacity Property", key: "Shift + T", cat: "Properties" },
-            { func: "Mask Expansion Property", key: "Shift + M", cat: "Properties" },
-            { func: "Audio Levels Property", key: "L", cat: "Properties" },
-            { func: "Audio Waveform Property", key: "LL", cat: "Properties" },
-            { func: "Expression Property", key: "EE", cat: "Properties" },
-            { func: "Material Options (3D)", key: "AA", cat: "Properties" },
-            { func: "Toggle 3D Layer", key: "F4 (Switch Column)", cat: "Properties" },
+            // --- SELECTION ---
+            { func: "Select All", key: "Ctrl + A", cat: "Selection" },
+            { func: "Deselect", key: "Ctrl + D", cat: "Selection" },
+            { func: "Inverse Selection", key: "Ctrl + Shift + I", cat: "Selection" },
+            { func: "Free Transform", key: "Ctrl + T", cat: "Selection" },
+            { func: "Reselect", key: "Ctrl + Shift + D", cat: "Selection" },
+            { func: "Toggle Quick Mask", key: "Q", cat: "Selection" },
 
-            // --- TIMELINE NAVIGATION ---
-            { func: "Go to In Point", key: "I", cat: "Timeline" },
-            { func: "Go to Out Point", key: "O", cat: "Timeline" },
-            { func: "Move Playhead to Start of Comp", key: "Home", cat: "Timeline" },
-            { func: "Move Playhead to End of Comp", key: "End", cat: "Timeline" },
-            { func: "Go to Next Keyframe/Marker", key: "K", cat: "Timeline" },
-            { func: "Go to Previous Keyframe/Marker", key: "J", cat: "Timeline" },
-            { func: "Set In Point to Current Time", key: "[", cat: "Timeline" },
-            { func: "Set Out Point to Current Time", key: "]", cat: "Timeline" },
-            { func: "Set Work Area Start", key: "B", cat: "Timeline" },
-            { func: "Set Work Area End", key: "N", cat: "Timeline" },
-            { func: "Zoom In Timeline", key: "+", cat: "Timeline" },
-            { func: "Zoom Out Timeline", key: "-", cat: "Timeline" },
-            { func: "Zoom to Fit Layers", key: "Shift + ;", cat: "Timeline" },
-            { func: "Snap Layer to Playhead", key: "[", cat: "Timeline" },
-            { func: "Trim Layer In Point", key: "Alt + [", cat: "Timeline" },
-            { func: "Trim Layer Out Point", key: "Alt + ]", cat: "Timeline" },
-            { func: "Step Forward 1 Frame", key: "Ctrl + Right Arrow", cat: "Timeline" },
-            { func: "Step Backward 1 Frame", key: "Ctrl + Left Arrow", cat: "Timeline" },
-            { func: "Step Forward 10 Frames", key: "Ctrl + Shift + Right Arrow", cat: "Timeline" },
-            { func: "Step Backward 10 Frames", key: "Ctrl + Shift + Left Arrow", cat: "Timeline" },
+            // --- LAYERS ---
+            { func: "New Layer", key: "Ctrl + Shift + N", cat: "Layers" },
+            { func: "Layer via Copy", key: "Ctrl + J", cat: "Layers" },
+            { func: "Layer via Cut", key: "Ctrl + Shift + J", cat: "Layers" },
+            { func: "Group Layers", key: "Ctrl + G", cat: "Layers" },
+            { func: "Ungroup Layers", key: "Ctrl + Shift + G", cat: "Layers" },
+            { func: "Merge Layers", key: "Ctrl + E", cat: "Layers" },
+            { func: "Merge Visible Layers", key: "Ctrl + Shift + E", cat: "Layers" },
+            { func: "Bring to Front", key: "Ctrl + Shift + ]", cat: "Layers" },
+            { func: "Send to Back", key: "Ctrl + Shift + [", cat: "Layers" },
+            { func: "Bring Forward", key: "Ctrl + ]", cat: "Layers" },
+            { func: "Send Backward", key: "Ctrl + [", cat: "Layers" },
+            { func: "Create Clipping Mask", key: "Ctrl + Alt + G", cat: "Layers" },
+            { func: "Lock Layer", key: "Ctrl + /", cat: "Layers" },
 
-            // --- ANIMATION & KEYFRAMES ---
-            { func: "Easy Ease", key: "F9", cat: "Animation" },
-            { func: "Easy Ease In", key: "Shift + F9", cat: "Animation" },
-            { func: "Easy Ease Out", key: "Ctrl + Shift + F9", cat: "Animation" },
-            { func: "Add/Remove Keyframe", key: "Alt + Shift + (Prop Key)", cat: "Animation" },
-            { func: "Toggle Graph Editor", key: "Shift + F3", cat: "Animation" },
-            { func: "Convert Keyframe to Linear", key: "Ctrl + Click", cat: "Animation" },
-            { func: "Toggle Keyframe Hold", key: "Ctrl + Alt + H", cat: "Animation" },
-            { func: "Add Expression (Alt+Click)", key: "Alt + Click Stopwatch", cat: "Animation" },
-            { func: "Keyframe Velocity Menu", key: "Ctrl + Shift + K", cat: "Animation" },
-            { func: "Keyframe Interpolation Menu", key: "Ctrl + Alt + K", cat: "Animation" },
+            // --- ADJUSTMENTS ---
+            { func: "Levels", key: "Ctrl + L", cat: "Adjust" },
+            { func: "Curves", key: "Ctrl + M", cat: "Adjust" },
+            { func: "Hue / Saturation", key: "Ctrl + U", cat: "Adjust" },
+            { func: "Invert", key: "Ctrl + I", cat: "Adjust" },
+            { func: "Auto-Color", key: "Ctrl + Shift + B", cat: "Adjust" },
+            { func: "Auto-Contrast", key: "Ctrl + Alt + Shift + L", cat: "Adjust" },
+            { func: "Auto-Levels", key: "Ctrl + Shift + L", cat: "Adjust" },
+            { func: "Desaturate", key: "Ctrl + Shift + U", cat: "Adjust" },
 
-            // --- LAYER MANAGEMENT ---
-            { func: "Duplicate Layer", key: "Ctrl + D", cat: "LayerOps" },
-            { func: "Split Layer", key: "Ctrl + Shift + D", cat: "LayerOps" },
-            { func: "Move Layer to Top", key: "Ctrl + Shift + ]", cat: "LayerOps" },
-            { func: "Move Layer to Bottom", key: "Ctrl + Shift + [", cat: "LayerOps" },
-            { func: "Move Layer Forward", key: "Ctrl + ]", cat: "LayerOps" },
-            { func: "Move Layer Backward", key: "Ctrl + [", cat: "LayerOps" },
-            { func: "Select All Layers", key: "Ctrl + A", cat: "LayerOps" },
-            { func: "Deselect All Layers", key: "Ctrl + Shift + A", cat: "LayerOps" },
-            { func: "New Solid", key: "Ctrl + Y", cat: "LayerOps" },
-            { func: "New Null Object", key: "Ctrl + Alt + Shift + Y", cat: "LayerOps" },
-            { func: "New Adjustment Layer", key: "Ctrl + Alt + Y", cat: "LayerOps" },
-            { func: "New Camera", key: "Ctrl + Alt + Shift + C", cat: "LayerOps" },
-            { func: "New Light", key: "Ctrl + Alt + Shift + L", cat: "LayerOps" },
-            { func: "Pre-compose", key: "Ctrl + Shift + C", cat: "LayerOps" },
-            { func: "Toggle Video/Audio Switches", key: "F4", cat: "LayerOps" },
-            { func: "Lock Selected Layers", key: "Ctrl + L", cat: "LayerOps" },
-            { func: "Unlock All Layers", key: "Ctrl + Shift + L", cat: "LayerOps" },
-            { func: "Rename Layer", key: "Enter (on selection)", cat: "LayerOps" },
-
-            // --- COMPOSITION & PROJECT ---
-            { func: "New Composition", key: "Ctrl + N", cat: "Composition" },
-            { func: "Composition Settings", key: "Ctrl + K", cat: "Composition" },
-            { func: "Add to Render Queue", key: "Ctrl + M", cat: "Composition" },
-            { func: "Add to Adobe Media Encoder", key: "Ctrl + Alt + M", cat: "Composition" },
-            { func: "Import File", key: "Ctrl + I", cat: "Composition" },
-            { func: "Import Multiple Files", key: "Ctrl + Alt + I", cat: "Composition" },
-            { func: "Replace Selected Clip", key: "Ctrl + Alt + /", cat: "Composition" },
-            { func: "Save Project", key: "Ctrl + S", cat: "Composition" },
-            { func: "Open Project", key: "Ctrl + O", cat: "Composition" },
-            { func: "Purge All Memory", key: "Ctrl + Alt + / (NumPad)", cat: "Composition" },
-            { func: "Project Settings", key: "Ctrl + Alt + Shift + K", cat: "Composition" },
-
-            // --- VIEW ---
-            { func: "Maximize Panel Under Cursor", key: "~", cat: "View" },
-            { func: "Show/Hide Rulers", key: "Ctrl + R", cat: "View" },
-            { func: "Show/Hide Guides", key: "Ctrl + ;", cat: "View" },
-            { func: "Toggle Transparency Grid", key: "Ctrl + Shift + D", cat: "View" },
-            { func: "Fit in Window", key: "Shift + /", cat: "View" },
-            { func: "Toggle Title/Action Safe", key: "'", cat: "View" },
-            { func: "Reset Comp View", key: "Shift + /", cat: "View" }
+            // --- GENERAL OPS ---
+            { func: "Undo", key: "Ctrl + Z", cat: "General" },
+            { func: "Redo", key: "Ctrl + Shift + Z", cat: "General" },
+            { func: "New Document", key: "Ctrl + N", cat: "General" },
+            { func: "Open File", key: "Ctrl + O", cat: "General" },
+            { func: "Save", key: "Ctrl + S", cat: "General" },
+            { func: "Save As", key: "Ctrl + Shift + S", cat: "General" },
+            { func: "Export", key: "Ctrl + Alt + Shift + S", cat: "General" },
+            { func: "Toggle All Panels", key: "Tab", cat: "General" },
+            { func: "Fit in Window", key: "Ctrl + 0", cat: "General" },
+            { func: "100% Zoom", key: "Ctrl + 1", cat: "General" },
+            { func: "Zoom In", key: "Ctrl + +", cat: "General" },
+            { func: "Zoom Out", key: "Ctrl + -", cat: "General" },
+            { func: "Preferences", key: "Ctrl + K", cat: "General" },
+            { func: "Fill Foreground", key: "Alt + Backspace", cat: "General" },
+            { func: "Fill Background", key: "Ctrl + Backspace", cat: "General" }
         ];
 
         let userProgress = { 
             mastered: new Set(),
-            streakCount: {} 
+            streakCount: {}
         };
-        let quizPool = []; let currentIdx = 0; let currentFilter = 'all';
+        let quizPool = []; let currentIdx = 0; let stats = { correct: 0, incorrect: 0 }; let currentFilter = 'all';
 
         function init() { loadMastery(); renderHotkeys(); setupSearch(); }
 
@@ -303,27 +270,19 @@
 
         function renderHotkeys(search = '') {
             const container = document.getElementById('hotkeys-container'); container.innerHTML = '';
-            let filtered = hotkeysData; if (currentFilter !== 'all') filtered = filtered.filter(h => h.cat === currentFilter);
+            let filtered = hotkeysData; if (currentFilter !== 'all') filtered = filtered.filter(h => h.cat === currentFilter || h.cat === 'General');
             if (search) filtered = filtered.filter(h => h.func.toLowerCase().includes(search.toLowerCase()) || h.key.toLowerCase().includes(search.toLowerCase()));
 
             filtered.forEach(h => {
                 const card = document.createElement('div'); const mastered = userProgress.mastered.has(h.func);
                 card.className = `hotkey-card bg-white p-6 rounded-3xl border ${mastered ? 'border-green-500 bg-green-50' : 'border-gray-100'} shadow-sm flex justify-between items-center group transition-all`;
-                card.innerHTML = `<div class="flex-grow"><p class="text-[9px] font-black text-gray-300 uppercase mb-1 group-hover:text-indigo-500">${h.cat}</p><h4 class="text-md font-bold text-gray-800">${h.func}</h4></div><div class="flex items-center gap-4"><span class="key-tag bg-gray-900 border border-gray-700 px-3 py-1.5 rounded-xl text-indigo-400 font-bold shadow-lg whitespace-nowrap">${h.key}</span><button onclick="toggleStar('${h.func}')" class="text-2xl transform hover:scale-125 transition-transform">${mastered ? '⭐' : '☆'}</button></div>`;
+                card.innerHTML = `<div class="flex-grow"><p class="text-[9px] font-black text-gray-300 uppercase mb-1 group-hover:text-cyan-400">${h.cat}</p><h4 class="text-md font-bold text-gray-800">${h.func}</h4></div><div class="flex items-center gap-4"><span class="key-tag bg-gray-900 border border-gray-700 px-3 py-1.5 rounded-xl text-cyan-400 font-bold shadow-lg whitespace-nowrap">${h.key}</span><button onclick="toggleStar('${h.func}')" class="text-2xl transform hover:scale-125 transition-transform">${mastered ? '⭐' : '☆'}</button></div>`;
                 container.appendChild(card);
             });
             updateStats();
         }
 
-        function startQuiz() { 
-            quizPool = [...hotkeysData]; 
-            shuffle(quizPool); 
-            currentIdx = 0; 
-            document.getElementById('correct-count').innerText = "0"; 
-            document.getElementById('incorrect-count').innerText = "0"; 
-            loadQuestion(); 
-        }
-        
+        function startQuiz() { quizPool = [...hotkeysData]; shuffle(quizPool); currentIdx = 0; document.getElementById('correct-count').innerText = "0"; document.getElementById('incorrect-count').innerText = "0"; loadQuestion(); }
         function loadQuestion() {
             const q = quizPool[currentIdx]; document.getElementById('quiz-question').innerText = q.func; document.getElementById('quiz-feedback').classList.add('hidden'); document.getElementById('next-question-btn').classList.add('hidden');
             const options = document.getElementById('quiz-options'); options.innerHTML = ''; options.classList.remove('pointer-events-none');
@@ -346,7 +305,7 @@
                     }
                     
                     saveMastery();
-                    const feed = document.getElementById('quiz-feedback'); feed.innerText = isCorrect ? "PERFECT!" : "Correct: " + q.key; feed.classList.remove('hidden'); document.getElementById('next-question-btn').classList.remove('hidden');
+                    const feed = document.getElementById('quiz-feedback'); feed.innerText = isCorrect ? "PERFECT!" : "The Correct Key is: " + q.key; feed.classList.remove('hidden'); document.getElementById('next-question-btn').classList.remove('hidden');
                     updateStats();
                 };
                 options.appendChild(btn);
@@ -364,14 +323,14 @@
         function shuffle(a) { for (let i = a.length - 1; i > 0; i--) { const j = Math.floor(Math.random() * (i + 1)); [a[i], a[j]] = [a[j], a[i]]; } }
         
         function saveMastery() { 
-            localStorage.setItem('mastery-adobe-ae-final-v4', JSON.stringify({
+            localStorage.setItem('mastery-ps-web-ultimate-final', JSON.stringify({
                 mastered: [...userProgress.mastered],
                 streaks: userProgress.streakCount
             })); 
         }
         
         function loadMastery() { 
-            const s = localStorage.getItem('mastery-adobe-ae-final-v4'); 
+            const s = localStorage.getItem('mastery-ps-web-ultimate-final'); 
             if (s) {
                 const data = JSON.parse(s);
                 userProgress.mastered = new Set(data.mastered || []);
@@ -381,7 +340,7 @@
 
         function drawInsights() { 
             const m = userProgress.mastered.size; const r = hotkeysData.length - m; 
-            Plotly.newPlot('progress-chart', [{ values: [m, r], labels: ['Mastered', 'Learning'], type: 'pie', marker: { colors: ['#6366f1', '#e5e7eb'] }, hole: .4 }], { margin: {t:0, b:0, l:0, r:0} }); 
+            Plotly.newPlot('progress-chart', [{ values: [m, r], labels: ['Mastered', 'Learning'], type: 'pie', marker: { colors: ['#06b6d4', '#e5e7eb'] }, hole: .4 }], { margin: {t:0, b:0, l:0, r:0} }); 
             
             const list = document.getElementById('streak-list');
             list.innerHTML = '';
