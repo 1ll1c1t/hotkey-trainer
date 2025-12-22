@@ -14,7 +14,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Ultimate Adobe Premiere Pro Hotkey Trainer</title>
     <script src="https://cdn.tailwindcss.com"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/plotly.js/3.0.3/plotly.min.js"></script>
+    <!-- Use stable Plotly 2.x -->
+    <script src="https://cdn.plot.ly/plotly-2.27.0.min.js"></script>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
     <style>
         body { font-family: 'Inter', sans-serif; }
@@ -29,7 +30,7 @@
         .custom-scroll::-webkit-scrollbar-track { background: #f1f1f1; }
         .custom-scroll::-webkit-scrollbar-thumb { background: #7c3aed; border-radius: 10px; }
         .key-tag { font-family: 'Monaco', 'Consolas', monospace; font-size: 0.85rem; }
-        .streak-badge { font-size: 0.65rem; font-weight: 900; padding: 2px 6px; border-radius: 6px; text-transform: uppercase; letter-spacing: 0.05em; }
+        .streak-pill { font-size: 0.6rem; font-weight: 900; padding: 2px 8px; border-radius: 99px; text-transform: uppercase; letter-spacing: 0.05em; }
     </style>
 </head>
 <body class="bg-gray-50 text-gray-900">
@@ -55,31 +56,31 @@
     <header class="bg-gradient-to-br from-purple-700 to-pink-700 text-white py-14 text-center shadow-inner relative overflow-hidden">
         <div class="absolute inset-0 opacity-10 pointer-events-none select-none text-[20rem] font-black -top-20 -right-10">EDIT</div>
         <h1 class="text-6xl font-black mb-2 tracking-tight">Adobe Premiere Pro</h1>
-        <p class="text-xl opacity-90 font-medium tracking-wide">The Complete Professional Shortcut Database.</p>
+        <p class="text-xl opacity-90 font-medium tracking-wide">Professional Editorial Speed & Muscle Memory.</p>
     </header>
 
     <main class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8 grid grid-cols-1 lg:grid-cols-4 gap-8">
         <!-- Sidebar Navigation -->
         <div class="lg:col-span-1 space-y-4">
             <div class="bg-white rounded-3xl p-6 shadow-xl border border-gray-100 sticky top-40">
-                <h3 class="text-sm font-black mb-4 text-gray-400 uppercase tracking-widest px-2">Workspaces</h3>
+                <h3 class="text-sm font-black mb-4 text-gray-400 uppercase tracking-widest px-2">Training Modules</h3>
                 <div class="space-y-1 max-h-[55vh] overflow-y-auto custom-scroll pr-2">
                     <button onclick="setMode('all')" id="mode-all" class="mode-btn w-full text-left px-4 py-3 rounded-xl active-mode transition-all font-bold">⌨️ All Keys</button>
                     <button onclick="setMode('Tools')" id="mode-Tools" class="mode-btn w-full text-left px-4 py-3 rounded-xl hover:bg-gray-100 transition-all font-semibold">🛠️ Toolbox</button>
                     <button onclick="setMode('Editing')" id="mode-Editing" class="mode-btn w-full text-left px-4 py-3 rounded-xl hover:bg-gray-100 transition-all font-semibold">✂️ Editorial Ops</button>
                     <button onclick="setMode('Navigation')" id="mode-Navigation" class="mode-btn w-full text-left px-4 py-3 rounded-xl hover:bg-gray-100 transition-all font-semibold text-purple-600">🧭 Navigation</button>
-                    <button onclick="setMode('Panels')" id="mode-Panels" class="mode-btn w-full text-left px-4 py-3 rounded-xl hover:bg-gray-100 transition-all font-semibold">🖥️ Window Ops</button>
+                    <button onclick="setMode('Panels')" id="mode-Panels" class="mode-btn w-full text-left px-4 py-3 rounded-xl hover:bg-gray-100 transition-all font-semibold">🖥️ Window Management</button>
                     <button onclick="setMode('Audio')" id="mode-Audio" class="mode-btn w-full text-left px-4 py-3 rounded-xl hover:bg-gray-100 transition-all font-semibold">🔊 Audio & Gain</button>
                     <div class="h-px bg-gray-100 my-4"></div>
-                    <button onclick="setMode('quiz')" id="mode-quiz" class="mode-btn w-full text-left px-4 py-3 rounded-xl hover:bg-purple-600 hover:text-white transition-all font-black text-purple-600">🧠 Start Pro Quiz</button>
+                    <button onclick="setMode('quiz')" id="mode-quiz" class="mode-btn w-full text-left px-4 py-3 rounded-xl hover:bg-purple-600 hover:text-white transition-all font-black text-purple-600">🧠 Start Pro Gauntlet</button>
                     <button onclick="setMode('insights')" id="mode-insights" class="mode-btn w-full text-left px-4 py-3 rounded-xl hover:bg-gray-100 transition-all font-semibold">📊 Mastery Stats</button>
                 </div>
                 
                 <div class="mt-8 pt-6 border-t border-gray-200 px-2">
-                    <h4 class="text-[10px] font-black mb-3 text-gray-400 uppercase tracking-widest">Training Progress</h4>
+                    <h4 class="text-[10px] font-black mb-3 text-gray-400 uppercase tracking-widest">Global Status</h4>
                     <div class="space-y-4">
                         <div class="flex justify-between items-end">
-                            <span class="text-xs text-gray-500 font-bold">Overall Mastery</span>
+                            <span class="text-xs text-gray-500 font-bold">Total Mastered</span>
                             <span class="font-black text-purple-600" id="mastered-count">0</span>
                         </div>
                         <div class="w-full bg-gray-100 rounded-full h-3">
@@ -92,7 +93,7 @@
 
         <!-- Content Area -->
         <div class="lg:col-span-3">
-            <div id="browser-view" class="space-y-4">
+            <div id="browser-view">
                 <div class="bg-white rounded-3xl p-6 shadow-xl border border-gray-100 mb-8">
                     <div class="relative">
                         <input type="text" id="search-input" placeholder="Search for Premiere hotkeys (e.g. 'Ripple', 'Razor', 'Gain')..." class="w-full px-6 py-4 pl-14 border border-gray-100 rounded-2xl bg-gray-50 focus:ring-4 focus:ring-purple-200 outline-none transition-all text-lg font-medium">
@@ -103,9 +104,9 @@
             </div>
 
             <div id="quiz-container" class="hidden">
-                <div class="bg-white rounded-[3.5rem] p-12 shadow-2xl text-center border border-gray-100 min-h-[550px] flex flex-col justify-center animate-in fade-in duration-500">
-                    <span class="bg-purple-100 text-purple-600 px-6 py-2 rounded-full text-xs font-black uppercase tracking-widest inline-block mx-auto mb-10">Premiere Pro Gauntlet</span>
-                    <h2 class="text-gray-400 font-bold mb-2">What is the keyboard shortcut for:</h2>
+                <div class="bg-white rounded-[3.5rem] p-12 shadow-2xl text-center border border-gray-100 min-h-[550px] flex flex-col justify-center">
+                    <span class="bg-purple-100 text-purple-600 px-6 py-2 rounded-full text-xs font-black uppercase tracking-widest inline-block mx-auto mb-10">Editorial Gauntlet</span>
+                    <h2 class="text-gray-400 font-bold mb-2 uppercase text-xs">Identify the shortcut for:</h2>
                     <h2 id="quiz-question" class="text-4xl md:text-5xl font-black text-gray-900 mb-14 leading-tight">Loading...</h2>
                     
                     <div id="quiz-options" class="grid grid-cols-1 md:grid-cols-2 gap-4 mb-10"></div>
@@ -115,28 +116,30 @@
                     
                     <div class="grid grid-cols-2 gap-6 mt-16 border-t pt-10">
                         <div class="p-4 bg-green-50 rounded-2xl border border-green-100">
-                            <p class="text-[10px] font-black text-green-600 uppercase tracking-widest">Correct Hits</p>
+                            <p class="text-[10px] font-black text-green-600 uppercase tracking-widest">Correct</p>
                             <p id="correct-count" class="text-4xl font-black text-green-500">0</p>
                         </div>
                         <div class="p-4 bg-red-50 rounded-2xl border border-red-100">
-                            <p class="text-[10px] font-black text-red-600 uppercase tracking-widest">Mistakes</p>
+                            <p class="text-[10px] font-black text-red-600 uppercase tracking-widest">Misses</p>
                             <p id="incorrect-count" class="text-4xl font-black text-red-500">0</p>
                         </div>
                     </div>
                 </div>
             </div>
 
-            <div id="insights-container" class="hidden animate-in fade-in duration-500">
+            <div id="insights-container" class="hidden">
                 <div class="bg-white p-12 rounded-[3.5rem] shadow-2xl border border-gray-100 text-center">
-                    <h2 class="text-3xl font-black mb-8 gradient-text">Workflow Proficiency</h2>
+                    <h2 class="text-3xl font-black mb-8 gradient-text font-black">Subconscious Mastery Analysis</h2>
                     <div id="progress-chart" class="h-96 w-full mb-10"></div>
                     
-                    <div id="streak-list-container" class="max-w-2xl mx-auto text-left">
-                        <h3 class="text-xl font-black text-gray-800 mb-4 uppercase tracking-tighter flex items-center gap-2">
-                            <span>🚀</span> Subconscious Mastery (5+ Streak)
-                        </h3>
-                        <p class="text-gray-500 text-sm mb-6 font-medium">These shortcuts were correctly identified 5 times and are now automatically starred.</p>
-                        <div id="streak-list" class="grid grid-cols-1 sm:grid-cols-2 gap-3">
+                    <div class="max-w-3xl mx-auto text-left">
+                        <div class="flex items-center justify-between mb-6">
+                            <h3 class="text-xl font-black text-gray-800 uppercase tracking-tighter flex items-center gap-2">
+                                <span>🚀</span> Streak-Earned Mastery
+                            </h3>
+                            <span class="text-xs font-bold text-gray-400">Items correctly identified 5x in Gauntlet</span>
+                        </div>
+                        <div id="streak-list" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-3">
                             <!-- Items Injected -->
                         </div>
                     </div>
@@ -165,6 +168,7 @@
             { func: "Slip Tool", key: "Y", cat: "Tools" },
             { func: "Slide Tool", key: "U", cat: "Tools" },
             { func: "Pen Tool", key: "P", cat: "Tools" },
+            { func: "Rectangle Tool", key: "Alt + R", cat: "Tools" },
             { func: "Hand Tool", key: "H", cat: "Tools" },
             { func: "Type Tool", key: "T", cat: "Tools" },
 
@@ -172,72 +176,65 @@
             { func: "Add Edit (Cut)", key: "Ctrl + K", cat: "Editing" },
             { func: "Add Edit to All Tracks", key: "Ctrl + Shift + K", cat: "Editing" },
             { func: "Ripple Delete", key: "Shift + Delete", cat: "Editing" },
-            { func: "Clear (Delete Selection)", key: "Delete", cat: "Editing" },
+            { func: "Clear Selection", key: "Delete", cat: "Editing" },
             { func: "Apply Video Transition", key: "Ctrl + D", cat: "Editing" },
             { func: "Apply Audio Transition", key: "Ctrl + Shift + D", cat: "Editing" },
             { func: "Match Frame", key: "F", cat: "Editing" },
             { func: "Reverse Match Frame", key: "Shift + R", cat: "Editing" },
-            { func: "Toggle Snap", key: "S", cat: "Editing" },
-            { func: "Toggle Linked Selection", key: "Ctrl + L", cat: "Editing" },
-            { func: "Group Selection", key: "Ctrl + G", cat: "Editing" },
-            { func: "Ungroup Selection", key: "Ctrl + Shift + G", cat: "Editing" },
-            { func: "Speed / Duration Menu", key: "Ctrl + R", cat: "Editing" },
-            { func: "Enable/Disable Clip", key: "Shift + E", cat: "Editing" },
-            { func: "Nest Clip", key: "Alt + Shift + N (Manual)", cat: "Editing" },
-            { func: "Lift (Sequence)", key: ";", cat: "Editing" },
-            { func: "Extract (Sequence)", key: "'", cat: "Editing" },
+            { func: "Snap Toggle", key: "S", cat: "Editing" },
+            { func: "Linked Selection Toggle", key: "Ctrl + L", cat: "Editing" },
+            { func: "Group", key: "Ctrl + G", cat: "Editing" },
+            { func: "Ungroup", key: "Ctrl + Shift + G", cat: "Editing" },
+            { func: "Speed / Duration", key: "Ctrl + R", cat: "Editing" },
+            { func: "Enable Clip Toggle", key: "Shift + E", cat: "Editing" },
+            { func: "Lift", key: ";", cat: "Editing" },
+            { func: "Extract", key: "'", cat: "Editing" },
             { func: "Export Frame", key: "Ctrl + Shift + E", cat: "Editing" },
-            { func: "Toggle Multi-Camera View", key: "Shift + 0", cat: "Editing" },
+            { func: "Multi-Camera View Toggle", key: "Shift + 0", cat: "Editing" },
+            { func: "Make Subclip", key: "Ctrl + U", cat: "Editing" },
 
             // --- NAVIGATION ---
             { func: "Play / Stop", key: "Space", cat: "Navigation" },
-            { func: "Shuttle Reverse (J)", key: "J", cat: "Navigation" },
-            { func: "Shuttle Stop (K)", key: "K", cat: "Navigation" },
-            { func: "Shuttle Forward (L)", key: "L", cat: "Navigation" },
+            { func: "Shuttle Reverse", key: "J", cat: "Navigation" },
+            { func: "Shuttle Stop", key: "K", cat: "Navigation" },
+            { func: "Shuttle Forward", key: "L", cat: "Navigation" },
             { func: "Go to In", key: "Shift + I", cat: "Navigation" },
             { func: "Go to Out", key: "Shift + O", cat: "Navigation" },
             { func: "Mark In", key: "I", cat: "Navigation" },
             { func: "Mark Out", key: "O", cat: "Navigation" },
-            { func: "Clear In", key: "Ctrl + Shift + I", cat: "Navigation" },
-            { func: "Clear Out", key: "Ctrl + Shift + O", cat: "Navigation" },
+            { func: "Clear In and Out", key: "Ctrl + Shift + X", cat: "Navigation" },
             { func: "Step Forward 1 Frame", key: "Right Arrow", cat: "Navigation" },
             { func: "Step Backward 1 Frame", key: "Left Arrow", cat: "Navigation" },
-            { func: "Step Forward 5 Frames", key: "Shift + Right Arrow", cat: "Navigation" },
-            { func: "Step Backward 5 Frames", key: "Shift + Left Arrow", cat: "Navigation" },
             { func: "Go to Next Edit", key: "Down Arrow", cat: "Navigation" },
             { func: "Go to Previous Edit", key: "Up Arrow", cat: "Navigation" },
             { func: "Zoom In Timeline", key: "=", cat: "Navigation" },
             { func: "Zoom Out Timeline", key: "-", cat: "Navigation" },
-            { func: "Zoom to Fit Sequence", key: "\\", cat: "Navigation" },
+            { func: "Zoom to Sequence", key: "\\", cat: "Navigation" },
 
-            // --- PANELS & WINDOWS ---
-            { func: "Maximize Panel Under Cursor", key: "~", cat: "Panels" },
+            // --- WINDOW MANAGEMENT ---
+            { func: "Maximize Panel", key: "~", cat: "Panels" },
             { func: "Project Panel", key: "Shift + 1", cat: "Panels" },
             { func: "Source Monitor", key: "Shift + 2", cat: "Panels" },
-            { func: "Timeline Panel", key: "Shift + 3", cat: "Panels" },
+            { func: "Timeline", key: "Shift + 3", cat: "Panels" },
             { func: "Program Monitor", key: "Shift + 4", cat: "Panels" },
             { func: "Effect Controls", key: "Shift + 5", cat: "Panels" },
             { func: "Audio Clip Mixer", key: "Shift + 6", cat: "Panels" },
             { func: "Effects Panel", key: "Shift + 7", cat: "Panels" },
             { func: "Media Browser", key: "Shift + 8", cat: "Panels" },
-            { func: "Essential Graphics", key: "Shift + 9 (Default)", cat: "Panels" },
 
             // --- AUDIO mastering ---
             { func: "Audio Gain Menu", key: "G", cat: "Audio" },
-            { func: "Audio Channels Menu", key: "Shift + G", cat: "Audio" },
-            { func: "Increase Audio Level", key: "]", cat: "Audio" },
-            { func: "Decrease Audio Level", key: "[", cat: "Audio" },
+            { func: "Increase Audio Gain", key: "]", cat: "Audio" },
+            { func: "Decrease Audio Gain", key: "[", cat: "Audio" },
 
             // --- GENERAL OPS ---
             { func: "New Sequence", key: "Ctrl + N", cat: "General" },
             { func: "Import Media", key: "Ctrl + I", cat: "General" },
             { func: "Export Media", key: "Ctrl + M", cat: "General" },
             { func: "Save Project", key: "Ctrl + S", cat: "General" },
-            { func: "Save As", key: "Ctrl + Shift + S", cat: "General" },
             { func: "Undo", key: "Ctrl + Z", cat: "General" },
             { func: "Redo", key: "Ctrl + Shift + Z", cat: "General" },
-            { func: "Preferences", key: "Ctrl + Alt + K", cat: "General" },
-            { func: "Quit Premiere", key: "Ctrl + Q", cat: "General" }
+            { func: "Preferences", key: "Ctrl + Alt + K", cat: "General" }
         ];
 
         let userProgress = { 
@@ -252,17 +249,23 @@
             document.querySelectorAll('.mode-btn').forEach(btn => btn.classList.remove('active-mode'));
             const targetBtn = document.getElementById(`mode-${mode}`); if(targetBtn) targetBtn.classList.add('active-mode');
 
-            const views = ['browser-view', 'quiz-container', 'insights-container'];
-            views.forEach(v => document.getElementById(v).classList.add('hidden'));
+            // Explicit switching to avoid CSS collisions
+            const views = {
+                'browser-view': document.getElementById('browser-view'),
+                'quiz-container': document.getElementById('quiz-container'),
+                'insights-container': document.getElementById('insights-container')
+            };
+            
+            Object.values(views).forEach(v => v.classList.add('hidden'));
 
             if (mode === 'quiz') {
-                document.getElementById('quiz-container').classList.remove('hidden');
+                views['quiz-container'].classList.remove('hidden');
                 startQuiz();
             } else if (mode === 'insights') {
-                document.getElementById('insights-container').classList.remove('hidden');
+                views['insights-container'].classList.remove('hidden');
                 drawInsights();
             } else {
-                document.getElementById('browser-view').classList.remove('hidden');
+                views['browser-view'].classList.remove('hidden');
                 currentFilter = mode;
                 renderHotkeys();
             }
@@ -287,13 +290,20 @@
                 const mastered = userProgress.mastered.has(h.func);
                 const streak = userProgress.streakCount[h.func] || 0;
                 
-                card.className = `hotkey-card bg-white p-6 rounded-3xl border ${mastered ? 'border-green-500 bg-green-50 shadow-green-100' : 'border-gray-100 shadow-sm'} flex justify-between items-center group transition-all`;
+                card.className = `hotkey-card bg-white p-6 rounded-3xl border ${mastered ? 'border-green-500 bg-green-50' : 'border-gray-100'} shadow-sm flex justify-between items-center group transition-all`;
+                
+                let streakHtml = '';
+                if (mastered) {
+                    streakHtml = `<span class="streak-pill bg-green-500 text-white">Mastered</span>`;
+                } else if (streak > 0) {
+                    streakHtml = `<span class="streak-pill bg-orange-100 text-orange-600">Streak: ${streak}/5</span>`;
+                }
+
                 card.innerHTML = `
                     <div class="flex-grow">
                         <div class="flex items-center gap-2 mb-1">
                             <p class="text-[9px] font-black text-gray-300 uppercase group-hover:text-purple-500">${h.cat}</p>
-                            ${streak > 0 && streak < 5 ? `<span class="streak-badge bg-orange-100 text-orange-600">Streak: ${streak}</span>` : ''}
-                            ${streak >= 5 ? `<span class="streak-badge bg-green-100 text-green-600">Mastered</span>` : ''}
+                            ${streakHtml}
                         </div>
                         <h4 class="text-md font-bold text-gray-800">${h.func}</h4>
                     </div>
@@ -344,6 +354,7 @@
                     if (isCorrect) {
                         stats.correct++;
                         userProgress.streakCount[q.func] = (userProgress.streakCount[q.func] || 0) + 1;
+                        // graduation logic
                         if (userProgress.streakCount[q.func] >= 5 && !userProgress.mastered.has(q.func)) {
                             userProgress.mastered.add(q.func);
                         }
@@ -357,7 +368,7 @@
                     
                     saveMastery();
                     const feed = document.getElementById('quiz-feedback'); 
-                    feed.innerText = isCorrect ? "PERFECT! Streak Extended." : "The Pro Shortcut is: " + q.key; 
+                    feed.innerText = isCorrect ? "PERFECT! Streak Added." : "The Pro Shortcut is: " + q.key; 
                     feed.className = `p-8 rounded-3xl font-black text-2xl mb-8 border-4 ${isCorrect ? 'bg-green-50 text-green-700 border-green-200' : 'bg-red-50 text-red-700 border-red-200'}`;
                     feed.classList.remove('hidden'); 
                     document.getElementById('next-question-btn').classList.remove('hidden');
@@ -384,18 +395,17 @@
         }
 
         function setupSearch() { document.getElementById('search-input').addEventListener('input', (e) => renderHotkeys(e.target.value)); }
-        
         function shuffle(a) { for (let i = a.length - 1; i > 0; i--) { const j = Math.floor(Math.random() * (i + 1)); [a[i], a[j]] = [a[j], a[i]]; } }
         
         function saveMastery() { 
-            localStorage.setItem('mastery-premiere-pro-v8', JSON.stringify({
+            localStorage.setItem('mastery-premiere-pro-v9', JSON.stringify({
                 mastered: [...userProgress.mastered],
                 streaks: userProgress.streakCount
             })); 
         }
         
         function loadMastery() { 
-            const s = localStorage.getItem('mastery-premiere-pro-v8'); 
+            const s = localStorage.getItem('mastery-premiere-pro-v9'); 
             if (s) {
                 const data = JSON.parse(s);
                 userProgress.mastered = new Set(data.mastered || []);
@@ -406,21 +416,42 @@
         function drawInsights() { 
             const m = userProgress.mastered.size; 
             const r = hotkeysData.length - m; 
-            Plotly.newPlot('progress-chart', [{ values: [m, r], labels: ['Mastered', 'Learning'], type: 'pie', marker: { colors: ['#7c3aed', '#e5e7eb'] }, hole: .4 }], { margin: {t:0, b:0, l:0, r:0} }); 
+            
+            // Check if Plotly is available
+            if (typeof Plotly !== 'undefined') {
+                Plotly.newPlot('progress-chart', [{ 
+                    values: [m, r], 
+                    labels: ['Mastered', 'Remaining'], 
+                    type: 'pie', 
+                    marker: { colors: ['#7c3aed', '#f1f1f1'] }, 
+                    hole: .5 
+                }], { 
+                    margin: {t:0, b:0, l:0, r:0},
+                    paper_bgcolor: 'rgba(0,0,0,0)',
+                    plot_bgcolor: 'rgba(0,0,0,0)'
+                }); 
+            }
             
             const list = document.getElementById('streak-list');
             list.innerHTML = '';
+            let streakItemsCount = 0;
+            
             Object.entries(userProgress.streakCount).forEach(([name, count]) => {
                 if (count >= 5) {
+                    streakItemsCount++;
                     const item = document.createElement('div');
-                    item.className = "bg-green-50 border border-green-100 p-4 rounded-2xl flex justify-between items-center animate-in slide-in-from-bottom duration-500";
-                    item.innerHTML = `<span class="font-bold text-green-800 text-sm">${name}</span><span class="bg-green-500 text-white text-[10px] px-2 py-1 rounded-lg font-black italic">AUTO-MASTERED</span>`;
+                    item.className = "bg-green-50 border border-green-100 p-4 rounded-2xl flex justify-between items-center shadow-sm";
+                    item.innerHTML = `<span class="font-bold text-green-800 text-xs">${name}</span><span class="bg-green-500 text-white text-[8px] px-2 py-0.5 rounded-lg font-black uppercase italic">MASTER</span>`;
                     list.appendChild(item);
                 }
             });
-            if(list.innerHTML === '') list.innerHTML = '<p class="text-gray-400 text-sm italic col-span-2 text-center">Correctly identify shortcuts 5 times in the Gauntlet to unlock auto-mastery.</p>';
+            
+            if(streakItemsCount === 0) {
+                list.innerHTML = '<div class="col-span-3 p-8 text-center bg-gray-50 rounded-3xl border-2 border-dashed border-gray-200"><p class="text-gray-400 text-sm font-medium">No auto-mastered keys yet. Get a 5-streak in the Gauntlet to unlock!</p></div>';
+            }
             updateStats();
         }
+        
         window.onload = () => { init(); };
     </script>
 </body>
