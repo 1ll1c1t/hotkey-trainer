@@ -43,7 +43,7 @@
 
     <nav class="bg-white/90 backdrop-blur-md border-b sticky top-[52px] z-50 px-6 py-4 flex justify-between items-center shadow-sm">
         <div class="flex items-center gap-3">
-            <div class="w-10 h-10 bg-indigo-600 rounded-xl flex items-center justify-center text-white font-black italic shadow-lg">Ae</div>
+            <div class="w-10 h-10 bg-indigo-600 rounded-xl flex items-center justify-center text-white font-black italic shadow-lg text-sm">Ae</div>
             <a href="index.html" class="font-bold text-2xl tracking-tighter gradient-text">Hotkey Trainer</a>
         </div>
         <a href="index.html" class="text-gray-600 hover:text-indigo-600 transition-colors font-medium flex items-center gap-2">
@@ -54,7 +54,7 @@
     <header class="bg-gradient-to-br from-indigo-700 to-purple-700 text-white py-14 text-center shadow-inner relative overflow-hidden">
         <div class="absolute inset-0 opacity-10 pointer-events-none select-none text-[20rem] font-black -top-20 -right-10">MOTION</div>
         <h1 class="text-6xl font-black mb-2 tracking-tight">Adobe After Effects</h1>
-        <p class="text-xl opacity-90 font-medium">Professional Motion Graphics and VFX Workflow.</p>
+        <p class="text-xl opacity-90 font-medium">The Absolute Professional Database for Motion Graphics and VFX.</p>
     </header>
 
     <main class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8 grid grid-cols-1 lg:grid-cols-4 gap-8">
@@ -64,10 +64,10 @@
                 <h3 class="text-sm font-black mb-4 text-gray-400 uppercase tracking-widest px-2">Workspaces</h3>
                 <div class="space-y-1 max-h-[60vh] overflow-y-auto custom-scroll pr-2">
                     <button onclick="setMode('all')" id="mode-all" class="mode-btn w-full text-left px-4 py-3 rounded-xl active-mode transition-all font-bold">⌨️ All Keys</button>
-                    <button onclick="setMode('Tools')" id="mode-Tools" class="mode-btn w-full text-left px-4 py-3 rounded-xl hover:bg-gray-100 transition-all font-semibold">🛠️ Toolbox</button>
-                    <button onclick="setMode('Properties')" id="mode-Properties" class="mode-btn w-full text-left px-4 py-3 rounded-xl hover:bg-gray-100 transition-all font-semibold">⚙️ Layer Properties</button>
+                    <button onclick="setMode('Tools')" id="mode-Tools" class="mode-btn w-full text-left px-4 py-3 rounded-xl hover:bg-gray-100 transition-all font-semibold">🛠️ Creative Tools</button>
+                    <button onclick="setMode('Properties')" id="mode-Properties" class="mode-btn w-full text-left px-4 py-3 rounded-xl hover:bg-gray-100 transition-all font-semibold text-indigo-600">⚙️ Layer Properties</button>
                     <button onclick="setMode('Timeline')" id="mode-Timeline" class="mode-btn w-full text-left px-4 py-3 rounded-xl hover:bg-gray-100 transition-all font-semibold">🎞️ Timeline Nav</button>
-                    <button onclick="setMode('Animation')" id="mode-Animation" class="mode-btn w-full text-left px-4 py-3 rounded-xl hover:bg-gray-100 transition-all font-semibold text-indigo-600">✨ Keyframes & Ease</button>
+                    <button onclick="setMode('Animation')" id="mode-Animation" class="mode-btn w-full text-left px-4 py-3 rounded-xl hover:bg-gray-100 transition-all font-semibold">✨ Keyframes & Ease</button>
                     <button onclick="setMode('Composition')" id="mode-Composition" class="mode-btn w-full text-left px-4 py-3 rounded-xl hover:bg-gray-100 transition-all font-semibold">📦 Comp & Project</button>
                     <div class="h-px bg-gray-100 my-4"></div>
                     <button onclick="setMode('quiz')" id="mode-quiz" class="mode-btn w-full text-left px-4 py-3 rounded-xl hover:bg-indigo-600 hover:text-white transition-all font-black text-indigo-600">🧠 Start Pro Quiz</button>
@@ -78,7 +78,7 @@
                     <h4 class="text-[10px] font-black mb-3 text-gray-400 uppercase tracking-widest">Training Progress</h4>
                     <div class="space-y-4">
                         <div class="flex justify-between items-end">
-                            <span class="text-xs text-gray-500 font-bold">Progress</span>
+                            <span class="text-xs text-gray-500 font-bold">Overall Mastery</span>
                             <span class="font-black text-indigo-600" id="mastered-count">0</span>
                         </div>
                         <div class="w-full bg-gray-100 rounded-full h-3">
@@ -114,7 +114,7 @@
                     
                     <div class="grid grid-cols-2 gap-6 mt-16 border-t pt-10">
                         <div class="p-4 bg-green-50 rounded-2xl border border-green-100">
-                            <p class="text-[10px] font-black text-green-600 uppercase tracking-widest">Accuracy</p>
+                            <p class="text-[10px] font-black text-green-600 uppercase tracking-widest">Correct</p>
                             <p id="correct-count" class="text-4xl font-black text-green-500">0</p>
                         </div>
                         <div class="p-4 bg-red-50 rounded-2xl border border-red-100">
@@ -125,15 +125,26 @@
                 </div>
             </div>
 
-            <div id="insights-container" class="hidden bg-white p-12 rounded-[3.5rem] shadow-2xl border border-gray-100 text-center">
-                <h2 class="text-3xl font-black mb-8 gradient-text">Motion Workflow Analytics</h2>
-                <div id="progress-chart" class="h-96 w-full"></div>
-                <p class="mt-8 text-gray-400 font-medium italic">"The speed of your design is limited only by your muscle memory."</p>
+            <div id="insights-container" class="hidden animate-in fade-in duration-500">
+                <div class="bg-white p-12 rounded-[3.5rem] shadow-2xl border border-gray-100 text-center">
+                    <h2 class="text-3xl font-black mb-8 gradient-text">Motion Workflow Analytics</h2>
+                    <div id="progress-chart" class="h-96 w-full mb-10"></div>
+                    
+                    <div id="streak-list-container" class="max-w-2xl mx-auto text-left">
+                        <h3 class="text-xl font-black text-gray-800 mb-4 uppercase tracking-tighter flex items-center gap-2">
+                            <span>🚀</span> Subconscious Mastery (5+ Streak)
+                        </h3>
+                        <p class="text-gray-500 text-sm mb-6 font-medium">These shortcuts have been correctly identified 5 times and are now automatically starred.</p>
+                        <div id="streak-list" class="grid grid-cols-1 sm:grid-cols-2 gap-3">
+                            <!-- Injected -->
+                        </div>
+                    </div>
+                </div>
             </div>
         </div>
     </main>
 
-    <footer class="bg-gray-900 text-white py-12">
+    <footer class="bg-gray-900 text-white py-12 mt-12">
         <div class="max-w-7xl mx-auto px-4 text-center">
             <p class="text-gray-500 text-sm mb-4">Master your software, master your craft.</p>
             <p class="text-gray-400 text-xs">© 2025 thethreeplays.com. All rights reserved.</p>
@@ -147,12 +158,12 @@
             { func: "Hand Tool", key: "H", cat: "Tools" },
             { func: "Zoom Tool", key: "Z", cat: "Tools" },
             { func: "Rotation Tool", key: "W", cat: "Tools" },
-            { func: "Unified Camera Tool", key: "C", cat: "Tools" },
-            { func: "Pan Behind Tool", key: "Y", cat: "Tools" },
-            { func: "Rectangle/Shape Tool", key: "Q", cat: "Tools" },
-            { func: "Pen Tool", key: "G", cat: "Tools" },
+            { func: "Camera Tools", key: "C", cat: "Tools" },
+            { func: "Pan Behind (Anchor Point) Tool", key: "Y", cat: "Tools" },
+            { func: "Rectangle / Shape Tools", key: "Q", cat: "Tools" },
+            { func: "Pen Tools", key: "G", cat: "Tools" },
             { func: "Horizontal Type Tool", key: "Ctrl + T", cat: "Tools" },
-            { func: "Brush / Stamp / Eraser", key: "Ctrl + B", cat: "Tools" },
+            { func: "Brush / Clone / Eraser", key: "Ctrl + B", cat: "Tools" },
             { func: "Roto Brush Tool", key: "Alt + W", cat: "Tools" },
             { func: "Puppet Pin Tool", key: "Ctrl + P", cat: "Tools" },
 
@@ -163,48 +174,51 @@
             { func: "Rotation", key: "R", cat: "Properties" },
             { func: "Opacity", key: "T", cat: "Properties" },
             { func: "Show All Keyframes", key: "U", cat: "Properties" },
-            { func: "Show Modified Props", key: "UU", cat: "Properties" },
+            { func: "Show Modified Properties", key: "UU", cat: "Properties" },
             { func: "Effects", key: "E", cat: "Properties" },
             { func: "Masks", key: "M", cat: "Properties" },
             { func: "Mask Feather", key: "F", cat: "Properties" },
-            { func: "Mask Expansion", key: "Shift + M", cat: "Properties" },
             { func: "Mask Opacity", key: "Shift + T", cat: "Properties" },
             { func: "Audio Levels", key: "L", cat: "Properties" },
             { func: "Audio Waveform", key: "LL", cat: "Properties" },
             { func: "Expressions", key: "EE", cat: "Properties" },
-            { func: "Paint Strokes", key: "PP", cat: "Properties" },
+            { func: "Material Options (3D)", key: "AA", cat: "Properties" },
 
             // --- TIMELINE & NAVIGATION ---
             { func: "Go to In Point", key: "I", cat: "Timeline" },
             { func: "Go to Out Point", key: "O", cat: "Timeline" },
             { func: "Set In Point to Playhead", key: "[", cat: "Timeline" },
             { func: "Set Out Point to Playhead", key: "]", cat: "Timeline" },
+            { func: "Set Work Area Start", key: "B", cat: "Timeline" },
+            { func: "Set Work Area End", key: "N", cat: "Timeline" },
             { func: "Trim Layer In Point", key: "Alt + [", cat: "Timeline" },
             { func: "Trim Layer Out Point", key: "Alt + ]", cat: "Timeline" },
             { func: "Split Layer", key: "Ctrl + Shift + D", cat: "Timeline" },
             { func: "Duplicate Layer", key: "Ctrl + D", cat: "Timeline" },
-            { func: "Move Playhead Forward 1 Frame", key: "Ctrl + Right Arrow", cat: "Timeline" },
-            { func: "Move Playhead Backward 1 Frame", key: "Ctrl + Left Arrow", cat: "Timeline" },
-            { func: "Move Playhead Forward 10 Frames", key: "Ctrl + Shift + Right Arrow", cat: "Timeline" },
-            { func: "Move Playhead Backward 10 Frames", key: "Ctrl + Shift + Left Arrow", cat: "Timeline" },
+            { func: "Move Playhead 1 Frame Forward", key: "Ctrl + Right Arrow", cat: "Timeline" },
+            { func: "Move Playhead 1 Frame Backward", key: "Ctrl + Left Arrow", cat: "Timeline" },
+            { func: "Move Playhead 10 Frames Forward", key: "Ctrl + Shift + Right Arrow", cat: "Timeline" },
+            { func: "Move Playhead 10 Frames Backward", key: "Ctrl + Shift + Left Arrow", cat: "Timeline" },
             { func: "Zoom In Timeline", key: "+", cat: "Timeline" },
             { func: "Zoom Out Timeline", key: "-", cat: "Timeline" },
             { func: "Zoom to Fit Layers", key: "Shift + ;", cat: "Timeline" },
             { func: "Toggle Switch/Modes Column", key: "F4", cat: "Timeline" },
             { func: "Move Layer to Top", key: "Ctrl + Shift + ]", cat: "Timeline" },
             { func: "Move Layer to Bottom", key: "Ctrl + Shift + [", cat: "Timeline" },
+            { func: "Move Layer Forward", key: "Ctrl + ]", cat: "Timeline" },
+            { func: "Move Layer Backward", key: "Ctrl + [", cat: "Timeline" },
 
             // --- ANIMATION & KEYFRAMES ---
-            { func: "Add/Remove Keyframe", key: "Alt + Shift + (Prop Key)", cat: "Animation" },
             { func: "Next Keyframe", key: "K", cat: "Animation" },
             { func: "Previous Keyframe", key: "J", cat: "Animation" },
+            { func: "Add/Remove Keyframe", key: "Alt + Shift + (Prop Key)", cat: "Animation" },
             { func: "Easy Ease", key: "F9", cat: "Animation" },
             { func: "Easy Ease In", key: "Shift + F9", cat: "Animation" },
             { func: "Easy Ease Out", key: "Ctrl + Shift + F9", cat: "Animation" },
             { func: "Toggle Graph Editor", key: "Shift + F3", cat: "Animation" },
-            { func: "Convert Keyframe to Linear", key: "Ctrl + Click", cat: "Animation" },
+            { func: "Keyframe Interpolation Menu", key: "Ctrl + Alt + K", cat: "Animation" },
             { func: "Toggle Keyframe Hold", key: "Ctrl + Alt + H", cat: "Animation" },
-            { func: "Add Expression (Alt+Click)", key: "Alt + Click Stopwatch", cat: "Animation" },
+            { func: "Convert Keyframe to Auto-Bezier", key: "Ctrl + Click", cat: "Animation" },
 
             // --- COMPOSITION & PROJECT ---
             { func: "New Composition", key: "Ctrl + N", cat: "Composition" },
@@ -218,38 +232,72 @@
             { func: "New Light", key: "Ctrl + Alt + Shift + L", cat: "Composition" },
             { func: "Replace Clip in Timeline", key: "Ctrl + Alt + /", cat: "Composition" },
             { func: "Import File", key: "Ctrl + I", cat: "Composition" },
-            { func: "Save Project", key: "Ctrl + S", cat: "Composition" }
+            { func: "Import Multiple Files", key: "Ctrl + Alt + I", cat: "Composition" },
+            { func: "Save Project", key: "Ctrl + S", cat: "Composition" },
+            { func: "Purge All Memory", key: "Ctrl + Alt + / (Num)", cat: "Composition" },
+
+            // --- VIEW ---
+            { func: "Full Screen Panel", key: "~", cat: "View" },
+            { func: "Toggle Transparency Grid", key: "Ctrl + Shift + D", cat: "View" },
+            { func: "Show/Hide Rulers", key: "Ctrl + R", cat: "View" },
+            { func: "Show/Hide Guides", key: "Ctrl + ;", cat: "View" },
+            { func: "Lock Guides", key: "Ctrl + Alt + Shift + ;", cat: "View" },
+            { func: "Fit in Window", key: "Shift + /", cat: "View" },
+            { func: "Resolution: Full", key: "Ctrl + J", cat: "View" },
+            { func: "Resolution: Half", key: "Ctrl + Shift + J", cat: "View" }
         ];
 
-        let userProgress = { mastered: new Set() };
-        let quizPool = []; let currentIdx = 0; let stats = { correct: 0, incorrect: 0 }; let currentFilter = 'all';
+        let userProgress = { 
+            mastered: new Set(),
+            streakCount: {} 
+        };
+        let quizPool = []; let currentIdx = 0; let currentFilter = 'all';
 
         function init() { loadMastery(); renderHotkeys(); setupSearch(); }
 
         function setMode(mode) {
             document.querySelectorAll('.mode-btn').forEach(btn => btn.classList.remove('active-mode'));
             const targetBtn = document.getElementById(`mode-${mode}`); if(targetBtn) targetBtn.classList.add('active-mode');
-            document.getElementById('browser-view').classList.toggle('hidden', mode === 'quiz');
-            document.getElementById('quiz-container').classList.toggle('hidden', mode !== 'quiz');
-            document.getElementById('insights-container').classList.toggle('hidden', mode !== 'insights');
-            if (mode === 'quiz') startQuiz(); else if (mode === 'insights') drawInsights(); else { currentFilter = mode; renderHotkeys(); }
+
+            const views = ['browser-view', 'quiz-container', 'insights-container'];
+            views.forEach(v => document.getElementById(v).classList.add('hidden'));
+
+            if (mode === 'quiz') {
+                document.getElementById('quiz-container').classList.remove('hidden');
+                startQuiz();
+            } else if (mode === 'insights') {
+                document.getElementById('insights-container').classList.remove('hidden');
+                drawInsights();
+            } else {
+                document.getElementById('browser-view').classList.remove('hidden');
+                currentFilter = mode;
+                renderHotkeys();
+            }
+        }
+
+        function updateStats() {
+            const mCount = userProgress.mastered.size;
+            const total = hotkeysData.length;
+            document.getElementById('mastered-count').innerText = mCount + " / " + total;
+            document.getElementById('progress-bar').style.width = Math.round((mCount / total) * 100) + "%";
         }
 
         function renderHotkeys(search = '') {
             const container = document.getElementById('hotkeys-container'); container.innerHTML = '';
-            let filtered = hotkeysData; if (currentFilter !== 'all') filtered = filtered.filter(h => h.cat === currentFilter || h.cat === 'General');
+            let filtered = hotkeysData; if (currentFilter !== 'all') filtered = filtered.filter(h => h.cat === currentFilter);
             if (search) filtered = filtered.filter(h => h.func.toLowerCase().includes(search.toLowerCase()) || h.key.toLowerCase().includes(search.toLowerCase()));
 
             filtered.forEach(h => {
                 const card = document.createElement('div'); const mastered = userProgress.mastered.has(h.func);
-                card.className = `hotkey-card bg-white p-6 rounded-3xl border ${mastered ? 'border-green-500 bg-green-50' : 'border-gray-100'} shadow-sm flex justify-between items-center hover:shadow-xl transition-all group transition-all`;
-                card.innerHTML = `<div class="flex-grow"><p class="text-[9px] font-black text-gray-300 uppercase mb-1 group-hover:text-indigo-400">${h.cat}</p><h4 class="text-md font-bold text-gray-800">${h.func}</h4></div><div class="flex items-center gap-4"><span class="key-tag bg-gray-900 border border-gray-700 px-3 py-1.5 rounded-xl text-indigo-400 font-bold whitespace-nowrap shadow-lg">${h.key}</span><button onclick="toggleStar('${h.func}')" class="text-2xl transform hover:scale-125 transition-transform">${mastered ? '⭐' : '☆'}</button></div>`;
+                card.className = `hotkey-card bg-white p-6 rounded-3xl border ${mastered ? 'border-green-500 bg-green-50' : 'border-gray-100'} shadow-sm flex justify-between items-center group transition-all`;
+                card.innerHTML = `<div class="flex-grow"><p class="text-[9px] font-black text-gray-300 uppercase mb-1 group-hover:text-indigo-500">${h.cat}</p><h4 class="text-md font-bold text-gray-800">${h.func}</h4></div><div class="flex items-center gap-4"><span class="key-tag bg-gray-900 border border-gray-700 px-3 py-1.5 rounded-xl text-indigo-400 font-bold shadow-lg whitespace-nowrap">${h.key}</span><button onclick="toggleStar('${h.func}')" class="text-2xl transform hover:scale-125 transition-transform">${mastered ? '⭐' : '☆'}</button></div>`;
                 container.appendChild(card);
             });
             updateStats();
         }
 
-        function startQuiz() { quizPool = [...hotkeysData]; shuffle(quizPool); currentIdx = 0; stats = { correct: 0, incorrect: 0 }; document.getElementById('correct-count').innerText = "0"; document.getElementById('incorrect-count').innerText = "0"; loadQuestion(); }
+        function startQuiz() { quizPool = [...hotkeysData]; shuffle(quizPool); currentIdx = 0; document.getElementById('correct-count').innerText = "0"; document.getElementById('incorrect-count').innerText = "0"; loadQuestion(); }
+        
         function loadQuestion() {
             const q = quizPool[currentIdx]; document.getElementById('quiz-question').innerText = q.func; document.getElementById('quiz-feedback').classList.add('hidden'); document.getElementById('next-question-btn').classList.add('hidden');
             const options = document.getElementById('quiz-options'); options.innerHTML = ''; options.classList.remove('pointer-events-none');
@@ -258,21 +306,70 @@
                 const btn = document.createElement('button'); btn.className = "option-btn p-6 rounded-3xl font-black text-xl bg-white shadow-md"; btn.innerText = c;
                 btn.onclick = () => {
                     const isCorrect = c === q.key; options.classList.add('pointer-events-none'); btn.classList.add(isCorrect ? 'correct' : 'incorrect');
-                    if (isCorrect) stats.correct++; else { stats.incorrect++; document.querySelectorAll('.option-btn').forEach(b => { if(b.innerText === q.key) b.classList.add('correct'); }); }
-                    const feed = document.getElementById('quiz-feedback'); feed.innerText = isCorrect ? "PERFECT! +10 Points" : "The Pro key is: " + q.key; feed.className = `p-8 rounded-3xl font-black text-2xl mb-8 border-4 ${isCorrect ? 'bg-green-50 text-green-700 border-green-200' : 'bg-red-50 text-red-700 border-red-200'}`; feed.classList.remove('hidden'); document.getElementById('next-question-btn').classList.remove('hidden');
+                    
+                    if (isCorrect) {
+                        document.getElementById('correct-count').innerText = parseInt(document.getElementById('correct-count').innerText) + 1;
+                        userProgress.streakCount[q.func] = (userProgress.streakCount[q.func] || 0) + 1;
+                        if (userProgress.streakCount[q.func] >= 5 && !userProgress.mastered.has(q.func)) {
+                            userProgress.mastered.add(q.func);
+                        }
+                    } else {
+                        document.getElementById('incorrect-count').innerText = parseInt(document.getElementById('incorrect-count').innerText) + 1;
+                        userProgress.streakCount[q.func] = 0; 
+                        document.querySelectorAll('.option-btn').forEach(b => { if(b.innerText === q.key) b.classList.add('correct'); });
+                    }
+                    
+                    saveMastery();
+                    const feed = document.getElementById('quiz-feedback'); feed.innerText = isCorrect ? "PERFECT!" : "Correct Key: " + q.key; feed.classList.remove('hidden'); document.getElementById('next-question-btn').classList.remove('hidden');
                     updateStats();
                 };
                 options.appendChild(btn);
             });
         }
+
         function nextQuestion() { currentIdx++; if (currentIdx < quizPool.length) loadQuestion(); else startQuiz(); }
-        function toggleStar(f) { if (userProgress.mastered.has(f)) userProgress.mastered.delete(f); else userProgress.mastered.add(f); saveMastery(); renderHotkeys(); }
-        function updateStats() { const mCount = userProgress.mastered.size; document.getElementById('mastered-count').innerText = mCount + " / " + hotkeysData.length; document.getElementById('progress-bar').style.width = (mCount/hotkeysData.length)*100 + "%"; }
+        function toggleStar(f) { 
+            if (userProgress.mastered.has(f)) userProgress.mastered.delete(f); 
+            else userProgress.mastered.add(f); 
+            saveMastery(); 
+            renderHotkeys(); 
+        }
         function setupSearch() { document.getElementById('search-input').addEventListener('input', (e) => renderHotkeys(e.target.value)); }
         function shuffle(a) { for (let i = a.length - 1; i > 0; i--) { const j = Math.floor(Math.random() * (i + 1)); [a[i], a[j]] = [a[j], a[i]]; } }
-        function saveMastery() { localStorage.setItem('mastery-ae-ultimate-final', JSON.stringify([...userProgress.mastered])); }
-        function loadMastery() { const s = localStorage.getItem('mastery-ae-ultimate-final'); if (s) userProgress.mastered = new Set(JSON.parse(s)); }
-        function drawInsights() { const m = userProgress.mastered.size; const r = hotkeysData.length - m; Plotly.newPlot('progress-chart', [{ values: [m, r], labels: ['Mastered', 'Learning'], type: 'pie', marker: { colors: ['#6366f1', '#e5e7eb'] } }], { margin: {t:0, b:0, l:0, r:0} }); }
+        
+        function saveMastery() { 
+            localStorage.setItem('mastery-adobe-ae-final', JSON.stringify({
+                mastered: [...userProgress.mastered],
+                streaks: userProgress.streakCount
+            })); 
+        }
+        
+        function loadMastery() { 
+            const s = localStorage.getItem('mastery-adobe-ae-final'); 
+            if (s) {
+                const data = JSON.parse(s);
+                userProgress.mastered = new Set(data.mastered || []);
+                userProgress.streakCount = data.streaks || {};
+            }
+        }
+
+        function drawInsights() { 
+            const m = userProgress.mastered.size; const r = hotkeysData.length - m; 
+            Plotly.newPlot('progress-chart', [{ values: [m, r], labels: ['Mastered', 'Learning'], type: 'pie', marker: { colors: ['#6366f1', '#e5e7eb'] }, hole: .4 }], { margin: {t:0, b:0, l:0, r:0} }); 
+            
+            const list = document.getElementById('streak-list');
+            list.innerHTML = '';
+            Object.entries(userProgress.streakCount).forEach(([name, count]) => {
+                if (count >= 5) {
+                    const item = document.createElement('div');
+                    item.className = "bg-green-50 border border-green-100 p-4 rounded-2xl flex justify-between items-center animate-in slide-in-from-bottom duration-500";
+                    item.innerHTML = `<span class="font-bold text-green-800 text-sm">${name}</span><span class="bg-green-500 text-white text-[10px] px-2 py-1 rounded-lg font-black italic">AUTO-MASTERED</span>`;
+                    list.appendChild(item);
+                }
+            });
+            if(list.innerHTML === '') list.innerHTML = '<p class="text-gray-400 text-sm italic col-span-2 text-center">Master items by identifying them correctly 5 times in the Gauntlet.</p>';
+            updateStats();
+        }
         window.onload = () => { init(); };
     </script>
 </body>
