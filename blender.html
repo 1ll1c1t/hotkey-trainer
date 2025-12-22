@@ -54,7 +54,7 @@
     <header class="bg-gradient-to-br from-orange-500 to-red-600 text-white py-14 text-center shadow-inner relative overflow-hidden">
         <div class="absolute inset-0 opacity-10 pointer-events-none select-none text-[20rem] font-black -top-20 -right-10">BLENDER</div>
         <h1 class="text-6xl font-black mb-2 tracking-tight">Blender 5.0</h1>
-        <p class="text-xl opacity-90 font-medium">The Ultimate Professional Database for 3D Creation.</p>
+        <p class="text-xl opacity-90 font-medium">The Absolute Professional Database for 3D Creation.</p>
     </header>
 
     <main class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8 grid grid-cols-1 lg:grid-cols-4 gap-8">
@@ -131,7 +131,7 @@
             <div id="insights-container" class="hidden bg-white p-12 rounded-[3.5rem] shadow-2xl border border-gray-100 text-center">
                 <h2 class="text-3xl font-black mb-8 gradient-text">3D Workflow Analytics</h2>
                 <div id="progress-chart" class="h-96 w-full"></div>
-                <p class="mt-8 text-gray-400 font-medium italic">"The power of 3D is in the speed of the interface."</p>
+                <p class="mt-8 text-gray-400 font-medium italic">"The speed of your design is limited only by your muscle memory."</p>
             </div>
         </div>
     </main>
@@ -146,12 +146,14 @@
         const hotkeysData = [
             // --- GENERAL & ESSENTIALS ---
             { func: "Search Menu", key: "F3", cat: "General" },
-            { func: "Quick Favorites", key: "Q", cat: "General" },
-            { func: "Interaction Mode Pie", key: "Tab", cat: "General" },
+            { func: "Quick Favorites Menu", key: "Q", cat: "General" },
+            { func: "Interaction Mode Pie Menu", key: "Tab", cat: "General" },
+            { func: "Interaction Mode (Quick Switch)", key: "Ctrl + Tab", cat: "General" },
             { func: "Shading Pie Menu", key: "Z", cat: "General" },
             { func: "Toolbar Toggle", key: "T", cat: "General" },
-            { func: "Sidebar Panel Toggle", key: "N", cat: "General" },
+            { func: "Sidebar Toggle", key: "N", cat: "General" },
             { func: "Maximize Area Toggle", key: "Ctrl + Space", cat: "General" },
+            { func: "Toggle Full Screen Area", key: "Ctrl + Alt + Space", cat: "General" },
             { func: "Render Image", key: "F12", cat: "General" },
             { func: "Render Animation", key: "Ctrl + F12", cat: "General" },
             { func: "Save File", key: "Ctrl + S", cat: "General" },
@@ -161,7 +163,8 @@
             { func: "Repeat Last Action", key: "Shift + R", cat: "General" },
             { func: "Adjust Last Operation", key: "F9", cat: "General" },
             { func: "Add Menu", key: "Shift + A", cat: "General" },
-            { func: "Delete", key: "X or Del", cat: "General" },
+            { func: "Delete Selection", key: "X or Del", cat: "General" },
+            { func: "Search / Space Action", key: "Space", cat: "General" },
 
             // --- VIEWPORT & NAVIGATION ---
             { func: "Orbit Viewport", key: "MMB", cat: "Viewport" },
@@ -172,21 +175,26 @@
             { func: "Front View", key: "Numpad 1", cat: "Viewport" },
             { func: "Right View", key: "Numpad 3", cat: "Viewport" },
             { func: "Top View", key: "Numpad 7", cat: "Viewport" },
-            { func: "Opposite View (e.g. Back)", key: "Ctrl + Numpad", cat: "Viewport" },
+            { func: "Back View", key: "Ctrl + Numpad 1", cat: "Viewport" },
+            { func: "Left View", key: "Ctrl + Numpad 3", cat: "Viewport" },
+            { func: "Bottom View", key: "Ctrl + Numpad 7", cat: "Viewport" },
             { func: "Frame Selected", key: "Numpad .", cat: "Viewport" },
             { func: "Frame All", key: "Home", cat: "Viewport" },
             { func: "Local View Toggle", key: "Numpad /", cat: "Viewport" },
             { func: "Walk/Fly Navigation", key: "Shift + ~", cat: "Viewport" },
             { func: "Select All", key: "A", cat: "Viewport" },
             { func: "Deselect All", key: "Alt + A", cat: "Viewport" },
-            { func: "Circle Select", key: "C", cat: "Viewport" },
+            { func: "Invert Selection", key: "Ctrl + I", cat: "Viewport" },
             { func: "Box Select", key: "B", cat: "Viewport" },
+            { func: "Circle Select", key: "C", cat: "Viewport" },
+            { func: "Lasso Select", key: "Ctrl + RMB", cat: "Viewport" },
 
             // --- OBJECT MODE ---
             { func: "Grab / Move", key: "G", cat: "Object" },
             { func: "Rotate", key: "R", cat: "Object" },
             { func: "Scale", key: "S", cat: "Object" },
             { func: "Trackball Rotate", key: "R, R", cat: "Object" },
+            { func: "Constraint to Axis (during G/R/S)", key: "X / Y / Z", cat: "Object" },
             { func: "Clear Location", key: "Alt + G", cat: "Object" },
             { func: "Clear Rotation", key: "Alt + R", cat: "Object" },
             { func: "Clear Scale", key: "Alt + S", cat: "Object" },
@@ -197,25 +205,28 @@
             { func: "Parent Object", key: "Ctrl + P", cat: "Object" },
             { func: "Clear Parent", key: "Alt + P", cat: "Object" },
             { func: "Hide Selected", key: "H", cat: "Object" },
-            { func: "Unhide All", key: "Alt + H", cat: "Object" },
+            { func: "Unhide All Hidden", key: "Alt + H", cat: "Object" },
             { func: "Hide Unselected", key: "Shift + H", cat: "Object" },
-            { func: "Object Relations Menu", key: "L", cat: "Object" },
+            { func: "Move to Collection", key: "M", cat: "Object" },
+            { func: "Set Origin Menu", key: "Ctrl + Alt + Shift + C", cat: "Object" },
 
             // --- EDIT MODE ---
-            { func: "Vertex Select", key: "1", cat: "Edit" },
-            { func: "Edge Select", key: "2", cat: "Edit" },
-            { func: "Face Select", key: "3", cat: "Edit" },
+            { func: "Vertex Select Mode", key: "1", cat: "Edit" },
+            { func: "Edge Select Mode", key: "2", cat: "Edit" },
+            { func: "Face Select Mode", key: "3", cat: "Edit" },
             { func: "Extrude Region", key: "E", cat: "Edit" },
             { func: "Extrude to Cursor", key: "Ctrl + LMB", cat: "Edit" },
+            { func: "Extrude Menu", key: "Alt + E", cat: "Edit" },
             { func: "Inset Faces", key: "I", cat: "Edit" },
             { func: "Bevel Edge/Face", key: "Ctrl + B", cat: "Edit" },
             { func: "Bevel Vertices", key: "Ctrl + Shift + B", cat: "Edit" },
             { func: "Loop Cut", key: "Ctrl + R", cat: "Edit" },
             { func: "Knife Tool", key: "K", cat: "Edit" },
-            { func: "Fill Face", key: "F", cat: "Edit" },
+            { func: "Vertex/Face Fill", key: "F", cat: "Edit" },
             { func: "Grid Fill", key: "Ctrl + F", cat: "Edit" },
-            { func: "Bridge Edge Loops", key: "Ctrl + E", cat: "Edit" },
+            { func: "Bridge Edge Loops", key: "Ctrl + E (Menu)", cat: "Edit" },
             { func: "Merge Vertices Menu", key: "M", cat: "Edit" },
+            { func: "Split Selection", key: "Y", cat: "Edit" },
             { func: "Rip Region", key: "V", cat: "Edit" },
             { func: "Separate to New Object", key: "P", cat: "Edit" },
             { func: "Dissolve Selection", key: "Ctrl + X", cat: "Edit" },
@@ -226,6 +237,8 @@
             { func: "Select Linked All", key: "Ctrl + L", cat: "Edit" },
             { func: "Loop Select", key: "Alt + LMB", cat: "Edit" },
             { func: "Ring Select", key: "Ctrl + Alt + LMB", cat: "Edit" },
+            { func: "Snap Menu", key: "Shift + S", cat: "Edit" },
+            { func: "Normals Menu", key: "Alt + N", cat: "Edit" },
 
             // --- SCULPT MODE ---
             { func: "Brush Size", key: "F", cat: "Sculpt" },
@@ -239,30 +252,34 @@
             { func: "Mask Brush", key: "M", cat: "Sculpt" },
             { func: "Clear Mask", key: "Alt + M", cat: "Sculpt" },
             { func: "Invert Mask", key: "Ctrl + I", cat: "Sculpt" },
+            { func: "Hide Masked", key: "Shift + H", cat: "Sculpt" },
 
             // --- GREASE PENCIL ---
-            { func: "Draw Mode Tool Menu", key: "Shift + Space", cat: "Grease" },
+            { func: "Draw Tool Menu", key: "Shift + Space", cat: "Grease" },
             { func: "Eraser (Hold)", key: "Ctrl", cat: "Grease" },
             { func: "Fill Stroke", key: "Alt + F", cat: "Grease" },
             { func: "Stroke Smooth", key: "Alt + S", cat: "Grease" },
-            { func: "Material Palette Menu", key: "Y", cat: "Grease" },
+            { func: "Material Palette", key: "Y", cat: "Grease" },
             { func: "Active Layer Menu", key: "U", cat: "Grease" },
             { func: "Subdivide Strokes", key: "Ctrl + S", cat: "Grease" },
-            { func: "Grease Pencil Sculpt Pie", key: "E", cat: "Grease" },
+            { func: "Sculpt Mode Pie Menu", key: "E", cat: "Grease" },
+            { func: "Interpolate Strokes", key: "Ctrl + Alt + I", cat: "Grease" },
 
             // --- NODE EDITOR ---
             { func: "Search for Nodes", key: "Shift + A", cat: "Node" },
-            { func: "Cut Links (Lasso)", key: "Ctrl + RMB", cat: "Node" },
+            { func: "Cut Links (Knife)", key: "Ctrl + RMB", cat: "Node" },
             { func: "Lazy Connect", key: "Alt + RMB", cat: "Node" },
             { func: "Connect Selected", key: "F", cat: "Node" },
             { func: "Node Wrangler: Texture Setup", key: "Ctrl + T", cat: "Node" },
             { func: "Node Wrangler: Preview Node", key: "Ctrl + Shift + LMB", cat: "Node" },
-            { func: "Join Nodes (Frames)", key: "Ctrl + J", cat: "Node" },
-            { func: "Mute Node", key: "M", cat: "Node" },
+            { func: "Frame Selected Nodes", key: "Ctrl + J", cat: "Node" },
+            { func: "Mute Node Toggle", key: "M", cat: "Node" },
+            { func: "Group Selected Nodes", key: "Ctrl + G", cat: "Node" },
+            { func: "Exit Node Group", key: "Tab", cat: "Node" },
 
             // --- ANIMATION ---
             { func: "Insert Keyframe", key: "I", cat: "Animation" },
-            { func: "Delete Keyframe", key: "Alt + I", cat: "Animation" },
+            { func: "Delete Keyframe Menu", key: "Alt + I", cat: "Animation" },
             { func: "Play / Stop", key: "Space", cat: "Animation" },
             { func: "Next Frame", key: "Right Arrow", cat: "Animation" },
             { func: "Previous Frame", key: "Left Arrow", cat: "Animation" },
@@ -270,8 +287,9 @@
             { func: "Previous Keyframe", key: "Down Arrow", cat: "Animation" },
             { func: "Jump to First Frame", key: "Shift + Left Arrow", cat: "Animation" },
             { func: "Jump to Last Frame", key: "Shift + Right Arrow", cat: "Animation" },
-            { func: "Set Preview Range", key: "P", cat: "Animation" },
-            { func: "Clear Preview Range", key: "Alt + P", cat: "Animation" }
+            { func: "Set Preview Range (In/Out)", key: "P", cat: "Animation" },
+            { func: "Clear Preview Range", key: "Alt + P", cat: "Animation" },
+            { func: "Dope Sheet / Timeline Switch", key: "Shift + F12", cat: "Animation" }
         ];
 
         let userProgress = { mastered: new Set() };
@@ -322,15 +340,8 @@
             updateStats();
         }
 
-        function startQuiz() { 
-            quizPool = [...hotkeysData]; 
-            shuffle(quizPool); 
-            currentIdx = 0; 
-            document.getElementById('correct-count').innerText = "0"; 
-            document.getElementById('incorrect-count').innerText = "0"; 
-            loadQuestion(); 
-        }
-
+        function startQuiz() { quizPool = [...hotkeysData]; shuffle(quizPool); currentIdx = 0; document.getElementById('correct-count').innerText = "0"; document.getElementById('incorrect-count').innerText = "0"; loadQuestion(); }
+        
         function loadQuestion() {
             const q = quizPool[currentIdx]; document.getElementById('quiz-question').innerText = q.func; document.getElementById('quiz-feedback').classList.add('hidden'); document.getElementById('next-question-btn').classList.add('hidden');
             const options = document.getElementById('quiz-options'); options.innerHTML = ''; options.classList.remove('pointer-events-none');
@@ -344,7 +355,7 @@
                         document.getElementById('incorrect-count').innerText = parseInt(document.getElementById('incorrect-count').innerText) + 1;
                         document.querySelectorAll('.option-btn').forEach(b => { if(b.innerText === q.key) b.classList.add('correct'); });
                     }
-                    const feed = document.getElementById('quiz-feedback'); feed.innerText = isCorrect ? "MASTERFUL! +10 Points" : "The Pro key is: " + q.key; feed.className = `p-8 rounded-3xl font-black text-2xl mb-8 border-4 ${isCorrect ? 'bg-green-50 text-green-700 border-green-200' : 'bg-red-50 text-red-700 border-red-200'}`; feed.classList.remove('hidden'); document.getElementById('next-question-btn').classList.remove('hidden');
+                    const feed = document.getElementById('quiz-feedback'); feed.innerText = isCorrect ? "MASTERFUL! +10 Points" : "The Correct Key is: " + q.key; feed.className = `p-8 rounded-3xl font-black text-2xl mb-8 border-4 ${isCorrect ? 'bg-green-50 text-green-700 border-green-200' : 'bg-red-50 text-red-700 border-red-200'}`; feed.classList.remove('hidden'); document.getElementById('next-question-btn').classList.remove('hidden');
                     updateStats();
                 };
                 options.appendChild(btn);
@@ -355,8 +366,8 @@
         function toggleStar(f) { if (userProgress.mastered.has(f)) userProgress.mastered.delete(f); else userProgress.mastered.add(f); saveMastery(); renderHotkeys(); }
         function setupSearch() { document.getElementById('search-input').addEventListener('input', (e) => renderHotkeys(e.target.value)); }
         function shuffle(a) { for (let i = a.length - 1; i > 0; i--) { const j = Math.floor(Math.random() * (i + 1)); [a[i], a[j]] = [a[j], a[i]]; } }
-        function saveMastery() { localStorage.setItem('mastery-blender-5-ultimate-final', JSON.stringify([...userProgress.mastered])); }
-        function loadMastery() { const s = localStorage.getItem('mastery-blender-5-ultimate-final'); if (s) userProgress.mastered = new Set(JSON.parse(s)); }
+        function saveMastery() { localStorage.setItem('mastery-blender-5-ultimate-complete', JSON.stringify([...userProgress.mastered])); }
+        function loadMastery() { const s = localStorage.getItem('mastery-blender-5-ultimate-complete'); if (s) userProgress.mastered = new Set(JSON.parse(s)); }
         function drawInsights() { const m = userProgress.mastered.size; const r = hotkeysData.length - m; Plotly.newPlot('progress-chart', [{ values: [m, r], labels: ['Mastered', 'Learning'], type: 'pie', marker: { colors: ['#f97316', '#e5e7eb'] }, hole: .4 }], { margin: {t:0, b:0, l:0, r:0} }); }
         window.onload = () => { init(); };
     </script>
