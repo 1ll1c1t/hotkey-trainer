@@ -1,0 +1,791 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <!-- Google tag (gtag.js) -->
+    <script
+      async
+      src="https://www.googletagmanager.com/gtag/js?id=G-GCG9LQ68MW"
+    ></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag() {
+        dataLayer.push(arguments);
+      }
+      gtag("js", new Date());
+      gtag("config", "G-GCG9LQ68MW");
+    </script>
+
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Tmux Hotkey Trainer</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdn.plot.ly/plotly-2.27.0.min.js"></script>
+    <link
+      href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;700;800&family=Inter:wght@300;400;500;600;700;800;900&display=swap"
+      rel="stylesheet"
+    />
+    <style>
+      /* Matrix / Terminal Theme */
+      body {
+        font-family: "Inter", sans-serif;
+        background-color: #0d1117;
+        color: #c9d1d9;
+      }
+      .font-mono {
+        font-family: "JetBrains Mono", monospace;
+      }
+      .gradient-text {
+        background: linear-gradient(135deg, #2ea043 0%, #56d364 100%);
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+      }
+      .active-mode {
+        background: linear-gradient(135deg, #238636 0%, #2ea043 100%);
+        color: white !important;
+        font-weight: 800;
+        border: 1px solid #3fb950;
+      }
+      .correct {
+        background-color: #238636 !important;
+        color: white !important;
+        border-color: #3fb950 !important;
+      }
+      .incorrect {
+        background-color: #da3633 !important;
+        color: white !important;
+        border-color: #f85149 !important;
+      }
+      .option-btn {
+        transition: all 0.2s;
+        background-color: #161b22;
+        border: 2px solid #30363d;
+        color: #c9d1d9;
+      }
+      .option-btn:hover:not(:disabled) {
+        border-color: #3fb950;
+        background-color: #21262d;
+        transform: translateY(-2px);
+      }
+      .hotkey-card {
+        transition: all 0.2s ease;
+        background-color: #161b22;
+        border: 1px solid #30363d;
+      }
+      .hotkey-card:hover {
+        border-color: #3fb950;
+        box-shadow: 0 4px 20px rgba(46, 160, 67, 0.15);
+      }
+      .custom-scroll::-webkit-scrollbar {
+        width: 6px;
+      }
+      .custom-scroll::-webkit-scrollbar-track {
+        background: #0d1117;
+      }
+      .custom-scroll::-webkit-scrollbar-thumb {
+        background: #30363d;
+        border-radius: 10px;
+      }
+
+      /* Visual Keycap Styles */
+      .kbd-key {
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        min-width: 24px;
+        padding: 2px 8px;
+        margin: 0 2px;
+        border-radius: 4px;
+        background: #21262d;
+        border: 1px solid #484f58;
+        box-shadow: 0 2px 0 #0d1117;
+        font-family: "JetBrains Mono", monospace;
+        font-size: 0.8rem;
+        font-weight: 700;
+        color: #c9d1d9;
+        transform: translateY(-1px);
+      }
+      .kbd-key.modifier {
+        color: #79c0ff;
+        border-color: #1f6feb;
+      }
+      .kbd-key.prefix {
+        color: #56d364; /* Green for Prefix */
+        border-color: #238636;
+        min-width: 40px;
+      }
+
+      .nav-glass {
+        background: rgba(13, 17, 23, 0.95);
+        backdrop-filter: blur(10px);
+      }
+    </style>
+  </head>
+  <body class="overflow-x-hidden">
+    <!-- PayPal Donation Form -->
+    <div
+      class="bg-[#010409] py-3 border-b border-[#30363d] flex justify-center items-center sticky top-0 z-[100]"
+    >
+      <form action="https://www.paypal.com/donate" method="post" target="_top">
+        <input type="hidden" name="hosted_button_id" value="RSW8PUWLJJ8DC" />
+        <input
+          type="image"
+          src="https://www.paypalobjects.com/en_US/i/btn/btn_donate_LG.gif"
+          border="0"
+          name="submit"
+          title="PayPal - The safer, easier way to pay online!"
+          alt="Donate with PayPal button"
+        />
+        <img
+          alt=""
+          border="0"
+          src="https://www.paypal.com/en_US/i/scr/pixel.gif"
+          width="1"
+          height="1"
+        />
+      </form>
+    </div>
+
+    <nav
+      class="nav-glass border-b border-[#30363d] sticky top-[52px] z-50 px-6 py-4 flex justify-between items-center shadow-lg"
+    >
+      <div class="flex items-center gap-3">
+        <div
+          class="w-10 h-10 bg-[#238636] rounded-xl flex items-center justify-center text-white font-black shadow-lg text-sm"
+        >
+          &gt;_
+        </div>
+        <a
+          href="index.html"
+          class="font-bold text-2xl tracking-tighter gradient-text"
+          >Hotkey Trainer</a
+        >
+      </div>
+      <a
+        href="index.html"
+        class="text-[#8b949e] hover:text-[#56d364] transition-colors font-medium flex items-center gap-2"
+      >
+        <span>🏠</span> Home
+      </a>
+    </nav>
+
+    <header
+      class="bg-[#0d1117] py-12 text-center shadow-inner relative overflow-hidden border-b border-[#30363d]"
+    >
+      <div
+        class="absolute inset-0 opacity-5 pointer-events-none select-none text-[20rem] font-black -top-20 -right-10 text-[#3fb950]"
+      >
+        TMUX
+      </div>
+      <h1 class="text-6xl font-black mb-2 tracking-tight text-[#c9d1d9]">
+        Tmux
+      </h1>
+      <p
+        class="text-xl opacity-90 font-medium tracking-wide text-[#56d364] mb-6"
+      >
+        The Terminal Multiplexer.
+      </p>
+
+      <!-- Key Legend -->
+      <div
+        class="max-w-4xl mx-auto flex flex-wrap justify-center gap-4 text-xs font-mono bg-[#161b22]/50 p-4 rounded-xl border border-[#30363d]"
+      >
+        <div class="flex items-center gap-2">
+          <span class="kbd-key prefix">PREFIX</span> =
+          <span class="text-[#56d364]">Ctrl + b</span>
+        </div>
+        <div class="flex items-center gap-2">
+          <span class="text-[#8b949e] italic"
+            >Press Prefix, release, then press key.</span
+          >
+        </div>
+      </div>
+    </header>
+
+    <main
+      class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8 grid grid-cols-1 lg:grid-cols-4 gap-8"
+    >
+      <!-- Sidebar Navigation -->
+      <div class="lg:col-span-1 space-y-4">
+        <div
+          class="bg-[#161b22] rounded-3xl p-6 shadow-xl border border-[#30363d] sticky top-40"
+        >
+          <h3
+            class="text-sm font-black mb-4 text-[#8b949e] uppercase tracking-widest px-2"
+          >
+            Modules
+          </h3>
+          <div
+            class="space-y-1 max-h-[55vh] overflow-y-auto custom-scroll pr-2"
+          >
+            <button
+              onclick="setMode('all')"
+              id="mode-all"
+              class="mode-btn w-full text-left px-4 py-3 rounded-xl active-mode transition-all font-bold"
+            >
+              ⌨️ All Keys
+            </button>
+            <button
+              onclick="setMode('Panes')"
+              id="mode-Panes"
+              class="mode-btn w-full text-left px-4 py-3 rounded-xl text-[#c9d1d9] hover:bg-[#21262d] transition-all font-semibold"
+            >
+              🪟 Panes (Splits)
+            </button>
+            <button
+              onclick="setMode('Windows')"
+              id="mode-Windows"
+              class="mode-btn w-full text-left px-4 py-3 rounded-xl text-[#c9d1d9] hover:bg-[#21262d] transition-all font-semibold"
+            >
+              📑 Windows (Tabs)
+            </button>
+            <button
+              onclick="setMode('Session')"
+              id="mode-Session"
+              class="mode-btn w-full text-left px-4 py-3 rounded-xl text-[#c9d1d9] hover:bg-[#21262d] transition-all font-semibold"
+            >
+              ⚡ Sessions
+            </button>
+            <div class="h-px bg-[#30363d] my-4"></div>
+            <button
+              onclick="setMode('quiz')"
+              id="mode-quiz"
+              class="mode-btn w-full text-left px-4 py-3 rounded-xl hover:bg-[#238636] hover:text-white transition-all font-black text-[#3fb950]"
+            >
+              🧠 Start Gauntlet
+            </button>
+            <button
+              onclick="setMode('insights')"
+              id="mode-insights"
+              class="mode-btn w-full text-left px-4 py-3 rounded-xl text-[#c9d1d9] hover:bg-[#21262d] transition-all font-semibold"
+            >
+              📊 Stats
+            </button>
+          </div>
+
+          <div class="mt-8 pt-6 border-t border-[#30363d] px-2">
+            <h4
+              class="text-[10px] font-black mb-3 text-[#8b949e] uppercase tracking-widest"
+            >
+              Global Status
+            </h4>
+            <div class="space-y-4">
+              <div class="flex justify-between items-end">
+                <span class="text-xs text-[#8b949e] font-bold">Progress</span>
+                <span class="font-black text-[#3fb950]" id="mastered-count"
+                  >0</span
+                >
+              </div>
+              <div class="w-full bg-[#0d1117] rounded-full h-3">
+                <div
+                  class="bg-gradient-to-r from-[#2ea043] to-[#56d364] h-3 rounded-full transition-all duration-700 shadow-sm"
+                  style="width: 0%"
+                  id="progress-bar"
+                ></div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Content Area -->
+      <div class="lg:col-span-3">
+        <div id="browser-view">
+          <div
+            class="bg-[#161b22] rounded-3xl p-6 shadow-xl border border-[#30363d] mb-8"
+          >
+            <div class="relative">
+              <input
+                type="text"
+                id="search-input"
+                placeholder="Search Tmux commands..."
+                class="w-full px-6 py-4 pl-14 border border-[#30363d] rounded-2xl bg-[#0d1117] text-[#c9d1d9] focus:ring-2 focus:ring-[#3fb950] outline-none transition-all text-lg font-medium placeholder-[#8b949e]"
+              />
+              <div
+                class="absolute left-6 top-1/2 transform -translate-y-1/2 text-[#8b949e] text-xl"
+              >
+                🔍
+              </div>
+            </div>
+          </div>
+          <div
+            id="hotkeys-container"
+            class="grid grid-cols-1 md:grid-cols-2 gap-4"
+          ></div>
+        </div>
+
+        <div id="quiz-container" class="hidden">
+          <div
+            class="bg-[#161b22] rounded-[3.5rem] p-12 shadow-2xl text-center border border-[#30363d] min-h-[550px] flex flex-col justify-center"
+          >
+            <span
+              class="bg-[#238636] text-white px-6 py-2 rounded-full text-xs font-black uppercase tracking-widest inline-block mx-auto mb-10"
+              >Tmux Gauntlet</span
+            >
+            <h2 class="text-[#8b949e] font-bold mb-2 uppercase text-xs">
+              Identify the keybinding for:
+            </h2>
+            <h2
+              id="quiz-question"
+              class="text-4xl md:text-5xl font-black text-[#c9d1d9] mb-14 leading-tight"
+            >
+              Loading...
+            </h2>
+
+            <div
+              id="quiz-options"
+              class="grid grid-cols-1 md:grid-cols-2 gap-4 mb-10"
+            ></div>
+
+            <div
+              id="quiz-feedback"
+              class="hidden p-8 rounded-3xl font-black text-2xl mb-8 transform transition-all duration-300"
+            ></div>
+            <button
+              id="next-question-btn"
+              onclick="nextQuestion()"
+              class="hidden mx-auto bg-[#c9d1d9] text-[#0d1117] px-20 py-6 rounded-3xl font-black text-xl hover:bg-[#3fb950] transition-all hover:scale-105 shadow-2xl"
+            >
+              NEXT CHALLENGE →
+            </button>
+
+            <div
+              class="grid grid-cols-2 gap-6 mt-16 border-t border-[#30363d] pt-10"
+            >
+              <div class="p-4 bg-[#0d1117] rounded-2xl border border-[#238636]">
+                <p
+                  class="text-[10px] font-black text-[#3fb950] uppercase tracking-widest"
+                >
+                  Correct
+                </p>
+                <p
+                  id="correct-count"
+                  class="text-4xl font-black text-[#3fb950]"
+                >
+                  0
+                </p>
+              </div>
+              <div class="p-4 bg-[#0d1117] rounded-2xl border border-[#da3633]">
+                <p
+                  class="text-[10px] font-black text-[#f85149] uppercase tracking-widest"
+                >
+                  Misses
+                </p>
+                <p
+                  id="incorrect-count"
+                  class="text-4xl font-black text-[#f85149]"
+                >
+                  0
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div id="insights-container" class="hidden">
+          <div
+            class="bg-[#161b22] p-12 rounded-[3.5rem] shadow-2xl border border-[#30363d] text-center"
+          >
+            <h2 class="text-3xl font-black mb-8 gradient-text font-black">
+              Subconscious Mastery Analysis
+            </h2>
+            <div id="progress-chart" class="h-96 w-full mb-10"></div>
+
+            <div class="max-w-3xl mx-auto text-left">
+              <div class="flex items-center justify-between mb-6">
+                <h3
+                  class="text-xl font-black text-[#c9d1d9] uppercase tracking-tighter flex items-center gap-2"
+                >
+                  <span>🚀</span> Streak-Earned Mastery
+                </h3>
+              </div>
+              <div
+                id="streak-list"
+                class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-3"
+              >
+                <!-- Items Injected -->
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </main>
+
+    <footer
+      class="bg-[#0d1117] text-[#8b949e] py-12 mt-12 border-t border-[#30363d]"
+    >
+      <div class="max-w-7xl mx-auto px-4 text-center">
+        <p class="text-sm mb-4">Master your workflow, build the future.</p>
+        <p class="text-xs">© 2025 thethreeplays.com. All rights reserved.</p>
+      </div>
+    </footer>
+
+    <script>
+      // Tmux Default Keybindings
+      const hotkeysData = [
+        // --- PANES (Splits) ---
+        {
+          func: "Split Pane Vertically (Left/Right)",
+          key: "<prefix> %",
+          cat: "Panes",
+        },
+        {
+          func: "Split Pane Horizontally (Top/Bottom)",
+          key: '<prefix> "',
+          cat: "Panes",
+        },
+        { func: "Move Focus Left", key: "<prefix> Left", cat: "Panes" },
+        { func: "Move Focus Right", key: "<prefix> Right", cat: "Panes" },
+        { func: "Move Focus Up", key: "<prefix> Up", cat: "Panes" },
+        { func: "Move Focus Down", key: "<prefix> Down", cat: "Panes" },
+        { func: "Close Current Pane", key: "<prefix> x", cat: "Panes" },
+        { func: "Zoom/Unzoom Pane", key: "<prefix> z", cat: "Panes" },
+        { func: "Show Pane Numbers", key: "<prefix> q", cat: "Panes" },
+        { func: "Swap Pane with Previous", key: "<prefix> {", cat: "Panes" },
+        { func: "Swap Pane with Next", key: "<prefix> }", cat: "Panes" },
+        { func: "Convert Pane to Window", key: "<prefix> !", cat: "Panes" },
+
+        // --- WINDOWS (Tabs) ---
+        { func: "Create New Window", key: "<prefix> c", cat: "Windows" },
+        { func: "Rename Window", key: "<prefix> ,", cat: "Windows" },
+        { func: "Next Window", key: "<prefix> n", cat: "Windows" },
+        { func: "Previous Window", key: "<prefix> p", cat: "Windows" },
+        {
+          func: "Select Window by Number",
+          key: "<prefix> 0-9",
+          cat: "Windows",
+        },
+        { func: "List/Select Windows", key: "<prefix> w", cat: "Windows" },
+        { func: "Find Window by Name", key: "<prefix> f", cat: "Windows" },
+        { func: "Kill Window", key: "<prefix> &", cat: "Windows" },
+
+        // --- SESSIONS ---
+        { func: "Detach Session", key: "<prefix> d", cat: "Session" },
+        { func: "List Sessions", key: "<prefix> s", cat: "Session" },
+        { func: "Rename Session", key: "<prefix> $", cat: "Session" },
+        { func: "Show Help/Bindings", key: "<prefix> ?", cat: "Session" },
+        { func: "Enter Command Mode", key: "<prefix> :", cat: "Session" },
+      ];
+
+      let userProgress = {
+        mastered: new Set(),
+        streakCount: {},
+      };
+      let quizPool = [];
+      let currentIdx = 0;
+      let stats = { correct: 0, incorrect: 0 };
+      let currentFilter = "all";
+
+      function init() {
+        loadMastery();
+        renderHotkeys();
+        setupSearch();
+      }
+
+      function renderKeyBadges(keyStr) {
+        const parts = keyStr.split(" ");
+        let html = "";
+
+        parts.forEach((part, index) => {
+          let content = part;
+          let className = "kbd-key";
+
+          if (part.includes("<prefix>")) {
+            content = "PREFIX";
+            className += " prefix";
+          } else if (part === "Left") {
+            content = "←";
+          } else if (part === "Right") {
+            content = "→";
+          } else if (part === "Up") {
+            content = "↑";
+          } else if (part === "Down") {
+            content = "↓";
+          } else if (part === '"') {
+            content = '"';
+          } // Quote needs care?
+
+          html += `<span class="${className}">${content}</span>`;
+        });
+
+        return html;
+      }
+
+      function setMode(mode) {
+        document
+          .querySelectorAll(".mode-btn")
+          .forEach((btn) => btn.classList.remove("active-mode"));
+        const targetBtn = document.getElementById(`mode-${mode}`);
+        if (targetBtn) targetBtn.classList.add("active-mode");
+
+        const views = {
+          "browser-view": document.getElementById("browser-view"),
+          "quiz-container": document.getElementById("quiz-container"),
+          "insights-container": document.getElementById("insights-container"),
+        };
+
+        Object.values(views).forEach((v) => v.classList.add("hidden"));
+
+        if (mode === "quiz") {
+          views["quiz-container"].classList.remove("hidden");
+          startQuiz();
+        } else if (mode === "insights") {
+          views["insights-container"].classList.remove("hidden");
+          drawInsights();
+        } else {
+          views["browser-view"].classList.remove("hidden");
+          currentFilter = mode;
+          renderHotkeys();
+        }
+      }
+
+      function updateStats() {
+        const mCount = userProgress.mastered.size;
+        const total = hotkeysData.length;
+        const masteredEl = document.getElementById("mastered-count");
+        const progressEl = document.getElementById("progress-bar");
+        if (masteredEl) masteredEl.innerText = mCount + " / " + total;
+        if (progressEl)
+          progressEl.style.width = Math.round((mCount / total) * 100) + "%";
+      }
+
+      function renderHotkeys(search = "") {
+        const container = document.getElementById("hotkeys-container");
+        container.innerHTML = "";
+        let filtered = hotkeysData;
+        if (currentFilter !== "all")
+          filtered = filtered.filter((h) => h.cat === currentFilter);
+        if (search)
+          filtered = filtered.filter(
+            (h) =>
+              h.func.toLowerCase().includes(search.toLowerCase()) ||
+              h.key.toLowerCase().includes(search.toLowerCase())
+          );
+
+        filtered.forEach((h) => {
+          const card = document.createElement("div");
+          const mastered = userProgress.mastered.has(h.func);
+          const streak = userProgress.streakCount[h.func] || 0;
+
+          card.className = `hotkey-card p-6 rounded-3xl border flex justify-between items-center group transition-all ${
+            mastered
+              ? "border-[#238636] bg-[#0d1117]/80"
+              : "bg-[#161b22] border-[#30363d]"
+          }`;
+
+          let streakHtml = "";
+          if (mastered) {
+            streakHtml = `<span class="text-[9px] font-black bg-[#238636] text-white px-2 py-0.5 rounded-full uppercase ml-2">Mastered</span>`;
+          } else if (streak > 0) {
+            streakHtml = `<span class="text-[9px] font-black bg-[#1f6feb] text-white px-2 py-0.5 rounded-full uppercase ml-2">Streak: ${streak}/5</span>`;
+          }
+
+          card.innerHTML = `
+                    <div class="flex-grow">
+                        <div class="flex items-center gap-2 mb-1">
+                            <p class="text-[9px] font-black text-[#8b949e] uppercase group-hover:text-[#56d364]">${
+                              h.cat
+                            }</p>
+                            ${streakHtml}
+                        </div>
+                        <h4 class="text-md font-bold text-[#c9d1d9] mb-1">${
+                          h.func
+                        }</h4>
+                    </div>
+                    <div class="flex items-center gap-4">
+                        <div class="flex items-center">
+                            ${renderKeyBadges(h.key)}
+                        </div>
+                        <button onclick="toggleStar('${
+                          h.func
+                        }')" class="text-2xl transform hover:scale-125 transition-transform text-[#484f58] hover:text-[#e3b341] ml-2">${
+            mastered ? "⭐" : "☆"
+          }</button>
+                    </div>`;
+          container.appendChild(card);
+        });
+        updateStats();
+      }
+
+      function startQuiz() {
+        quizPool = [...hotkeysData];
+        shuffle(quizPool);
+        currentIdx = 0;
+        stats = { correct: 0, incorrect: 0 };
+        document.getElementById("correct-count").innerText = "0";
+        document.getElementById("incorrect-count").innerText = "0";
+        loadQuestion();
+      }
+
+      function loadQuestion() {
+        const q = quizPool[currentIdx];
+        document.getElementById("quiz-question").innerText = q.func;
+        document.getElementById("quiz-feedback").classList.add("hidden");
+        document.getElementById("next-question-btn").classList.add("hidden");
+        const options = document.getElementById("quiz-options");
+        options.innerHTML = "";
+        options.classList.remove("pointer-events-none");
+
+        let choices = [q.key];
+        while (choices.length < 4) {
+          let r =
+            hotkeysData[Math.floor(Math.random() * hotkeysData.length)].key;
+          if (!choices.includes(r)) choices.push(r);
+        }
+        shuffle(choices);
+
+        choices.forEach((c) => {
+          const btn = document.createElement("button");
+          btn.className =
+            "option-btn p-6 rounded-3xl font-black text-xl shadow-md flex justify-center items-center gap-2";
+
+          btn.innerHTML = renderKeyBadges(c);
+
+          btn.onclick = () => {
+            const isCorrect = c === q.key;
+            options.classList.add("pointer-events-none");
+            btn.classList.add(isCorrect ? "correct" : "incorrect");
+
+            if (isCorrect) {
+              stats.correct++;
+              userProgress.streakCount[q.func] =
+                (userProgress.streakCount[q.func] || 0) + 1;
+              if (
+                userProgress.streakCount[q.func] >= 5 &&
+                !userProgress.mastered.has(q.func)
+              ) {
+                userProgress.mastered.add(q.func);
+              }
+            } else {
+              stats.incorrect++;
+              userProgress.streakCount[q.func] = 0;
+            }
+
+            saveMastery();
+            const feed = document.getElementById("quiz-feedback");
+            feed.innerHTML = isCorrect
+              ? "Correct! Terminal mastery increasing."
+              : `The correct combo is: <div class='inline-flex scale-75 origin-left ml-2'>${renderKeyBadges(
+                  q.key
+                )}</div>`;
+
+            feed.className = `p-8 rounded-3xl font-black text-2xl mb-8 border-4 ${
+              isCorrect
+                ? "bg-[#0d1117] text-[#3fb950] border-[#238636]"
+                : "bg-[#0d1117] text-[#f85149] border-[#da3633]"
+            }`;
+            feed.classList.remove("hidden");
+            document
+              .getElementById("next-question-btn")
+              .classList.remove("hidden");
+            document.getElementById("correct-count").innerText = stats.correct;
+            document.getElementById("incorrect-count").innerText =
+              stats.incorrect;
+            updateStats();
+          };
+          options.appendChild(btn);
+        });
+      }
+
+      function nextQuestion() {
+        currentIdx++;
+        if (currentIdx < quizPool.length) loadQuestion();
+        else startQuiz();
+      }
+
+      function toggleStar(f) {
+        if (userProgress.mastered.has(f)) {
+          userProgress.mastered.delete(f);
+          userProgress.streakCount[f] = 0;
+        } else {
+          userProgress.mastered.add(f);
+          userProgress.streakCount[f] = 5;
+        }
+        saveMastery();
+        renderHotkeys();
+      }
+
+      function setupSearch() {
+        document
+          .getElementById("search-input")
+          .addEventListener("input", (e) => renderHotkeys(e.target.value));
+      }
+      function shuffle(a) {
+        for (let i = a.length - 1; i > 0; i--) {
+          const j = Math.floor(Math.random() * (i + 1));
+          [a[i], a[j]] = [a[j], a[i]];
+        }
+      }
+
+      function saveMastery() {
+        localStorage.setItem(
+          "mastery-tmux-v1",
+          JSON.stringify({
+            mastered: [...userProgress.mastered],
+            streaks: userProgress.streakCount,
+          })
+        );
+      }
+
+      function loadMastery() {
+        const s = localStorage.getItem("mastery-tmux-v1");
+        if (s) {
+          const data = JSON.parse(s);
+          userProgress.mastered = new Set(data.mastered || []);
+          userProgress.streakCount = data.streaks || {};
+        }
+      }
+
+      function drawInsights() {
+        const m = userProgress.mastered.size;
+        const r = hotkeysData.length - m;
+
+        if (typeof Plotly !== "undefined") {
+          Plotly.newPlot(
+            "progress-chart",
+            [
+              {
+                values: [m, r],
+                labels: ["Mastered", "Remaining"],
+                type: "pie",
+                marker: { colors: ["#238636", "#0d1117"] },
+                hole: 0.5,
+              },
+            ],
+            {
+              margin: { t: 0, b: 0, l: 0, r: 0 },
+              paper_bgcolor: "rgba(0,0,0,0)",
+              plot_bgcolor: "rgba(0,0,0,0)",
+              font: { color: "#8b949e" },
+              showlegend: false,
+            }
+          );
+        }
+
+        const list = document.getElementById("streak-list");
+        list.innerHTML = "";
+        let streakItemsCount = 0;
+
+        Object.entries(userProgress.streakCount).forEach(([name, count]) => {
+          if (count >= 5) {
+            streakItemsCount++;
+            const item = document.createElement("div");
+            item.className =
+              "bg-[#161b22] border border-[#238636] p-4 rounded-2xl flex justify-between items-center shadow-sm animate-in slide-in-from-bottom duration-500";
+            item.innerHTML = `<span class="font-bold text-[#c9d1d9] text-xs">${name}</span><span class="bg-[#238636] text-white text-[8px] px-2 py-0.5 rounded-lg font-black uppercase italic">MASTER</span>`;
+            list.appendChild(item);
+          }
+        });
+
+        if (streakItemsCount === 0) {
+          list.innerHTML =
+            '<div class="col-span-3 p-8 text-center bg-[#0d1117] rounded-3xl border-2 border-dashed border-[#30363d]"><p class="text-[#8b949e] text-sm font-medium">Get a 5-streak in the Gauntlet to graduate keys to mastery.</p></div>';
+        }
+        updateStats();
+      }
+
+      window.onload = () => {
+        init();
+      };
+    </script>
+  </body>
+</html>
