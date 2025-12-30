@@ -4,7 +4,7 @@
     <!-- Google tag (gtag.js) -->
     <script
       async
-      src="https://www.googletagmanager.com/gtag/js?id=G-GCG9LQ68MW"
+      src="https://www.googletagmanager.com/gtag/js?id=G-J36Q8ZRRFM"
     ></script>
     <script>
       window.dataLayer = window.dataLayer || [];
@@ -12,7 +12,7 @@
         dataLayer.push(arguments);
       }
       gtag("js", new Date());
-      gtag("config", "G-GCG9LQ68MW");
+      gtag("config", "G-J36Q8ZRRFM");
     </script>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
@@ -34,301 +34,371 @@
       .card-hover {
         transition: all 0.3s ease;
         height: 100%;
-        display: flex;
-        flex-direction: column;
       }
       .card-hover:hover {
-        transform: translateY(-8px);
-        box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
-      }
-      #vanta-bg {
-        position: fixed;
-        top: 0;
-        left: 0;
-        width: 100%;
-        height: 100%;
-        z-index: -1;
+        transform: translateY(-10px);
+        box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1),
+          0 10px 10px -5px rgba(0, 0, 0, 0.04);
       }
     </style>
   </head>
-  <body class="bg-gray-50 text-gray-900 overflow-x-hidden">
-    <!-- PayPal Donation Form -->
-    <div
-      class="bg-gray-100 py-3 border-b border-gray-200 flex justify-center items-center sticky top-0 z-[100]"
-    >
-      <form action="https://www.paypal.com/donate" method="post" target="_top">
-        <input type="hidden" name="hosted_button_id" value="RSW8PUWLJJ8DC" />
-        <input
-          type="image"
-          src="https://www.paypalobjects.com/en_US/i/btn/btn_donate_LG.gif"
-          border="0"
-          name="submit"
-          title="PayPal - The safer, easier way to pay online!"
-          alt="Donate with PayPal button"
-        />
-        <img
-          alt=""
-          border="0"
-          src="https://www.paypal.com/en_US/i/scr/pixel.gif"
-          width="1"
-          height="1"
-        />
-      </form>
-    </div>
+  <body
+    class="bg-gray-50 text-gray-800 antialiased selection:bg-indigo-100 selection:text-indigo-800"
+  >
+    <!-- Hero Section -->
+    <div class="relative overflow-hidden bg-white" id="vanta-bg">
+      <div
+        class="absolute inset-0 bg-gradient-to-b from-white/90 to-white/60 pointer-events-none"
+      ></div>
 
-    <div id="vanta-bg"></div>
-    <nav
-      class="relative z-50 bg-white/80 backdrop-blur-md border-b border-gray-200/50"
-    >
-      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div class="flex justify-between items-center h-16">
-          <div class="flex items-center space-x-2">
-            <div
-              class="w-8 h-8 bg-gradient-to-br from-indigo-500 to-purple-600 rounded-lg flex items-center justify-center text-white font-bold text-sm"
+      <!-- Navbar -->
+      <nav class="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-6">
+        <div class="flex justify-between items-center">
+          <div class="flex items-center gap-2">
+            <span class="text-2xl font-black gradient-text tracking-tighter"
+              >THE THREE PLAYS</span
             >
-              ⌘
-            </div>
-            <span class="font-bold text-xl gradient-text">Hotkey Trainer</span>
           </div>
-          <div class="flex space-x-6">
-            <a
-              href="#software"
-              class="text-gray-700 hover:text-indigo-600 transition-colors font-medium"
-              >Software</a
-            >
+          <div class="hidden md:flex items-center gap-8">
             <a
               href="about.html"
-              class="text-gray-700 hover:text-indigo-600 transition-colors font-medium"
-              >About</a
+              class="text-sm font-semibold text-gray-600 hover:text-indigo-600 transition-colors"
+              >How it Works</a
+            >
+            <!-- Donate Button Placeholder - Add your link below -->
+            <a
+              href="#"
+              class="text-sm font-bold text-indigo-600 border-2 border-indigo-100 bg-indigo-50 px-6 py-2.5 rounded-full hover:bg-indigo-100 hover:border-indigo-200 transition-all"
+              >Donate</a
+            >
+            <a
+              href="https://discord.gg/SySjycZm"
+              target="_blank"
+              class="bg-gray-900 text-white px-5 py-2.5 rounded-full text-sm font-bold hover:bg-indigo-600 transition-all shadow-lg hover:shadow-indigo-200"
+              >Join Discord</a
             >
           </div>
         </div>
-      </div>
-    </nav>
+      </nav>
 
-    <section
-      class="relative min-h-[50vh] flex items-center justify-center py-20 text-center"
-    >
-      <div class="max-w-4xl mx-auto px-4">
-        <h1 class="text-5xl md:text-7xl font-black mb-6 leading-tight">
-          <span class="gradient-text">The World's Most</span><br />
-          <span class="text-gray-800">Advanced Hotkey Suite</span>
+      <div
+        class="relative z-10 max-w-7xl mx-auto px-4 pt-20 pb-32 sm:pt-24 sm:pb-40 text-center"
+      >
+        <h1
+          class="text-5xl sm:text-7xl font-extrabold text-gray-900 tracking-tight mb-8"
+        >
+          Master Your <br />
+          <span class="gradient-text">Creative Workflow</span>
         </h1>
         <p
-          class="text-xl md:text-2xl text-gray-600 mb-10 max-w-2xl mx-auto italic"
+          class="mt-4 text-xl text-gray-500 max-w-2xl mx-auto mb-12 leading-relaxed"
         >
-          High-speed repetition training for creative professionals. Developed
-          for the community.
+          Stop hunting for menus. Start creating at the speed of thought.
+          Gamified hotkey training for professionals.
         </p>
-        <a
-          href="#software"
-          class="bg-indigo-600 text-white px-10 py-4 rounded-full font-bold text-lg hover:bg-indigo-700 transition-all shadow-xl inline-block"
-          >Enter the Gauntlet</a
-        >
-      </div>
-    </section>
-
-    <section id="software" class="py-20 bg-white/50 backdrop-blur-sm">
-      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-          <!-- VS Code (Added) -->
-          <div
-            class="card-hover bg-white rounded-2xl p-8 border border-gray-200/50 shadow-lg"
+        <div class="flex justify-center gap-4">
+          <a
+            href="#trainers"
+            class="bg-indigo-600 text-white px-8 py-4 rounded-full font-bold text-lg hover:bg-indigo-700 transition-all shadow-xl hover:shadow-indigo-200 hover:-translate-y-1"
+            >Start Training</a
           >
-            <div
-              class="w-14 h-14 bg-gradient-to-br from-blue-600 to-sky-500 rounded-xl flex items-center justify-center mb-6 shadow-md text-white font-bold text-xl"
-            >
-              Vs
+          <a
+            href="about.html"
+            class="bg-white text-gray-700 border border-gray-200 px-8 py-4 rounded-full font-bold text-lg hover:bg-gray-50 transition-all hover:-translate-y-1"
+            >Learn More</a
+          >
+        </div>
+      </div>
+    </div>
+
+    <!-- Trainers Grid -->
+    <section id="trainers" class="py-24 bg-gray-50 relative">
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="text-center mb-16">
+          <h2 class="text-3xl font-bold text-gray-900 mb-4">
+            Choose Your Weapon
+          </h2>
+          <p class="text-gray-500 max-w-2xl mx-auto">
+            Select a software to begin your mastery journey. New trainers added
+            weekly.
+          </p>
+        </div>
+
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+          <!-- VS Code -->
+          <div
+            class="bg-white rounded-3xl shadow-xl overflow-hidden card-hover border border-gray-100 flex flex-col"
+          >
+            <div class="p-8 flex flex-col flex-grow">
+              <div
+                class="w-16 h-16 bg-blue-500 rounded-2xl flex items-center justify-center text-white text-2xl font-bold mb-6 shadow-lg shadow-blue-200"
+              >
+                <svg
+                  class="w-8 h-8"
+                  fill="none"
+                  stroke="currentColor"
+                  viewBox="0 0 24 24"
+                >
+                  <path
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    stroke-width="2"
+                    d="M10 20l4-16m4 4l4 4-4 4M6 16l-4-4 4-4"
+                  ></path>
+                </svg>
+              </div>
+              <h3 class="text-2xl font-bold mb-2">VS Code</h3>
+              <p class="text-gray-600 mb-6 flex-grow">
+                Master the world's most popular code editor.
+              </p>
+              <a
+                href="vscode.html"
+                class="block w-full bg-blue-600 text-white text-center py-3 rounded-xl font-semibold hover:bg-blue-700 transition-colors"
+                >Open Trainer →</a
+              >
             </div>
-            <h3 class="text-2xl font-bold mb-2">VS Code</h3>
-            <p class="text-gray-600 mb-6 flex-grow">
-              Elite Development Workflow Mastery for coding.
-            </p>
-            <a
-              href="vscode.html"
-              class="block w-full bg-gradient-to-r from-blue-600 to-sky-600 text-white text-center py-3 rounded-xl font-semibold"
-              >Open Trainer →</a
-            >
           </div>
 
-          <!-- Blender 5.0 -->
+          <!-- LazyVim -->
           <div
-            class="card-hover bg-white rounded-2xl p-8 border border-gray-200/50 shadow-lg"
+            class="bg-white rounded-3xl shadow-xl overflow-hidden card-hover border border-gray-100 flex flex-col"
           >
-            <div
-              class="w-14 h-14 bg-gradient-to-br from-orange-400 to-red-500 rounded-xl flex items-center justify-center mb-6 shadow-md text-white font-bold text-xl"
-            >
-              5.0
+            <div class="p-8 flex flex-col flex-grow">
+              <div
+                class="w-16 h-16 bg-gradient-to-br from-indigo-500 to-purple-600 rounded-2xl flex items-center justify-center text-white text-2xl font-bold mb-6 shadow-lg shadow-indigo-200"
+              >
+                LV
+              </div>
+              <h3 class="text-2xl font-bold mb-2">LazyVim</h3>
+              <p class="text-gray-600 mb-6 flex-grow">
+                Speed at the speed of thought with Neovim.
+              </p>
+              <a
+                href="lazyvim.html"
+                class="block w-full bg-gradient-to-r from-indigo-600 to-purple-600 text-white text-center py-3 rounded-xl font-semibold hover:opacity-90 transition-opacity"
+                >Open Trainer →</a
+              >
             </div>
-            <h3 class="text-2xl font-bold mb-2">Blender 5.0</h3>
-            <p class="text-gray-600 mb-6 flex-grow">
-              Includes Grease Pencil and complete Pro modeling hotkeys.
-            </p>
-            <a
-              href="blender.html"
-              class="block w-full bg-gradient-to-r from-orange-500 to-red-600 text-white text-center py-3 rounded-xl font-semibold"
-              >Open Trainer →</a
-            >
+          </div>
+
+          <!-- Tmux -->
+          <div
+            class="bg-white rounded-3xl shadow-xl overflow-hidden card-hover border border-gray-100 flex flex-col"
+          >
+            <div class="p-8 flex flex-col flex-grow">
+              <div
+                class="w-16 h-16 bg-gradient-to-br from-emerald-600 to-gray-900 rounded-2xl flex items-center justify-center text-white text-2xl font-bold mb-6 shadow-lg shadow-emerald-200"
+              >
+                T
+              </div>
+              <h3 class="text-2xl font-bold mb-2">Tmux</h3>
+              <p class="text-gray-600 mb-6 flex-grow">
+                Navigate terminal sessions like a pro.
+              </p>
+              <a
+                href="tmux.html"
+                class="block w-full bg-gradient-to-r from-emerald-600 to-gray-900 text-white text-center py-3 rounded-xl font-semibold hover:opacity-90 transition-opacity"
+                >Open Trainer →</a
+              >
+            </div>
+          </div>
+
+          <!-- Blender -->
+          <div
+            class="bg-white rounded-3xl shadow-xl overflow-hidden card-hover border border-gray-100 flex flex-col"
+          >
+            <div class="p-8 flex flex-col flex-grow">
+              <div
+                class="w-16 h-16 bg-gradient-to-br from-orange-400 to-red-500 rounded-2xl flex items-center justify-center text-white text-2xl font-bold mb-6 shadow-lg shadow-orange-200"
+              >
+                B
+              </div>
+              <h3 class="text-2xl font-bold mb-2">Blender 5.0</h3>
+              <p class="text-gray-600 mb-6 flex-grow">
+                Dominate 3D modeling and animation workflows.
+              </p>
+              <a
+                href="blender.html"
+                class="block w-full bg-gradient-to-r from-orange-500 to-red-600 text-white text-center py-3 rounded-xl font-semibold hover:opacity-90 transition-opacity"
+                >Open Trainer →</a
+              >
+            </div>
           </div>
 
           <!-- DaVinci Resolve -->
           <div
-            class="card-hover bg-white rounded-2xl p-8 border border-gray-200/50 shadow-lg"
+            class="bg-white rounded-3xl shadow-xl overflow-hidden card-hover border border-gray-100 flex flex-col"
           >
-            <div
-              class="w-14 h-14 bg-gradient-to-br from-blue-600 to-indigo-700 rounded-xl flex items-center justify-center mb-6 shadow-md text-white font-bold text-xl italic"
-            >
-              Dr
+            <div class="p-8 flex flex-col flex-grow">
+              <div
+                class="w-16 h-16 bg-gradient-to-br from-blue-600 to-purple-600 rounded-2xl flex items-center justify-center text-white text-2xl font-bold mb-6 shadow-lg shadow-blue-200"
+              >
+                DR
+              </div>
+              <h3 class="text-2xl font-bold mb-2">DaVinci Resolve</h3>
+              <p class="text-gray-600 mb-6 flex-grow">
+                Professional color grading and editing shortcuts.
+              </p>
+              <a
+                href="davinci.html"
+                class="block w-full bg-gradient-to-r from-blue-600 to-purple-700 text-white text-center py-3 rounded-xl font-semibold hover:opacity-90 transition-opacity"
+                >Open Trainer →</a
+              >
             </div>
-            <h3 class="text-2xl font-bold mb-2">DaVinci Resolve</h3>
-            <p class="text-gray-600 mb-6 flex-grow">
-              Full mastery for Edit, Color, Fusion, and Fairlight workspaces.
-            </p>
-            <a
-              href="davinci.html"
-              class="block w-full bg-gradient-to-r from-blue-600 to-indigo-700 text-white text-center py-3 rounded-xl font-semibold"
-              >Open Trainer →</a
-            >
           </div>
 
           <!-- Maya -->
           <div
-            class="card-hover bg-white rounded-2xl p-8 border border-gray-200/50 shadow-lg"
+            class="bg-white rounded-3xl shadow-xl overflow-hidden card-hover border border-gray-100 flex flex-col"
           >
-            <div
-              class="w-14 h-14 bg-gradient-to-br from-blue-400 to-indigo-500 rounded-xl flex items-center justify-center mb-6 shadow-md text-white font-bold text-xl italic"
-            >
-              M
+            <div class="p-8 flex flex-col flex-grow">
+              <div
+                class="w-16 h-16 bg-gradient-to-br from-cyan-600 to-blue-800 rounded-2xl flex items-center justify-center text-white text-2xl font-bold mb-6 shadow-lg shadow-cyan-200"
+              >
+                M
+              </div>
+              <h3 class="text-2xl font-bold mb-2">Autodesk Maya</h3>
+              <p class="text-gray-600 mb-6 flex-grow">
+                Industry standard 3D animation shortcuts.
+              </p>
+              <a
+                href="maya.html"
+                class="block w-full bg-gradient-to-r from-cyan-600 to-blue-800 text-white text-center py-3 rounded-xl font-semibold hover:opacity-90 transition-opacity"
+                >Open Trainer →</a
+              >
             </div>
-            <h3 class="text-2xl font-bold mb-2">Autodesk Maya</h3>
-            <p class="text-gray-600 mb-6 flex-grow">
-              Professional database for industry-standard animation and rigging.
-            </p>
-            <a
-              href="maya.html"
-              class="block w-full bg-gradient-to-r from-blue-500 to-indigo-600 text-white text-center py-3 rounded-xl font-semibold"
-              >Open Trainer →</a
-            >
           </div>
 
           <!-- After Effects -->
           <div
-            class="card-hover bg-white rounded-2xl p-8 border border-gray-200/50 shadow-lg"
+            class="bg-white rounded-3xl shadow-xl overflow-hidden card-hover border border-gray-100 flex flex-col"
           >
-            <div
-              class="w-14 h-14 bg-gradient-to-br from-indigo-500 to-purple-600 rounded-xl flex items-center justify-center mb-6 shadow-md text-white font-bold text-xl italic text-sm"
-            >
-              Ae
+            <div class="p-8 flex flex-col flex-grow">
+              <div
+                class="w-16 h-16 bg-gradient-to-br from-purple-600 to-indigo-900 rounded-2xl flex items-center justify-center text-white text-2xl font-bold mb-6 shadow-lg shadow-purple-200"
+              >
+                Ae
+              </div>
+              <h3 class="text-2xl font-bold mb-2">After Effects</h3>
+              <p class="text-gray-600 mb-6 flex-grow">
+                Motion graphics and VFX workflow mastery.
+              </p>
+              <a
+                href="after-effects.html"
+                class="block w-full bg-gradient-to-r from-purple-700 to-indigo-900 text-white text-center py-3 rounded-xl font-semibold hover:opacity-90 transition-opacity"
+                >Open Trainer →</a
+              >
             </div>
-            <h3 class="text-2xl font-bold mb-2">Adobe After Effects</h3>
-            <p class="text-gray-600 mb-6 flex-grow">
-              Motion Graphics and VFX workflow properties and navigation.
-            </p>
-            <a
-              href="after-effects.html"
-              class="block w-full bg-gradient-to-r from-indigo-600 to-purple-700 text-white text-center py-3 rounded-xl font-semibold"
-              >Open Trainer →</a
-            >
-          </div>
-
-          <!-- Premiere Pro -->
-          <div
-            class="card-hover bg-white rounded-2xl p-8 border border-gray-200/50 shadow-lg"
-          >
-            <div
-              class="w-14 h-14 bg-gradient-to-br from-purple-500 to-pink-600 rounded-xl flex items-center justify-center mb-6 shadow-md text-white font-bold text-xl italic text-sm"
-            >
-              Pr
-            </div>
-            <h3 class="text-2xl font-bold mb-2">Adobe Premiere Pro</h3>
-            <p class="text-gray-600 mb-6 flex-grow">
-              Timeline and editorial speed database for professional editors.
-            </p>
-            <a
-              href="premiere.html"
-              class="block w-full bg-gradient-to-r from-purple-500 to-pink-700 text-white text-center py-3 rounded-xl font-semibold"
-              >Open Trainer →</a
-            >
-          </div>
-
-          <!-- Photoshop Desktop -->
-          <div
-            class="card-hover bg-white rounded-2xl p-8 border border-gray-200/50 shadow-lg"
-          >
-            <div
-              class="w-14 h-14 bg-gradient-to-br from-blue-700 to-blue-900 rounded-xl flex items-center justify-center mb-6 shadow-md text-white font-bold text-xl italic text-sm"
-            >
-              Ps
-            </div>
-            <h3 class="text-2xl font-bold mb-2">Adobe Photoshop (Desktop)</h3>
-            <p class="text-gray-600 mb-6 flex-grow">
-              Comprehensive layer operations and selection mastery.
-            </p>
-            <a
-              href="photoshop-desktop.html"
-              class="block w-full bg-gradient-to-r from-blue-800 to-blue-950 text-white text-center py-3 rounded-xl font-semibold"
-              >Open Trainer →</a
-            >
           </div>
 
           <!-- Illustrator -->
           <div
-            class="card-hover bg-white rounded-2xl p-8 border border-gray-200/50 shadow-lg"
+            class="bg-white rounded-3xl shadow-xl overflow-hidden card-hover border border-gray-100 flex flex-col"
           >
-            <div
-              class="w-14 h-14 bg-gradient-to-br from-orange-500 to-pink-700 rounded-xl flex items-center justify-center mb-6 shadow-md text-white font-bold text-xl italic text-sm"
-            >
-              Ai
+            <div class="p-8 flex flex-col flex-grow">
+              <div
+                class="w-16 h-16 bg-gradient-to-br from-orange-400 to-yellow-600 rounded-2xl flex items-center justify-center text-white text-2xl font-bold mb-6 shadow-lg shadow-orange-200"
+              >
+                Ai
+              </div>
+              <h3 class="text-2xl font-bold mb-2">Adobe Illustrator</h3>
+              <p class="text-gray-600 mb-6 flex-grow">
+                Vector graphics precision and speed.
+              </p>
+              <a
+                href="illustrator.html"
+                class="block w-full bg-gradient-to-r from-orange-500 to-yellow-600 text-white text-center py-3 rounded-xl font-semibold hover:opacity-90 transition-opacity"
+                >Open Trainer →</a
+              >
             </div>
-            <h3 class="text-2xl font-bold mb-2">Adobe Illustrator</h3>
-            <p class="text-gray-600 mb-6 flex-grow">
-              Every vector path, type, and tool shortcut available.
-            </p>
-            <a
-              href="illustrator.html"
-              class="block w-full bg-gradient-to-r from-orange-600 to-pink-700 text-white text-center py-3 rounded-xl font-semibold"
-              >Open Trainer →</a
-            >
           </div>
 
           <!-- Animate -->
           <div
-            class="card-hover bg-white rounded-2xl p-8 border border-gray-200/50 shadow-lg"
+            class="bg-white rounded-3xl shadow-xl overflow-hidden card-hover border border-gray-100 flex flex-col"
           >
-            <div
-              class="w-14 h-14 bg-gradient-to-br from-red-500 to-orange-600 rounded-xl flex items-center justify-center mb-6 shadow-md text-white font-bold text-xl italic text-sm"
-            >
-              An
+            <div class="p-8 flex flex-col flex-grow">
+              <div
+                class="w-16 h-16 bg-gradient-to-br from-red-500 to-purple-600 rounded-2xl flex items-center justify-center text-white text-2xl font-bold mb-6 shadow-lg shadow-red-200"
+              >
+                An
+              </div>
+              <h3 class="text-2xl font-bold mb-2">Adobe Animate</h3>
+              <p class="text-gray-600 mb-6 flex-grow">
+                2D animation and interactive content.
+              </p>
+              <a
+                href="animate.html"
+                class="block w-full bg-gradient-to-r from-red-500 to-purple-600 text-white text-center py-3 rounded-xl font-semibold hover:opacity-90 transition-opacity"
+                >Open Trainer →</a
+              >
             </div>
-            <h3 class="text-2xl font-bold mb-2">Adobe Animate</h3>
-            <p class="text-gray-600 mb-6 flex-grow">
-              2D symbol and frame manipulation masterclass.
-            </p>
-            <a
-              href="animate.html"
-              class="block w-full bg-gradient-to-r from-red-600 to-red-800 text-white text-center py-3 rounded-xl font-semibold"
-              >Open Trainer →</a
-            >
           </div>
 
-          <!-- PS Browser -->
+          <!-- Premiere Pro -->
           <div
-            class="card-hover bg-white rounded-2xl p-8 border border-gray-200/50 shadow-lg"
+            class="bg-white rounded-3xl shadow-xl overflow-hidden card-hover border border-gray-100 flex flex-col"
           >
-            <div
-              class="w-14 h-14 bg-gradient-to-br from-cyan-400 to-blue-500 rounded-xl flex items-center justify-center mb-6 shadow-md text-white font-bold text-xl italic text-sm"
-            >
-              W
+            <div class="p-8 flex flex-col flex-grow">
+              <div
+                class="w-16 h-16 bg-gradient-to-br from-purple-600 to-blue-500 rounded-2xl flex items-center justify-center text-white text-2xl font-bold mb-6 shadow-lg shadow-purple-200"
+              >
+                Pr
+              </div>
+              <h3 class="text-2xl font-bold mb-2">Premiere Pro</h3>
+              <p class="text-gray-600 mb-6 flex-grow">
+                Video editing speed and efficiency.
+              </p>
+              <a
+                href="premiere.html"
+                class="block w-full bg-gradient-to-r from-purple-600 to-blue-600 text-white text-center py-3 rounded-xl font-semibold hover:opacity-90 transition-opacity"
+                >Open Trainer →</a
+              >
             </div>
-            <h3 class="text-2xl font-bold mb-2">Adobe Photoshop (Web)</h3>
-            <p class="text-gray-600 mb-6 flex-grow">
-              Optimized shortcuts for the browser-based editor.
-            </p>
-            <a
-              href="photoshop-browser.html"
-              class="block w-full bg-gradient-to-r from-cyan-500 to-blue-600 text-white text-center py-3 rounded-xl font-semibold"
-              >Open Trainer →</a
-            >
+          </div>
+
+          <!-- Photoshop (Desktop) -->
+          <div
+            class="bg-white rounded-3xl shadow-xl overflow-hidden card-hover border border-gray-100 flex flex-col"
+          >
+            <div class="p-8 flex flex-col flex-grow">
+              <div
+                class="w-16 h-16 bg-gradient-to-br from-blue-700 to-indigo-900 rounded-2xl flex items-center justify-center text-white text-2xl font-bold mb-6 shadow-lg shadow-blue-200"
+              >
+                Ps
+              </div>
+              <h3 class="text-2xl font-bold mb-2">Photoshop (Desktop)</h3>
+              <p class="text-gray-600 mb-6 flex-grow">
+                Standard desktop version shortcuts.
+              </p>
+              <a
+                href="photoshop-desktop.html"
+                class="block w-full bg-gradient-to-r from-blue-700 to-indigo-900 text-white text-center py-3 rounded-xl font-semibold hover:opacity-90 transition-opacity"
+                >Open Trainer →</a
+              >
+            </div>
+          </div>
+
+          <!-- Photoshop (Web) -->
+          <div
+            class="bg-white rounded-3xl shadow-xl overflow-hidden card-hover border border-gray-100 flex flex-col"
+          >
+            <div class="p-8 flex flex-col flex-grow">
+              <div
+                class="w-16 h-16 bg-gradient-to-br from-cyan-400 to-blue-600 rounded-2xl flex items-center justify-center text-white text-2xl font-bold mb-6 shadow-lg"
+              >
+                W
+              </div>
+              <h3 class="text-2xl font-bold mb-2">Adobe Photoshop (Web)</h3>
+              <p class="text-gray-600 mb-6 flex-grow">
+                Optimized shortcuts for the browser-based editor.
+              </p>
+              <a
+                href="photoshop-browser.html"
+                class="block w-full bg-gradient-to-r from-cyan-500 to-blue-600 text-white text-center py-3 rounded-xl font-semibold"
+                >Open Trainer →</a
+              >
+            </div>
           </div>
         </div>
       </div>
@@ -354,13 +424,19 @@
             el: "#vanta-bg",
             mouseControls: true,
             touchControls: true,
-            backgroundColor: 0xf8fafc,
+            gyroControls: false,
+            minHeight: 200.0,
+            minWidth: 200.0,
+            scale: 1.0,
+            scaleMobile: 1.0,
+            backgroundColor: 0xffffff,
             color1: 0x667eea,
             color2: 0x764ba2,
-            birdSize: 1.1,
-            quantity: 4,
+            backgroundAlpha: 0.0,
           });
-        } catch (e) {}
+        } catch (e) {
+          console.log("Vanta JS animation fallback");
+        }
       };
     </script>
   </body>
