@@ -17,7 +17,7 @@
 
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Ultimate DaVinci Resolve Hotkey Trainer</title>
+    <title>Ultimate VS Code Hotkey Trainer</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <script src="https://cdn.plot.ly/plotly-2.27.0.min.js"></script>
     <link
@@ -29,12 +29,12 @@
         font-family: "Inter", sans-serif;
       }
       .gradient-text {
-        background: linear-gradient(135deg, #3b82f6 0%, #8b5cf6 100%);
+        background: linear-gradient(135deg, #007acc 0%, #1e40af 100%);
         -webkit-background-clip: text;
         -webkit-text-fill-color: transparent;
       }
       .active-mode {
-        background: linear-gradient(135deg, #3b82f6 0%, #8b5cf6 100%);
+        background: linear-gradient(135deg, #007acc 0%, #1e40af 100%);
         color: white !important;
       }
       .correct {
@@ -52,7 +52,7 @@
         border: 2px solid #f3f4f6;
       }
       .option-btn:hover:not(:disabled) {
-        border-color: #3b82f6;
+        border-color: #007acc;
         background-color: #eff6ff;
         transform: translateY(-2px);
       }
@@ -66,7 +66,7 @@
         background: #f1f1f1;
       }
       .custom-scroll::-webkit-scrollbar-thumb {
-        background: #3b82f6;
+        background: #007acc;
         border-radius: 10px;
       }
       .key-tag {
@@ -113,9 +113,22 @@
     >
       <div class="flex items-center gap-3">
         <div
-          class="w-10 h-10 bg-blue-600 rounded-xl flex items-center justify-center text-white font-black italic shadow-lg text-sm"
+          class="w-10 h-10 bg-blue-600 rounded-xl flex items-center justify-center text-white font-black shadow-lg text-sm"
         >
-          Dr
+          <svg
+            width="24"
+            height="24"
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="currentColor"
+            stroke-width="2.5"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+          >
+            <path d="m18 16 4-4-4-4"></path>
+            <path d="m6 8-4 4 4 4"></path>
+            <path d="m14.5 4-5 16"></path>
+          </svg>
         </div>
         <a
           href="index.html"
@@ -132,16 +145,16 @@
     </nav>
 
     <header
-      class="bg-gradient-to-br from-blue-600 to-indigo-800 text-white py-14 text-center shadow-inner relative overflow-hidden"
+      class="bg-gradient-to-br from-blue-700 to-indigo-900 text-white py-14 text-center shadow-inner relative overflow-hidden"
     >
       <div
         class="absolute inset-0 opacity-10 pointer-events-none select-none text-[20rem] font-black -top-20 -right-10"
       >
-        RESOLVE
+        CODE
       </div>
-      <h1 class="text-6xl font-black mb-2 tracking-tight">DaVinci Resolve</h1>
-      <p class="text-xl opacity-90 font-medium">
-        The Absolute Professional Database for Color, Edit, and Fusion.
+      <h1 class="text-6xl font-black mb-2 tracking-tight">VS Code</h1>
+      <p class="text-xl opacity-90 font-medium tracking-wide">
+        Elite Development Workflow Mastery.
       </p>
     </header>
 
@@ -159,63 +172,56 @@
             Workspaces
           </h3>
           <div
-            class="space-y-1 max-h-[60vh] overflow-y-auto custom-scroll pr-2"
+            class="space-y-1 max-h-[55vh] overflow-y-auto custom-scroll pr-2"
           >
             <button
               onclick="setMode('all')"
               id="mode-all"
               class="mode-btn w-full text-left px-4 py-3 rounded-xl active-mode transition-all font-bold"
             >
-              ⌨️ Global Database
+              ⌨️ All Keys
             </button>
             <button
-              onclick="setMode('Media')"
-              id="mode-Media"
+              onclick="setMode('General')"
+              id="mode-General"
               class="mode-btn w-full text-left px-4 py-3 rounded-xl hover:bg-gray-100 transition-all font-semibold"
             >
-              📁 Media Page
+              ⚙️ Commands & Files
             </button>
             <button
-              onclick="setMode('Cut')"
-              id="mode-Cut"
+              onclick="setMode('Editing')"
+              id="mode-Editing"
               class="mode-btn w-full text-left px-4 py-3 rounded-xl hover:bg-gray-100 transition-all font-semibold"
             >
-              ✂️ Cut Page
+              ✂️ Basic Editing
             </button>
             <button
-              onclick="setMode('Edit')"
-              id="mode-Edit"
+              onclick="setMode('Selection')"
+              id="mode-Selection"
               class="mode-btn w-full text-left px-4 py-3 rounded-xl hover:bg-gray-100 transition-all font-semibold"
             >
-              🎬 Edit Page
+              ✨ Multi-Cursor
             </button>
             <button
-              onclick="setMode('Fusion')"
-              id="mode-Fusion"
-              class="mode-btn w-full text-left px-4 py-3 rounded-xl hover:bg-gray-100 transition-all font-semibold"
-            >
-              ✨ Fusion VFX
-            </button>
-            <button
-              onclick="setMode('Color')"
-              id="mode-Color"
+              onclick="setMode('Navigation')"
+              id="mode-Navigation"
               class="mode-btn w-full text-left px-4 py-3 rounded-xl hover:bg-gray-100 transition-all font-semibold text-blue-600"
             >
-              🎨 Color Grading
-            </button>
-            <button
-              onclick="setMode('Fairlight')"
-              id="mode-Fairlight"
-              class="mode-btn w-full text-left px-4 py-3 rounded-xl hover:bg-gray-100 transition-all font-semibold"
-            >
-              🔊 Fairlight Audio
-            </button>
-            <button
-              onclick="setMode('Nav')"
-              id="mode-Nav"
-              class="mode-btn w-full text-left px-4 py-3 rounded-xl hover:bg-gray-100 transition-all font-semibold"
-            >
               🧭 Navigation
+            </button>
+            <button
+              onclick="setMode('Terminal')"
+              id="mode-Terminal"
+              class="mode-btn w-full text-left px-4 py-3 rounded-xl hover:bg-gray-100 transition-all font-semibold"
+            >
+              🐚 Terminal & Git
+            </button>
+            <button
+              onclick="setMode('View')"
+              id="mode-View"
+              class="mode-btn w-full text-left px-4 py-3 rounded-xl hover:bg-gray-100 transition-all font-semibold"
+            >
+              🖥️ UI & Layout
             </button>
             <div class="h-px bg-gray-100 my-4"></div>
             <button
@@ -223,7 +229,7 @@
               id="mode-quiz"
               class="mode-btn w-full text-left px-4 py-3 rounded-xl hover:bg-blue-600 hover:text-white transition-all font-black text-blue-600"
             >
-              🧠 Start Pro Quiz
+              🧠 Start Pro Gauntlet
             </button>
             <button
               onclick="setMode('insights')"
@@ -261,7 +267,7 @@
 
       <!-- Content Area -->
       <div class="lg:col-span-3">
-        <div id="browser-view" class="space-y-4">
+        <div id="browser-view">
           <div
             class="bg-white rounded-3xl p-6 shadow-xl border border-gray-100 mb-8"
           >
@@ -269,7 +275,7 @@
               <input
                 type="text"
                 id="search-input"
-                placeholder="Search Resolve shortcuts (e.g. 'Node', 'Blade', 'Parallel')..."
+                placeholder="Search VS Code hotkeys (e.g. 'Terminal', 'F1', 'Git')..."
                 class="w-full px-6 py-4 pl-14 border border-gray-100 rounded-2xl bg-gray-50 focus:ring-4 focus:ring-blue-200 outline-none transition-all text-lg font-medium"
               />
               <div
@@ -287,14 +293,14 @@
 
         <div id="quiz-container" class="hidden">
           <div
-            class="bg-white rounded-[3.5rem] p-12 shadow-2xl text-center border border-gray-100 min-h-[550px] flex flex-col justify-center animate-in fade-in duration-500"
+            class="bg-white rounded-[3.5rem] p-12 shadow-2xl text-center border border-gray-100 min-h-[550px] flex flex-col justify-center"
           >
             <span
               class="bg-blue-100 text-blue-600 px-6 py-2 rounded-full text-xs font-black uppercase tracking-widest inline-block mx-auto mb-10"
-              >Resolve Pro Gauntlet</span
+              >Coding Gauntlet</span
             >
-            <h2 class="text-gray-400 font-bold mb-2">
-              What is the keyboard shortcut for:
+            <h2 class="text-gray-400 font-bold mb-2 uppercase text-xs">
+              Identify the hotkey for:
             </h2>
             <h2
               id="quiz-question"
@@ -338,7 +344,7 @@
                 <p
                   class="text-[10px] font-black text-red-600 uppercase tracking-widest"
                 >
-                  Mistakes
+                  Misses
                 </p>
                 <p
                   id="incorrect-count"
@@ -351,31 +357,29 @@
           </div>
         </div>
 
-        <div
-          id="insights-container"
-          class="hidden animate-in fade-in duration-500"
-        >
+        <div id="insights-container" class="hidden">
           <div
             class="bg-white p-12 rounded-[3.5rem] shadow-2xl border border-gray-100 text-center"
           >
-            <h2 class="text-3xl font-black mb-8 gradient-text">
-              Workflow Proficiency
+            <h2 class="text-3xl font-black mb-8 gradient-text font-black">
+              Subconscious Mastery Analysis
             </h2>
             <div id="progress-chart" class="h-96 w-full mb-10"></div>
 
-            <div id="streak-list-container" class="max-w-2xl mx-auto text-left">
-              <h3
-                class="text-xl font-black text-gray-800 mb-4 uppercase tracking-tighter flex items-center gap-2"
-              >
-                <span>🚀</span> Streak-Earned Mastery
-              </h3>
-              <p class="text-gray-500 text-sm mb-6 font-medium">
-                These shortcuts were correctly identified 5 times and are now
-                part of your permanent muscle memory.
-              </p>
+            <div class="max-w-3xl mx-auto text-left">
+              <div class="flex items-center justify-between mb-6">
+                <h3
+                  class="text-xl font-black text-gray-800 uppercase tracking-tighter flex items-center gap-2"
+                >
+                  <span>🚀</span> Streak-Earned Mastery
+                </h3>
+                <span class="text-xs font-bold text-gray-400"
+                  >Items identified 5x correctly</span
+                >
+              </div>
               <div
                 id="streak-list"
-                class="grid grid-cols-1 sm:grid-cols-2 gap-3"
+                class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-3"
               >
                 <!-- Items Injected -->
               </div>
@@ -388,7 +392,7 @@
     <footer class="bg-gray-900 text-white py-12 mt-12">
       <div class="max-w-7xl mx-auto px-4 text-center">
         <p class="text-gray-500 text-sm mb-4">
-          Master your software, master your craft.
+          Master your workflow, build the future.
         </p>
         <p class="text-gray-400 text-xs">
           © 2025 thethreeplays.com. All rights reserved.
@@ -398,157 +402,230 @@
 
     <script>
       const hotkeysData = [
-        // --- MEDIA PAGE ---
-        { func: "Import Media", key: "Ctrl + I", cat: "Media" },
-        { func: "Import Folder", key: "Ctrl + Shift + I", cat: "Media" },
-        { func: "New Bin", key: "Ctrl + B", cat: "Media" },
-        { func: "New Smart Bin", key: "Ctrl + Alt + B", cat: "Media" },
-        { func: "Show/Hide Metadata", key: "P", cat: "Media" },
-        { func: "Clone Tool", key: "Alt + C", cat: "Media" },
-        { func: "Create Optimized Media", key: "Alt + O", cat: "Media" },
-        { func: "Toggle Media Pool", key: "Ctrl + 1", cat: "Media" },
-        { func: "Scene Cut Detection", key: "Ctrl + Shift + S", cat: "Media" },
-
-        // --- CUT PAGE ---
-        { func: "Smart Insert", key: "F9", cat: "Cut" },
-        { func: "Append to End", key: "Shift + F9", cat: "Cut" },
-        { func: "Ripple Overwrite", key: "Shift + F10", cat: "Cut" },
-        { func: "Close Up Edit", key: "F12", cat: "Cut" },
-        { func: "Place on Top", key: "F11", cat: "Cut" },
-        { func: "Source Tape Toggle", key: "Alt + Y", cat: "Cut" },
-        { func: "Fast Review Playback", key: "Shift + Space", cat: "Cut" },
-        { func: "Boring Detector", key: "Alt + B", cat: "Cut" },
-        { func: "Sync Bin", key: "Ctrl + Alt + S", cat: "Cut" },
-        { func: "Smooth Cut", key: "Shift + T", cat: "Cut" },
-
-        // --- EDIT PAGE TOOLS ---
-        { func: "Selection Mode", key: "A", cat: "Edit" },
-        { func: "Blade Tool", key: "B", cat: "Edit" },
-        { func: "Trim Mode", key: "T", cat: "Edit" },
-        { func: "Dynamic Trim Toggle", key: "W", cat: "Edit" },
-        { func: "Snapping Toggle", key: "N", cat: "Edit" },
+        // --- GENERAL & COMMANDS ---
+        { func: "Command Palette", key: "Ctrl + Shift + P", cat: "General" },
+        { func: "Quick Open (File Search)", key: "Ctrl + P", cat: "General" },
         {
-          func: "Linked Selection Toggle",
+          func: "New Window/Instance",
+          key: "Ctrl + Shift + N",
+          cat: "General",
+        },
+        {
+          func: "Close Window/Instance",
+          key: "Ctrl + Shift + W",
+          cat: "General",
+        },
+        { func: "User Settings", key: "Ctrl + ,", cat: "General" },
+        {
+          func: "Keyboard Shortcuts Menu",
+          key: "Ctrl + K Ctrl + S",
+          cat: "General",
+        },
+        { func: "Show Task Runner", key: "Ctrl + Alt + T", cat: "General" },
+        { func: "Save File", key: "Ctrl + S", cat: "General" },
+        { func: "Save All Files", key: "Ctrl + K S", cat: "General" },
+        { func: "Undo", key: "Ctrl + Z", cat: "General" },
+        { func: "Redo", key: "Ctrl + Y", cat: "General" },
+        { func: "New File", key: "Ctrl + N", cat: "General" },
+        { func: "Open File", key: "Ctrl + O", cat: "General" },
+        { func: "Close Active Editor", key: "Ctrl + W", cat: "General" },
+        {
+          func: "Reopen Closed Editor",
+          key: "Ctrl + Shift + T",
+          cat: "General",
+        },
+
+        // --- BASIC EDITING ---
+        { func: "Cut Line (Empty Selection)", key: "Ctrl + X", cat: "Editing" },
+        {
+          func: "Copy Line (Empty Selection)",
+          key: "Ctrl + C",
+          cat: "Editing",
+        },
+        { func: "Move Line Up", key: "Alt + Up", cat: "Editing" },
+        { func: "Move Line Down", key: "Alt + Down", cat: "Editing" },
+        { func: "Copy Line Up", key: "Shift + Alt + Up", cat: "Editing" },
+        { func: "Copy Line Down", key: "Shift + Alt + Down", cat: "Editing" },
+        { func: "Delete Line", key: "Ctrl + Shift + K", cat: "Editing" },
+        {
+          func: "Insert Line Above",
+          key: "Ctrl + Shift + Enter",
+          cat: "Editing",
+        },
+        { func: "Insert Line Below", key: "Ctrl + Enter", cat: "Editing" },
+        {
+          func: "Jump to Matching Bracket",
+          key: "Ctrl + Shift + \\",
+          cat: "Editing",
+        },
+        { func: "Indent Line", key: "Ctrl + ]", cat: "Editing" },
+        { func: "Outdent Line", key: "Ctrl + [", cat: "Editing" },
+        { func: "Go to Start of Line", key: "Home", cat: "Editing" },
+        { func: "Go to End of Line", key: "End", cat: "Editing" },
+        { func: "Go to Start of File", key: "Ctrl + Home", cat: "Editing" },
+        { func: "Go to End of File", key: "Ctrl + End", cat: "Editing" },
+        { func: "Toggle Line Comment", key: "Ctrl + /", cat: "Editing" },
+        {
+          func: "Toggle Block Comment",
+          key: "Shift + Alt + A",
+          cat: "Editing",
+        },
+        {
+          func: "Fold (Collapse) Region",
+          key: "Ctrl + Shift + [",
+          cat: "Editing",
+        },
+        {
+          func: "Unfold (Expand) Region",
+          key: "Ctrl + Shift + ]",
+          cat: "Editing",
+        },
+        { func: "Fold All Regions", key: "Ctrl + K Ctrl + 0", cat: "Editing" },
+        {
+          func: "Unfold All Regions",
+          key: "Ctrl + K Ctrl + J",
+          cat: "Editing",
+        },
+        { func: "Format Document", key: "Shift + Alt + F", cat: "Editing" },
+        { func: "Format Selection", key: "Ctrl + K Ctrl + F", cat: "Editing" },
+
+        // --- MULTI-CURSOR & SELECTION ---
+        { func: "Add Cursor Above", key: "Ctrl + Alt + Up", cat: "Selection" },
+        {
+          func: "Add Cursor Below",
+          key: "Ctrl + Alt + Down",
+          cat: "Selection",
+        },
+        { func: "Select Next Occurrence", key: "Ctrl + D", cat: "Selection" },
+        {
+          func: "Select Previous Occurrence",
+          key: "Ctrl + K Ctrl + D",
+          cat: "Selection",
+        },
+        {
+          func: "Select All Occurrences of Current Selection",
           key: "Ctrl + Shift + L",
-          cat: "Edit",
+          cat: "Selection",
         },
-        { func: "Position Lock", key: "Alt + L", cat: "Edit" },
-        { func: "Zoom In", key: "Ctrl + +", cat: "Edit" },
-        { func: "Zoom Out", key: "Ctrl + -", cat: "Edit" },
-
-        // --- EDIT PAGE OPERATIONS ---
-        { func: "Insert Clip", key: "F9", cat: "Edit" },
-        { func: "Overwrite Clip", key: "F10", cat: "Edit" },
-        { func: "Replace Clip", key: "F11", cat: "Edit" },
-        { func: "Fit to Fill", key: "Shift + F11", cat: "Edit" },
-        { func: "Ripple Delete", key: "Shift + Backspace", cat: "Edit" },
-        { func: "Delete Selection", key: "Backspace", cat: "Edit" },
-        { func: "Join Clips", key: "Alt + \\", cat: "Edit" },
-        { func: "Split Clip", key: "Ctrl + \\", cat: "Edit" },
-        { func: "Add Transition", key: "Ctrl + T", cat: "Edit" },
-        { func: "Add Video Only Transition", key: "Alt + T", cat: "Edit" },
-        { func: "Add Audio Only Transition", key: "Shift + T", cat: "Edit" },
-        { func: "Match Frame", key: "F", cat: "Edit" },
-        { func: "Reverse Match Frame", key: "Shift + F", cat: "Edit" },
-        { func: "Toggle Inspector", key: "Ctrl + 8", cat: "Edit" },
-        { func: "Disable Clip", key: "D", cat: "Edit" },
-        { func: "Move Clip Up", key: "Alt + Up Arrow", cat: "Edit" },
-        { func: "Move Clip Down", key: "Alt + Down Arrow", cat: "Edit" },
-        { func: "Select Forward", key: "Y", cat: "Edit" },
-        { func: "Select Backward", key: "Alt + Y", cat: "Edit" },
-
-        // --- FUSION PAGE ---
-        { func: "Select Tool / Search", key: "Shift + Space", cat: "Fusion" },
-        { func: "Load to Left Viewer", key: "1", cat: "Fusion" },
-        { func: "Load to Right Viewer", key: "2", cat: "Fusion" },
-        { func: "Group Nodes", key: "Ctrl + G", cat: "Fusion" },
-        { func: "Rename Node", key: "F2", cat: "Fusion" },
-        { func: "Toggle Node Enable", key: "Ctrl + P", cat: "Fusion" },
-        { func: "Force Render", key: "Ctrl + R", cat: "Fusion" },
-        { func: "Keyframes Window", key: "Ctrl + K", cat: "Fusion" },
-        { func: "Spline Window", key: "Ctrl + S", cat: "Fusion" },
-        { func: "Disconnect Node", key: "Shift + Drag", cat: "Fusion" },
-        { func: "Zoom to Fit", key: "Ctrl + F", cat: "Fusion" },
-        { func: "Add Background Node", key: "BG", cat: "Fusion" },
-        { func: "Add Merge Node", key: "MRG", cat: "Fusion" },
-
-        // --- COLOR PAGE NODES ---
-        { func: "Add Serial Node", key: "Alt + S", cat: "Color" },
-        { func: "Add Parallel Node", key: "Alt + P", cat: "Color" },
-        { func: "Add Layer Node", key: "Alt + L", cat: "Color" },
-        { func: "Add Outside Node", key: "Alt + O", cat: "Color" },
-        { func: "Add Serial Before", key: "Shift + S", cat: "Color" },
-        { func: "Add Splitter-Combiner", key: "Alt + Y", cat: "Color" },
-        { func: "Append Serial Node", key: "Alt + Shift + S", cat: "Color" },
-        { func: "Node Label", key: "F2", cat: "Color" },
-        { func: "Toggle Node Disable", key: "Ctrl + D", cat: "Color" },
-
-        // --- COLOR PAGE OPERATIONS ---
-        { func: "Toggle Grade Bypass", key: "Alt + D", cat: "Color" },
-        { func: "Highlight Toggle", key: "Shift + H", cat: "Color" },
-        { func: "Reset Current Grade", key: "Ctrl + Home", cat: "Color" },
-        { func: "Grab Still", key: "Ctrl + Alt + G", cat: "Color" },
-        { func: "Play Still", key: "Ctrl + Alt + P", cat: "Color" },
-        { func: "Cinema Viewer", key: "Ctrl + F", cat: "Color" },
-        { func: "Show Scopes", key: "Ctrl + Shift + W", cat: "Color" },
-        { func: "Printer Light +Red", key: "Num 7", cat: "Color" },
-        { func: "Printer Light -Red", key: "Num 1", cat: "Color" },
-        { func: "Printer Light +Green", key: "Num 8", cat: "Color" },
-        { func: "Printer Light -Green", key: "Num 2", cat: "Color" },
-        { func: "Printer Light +Blue", key: "Num 9", cat: "Color" },
-        { func: "Printer Light -Blue", key: "Num 3", cat: "Color" },
-        { func: "Loop Playback Toggle", key: "Ctrl + L", cat: "Color" },
-        { func: "Wipe Toggle", key: "Ctrl + W", cat: "Color" },
-
-        // --- FAIRLIGHT ---
-        { func: "Automation Toggle", key: "Alt + A", cat: "Fairlight" },
-        { func: "Mixer Toggle", key: "Alt + M", cat: "Fairlight" },
-        { func: "Meter Toggle", key: "Alt + I", cat: "Fairlight" },
-        { func: "ADR Panel Toggle", key: "Alt + F", cat: "Fairlight" },
-        { func: "Solo Selected Track", key: "Shift + S", cat: "Fairlight" },
-        { func: "Mute Selected Track", key: "Shift + M", cat: "Fairlight" },
-        { func: "Range Selection Tool", key: "R", cat: "Fairlight" },
         {
-          func: "Normalize Audio Levels",
-          key: "Ctrl + Alt + N",
-          cat: "Fairlight",
+          func: "Insert Cursor at End of Each Line Selected",
+          key: "Shift + Alt + I",
+          cat: "Selection",
         },
-        { func: "Fade In to Cursor", key: "Shift + Alt + [", cat: "Fairlight" },
+        { func: "Select Current Line", key: "Ctrl + L", cat: "Selection" },
         {
-          func: "Fade Out from Cursor",
-          key: "Shift + Alt + ]",
-          cat: "Fairlight",
+          func: "Shrink Selection",
+          key: "Shift + Alt + Left",
+          cat: "Selection",
         },
-        { func: "Audio Scroller", key: "Shift + Scroll", cat: "Fairlight" },
+        {
+          func: "Expand Selection",
+          key: "Shift + Alt + Right",
+          cat: "Selection",
+        },
+        {
+          func: "Column (Box) Selection",
+          key: "Shift + Alt + Drag",
+          cat: "Selection",
+        },
 
-        // --- NAVIGATION & GLOBAL ---
-        { func: "Media Page", key: "Shift + 2", cat: "Nav" },
-        { func: "Cut Page", key: "Shift + 3", cat: "Nav" },
-        { func: "Edit Page", key: "Shift + 4", cat: "Nav" },
-        { func: "Fusion Page", key: "Shift + 5", cat: "Nav" },
-        { func: "Color Page", key: "Shift + 6", cat: "Nav" },
-        { func: "Fairlight Page", key: "Shift + 7", cat: "Nav" },
-        { func: "Deliver Page", key: "Shift + 8", cat: "Nav" },
-        { func: "Project Manager", key: "Shift + 1", cat: "Nav" },
-        { func: "Project Settings", key: "Shift + 9", cat: "Nav" },
-        { func: "Keyboard Customization", key: "Ctrl + Alt + K", cat: "Nav" },
-        { func: "Save Project", key: "Ctrl + S", cat: "Nav" },
-        { func: "Undo", key: "Ctrl + Z", cat: "Nav" },
-        { func: "Redo", key: "Ctrl + Shift + Z", cat: "Nav" },
+        // --- NAVIGATION ---
+        { func: "Go to Line Number", key: "Ctrl + G", cat: "Navigation" },
+        {
+          func: "Go to Symbol in File",
+          key: "Ctrl + Shift + O",
+          cat: "Navigation",
+        },
+        {
+          func: "Go to Symbol in Workspace",
+          key: "Ctrl + T",
+          cat: "Navigation",
+        },
+        {
+          func: "Show Problems Panel",
+          key: "Ctrl + Shift + M",
+          cat: "Navigation",
+        },
+        { func: "Next Error/Warning", key: "F8", cat: "Navigation" },
+        {
+          func: "Previous Error/Warning",
+          key: "Shift + F8",
+          cat: "Navigation",
+        },
+        {
+          func: "Go Back (Navigation History)",
+          key: "Alt + Left",
+          cat: "Navigation",
+        },
+        {
+          func: "Go Forward (Navigation History)",
+          key: "Alt + Right",
+          cat: "Navigation",
+        },
+        { func: "Go to Definition", key: "F12", cat: "Navigation" },
+        { func: "Peek Definition", key: "Alt + F12", cat: "Navigation" },
+        { func: "Go to References", key: "Shift + F12", cat: "Navigation" },
+        { func: "Rename Symbol (Refactor)", key: "F2", cat: "Navigation" },
+        {
+          func: "Peek Type Definition",
+          key: "Ctrl + Shift + F10",
+          cat: "Navigation",
+        },
 
-        // --- PLAYBACK ---
-        { func: "Play / Stop", key: "Space", cat: "Nav" },
-        { func: "Shuttle Reverse", key: "J", cat: "Nav" },
-        { func: "Shuttle Stop", key: "K", cat: "Nav" },
-        { func: "Shuttle Forward", key: "L", cat: "Nav" },
-        { func: "Next Frame", key: "Right Arrow", cat: "Nav" },
-        { func: "Previous Frame", key: "Left Arrow", cat: "Nav" },
-        { func: "Next Second", key: "Shift + Right Arrow", cat: "Nav" },
-        { func: "Previous Second", key: "Shift + Left Arrow", cat: "Nav" },
-        { func: "Go to Next Keyframe", key: "]", cat: "Nav" },
-        { func: "Go to Previous Keyframe", key: "[", cat: "Nav" },
-        { func: "Go to In Point", key: "Shift + I", cat: "Nav" },
-        { func: "Go to Out Point", key: "Shift + O", cat: "Nav" },
+        // --- SEARCH & REPLACE ---
+        { func: "Find", key: "Ctrl + F", cat: "General" },
+        { func: "Replace", key: "Ctrl + H", cat: "General" },
+        { func: "Find Next", key: "F3", cat: "General" },
+        { func: "Find Previous", key: "Shift + F3", cat: "General" },
+        {
+          func: "Select All Occurrences of Find Match",
+          key: "Alt + Enter",
+          cat: "General",
+        },
+
+        // --- TERMINAL & GIT ---
+        {
+          func: "Toggle Integrated Terminal",
+          key: "Ctrl + `",
+          cat: "Terminal",
+        },
+        {
+          func: "Create New Terminal",
+          key: "Ctrl + Shift + `",
+          cat: "Terminal",
+        },
+        { func: "Scroll Terminal Up", key: "Ctrl + Up", cat: "Terminal" },
+        { func: "Scroll Terminal Down", key: "Ctrl + Down", cat: "Terminal" },
+        { func: "Page Up Terminal", key: "Shift + PgUp", cat: "Terminal" },
+        { func: "Page Down Terminal", key: "Shift + PgDn", cat: "Terminal" },
+        {
+          func: "Show Source Control (Git)",
+          key: "Ctrl + Shift + G",
+          cat: "Terminal",
+        },
+        {
+          func: "Git: Stage Selected Changes",
+          key: "Ctrl + K Ctrl + Alt + S",
+          cat: "Terminal",
+        },
+
+        // --- VIEW & UI ---
+        { func: "Toggle Side Bar", key: "Ctrl + B", cat: "View" },
+        { func: "Toggle Full Screen", key: "F11", cat: "View" },
+        { func: "Zen Mode", key: "Ctrl + K Z", cat: "View" },
+        { func: "Toggle Word Wrap", key: "Alt + Z", cat: "View" },
+        { func: "Zoom In UI", key: "Ctrl + =", cat: "View" },
+        { func: "Zoom Out UI", key: "Ctrl + -", cat: "View" },
+        { func: "Reset Zoom", key: "Ctrl + Num 0", cat: "View" },
+        { func: "Split Editor", key: "Ctrl + \\", cat: "View" },
+        { func: "Focus Group 1", key: "Ctrl + 1", cat: "View" },
+        { func: "Focus Group 2", key: "Ctrl + 2", cat: "View" },
+        { func: "Focus Group 3", key: "Ctrl + 3", cat: "View" },
+        { func: "Show Explorer", key: "Ctrl + Shift + E", cat: "View" },
+        { func: "Show Search", key: "Ctrl + Shift + F", cat: "View" },
+        { func: "Show Debug Panel", key: "Ctrl + Shift + D", cat: "View" },
+        { func: "Show Extensions", key: "Ctrl + Shift + X", cat: "View" },
+        { func: "Show Output Panel", key: "Ctrl + Shift + U", cat: "View" },
       ];
 
       let userProgress = {
@@ -648,7 +725,7 @@
                         }</h4>
                     </div>
                     <div class="flex items-center gap-4">
-                        <span class="key-tag bg-gray-900 border border-gray-700 px-3 py-1.5 rounded-xl text-blue-400 font-bold shadow-lg whitespace-nowrap">${
+                        <span class="key-tag bg-gray-900 border border-gray-700 px-3 py-1.5 rounded-xl text-purple-400 font-bold shadow-lg whitespace-nowrap">${
                           h.key
                         }</span>
                         <button onclick="toggleStar('${
@@ -720,8 +797,8 @@
             saveMastery();
             const feed = document.getElementById("quiz-feedback");
             feed.innerText = isCorrect
-              ? "PERFECT!"
-              : "The Correct Shortcut is: " + q.key;
+              ? "PERFECT! Workflow optimized."
+              : "The hotkey is: " + q.key;
             feed.className = `p-8 rounded-3xl font-black text-2xl mb-8 border-4 ${
               isCorrect
                 ? "bg-green-50 text-green-700 border-green-200"
@@ -772,7 +849,7 @@
 
       function saveMastery() {
         localStorage.setItem(
-          "mastery-davinci-ultimate-final-v6",
+          "mastery-vscode-v12-final",
           JSON.stringify({
             mastered: [...userProgress.mastered],
             streaks: userProgress.streakCount,
@@ -781,7 +858,7 @@
       }
 
       function loadMastery() {
-        const s = localStorage.getItem("mastery-davinci-ultimate-final-v6");
+        const s = localStorage.getItem("mastery-vscode-v12-final");
         if (s) {
           const data = JSON.parse(s);
           userProgress.mastered = new Set(data.mastered || []);
@@ -799,9 +876,9 @@
             [
               {
                 values: [m, r],
-                labels: ["Mastered", "Learning"],
+                labels: ["Mastered", "Remaining"],
                 type: "pie",
-                marker: { colors: ["#3b82f6", "#f1f1f1"] },
+                marker: { colors: ["#007acc", "#f1f1f1"] },
                 hole: 0.5,
               },
             ],
